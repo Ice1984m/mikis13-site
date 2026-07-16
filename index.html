@@ -2,279 +2,51 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width,initial-scale=1">
-  <meta name="description"
-        content="Mikis13 - software, websites en digitale oplossingen">
-  <title>Mikis13 | Digitale oplossingen</title>
-
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="De officiële website van Mikis13">
+  <title>Mikis13 — Officiële website</title>
   <style>
-    :root {
-      --background: #070a12;
-      --surface: rgba(255,255,255,.07);
-      --text: #f7f8ff;
-      --muted: #a8afc3;
-      --primary: #725cff;
-      --secondary: #00d4ff;
-      --border: rgba(255,255,255,.13);
-    }
-
-    * {
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 20% 10%, #29206e 0, transparent 30%),
-        radial-gradient(circle at 90% 30%, #063956 0, transparent 35%),
-        var(--background);
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.6;
-    }
-
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 18px 7%;
-      background: rgba(7,10,18,.82);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    nav strong {
-      font-size: 1.3rem;
-    }
-
-    nav a {
-      color: var(--text);
-      text-decoration: none;
-      margin-left: 18px;
-    }
-
-    header {
-      min-height: 82vh;
-      display: grid;
-      place-items: center;
-      padding: 70px 7%;
-      text-align: center;
-    }
-
-    .hero {
-      max-width: 900px;
-    }
-
-    .label {
-      display: inline-block;
-      padding: 8px 15px;
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      background: var(--surface);
-    }
-
-    h1 {
-      margin: 22px 0;
-      font-size: clamp(3rem, 10vw, 7rem);
-      line-height: .95;
-      background: linear-gradient(90deg, #fff, var(--secondary), #a998ff);
-      color: transparent;
-      background-clip: text;
-      -webkit-background-clip: text;
-    }
-
-    .hero p {
-      max-width: 680px;
-      margin: 0 auto 30px;
-      color: var(--muted);
-      font-size: 1.15rem;
-    }
-
-    .button {
-      display: inline-block;
-      margin: 7px;
-      padding: 14px 24px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: bold;
-      color: white;
-      background: linear-gradient(90deg, var(--primary), #9b48ff);
-      box-shadow: 0 12px 35px rgba(114,92,255,.3);
-    }
-
-    .button.secondary {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      box-shadow: none;
-    }
-
-    section {
-      max-width: 1150px;
-      margin: auto;
-      padding: 80px 7%;
-    }
-
-    section h2 {
-      text-align: center;
-      font-size: 2.3rem;
-      margin-bottom: 40px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 22px;
-    }
-
-    .card {
-      padding: 28px;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      background: var(--surface);
-      backdrop-filter: blur(12px);
-      transition: transform .2s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-    }
-
-    .card p {
-      color: var(--muted);
-    }
-
-    footer {
-      padding: 30px;
-      text-align: center;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-    }
-
-    @media (max-width: 650px) {
-      nav .links {
-        display: none;
-      }
-    }
+    *{box-sizing:border-box}html{scroll-behavior:smooth}
+    body{margin:0;min-height:100vh;font-family:Arial,sans-serif;color:#fff;background:radial-gradient(circle at 15% 10%,#243b83,transparent 35%),radial-gradient(circle at 85% 80%,#5b226f,transparent 35%),linear-gradient(145deg,#080b16,#11182d)}
+    header{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;padding:20px 7%;background:rgba(8,11,22,.88);border-bottom:1px solid rgba(255,255,255,.09)}
+    .logo{font-size:1.5rem;font-weight:900;letter-spacing:2px}.blue{color:#91aaff}
+    nav{display:flex;gap:18px}nav a{color:#fff;text-decoration:none;font-weight:700}
+    main{width:min(1080px,92%);margin:auto}.hero{min-height:82vh;display:grid;place-items:center;padding:65px 0;text-align:center}
+    .card{width:min(850px,100%);padding:65px 25px;border:1px solid rgba(255,255,255,.14);border-radius:30px;background:rgba(255,255,255,.055);box-shadow:0 35px 90px rgba(0,0,0,.45)}
+    h1{margin:22px 0 15px;font-size:clamp(3.5rem,14vw,7rem)}p{color:#cbd2e9;line-height:1.75}
+    .button{display:inline-block;margin:7px;padding:14px 23px;border-radius:999px;color:#080b16;background:#fff;text-decoration:none;font-weight:800}
+    .projects{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:70px 0}.project{padding:25px;border:1px solid rgba(255,255,255,.11);border-radius:22px;background:rgba(255,255,255,.05)}
+    footer{padding:40px;text-align:center;color:#9ca7c8}
+    @media(max-width:760px){header{display:block;text-align:center}nav{justify-content:center;margin-top:15px}.projects{grid-template-columns:1fr}}
   </style>
 </head>
-
 <body>
+<header>
+  <div class="logo">MIKIS<span class="blue">13</span></div>
   <nav>
-    <strong>Mikis13</strong>
-
-    <div class="links">
-      <a href="#diensten">Diensten</a>
-      <a href="#projecten">Projecten</a>
-      <a href="#contact">Contact</a>
-    </div>
+    <a href="#home">Home</a>
+    <a href="#projecten">Projecten</a>
+    <a href="https://github.com/Ice1984m">GitHub</a>
   </nav>
-
-  <header>
-    <div class="hero">
-      <span class="label">Software · AI · Websites</span>
-
-      <h1>MIKIS13</h1>
-
-      <p>
-        Professionele digitale oplossingen, Android-projecten,
-        websites, automatisering en creatieve technologie.
-      </p>
-
-      <a class="button" href="#diensten">Bekijk diensten</a>
-      <a class="button secondary"
-         href="https://github.com/Ice1984m">
-        GitHub
-      </a>
-    </div>
-  </header>
-
-  <section id="diensten">
-    <h2>Mijn diensten</h2>
-
-    <div class="grid">
-      <article class="card">
-        <h3>Websites</h3>
-        <p>
-          Moderne, snelle en mobiele websites voor projecten,
-          bedrijven en webshops.
-        </p>
-      </article>
-
-      <article class="card">
-        <h3>Android-apps</h3>
-        <p>
-          Android-projecten, APK-builds en geautomatiseerde
-          GitHub Actions-workflows.
-        </p>
-      </article>
-
-      <article class="card">
-        <h3>AI-integratie</h3>
-        <p>
-          Slimme AI-functies voor content, ondersteuning,
-          automatisering en software.
-        </p>
-      </article>
-
-      <article class="card">
-        <h3>Automatisering</h3>
-        <p>
-          Termux-, GitHub- en deploymentautomatisering voor
-          een snellere werkwijze.
-        </p>
-      </article>
+</header>
+<main>
+  <section class="hero" id="home">
+    <div class="card">
+      <p>Officiële website</p>
+      <h1>Mikis<span class="blue">13</span></h1>
+      <p>Muziek, Android-apps, software, websites en digitale projecten.</p>
+      <a class="button" href="#projecten">Bekijk projecten</a>
     </div>
   </section>
-
   <section id="projecten">
-    <h2>Projecten</h2>
-
-    <div class="grid">
-      <article class="card">
-        <h3>Mikis13 Pro</h3>
-        <p>Software, websites en digitale dienstverlening.</p>
-      </article>
-
-      <article class="card">
-        <h3>Android Development</h3>
-        <p>Mobiele applicaties en automatische APK-builds.</p>
-      </article>
-
-      <article class="card">
-        <h3>AI Tools</h3>
-        <p>Experimenten met generatieve AI en automatisering.</p>
-      </article>
+    <h2>Mijn projecten</h2>
+    <div class="projects">
+      <article class="project"><h3>Mikis13 Music</h3><p>Muziek, releases en digitale creaties.</p></article>
+      <article class="project"><h3>Android-apps</h3><p>APK-projecten en mobiele apps via GitHub.</p></article>
+      <article class="project"><h3>Webontwikkeling</h3><p>Websites, dashboards, API's en online toepassingen.</p></article>
     </div>
   </section>
-
-  <section id="contact">
-    <h2>Contact</h2>
-
-    <div class="card" style="text-align:center">
-      <h3>Samenwerken?</h3>
-      <p>
-        Bekijk mijn projecten en ontwikkelingen via GitHub.
-      </p>
-
-      <a class="button"
-         href="https://github.com/Ice1984m">
-        Open GitHub
-      </a>
-    </div>
-  </section>
-
-  <footer>
-    © <span id="year"></span> Mikis13. Alle rechten voorbehouden.
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
-  </script>
+</main>
+<footer>© 2026 Mikis13 · Matty Moors</footer>
 </body>
 </html>

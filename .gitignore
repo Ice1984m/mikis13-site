@@ -1,5 +1,5 @@
 .env
-*.key
+.env.*
+node_modules/
 *.log
-__pycache__/
-index.backup.html
+.DS_Store
