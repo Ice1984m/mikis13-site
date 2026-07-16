@@ -1,0 +1,27 @@
+# Dependencies / build output
+node_modules/
+dist/
+build/
+.next/
+out/
+
+# Version control
+.git/
+.gitignore
+
+# Editor / OS artefacts
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# CI / environment files
+.github/
+.env
+.env.*
+
+# Docker artefacts
+docker-compose*.yml
+compose*.yaml
