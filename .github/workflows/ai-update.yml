@@ -33,7 +33,7 @@ jobs:
           OPDRACHT: ${{ inputs.opdracht }}
         run: |
           python - <<'PY'
-          import json, os, pathlib, urllib.request
+          import json, os, pathlib, urllib.request, urllib.error, sys
 
           current = pathlib.Path("index.html").read_text(encoding="utf-8")
           prompt = f"""Werk de onderstaande website bij.
@@ -44,6 +44,7 @@ jobs:
           Regels:
           - Geef uitsluitend de complete nieuwe index.html.
           - Gebruik geen markdown-codeblokken.
+          - Begin direct met <!doctype html>.
           - Behoud een veilige statische website.
           - Voeg geen geheime sleutels toe.
 
@@ -52,12 +53,14 @@ jobs:
           """
 
           payload = json.dumps({
-              "model": "gpt-5-mini",
-              "input": prompt
+              "model": "gpt-4.1-mini",
+              "messages": [
+                  {"role": "user", "content": prompt}
+              ]
           }).encode()
 
           request = urllib.request.Request(
-              "https://api.openai.com/v1/responses",
+              "https://api.openai.com/v1/chat/completions",
               data=payload,
               headers={
                   "Authorization": f"Bearer {os.environ['OPENAI_API_KEY']}",
@@ -66,21 +69,26 @@ jobs:
               method="POST",
           )
 
-          with urllib.request.urlopen(request, timeout=120) as response:
-              data = json.load(response)
+          try:
+              with urllib.request.urlopen(request, timeout=120) as response:
+                  data = json.load(response)
+          except urllib.error.HTTPError as e:
+              print("API-fout:", e.code)
+              print(e.read().decode("utf-8", errors="replace"))
+              sys.exit(1)
 
-          text = data.get("output_text", "").strip()
-          if not text:
-              for item in data.get("output", []):
-                  for content in item.get("content", []):
-                      if content.get("type") == "output_text":
-                          text += content.get("text", "")
+          text = data["choices"][0]["message"]["content"].strip()
 
-          text = text.strip()
+          # Verwijder eventuele markdown codeblokken
+          import re
+          text = re.sub(r"^```(?:html)?\s*", "", text)
+          text = re.sub(r"\s*```$", "", text.strip())
+
           if not text.lower().startswith("<!doctype html"):
               raise SystemExit("AI-uitvoer is geen geldige complete HTML-pagina.")
 
           pathlib.Path("index.html").write_text(text + "\n", encoding="utf-8")
+          print("KLAAR: nieuwe AI-site opgeslagen als index.html")
           PY
 
       - name: Maak automatisch een pull request
@@ -98,5 +106,5 @@ jobs:
           gh pr create \
             --base main \
             --head "$BRANCH" \
-            --title "AI website-update" \
-            --body "Automatisch gegenereerde wijziging. Controleer de voorbeeldweergave en merge daarna."
+            --title "AI website-update: $OPDRACHT" \
+            --body "Automatisch gegenereerde wijziging door AI. Controleer de voorbeeldweergave en merge daarna."
