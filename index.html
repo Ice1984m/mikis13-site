@@ -124,7 +124,78 @@
 
     </main>
 
+    <!-- AI Chatbot Widget -->
+    <div id="chatbot-widget" class="fixed bottom-6 right-6 z-50">
+        <!-- Chat Button -->
+        <button
+            id="chat-button"
+            class="flex items-center justify-center w-16 h-16 rounded-full
+                   bg-gradient-to-br from-blue-500 to-purple-600
+                   hover:from-blue-600 hover:to-purple-700
+                   shadow-lg hover:shadow-xl transition-all transform
+                   hover:scale-110 active:scale-95"
+            title="Chat met AI"
+        >
+            <span class="text-2xl">💬</span>
+        </button>
+
+        <!-- Chat Window -->
+        <div
+            id="chat-window"
+            class="hidden absolute bottom-24 right-0 w-80 max-w-sm
+                   rounded-2xl border border-blue-400/30
+                   bg-gradient-to-br from-slate-900 to-slate-950
+                   shadow-2xl backdrop-blur-xl overflow-hidden
+                   flex flex-col"
+            style="height: 500px;"
+        >
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-blue-500 to-purple-600 p-4 flex justify-between items-center">
+                <h3 class="font-bold text-white">Mikis13 AI Assistant</h3>
+                <button
+                    id="close-chat"
+                    class="text-white hover:bg-white/20 rounded-full p-1 transition"
+                >
+                    ✕
+                </button>
+            </div>
+
+            <!-- Messages Container -->
+            <div
+                id="chat-messages"
+                class="flex-1 overflow-y-auto p-4 space-y-3"
+            >
+                <div class="flex justify-start">
+                    <div class="bg-blue-500/20 border border-blue-400/30 rounded-lg px-3 py-2 max-w-xs text-sm">
+                        <p>Hallo! 👋 Ik ben de Mikis13 AI Assistant. Hoe kan ik je helpen vandaag?</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="border-t border-white/10 p-3 flex gap-2">
+                <input
+                    id="chat-input"
+                    type="text"
+                    placeholder="Typ je vraag..."
+                    class="flex-1 rounded-lg bg-white/10 border border-white/20
+                           px-3 py-2 text-sm text-white placeholder-slate-400
+                           focus:outline-none focus:border-blue-400/50
+                           focus:bg-white/15 transition"
+                />
+                <button
+                    id="send-button"
+                    class="rounded-lg bg-blue-600 hover:bg-blue-500
+                           px-3 py-2 transition font-semibold text-sm"
+                >
+                    Verzend
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Original website script
         const button =
             document.getElementById("status-button");
 
@@ -134,6 +205,119 @@
         button.addEventListener("click", () => {
             status.textContent =
                 "Alles werkt correct via GitHub Pages.";
+        });
+
+        // Chatbot script
+        const chatButton = document.getElementById("chat-button");
+        const chatWindow = document.getElementById("chat-window");
+        const closeChat = document.getElementById("close-chat");
+        const chatInput = document.getElementById("chat-input");
+        const sendButton = document.getElementById("send-button");
+        const chatMessages = document.getElementById("chat-messages");
+
+        // Toggle chat window
+        chatButton.addEventListener("click", () => {
+            chatWindow.classList.toggle("hidden");
+            if (!chatWindow.classList.contains("hidden")) {
+                chatInput.focus();
+            }
+        });
+
+        // Close chat window
+        closeChat.addEventListener("click", () => {
+            chatWindow.classList.add("hidden");
+        });
+
+        // Send message
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
+
+            // Add user message
+            const userMessageDiv = document.createElement("div");
+            userMessageDiv.className = "flex justify-end";
+            userMessageDiv.innerHTML = `
+                <div class="bg-purple-600/30 border border-purple-400/50 rounded-lg px-3 py-2 max-w-xs text-sm">
+                    <p>${escapeHtml(message)}</p>
+                </div>
+            `;
+            chatMessages.appendChild(userMessageDiv);
+
+            // Clear input
+            chatInput.value = "";
+
+            // Simulate AI response (simple pattern matching)
+            setTimeout(() => {
+                const response = getAIResponse(message);
+                const aiMessageDiv = document.createElement("div");
+                aiMessageDiv.className = "flex justify-start";
+                aiMessageDiv.innerHTML = `
+                    <div class="bg-blue-500/20 border border-blue-400/30 rounded-lg px-3 py-2 max-w-xs text-sm">
+                        <p>${response}</p>
+                    </div>
+                `;
+                chatMessages.appendChild(aiMessageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 500);
+
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Simple AI response generator
+        function getAIResponse(message) {
+            const lowerMessage = message.toLowerCase();
+
+            const responses = {
+                greeting: "Hallo! Fijn je te ontmoeten. Hoe kan ik je helpen? 😊",
+                about: "Ik ben Mikis13 AI Assistant. Ik kan je helpen met vragen over de website en projecten! 🤖",
+                projects: "Mikis13 werkt aan muziek, software en AI-projecten. Waag je een vraag! 🎵💻",
+                contact: "Je kunt contact opnemen via GitHub: github.com/Ice1984m 📧",
+                music: "Mikis13 maakt interessante muziekprojecten. Meer info vind je op GitHub! 🎶",
+                software: "Voor software-projecten en code, check de GitHub pagina van Mikis13! 🖥️",
+                ai: "AI en automatisering zijn grote interesses van Mikis13! 🤖✨",
+            };
+
+            if (lowerMessage.includes("hallo") || lowerMessage.includes("hi") || lowerMessage.includes("hey")) {
+                return responses.greeting;
+            }
+            if (lowerMessage.includes("wie") || lowerMessage.includes("wat ben")) {
+                return responses.about;
+            }
+            if (lowerMessage.includes("project")) {
+                return responses.projects;
+            }
+            if (lowerMessage.includes("contact") || lowerMessage.includes("bereik")) {
+                return responses.contact;
+            }
+            if (lowerMessage.includes("muziek")) {
+                return responses.music;
+            }
+            if (lowerMessage.includes("software")) {
+                return responses.software;
+            }
+            if (lowerMessage.includes("ai")) {
+                return responses.ai;
+            }
+
+            return "Interessante vraag! 🤔 Meer info vind je op GitHub: github.com/Ice1984m";
+        }
+
+        // Escape HTML
+        function escapeHtml(text) {
+            const div = document.createElement("div");
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Send on button click
+        sendButton.addEventListener("click", sendMessage);
+
+        // Send on Enter key
+        chatInput.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+                sendMessage();
+            }
         });
     </script>
 
