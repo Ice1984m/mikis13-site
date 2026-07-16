@@ -1,18 +1,27 @@
-# Mikis13-site
+# Mikis13
 
-Officiële website van Mikis13.
+Officiële Mikis13-website.
 
-## Synchroniseren vanuit Termux
+## Website
+
+https://ice1984m.github.io/mikis13-site/
+
+## Automatisch synchroniseren
+
+Gebruik in Termux:
 
 ```bash
 mikis13-sync
 ```
 
-## Lokaal bekijken
+## Website openen
 
 ```bash
-cd ~/mikis13-site
-python -m http.server 8080
+mikis13-open
 ```
 
-Open `http://127.0.0.1:8080`.
+## Status controleren
+
+```bash
+mikis13-status
+```
