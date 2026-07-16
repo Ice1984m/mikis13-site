@@ -1,5 +1,5 @@
 .env
 *.key
-secrets.*
-index.backup.html
+*.log
 __pycache__/
+index.backup.html
