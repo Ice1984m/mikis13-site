@@ -79,7 +79,8 @@ docker pull ghcr.io/ice1984m/mikis13-site:main
 
    ```bash
    docker pull ghcr.io/ice1984m/mikis13-site:main
-   docker stop mikis13-site && docker rm mikis13-site
+   docker stop mikis13-site
+   docker rm mikis13-site
    # Herhaal stap 3
    ```
 
