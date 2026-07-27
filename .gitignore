@@ -1,7 +1,14 @@
-.env
-.env.*
+
+# Geheimen
+*.jks
 *.key
 *.pem
-*.jks
-secrets/
+*.token
+.cloudflare/
+.env
+.env.*
+.mikis13/
+cloudflare.env
+credentials.json
 credentials/
+secrets/
