@@ -60,6 +60,222 @@ span {
 </style>
 </head>
 <body>
+
+<!-- MIKIS13-MENU-START -->
+<header class="m13-menu">
+  <div class="m13-menu-inner">
+
+    <a class="m13-brand" href="./index.html">
+      <span class="m13-logo">M13</span>
+      <span>Mikis13</span>
+    </a>
+
+    <button
+      class="m13-toggle"
+      type="button"
+      aria-label="Keuzemenu openen"
+      aria-expanded="false"
+      onclick="toggleM13Menu(this)"
+    >
+      ☰
+    </button>
+
+    <nav class="m13-links" id="m13Links" aria-label="Mikis13 keuzemenu">
+
+      <a data-page="index.html" href="./index.html">
+        🌐 Mikis13 Live
+      </a>
+
+      <a data-page="monitor.html" href="./monitor.html">
+        📡 Mikis13 Monitor
+      </a>
+
+      <a data-page="goksites.html" href="./goksites.html">
+        🎰 Mikis13 Gok
+      </a>
+
+      <a data-page="controlecentrum.html" href="./controlecentrum.html">
+        🧭 Controlecentrum
+      </a>
+
+      <a data-page="inkomsten.html" href="./inkomsten.html">
+        💶 Inkomsten
+      </a>
+
+    </nav>
+  </div>
+</header>
+
+<style>
+.m13-menu {
+  position: sticky;
+  top: 0;
+  z-index: 999999;
+  width: 100%;
+  border-bottom: 1px solid rgba(148,163,184,.22);
+  background: rgba(2,6,23,.97);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.28);
+}
+
+.m13-menu-inner {
+  width: min(1240px, calc(100% - 24px));
+  min-height: 72px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.m13-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.m13-logo {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 13px;
+  background: linear-gradient(135deg,#0284c7,#22c55e);
+  color: white;
+  font-size: .8rem;
+}
+
+.m13-links {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 9px;
+}
+
+.m13-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 43px;
+  padding: 0 15px;
+  border: 1px solid rgba(148,163,184,.22);
+  border-radius: 13px;
+  background: rgba(15,23,42,.82);
+  color: #e2e8f0;
+  text-decoration: none;
+  font-size: .9rem;
+  font-weight: 800;
+  white-space: nowrap;
+  transition:
+    transform .18s ease,
+    border-color .18s ease,
+    background .18s ease;
+}
+
+.m13-links a:hover,
+.m13-links a:focus {
+  transform: translateY(-2px);
+  border-color: #38bdf8;
+  background: rgba(14,116,144,.24);
+  outline: none;
+}
+
+.m13-links a.active {
+  border-color: #22c55e;
+  background: rgba(34,197,94,.2);
+  color: white;
+}
+
+.m13-toggle {
+  display: none;
+  width: 45px;
+  height: 45px;
+  margin-left: auto;
+  border: 1px solid rgba(148,163,184,.22);
+  border-radius: 13px;
+  background: rgba(15,23,42,.9);
+  color: white;
+  font-size: 1.35rem;
+}
+
+@media (max-width: 950px) {
+  .m13-menu-inner {
+    position: relative;
+    min-height: 64px;
+  }
+
+  .m13-toggle {
+    display: block;
+  }
+
+  .m13-links {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 12px;
+    border: 1px solid rgba(148,163,184,.22);
+    border-top: 0;
+    border-radius: 0 0 18px 18px;
+    background: rgba(2,6,23,.99);
+    box-shadow: 0 20px 35px rgba(0,0,0,.35);
+  }
+
+  .m13-links.open {
+    display: grid;
+  }
+
+  .m13-links a {
+    justify-content: flex-start;
+    min-height: 48px;
+  }
+}
+
+@media (max-width: 560px) {
+  .m13-brand > span:last-child {
+    display: none;
+  }
+
+  .m13-links {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<script>
+function toggleM13Menu(button) {
+  const menu = document.getElementById("m13Links");
+  const open = menu.classList.toggle("open");
+
+  button.setAttribute("aria-expanded", String(open));
+  button.textContent = open ? "✕" : "☰";
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  let current = window.location.pathname.split("/").pop();
+
+  if (!current) {
+    current = "index.html";
+  }
+
+  document.querySelectorAll(".m13-links a").forEach(function (link) {
+    link.classList.toggle(
+      "active",
+      link.dataset.page === current
+    );
+  });
+});
+</script>
+<!-- MIKIS13-MENU-EINDE -->
+
+
 <!-- MIKIS13-PAGE-SWITCHER-START -->
 <nav class="mikis-page-switcher" aria-label="Mikis13 paginanavigatie">
     <div class="mikis-page-switcher-inner">
