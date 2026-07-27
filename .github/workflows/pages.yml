@@ -28,12 +28,14 @@ jobs:
 
     steps:
       - name: Broncode ophalen
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
 
       - name: Python instellen
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
-          python-version: "3.x"
+          python-version: "3.13"
 
       - name: Verplichte bestanden controleren
         shell: bash
@@ -41,11 +43,12 @@ jobs:
           set -Eeuo pipefail
 
           verplicht=(
-            index.html
-            contact.html
-            privacy.html
-            voorwaarden.html
-            assets/style.css
+            "index.html"
+            "contact.html"
+            "privacy.html"
+            "voorwaarden.html"
+            "jobs.html"
+            "assets/style.css"
           )
 
           fout=0
@@ -61,30 +64,104 @@ jobs:
 
           exit "$fout"
 
-      - name: Openbare repository op geheimen controleren
+      - name: Repository veilig op geheimen controleren
         shell: bash
         run: |
           set -Eeuo pipefail
 
-          patroon='sk_live_|sk_test_|github_pat_|ghp_|gho_'
-          patroon+='|AKIA[0-9A-Z]{16}'
-          patroon+='|-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----'
+          python - <<'PY'
+          import re
+          import subprocess
+          from pathlib import Path
 
-          if grep \
-            --recursive \
-            --line-number \
-            --extended-regexp \
-            "$patroon" \
-            . \
-            --exclude-dir=.git \
-            --exclude='*.md'
-          then
-            echo "::error::Mogelijk geheim gevonden."
-            echo "::error::Publicatie is uit veiligheid geblokkeerd."
-            exit 1
-          fi
+          root = Path(".").resolve()
 
-          echo "Geen bekend geheim patroon gevonden."
+          scanner_file = Path(
+              ".github/workflows/pages.yml"
+          ).as_posix()
+
+          result = subprocess.run(
+              ["git", "ls-files", "-z"],
+              check=True,
+              capture_output=True,
+          )
+
+          files = [
+              Path(item.decode("utf-8"))
+              for item in result.stdout.split(b"\0")
+              if item
+          ]
+
+          patterns = {
+              "Stripe live-sleutel": re.compile(
+                  b"sk" + b"_live_" + b"[A-Za-z0-9]{10,}"
+              ),
+              "Stripe testsleutel": re.compile(
+                  b"sk" + b"_test_" + b"[A-Za-z0-9]{10,}"
+              ),
+              "GitHub PAT": re.compile(
+                  b"github" + b"_pat_" + b"[A-Za-z0-9_]{20,}"
+              ),
+              "GitHub token": re.compile(
+                  b"gh" + b"p_" + b"[A-Za-z0-9]{20,}"
+              ),
+              "AWS key": re.compile(
+                  b"AKIA[A-Z0-9]{16}"
+              ),
+              "Privésleutel": re.compile(
+                  b"-----BEGIN "
+                  b"(?:RSA |EC |OPENSSH )?"
+                  b"PRIVATE KEY-----"
+              ),
+          }
+
+          findings = []
+
+          for relative in files:
+              relative_name = relative.as_posix()
+
+              # De scanner bevat zelf herkenningspatronen.
+              # Daarom wordt alleen dit ene bestand overgeslagen.
+              if relative_name == scanner_file:
+                  continue
+
+              path = root / relative
+
+              if not path.is_file():
+                  continue
+
+              try:
+                  data = path.read_bytes()
+              except OSError:
+                  continue
+
+              if b"\0" in data[:4096]:
+                  continue
+
+              for label, pattern in patterns.items():
+                  for match in pattern.finditer(data):
+                      line = data[:match.start()].count(b"\n") + 1
+
+                      findings.append(
+                          f"{relative_name}:{line}: {label}"
+                      )
+
+          if findings:
+              for finding in findings:
+                  print(f"::error::{finding}")
+
+              print(
+                  "::error::Mogelijk echt geheim gevonden. "
+                  "Publicatie is geblokkeerd."
+              )
+
+              raise SystemExit(1)
+
+          print(
+              "Geen herkenbare geheime sleutels "
+              "in de bijgehouden bestanden gevonden."
+          )
+          PY
 
       - name: HTML en interne links controleren
         shell: bash
@@ -98,51 +175,70 @@ jobs:
 
           root = Path(".").resolve()
           html_files = sorted(root.rglob("*.html"))
-          errors: list[str] = []
+          errors = []
 
-          class PageParser(HTMLParser):
-              def __init__(self, source: Path) -> None:
+          ignored_parts = {
+              ".git",
+              "node_modules",
+              "vendor",
+          }
+
+          html_files = [
+              path for path in html_files
+              if not ignored_parts.intersection(path.parts)
+          ]
+
+          class Parser(HTMLParser):
+              def __init__(self, source):
                   super().__init__(convert_charrefs=True)
                   self.source = source
-                  self.ids: set[str] = set()
-                  self.links: list[tuple[str, str]] = []
+                  self.ids = set()
+                  self.references = []
 
               def handle_starttag(self, tag, attrs):
                   attributes = dict(attrs)
 
                   element_id = attributes.get("id")
+
                   if element_id:
                       self.ids.add(element_id)
 
-                  for name in ("href", "src"):
-                      value = attributes.get(name)
-                      if value:
-                          self.links.append((name, value))
+                  for attribute in ("href", "src"):
+                      value = attributes.get(attribute)
 
-          parsed: dict[Path, PageParser] = {}
+                      if value:
+                          self.references.append(
+                              (attribute, value.strip())
+                          )
+
+          parsed = {}
 
           for file in html_files:
-              parser = PageParser(file)
+              parser = Parser(file)
 
               try:
-                  content = file.read_text(encoding="utf-8")
-                  parser.feed(content)
+                  parser.feed(
+                      file.read_text(encoding="utf-8")
+                  )
               except Exception as exc:
                   errors.append(
-                      f"{file.relative_to(root)}: HTML-fout: {exc}"
+                      f"{file.relative_to(root)}: {exc}"
                   )
 
               parsed[file] = parser
 
           for source, parser in list(parsed.items()):
-              for attribute, raw_value in parser.links:
-                  value = raw_value.strip()
-
+              for attribute, value in parser.references:
                   if not value:
                       continue
 
                   if value.startswith(
-                      ("mailto:", "tel:", "data:", "javascript:")
+                      (
+                          "mailto:",
+                          "tel:",
+                          "data:",
+                          "javascript:",
+                      )
                   ):
                       continue
 
@@ -152,7 +248,7 @@ jobs:
                       if fragment and fragment not in parser.ids:
                           errors.append(
                               f"{source.relative_to(root)}: "
-                              f"ontbrekend anker #{fragment}"
+                              f"anker ontbreekt: #{fragment}"
                           )
 
                       continue
@@ -165,12 +261,14 @@ jobs:
                   if value.startswith("//"):
                       continue
 
-                  target_text = unquote(parts.path)
+                  relative_path = unquote(parts.path)
 
-                  if not target_text:
+                  if not relative_path:
                       continue
 
-                  target = (source.parent / target_text).resolve()
+                  target = (
+                      source.parent / relative_path
+                  ).resolve()
 
                   try:
                       target.relative_to(root)
@@ -181,13 +279,13 @@ jobs:
                       )
                       continue
 
-                  if target_text.endswith("/"):
+                  if relative_path.endswith("/"):
                       target = target / "index.html"
 
                   if not target.exists():
                       errors.append(
                           f"{source.relative_to(root)}: "
-                          f"ontbrekende {attribute}: {value}"
+                          f"{attribute} ontbreekt: {value}"
                       )
                       continue
 
@@ -198,10 +296,12 @@ jobs:
                       target_parser = parsed.get(target)
 
                       if target_parser is None:
-                          target_parser = PageParser(target)
+                          target_parser = Parser(target)
 
                           target_parser.feed(
-                              target.read_text(encoding="utf-8")
+                              target.read_text(
+                                  encoding="utf-8"
+                              )
                           )
 
                           parsed[target] = target_parser
@@ -211,11 +311,13 @@ jobs:
                       if fragment not in target_parser.ids:
                           errors.append(
                               f"{source.relative_to(root)}: "
-                              f"ontbrekend anker in {value}"
+                              f"anker ontbreekt in {value}"
                           )
 
           if not html_files:
-              errors.append("Geen HTML-bestanden gevonden.")
+              errors.append(
+                  "Geen HTML-bestanden gevonden."
+              )
 
           if errors:
               for error in errors:
@@ -224,12 +326,12 @@ jobs:
               raise SystemExit(1)
 
           print(
-              f"Geslaagd: {len(html_files)} "
-              "HTML-bestand(en) gecontroleerd."
+              f"{len(html_files)} HTML-bestanden "
+              "en interne links zijn geldig."
           )
           PY
 
-      - name: Controleoverzicht maken
+      - name: Websitecontrole samenvatten
         if: always()
         shell: bash
         run: |
@@ -237,9 +339,9 @@ jobs:
             echo "## Mikis13 websitecontrole"
             echo
             echo "- Commit: \`${GITHUB_SHA}\`"
-            echo "- Actie: \`${GITHUB_EVENT_NAME}\`"
+            echo "- Gebeurtenis: \`${GITHUB_EVENT_NAME}\`"
             echo "- Repository: \`${GITHUB_REPOSITORY}\`"
-            echo "- Tijdstip UTC: $(date -u '+%Y-%m-%d %H:%M:%S')"
+            echo "- UTC: $(date -u '+%Y-%m-%d %H:%M:%S')"
           } >> "$GITHUB_STEP_SUMMARY"
 
   publiceren:
@@ -265,7 +367,9 @@ jobs:
 
     steps:
       - name: Broncode ophalen
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
 
       - name: GitHub Pages configureren
         uses: actions/configure-pages@v5
@@ -290,7 +394,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: GitHub Pages URL controleren
+      - name: Live URL controleren
         shell: bash
         env:
           WEBSITE_URL: >-
@@ -320,7 +424,7 @@ jobs:
           fi
 
           {
-            echo "## Live status"
+            echo "## Live website"
             echo
             echo "- URL: $WEBSITE_URL"
             echo "- HTTP-status: $status"
