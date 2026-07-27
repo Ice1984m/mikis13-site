@@ -381,7 +381,7 @@ jobs:
 
       - name: Website publiceren
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
 
   live-status:
     name: Live website controleren
