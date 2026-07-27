@@ -1,325 +1,114 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta
-        name="description"
-        content="De officiële Mikis13-website voor muziek, software en digitale projecten."
-    >
-
-    <title>Mikis13</title>
-
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="utf-8">
+  <meta name="viewport"
+        content="width=device-width,initial-scale=1">
+  <meta name="description"
+        content="Mikis13 software, AI en projecten">
+  <title>Mikis13</title>
+  <link rel="stylesheet" href="assets/style.css">
 </head>
+<body>
+<header>
+  <nav class="container">
+    <a class="logo" href="index.html">MIKIS13</a>
 
-<body class="min-h-screen bg-slate-950 text-white">
-
-    <main class="min-h-screen flex items-center justify-center px-6 py-16">
-
-        <section
-            class="w-full max-w-5xl rounded-3xl border
-                   border-white/10 bg-white/5 p-8
-                   shadow-2xl backdrop-blur md:p-14"
-        >
-
-            <div
-                class="inline-flex rounded-full border
-                       border-blue-400/30 bg-blue-500/10
-                       px-4 py-2 text-sm text-blue-200"
-            >
-                Officiële Mikis13-website
-            </div>
-
-            <h1
-                class="mt-7 text-5xl font-black
-                       tracking-tight md:text-7xl"
-            >
-                Mikis13
-            </h1>
-
-            <p
-                class="mt-5 max-w-2xl text-lg
-                       leading-8 text-slate-300"
-            >
-                Muziek, software, creatieve projecten
-                en nieuwe digitale ideeën.
-            </p>
-
-            <div class="mt-9 flex flex-wrap gap-4">
-
-                <a
-                    href="https://github.com/Ice1984m"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="rounded-xl bg-blue-600 px-6 py-3
-                           font-semibold transition
-                           hover:bg-blue-500"
-                >
-                    GitHub openen
-                </a>
-
-                <button
-                    id="status-button"
-                    type="button"
-                    class="rounded-xl border border-white/20
-                           px-6 py-3 font-semibold transition
-                           hover:bg-white/10"
-                >
-                    Website testen
-                </button>
-
-            </div>
-
-            <p
-                id="status"
-                class="mt-6 text-sm text-emerald-300"
-            >
-                Website is geladen.
-            </p>
-
-            <div
-                class="mt-10 grid gap-4
-                       sm:grid-cols-2 lg:grid-cols-3"
-            >
-
-                <article
-                    class="rounded-2xl border border-white/10
-                           bg-black/20 p-5"
-                >
-                    <h2 class="font-bold">Muziek</h2>
-                    <p class="mt-2 text-sm text-slate-400">
-                        Releases en creatieve producties.
-                    </p>
-                </article>
-
-                <article
-                    class="rounded-2xl border border-white/10
-                           bg-black/20 p-5"
-                >
-                    <h2 class="font-bold">Software</h2>
-                    <p class="mt-2 text-sm text-slate-400">
-                        Apps, websites en GitHub-projecten.
-                    </p>
-                </article>
-
-                <article
-                    class="rounded-2xl border border-white/10
-                           bg-black/20 p-5"
-                >
-                    <h2 class="font-bold">Mikis13 AI</h2>
-                    <p class="mt-2 text-sm text-slate-400">
-                        Nieuwe AI-functies worden toegevoegd.
-                    </p>
-                </article>
-
-            </div>
-
-        </section>
-
-    </main>
-
-    <!-- AI Chatbot Widget -->
-    <div id="chatbot-widget" class="fixed bottom-6 right-6 z-50">
-        <!-- Chat Button -->
-        <button
-            id="chat-button"
-            class="flex items-center justify-center w-16 h-16 rounded-full
-                   bg-gradient-to-br from-blue-500 to-purple-600
-                   hover:from-blue-600 hover:to-purple-700
-                   shadow-lg hover:shadow-xl transition-all transform
-                   hover:scale-110 active:scale-95"
-            title="Chat met AI"
-        >
-            <span class="text-2xl">💬</span>
-        </button>
-
-        <!-- Chat Window -->
-        <div
-            id="chat-window"
-            class="hidden absolute bottom-24 right-0 w-80 max-w-sm
-                   rounded-2xl border border-blue-400/30
-                   bg-gradient-to-br from-slate-900 to-slate-950
-                   shadow-2xl backdrop-blur-xl overflow-hidden
-                   flex flex-col"
-            style="height: 500px;"
-        >
-            <!-- Header -->
-            <div class="bg-gradient-to-r from-blue-500 to-purple-600 p-4 flex justify-between items-center">
-                <h3 class="font-bold text-white">Mikis13 AI Assistant</h3>
-                <button
-                    id="close-chat"
-                    class="text-white hover:bg-white/20 rounded-full p-1 transition"
-                >
-                    ✕
-                </button>
-            </div>
-
-            <!-- Messages Container -->
-            <div
-                id="chat-messages"
-                class="flex-1 overflow-y-auto p-4 space-y-3"
-            >
-                <div class="flex justify-start">
-                    <div class="bg-blue-500/20 border border-blue-400/30 rounded-lg px-3 py-2 max-w-xs text-sm">
-                        <p>Hallo! 👋 Ik ben de Mikis13 AI Assistant. Hoe kan ik je helpen vandaag?</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Input Area -->
-            <div class="border-t border-white/10 p-3 flex gap-2">
-                <input
-                    id="chat-input"
-                    type="text"
-                    placeholder="Typ je vraag..."
-                    class="flex-1 rounded-lg bg-white/10 border border-white/20
-                           px-3 py-2 text-sm text-white placeholder-slate-400
-                           focus:outline-none focus:border-blue-400/50
-                           focus:bg-white/15 transition"
-                />
-                <button
-                    id="send-button"
-                    class="rounded-lg bg-blue-600 hover:bg-blue-500
-                           px-3 py-2 transition font-semibold text-sm"
-                >
-                    Verzend
-                </button>
-            </div>
-        </div>
+    <div class="links">
+      <a href="index.html">Start</a>
+      <a href="pro.html">Mikis13 Pro</a>
+      <a href="ai.html">Mikis13 AI</a>
+      <a href="projecten.html">Projecten</a>
+      <a href="status.html">Status</a>
     </div>
+  </nav>
+</header>
+<main>
+  <section class="hero container">
+    <div class="status">● Mikis13-platform</div>
 
-    <script>
-        // Original website script
-        const button =
-            document.getElementById("status-button");
+    <h1>Software, AI en digitale projecten.</h1>
 
-        const status =
-            document.getElementById("status");
+    <p>
+      Eén centrale website voor Mikis13 Site,
+      Mikis13 Pro en Mikis13 AI.
+    </p>
 
-        button.addEventListener("click", () => {
-            status.textContent =
-                "Alles werkt correct via GitHub Pages.";
-        });
+    <div class="buttons">
+      <a class="button primary" href="projecten.html">
+        Bekijk projecten
+      </a>
 
-        // Chatbot script
-        const chatButton = document.getElementById("chat-button");
-        const chatWindow = document.getElementById("chat-window");
-        const closeChat = document.getElementById("close-chat");
-        const chatInput = document.getElementById("chat-input");
-        const sendButton = document.getElementById("send-button");
-        const chatMessages = document.getElementById("chat-messages");
+      <a class="button"
+         href="https://github.com/Ice1984m"
+         target="_blank"
+         rel="noopener noreferrer">
+        GitHub openen
+      </a>
 
-        // Toggle chat window
-        chatButton.addEventListener("click", () => {
-            chatWindow.classList.toggle("hidden");
-            if (!chatWindow.classList.contains("hidden")) {
-                chatInput.focus();
-            }
-        });
+      <a class="button"
+         href="https://chatgpt.com/"
+         target="_blank"
+         rel="noopener noreferrer">
+        Vraag ChatGPT
+      </a>
+    </div>
+  </section>
 
-        // Close chat window
-        closeChat.addEventListener("click", () => {
-            chatWindow.classList.add("hidden");
-        });
+  <section class="grid container">
+    <article class="card">
+      <div class="status">Online</div>
+      <h2>Mikis13 Site</h2>
+      <p>De centrale website en navigatie.</p>
+      <a class="button"
+         href="https://github.com/Ice1984m/mikis13-site"
+         target="_blank"
+         rel="noopener noreferrer">
+        Repository
+      </a>
+    </article>
 
-        // Send message
-        function sendMessage() {
-            const message = chatInput.value.trim();
-            if (!message) return;
+    <article class="card">
+      <div class="status">Repository: false</div>
+      <h2>Mikis13 Pro</h2>
+      <p>Professionele tools en dashboards.</p>
+      <a class="button" href="pro.html">Bekijken</a>
+    </article>
 
-            // Add user message
-            const userMessageDiv = document.createElement("div");
-            userMessageDiv.className = "flex justify-end";
-            userMessageDiv.innerHTML = `
-                <div class="bg-purple-600/30 border border-purple-400/50 rounded-lg px-3 py-2 max-w-xs text-sm">
-                    <p>${escapeHtml(message)}</p>
-                </div>
-            `;
-            chatMessages.appendChild(userMessageDiv);
+    <article class="card">
+      <div class="status">Repository: true</div>
+      <h2>Mikis13 AI</h2>
+      <p>AI-prototypes en programmeerhulp.</p>
+      <a class="button" href="ai.html">Bekijken</a>
+    </article>
+  </section>
+</main>
+<button id="chatButton"
+        class="chat-button"
+        aria-label="Open programmeerhulp">💬</button>
 
-            // Clear input
-            chatInput.value = "";
+<section id="chatPanel" class="chat-panel">
+  <div class="chat-header">Mikis13 programmeerhulp</div>
 
-            // Simulate AI response (simple pattern matching)
-            setTimeout(() => {
-                const response = getAIResponse(message);
-                const aiMessageDiv = document.createElement("div");
-                aiMessageDiv.className = "flex justify-start";
-                aiMessageDiv.innerHTML = `
-                    <div class="bg-blue-500/20 border border-blue-400/30 rounded-lg px-3 py-2 max-w-xs text-sm">
-                        <p>${response}</p>
-                    </div>
-                `;
-                chatMessages.appendChild(aiMessageDiv);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }, 500);
+  <div id="chatMessages" class="chat-messages">
+    <div class="message">
+      Hallo! Vraag iets over Termux, GitHub, DNS of GitHub Pages.
+    </div>
+  </div>
 
-            // Scroll to bottom
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
+  <form id="chatForm" class="chat-form">
+    <input id="chatInput"
+           placeholder="Typ je vraag…"
+           autocomplete="off">
+    <button class="button primary" type="submit">Stuur</button>
+  </form>
+</section>
+<footer>
+  <div class="container">
+    Mikis13 — statische website zonder advertentietrackers.
+  </div>
+</footer>
 
-        // Simple AI response generator
-        function getAIResponse(message) {
-            const lowerMessage = message.toLowerCase();
-
-            const responses = {
-                greeting: "Hallo! Fijn je te ontmoeten. Hoe kan ik je helpen? 😊",
-                about: "Ik ben Mikis13 AI Assistant. Ik kan je helpen met vragen over de website en projecten! 🤖",
-                projects: "Mikis13 werkt aan muziek, software en AI-projecten. Waag je een vraag! 🎵💻",
-                contact: "Je kunt contact opnemen via GitHub: github.com/Ice1984m 📧",
-                music: "Mikis13 maakt interessante muziekprojecten. Meer info vind je op GitHub! 🎶",
-                software: "Voor software-projecten en code, check de GitHub pagina van Mikis13! 🖥️",
-                ai: "AI en automatisering zijn grote interesses van Mikis13! 🤖✨",
-            };
-
-            if (lowerMessage.includes("hallo") || lowerMessage.includes("hi") || lowerMessage.includes("hey")) {
-                return responses.greeting;
-            }
-            if (lowerMessage.includes("wie") || lowerMessage.includes("wat ben")) {
-                return responses.about;
-            }
-            if (lowerMessage.includes("project")) {
-                return responses.projects;
-            }
-            if (lowerMessage.includes("contact") || lowerMessage.includes("bereik")) {
-                return responses.contact;
-            }
-            if (lowerMessage.includes("muziek")) {
-                return responses.music;
-            }
-            if (lowerMessage.includes("software")) {
-                return responses.software;
-            }
-            if (lowerMessage.includes("ai")) {
-                return responses.ai;
-            }
-
-            return "Interessante vraag! 🤔 Meer info vind je op GitHub: github.com/Ice1984m";
-        }
-
-        // Escape HTML
-        function escapeHtml(text) {
-            const div = document.createElement("div");
-            div.textContent = text;
-            return div.innerHTML;
-        }
-
-        // Send on button click
-        sendButton.addEventListener("click", sendMessage);
-
-        // Send on Enter key
-        chatInput.addEventListener("keypress", (e) => {
-            if (e.key === "Enter") {
-                sendMessage();
-            }
-        });
-    </script>
-
+<script src="assets/app.js"></script>
 </body>
 </html>
