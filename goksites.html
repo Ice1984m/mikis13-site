@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <meta
+    name="description"
+    content="Mikis13 overzichtspagina voor goksites en verantwoord spelen."
+  >
+
+  <title>Goksites | Mikis13 Pro</title>
+  <link rel="stylesheet" href="assets/style.css">
+
+  <style>
+    .warning {
+      max-width: 900px;
+      margin: 1.5rem auto;
+      padding: 1.25rem;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .gok-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .gok-card {
+      padding: 1.4rem;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .gok-card h3 {
+      margin-top: 0;
+    }
+
+    .disabled-link {
+      opacity: 0.65;
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <a class="logo" href="index.html">
+      <span class="logo-mark">M13</span>
+      <span>Mikis13 Pro</span>
+    </a>
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#goksites">Goksites</a>
+      <a href="#veilig">Veilig spelen</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="tag">18+ • Speel verantwoord</span>
+
+        <h1>Goksites openen</h1>
+
+        <p>
+          Gebruik uitsluitend aanbieders die in jouw land wettelijk
+          vergund zijn. Stel vooraf een vaste tijd- en geldlimiet in.
+        </p>
+
+        <div class="actions">
+          <a class="button primary" href="#goksites">
+            Bekijk overzicht
+          </a>
+
+          <a class="button secondary" href="index.html">
+            Terug naar Mikis13
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="warning" id="veilig">
+      <strong>Waarschuwing</strong>
+
+      <p>
+        Gokken kan geld kosten en verslavend zijn. Deze pagina verwerkt
+        zelf geen inzetten, stortingen of uitbetalingen.
+      </p>
+    </section>
+
+    <section class="section" id="goksites">
+      <div class="section-heading">
+        <span class="tag">Overzicht</span>
+        <h2>Beschikbare categorieën</h2>
+
+        <p>
+          De knoppen zijn voorbereid. Voeg pas een externe link toe nadat
+          je hebt gecontroleerd dat de aanbieder wettelijk vergund is.
+        </p>
+      </div>
+
+      <div class="gok-grid">
+        <article class="gok-card">
+          <div class="icon">⚽</div>
+          <h3>Sportweddenschappen</h3>
+          <p>Overzicht voor gereguleerde sportweddenschappen.</p>
+
+          <a
+            class="button secondary disabled-link"
+            href="#"
+            aria-disabled="true"
+          >
+            Nog niet ingesteld
+          </a>
+        </article>
+
+        <article class="gok-card">
+          <div class="icon">🎰</div>
+          <h3>Online casino</h3>
+          <p>Overzicht voor gereguleerde casinospellen.</p>
+
+          <a
+            class="button secondary disabled-link"
+            href="#"
+            aria-disabled="true"
+          >
+            Nog niet ingesteld
+          </a>
+        </article>
+
+        <article class="gok-card">
+          <div class="icon">🎟️</div>
+          <h3>Loterijen</h3>
+          <p>Overzicht voor officiële loterijen.</p>
+
+          <a
+            class="button secondary disabled-link"
+            href="#"
+            aria-disabled="true"
+          >
+            Nog niet ingesteld
+          </a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <strong>Mikis13 Pro</strong>
+    <span>Alleen voor bezoekers van 18 jaar en ouder.</span>
+  </footer>
+</body>
+</html>
