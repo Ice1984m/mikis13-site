@@ -1,0 +1,14 @@
+"status": "onderweg"[
+  {
+    "reference": "GH-BOUNTY-2026-0001",
+    "platform": "GitHub",
+    "repository": "eigenaar/repository",
+    "issue": "#123",
+    "invoice": "INV-2026-0001",
+    "status": "onderweg",
+    "gross_eur": 250,
+    "costs_eur": 0,
+    "net_eur": 250.0,
+    "created_at": "2026-07-27T05:48:23+02:00"
+  }
+]
