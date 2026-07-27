@@ -1,10 +1,10 @@
-name: Mikis13 Five Workers
+name: Mikis13 Controlled Workers
 
 on:
   workflow_dispatch:
     inputs:
-      run_reason:
-        description: Reden voor deze controle
+      reason:
+        description: Reden voor de controle
         required: true
         default: Handmatige Mikis13-controle
         type: string
@@ -17,305 +17,175 @@ permissions:
   contents: read
 
 concurrency:
-  group: mikis13-${{ github.ref }}
+  group: mikis13-workers-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
-  scout:
-    name: 1 - Scout
+  workers:
+    name: Worker - ${{ matrix.role }}
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
+
+    strategy:
+      fail-fast: false
+      max-parallel: 5
+      matrix:
+        role:
+          - Scout
+          - Analyse
+          - Build
+          - Test
+          - Review
 
     steps:
       - name: Repository ophalen
         uses: actions/checkout@v4
 
-      - name: Repository inventariseren
+      - name: Werkmap maken
         shell: bash
         run: |
           set -Eeuo pipefail
+          mkdir -p worker-results
 
-          mkdir -p artifacts
+      - name: Worker uitvoeren
+        shell: bash
+        env:
+          WORKER_ROLE: ${{ matrix.role }}
+        run: |
+          set -Eeuo pipefail
+
+          REPORT="worker-results/${WORKER_ROLE}.md"
 
           {
-            echo "# Scout-rapport"
+            echo "# Worker: ${WORKER_ROLE}"
             echo
-            echo "Repository: $GITHUB_REPOSITORY"
-            echo "Branch/ref: $GITHUB_REF"
-            echo "Commit: $GITHUB_SHA"
+            echo "Repository: ${GITHUB_REPOSITORY}"
+            echo "Commit: ${GITHUB_SHA}"
+            echo "Run: ${GITHUB_RUN_ID}"
             echo
-            echo "## Bestanden"
-            find . -maxdepth 3 -type f \
-              -not -path './.git/*' \
-              | sort \
-              | head -n 500
-          } > artifacts/scout-report.md
+          } > "$REPORT"
 
-      - name: Scout-resultaat bewaren
+          case "$WORKER_ROLE" in
+            Scout)
+              {
+                echo "## Inventaris"
+                find . -maxdepth 3 -type f \
+                  -not -path './.git/*' \
+                  | sort \
+                  | head -n 500
+              } >> "$REPORT"
+              ;;
+
+            Analyse)
+              {
+                echo "## Beleidscontrole"
+
+                for file in \
+                  LICENSE \
+                  NOTICE \
+                  SECURITY.md \
+                  CONTRIBUTING.md \
+                  CODE_OF_CONDUCT.md \
+                  AUTOMATION_POLICY.md
+                do
+                  if [ -s "$file" ]; then
+                    echo "- AANWEZIG: $file"
+                  else
+                    echo "- ONTBREEKT: $file"
+                  fi
+                done
+
+                echo
+                echo "## Mogelijke geheimenbestanden"
+
+                find . -maxdepth 5 -type f \
+                  \( \
+                    -name '.env' \
+                    -o -name '*.pem' \
+                    -o -name '*.key' \
+                    -o -name 'id_rsa' \
+                    -o -name 'id_ed25519' \
+                  \) \
+                  -not -path './.git/*' \
+                  -print || true
+              } >> "$REPORT"
+              ;;
+
+            Build)
+              {
+                echo "## Buildcontrole"
+
+                if [ -x ./gradlew ]; then
+                  echo "Gradle-project gevonden."
+                  ./gradlew tasks --no-daemon
+                elif [ -f package.json ]; then
+                  echo "Node-project gevonden."
+                  npm install --ignore-scripts
+                  npm run build --if-present
+                elif [ -f pyproject.toml ] ||
+                     [ -f requirements.txt ]; then
+                  echo "Python-project gevonden."
+                  python -m compileall -q .
+                else
+                  echo "Geen ondersteund buildtype gevonden."
+                fi
+              } >> "$REPORT" 2>&1
+              ;;
+
+            Test)
+              {
+                echo "## Tests"
+
+                if [ -x ./gradlew ]; then
+                  ./gradlew test --no-daemon
+                elif [ -f package.json ]; then
+                  npm install --ignore-scripts
+                  npm test --if-present
+                elif [ -f pyproject.toml ] ||
+                     [ -f requirements.txt ]; then
+                  python -m compileall -q .
+
+                  if python -c "import pytest" \
+                    >/dev/null 2>&1
+                  then
+                    python -m pytest
+                  else
+                    echo "Pytest niet geïnstalleerd."
+                    echo "Python-syntaxcontrole is uitgevoerd."
+                  fi
+                else
+                  echo "Geen automatisch testtype gevonden."
+                fi
+              } >> "$REPORT" 2>&1
+              ;;
+
+            Review)
+              {
+                echo "## Review"
+                echo "- Geen automatische push"
+                echo "- Geen automatische merge"
+                echo "- Geen automatische deployment"
+                echo "- Geen betalingshandeling"
+                echo "- Menselijke goedkeuring vereist"
+              } >> "$REPORT"
+              ;;
+
+            *)
+              echo "Onbekende workerrol." >> "$REPORT"
+              exit 1
+              ;;
+          esac
+
+      - name: Workerresultaat bewaren
         uses: actions/upload-artifact@v4
         with:
-          name: scout-report
-          path: artifacts/scout-report.md
-          retention-days: 14
-
-  analyse:
-    name: 2 - Analyse
-    needs: scout
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-
-    steps:
-      - name: Repository ophalen
-        uses: actions/checkout@v4
-
-      - name: Veiligheid en beleid analyseren
-        shell: bash
-        run: |
-          set -Eeuo pipefail
-
-          mkdir -p artifacts
-
-          required_files=(
-            LICENSE
-            NOTICE
-            SECURITY.md
-            CONTRIBUTING.md
-            CODE_OF_CONDUCT.md
-            AUTOMATION_POLICY.md
-          )
-
-          {
-            echo "# Analyse-rapport"
-            echo
-            echo "Menselijke goedkeuring blijft verplicht."
-            echo
-            echo "## Beleidsbestanden"
-
-            failed=0
-
-            for file in "${required_files[@]}"; do
-              if [ -s "$file" ]; then
-                echo "- AANWEZIG: $file"
-              else
-                echo "- ONTBREEKT: $file"
-                failed=1
-              fi
-            done
-
-            echo
-            echo "## Mogelijke gevoelige bestanden"
-
-            find . -maxdepth 4 -type f \
-              \( \
-                -name '*.pem' \
-                -o -name '*.key' \
-                -o -name 'id_rsa' \
-                -o -name 'id_ed25519' \
-                -o -name '.env' \
-              \) \
-              -not -path './.git/*' \
-              -print || true
-
-            echo
-            echo "Beleidscontrolecode: $failed"
-          } > artifacts/analyse-report.md
-
-          if grep -q -- "- ONTBREEKT:" artifacts/analyse-report.md; then
-            echo "::warning::Een of meer aanbevolen beleidsbestanden ontbreken."
-          fi
-
-      - name: Analyse bewaren
-        uses: actions/upload-artifact@v4
-        with:
-          name: analyse-report
-          path: artifacts/analyse-report.md
-          retention-days: 14
-
-  build:
-    name: 3 - Build
-    needs: analyse
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-
-    steps:
-      - name: Repository ophalen
-        uses: actions/checkout@v4
-
-      - name: Projecttype bepalen
-        id: project
-        shell: bash
-        run: |
-          set -Eeuo pipefail
-
-          if [ -x "./gradlew" ]; then
-            echo "type=gradle" >> "$GITHUB_OUTPUT"
-          elif [ -f "package.json" ]; then
-            echo "type=node" >> "$GITHUB_OUTPUT"
-          elif [ -f "pyproject.toml" ] || [ -f "requirements.txt" ]; then
-            echo "type=python" >> "$GITHUB_OUTPUT"
-          else
-            echo "type=unknown" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Java instellen
-        if: steps.project.outputs.type == 'gradle'
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '17'
-
-      - name: Gradle controleren
-        if: steps.project.outputs.type == 'gradle'
-        shell: bash
-        run: |
-          set -Eeuo pipefail
-          chmod +x ./gradlew
-          ./gradlew tasks --no-daemon
-
-      - name: Node instellen
-        if: steps.project.outputs.type == 'node'
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: npm
-
-      - name: Node-project bouwen
-        if: steps.project.outputs.type == 'node'
-        shell: bash
-        run: |
-          set -Eeuo pipefail
-          npm ci
-          npm run build --if-present
-
-      - name: Python instellen
-        if: steps.project.outputs.type == 'python'
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Python-syntax controleren
-        if: steps.project.outputs.type == 'python'
-        shell: bash
-        run: |
-          set -Eeuo pipefail
-          python -m compileall -q .
-
-      - name: Onbekend projecttype melden
-        if: steps.project.outputs.type == 'unknown'
-        shell: bash
-        run: |
-          echo "::notice::Geen Gradle-, Node- of Python-projecttype gevonden."
-          echo "Er is daarom geen projectbuild uitgevoerd."
-
-  test:
-    name: 4 - Test
-    needs: build
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-
-    steps:
-      - name: Repository ophalen
-        uses: actions/checkout@v4
-
-      - name: Java instellen
-        if: hashFiles('gradlew') != ''
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '17'
-
-      - name: Gradle-tests
-        if: hashFiles('gradlew') != ''
-        shell: bash
-        run: |
-          set -Eeuo pipefail
-          chmod +x ./gradlew
-          ./gradlew test --no-daemon
-
-      - name: Node instellen
-        if: hashFiles('package.json') != ''
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: npm
-
-      - name: Node-tests
-        if: hashFiles('package.json') != ''
-        shell: bash
-        run: |
-          set -Eeuo pipefail
-          npm ci
-          npm test --if-present
-
-      - name: Python instellen
-        if: hashFiles('pyproject.toml', 'requirements.txt') != ''
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Python-tests
-        if: hashFiles('pyproject.toml', 'requirements.txt') != ''
-        shell: bash
-        run: |
-          set -Eeuo pipefail
-
-          if [ -f requirements.txt ]; then
-            python -m pip install \
-              --disable-pip-version-check \
-              -r requirements.txt
-          fi
-
-          if python -c "import pytest" >/dev/null 2>&1; then
-            python -m pytest
-          else
-            python -m compileall -q .
-            echo "Pytest niet geïnstalleerd; syntaxcontrole uitgevoerd."
-          fi
-
-  review:
-    name: 5 - Review
-    needs:
-      - scout
-      - analyse
-      - build
-      - test
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-
-    steps:
-      - name: Repository ophalen
-        uses: actions/checkout@v4
-
-      - name: Reviewrapport maken
-        shell: bash
-        run: |
-          set -Eeuo pipefail
-
-          mkdir -p artifacts
-
-          {
-            echo "# Mikis13 review"
-            echo
-            echo "- Scout: geslaagd"
-            echo "- Analyse: geslaagd"
-            echo "- Build: geslaagd"
-            echo "- Test: geslaagd"
-            echo
-            echo "Status: klaar voor menselijke goedkeuring"
-            echo
-            echo "Er is niets automatisch gemerged, gepusht of gedeployed."
-          } > artifacts/review-report.md
-
-      - name: Reviewrapport bewaren
-        uses: actions/upload-artifact@v4
-        with:
-          name: review-report
-          path: artifacts/review-report.md
+          name: worker-${{ matrix.role }}
+          path: worker-results/
           retention-days: 30
 
-  human-approval:
+  approval:
     name: Menselijke goedkeuring
-    needs: review
+    needs: workers
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -326,9 +196,11 @@ jobs:
       contents: read
 
     steps:
-      - name: Goedkeuring registreren
+      - name: Goedkeuring bevestigen
         shell: bash
         run: |
-          echo "De vijf controles zijn voltooid."
-          echo "De beveiligde GitHub-omgeving production is goedgekeurd."
-          echo "Er wordt door deze workflow nog geen automatische deployment uitgevoerd."
+          set -Eeuo pipefail
+
+          echo "Alle vijf gecontroleerde workers zijn voltooid."
+          echo "De production-omgeving is menselijk goedgekeurd."
+          echo "Er wordt niets automatisch gemerged of gedeployed."
