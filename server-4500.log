@@ -1,2 +1,9 @@
 nohup: ignoring input
 127.0.0.1 - - [27/Jul/2026 18:53:46] "GET /goksites.html HTTP/1.1" 304 -
+127.0.0.1 - - [27/Jul/2026 19:07:16] "GET /goksites.html HTTP/1.1" 304 -
+127.0.0.1 - - [27/Jul/2026 19:07:18] "GET /goksites.html HTTP/1.1" 304 -
+127.0.0.1 - - [27/Jul/2026 19:07:23] "GET /goksites.html HTTP/1.1" 304 -
+127.0.0.1 - - [27/Jul/2026 19:07:58] "GET /inkomsten.html HTTP/1.1" 200 -
+127.0.0.1 - - [27/Jul/2026 19:08:06] "GET /index.html HTTP/1.1" 304 -
+127.0.0.1 - - [27/Jul/2026 19:08:06] "GET /assets/style.css HTTP/1.1" 304 -
+127.0.0.1 - - [27/Jul/2026 19:08:06] "GET /assets/app.js HTTP/1.1" 304 -
