@@ -1,181 +1,180 @@
 <!doctype html>
-<html lang="nl-BE">
+<html lang="nl">
 <head>
   <meta charset="utf-8">
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1"
-  >
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta
     name="description"
-    content="De centrale website voor Mikis13-projecten, software, ondersteuning en toekomstige digitale diensten."
+    content="Mikis13 Pro — websites, automatisering en slimme software."
   >
-  <title>Mikis13 — officiële website</title>
+  <title>Mikis13 Pro</title>
   <link rel="stylesheet" href="assets/style.css">
 </head>
 
 <body>
-  <nav>
-  <div class="container nav-inner">
-    <a class="brand" href="index.html">Mikis13</a>
+  <header class="header">
+    <a class="logo" href="#top">
+      <span class="logo-mark">M13</span>
+      <span>Mikis13 Pro</span>
+    </a>
 
-    <div class="nav-links">
-      <a href="index.html">Start</a>
-      <a href="jobs.html">Jobs</a>
-      <a href="contact.html">Contact</a>
-      <a href="privacy.html">Privacy</a>
-      <a href="voorwaarden.html">Voorwaarden</a>
-      <a href="https://github.com/Ice1984m/mikis13-site">GitHub</a>
-    </div>
-  </div>
-</nav>
+    <nav>
+      <a href="#diensten">Diensten</a>
+      <a href="#dashboard">Dashboard</a>
+      <a href="#status">Status</a>
+    </nav>
+  </header>
 
-  <main>
-    <header class="hero">
-      <div class="container">
-        <span class="badge">Mikis13 • België</span>
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="tag">Software • Automatisering • AI</span>
 
-        <h1>Mikis13 — officiële website</h1>
+        <h1>
+          Slimme digitale oplossingen voor jouw volgende project
+        </h1>
 
-        <p class="lead">
-          De centrale website voor Mikis13-projecten, software, ondersteuning en toekomstige digitale diensten.
+        <p>
+          Mikis13 Pro bouwt moderne websites, dashboards en
+          automatiseringen die overzichtelijk en mobielvriendelijk zijn.
         </p>
 
         <div class="actions">
-          <a class="button" href="contact.html">
-            Contact opnemen
+          <a class="button primary" href="#diensten">
+            Bekijk diensten
           </a>
 
-          <a
-            class="button secondary"
-            href="https://github.com/Ice1984m/mikis13-site"
-          >
-            Broncode bekijken
-          </a>
+          <button class="button secondary" id="openBot">
+            Open Order Bot
+          </button>
         </div>
       </div>
-    </header>
 
-    <section>
-      <div class="container">
-        <p class="status">Website en projectpagina actief</p>
+      <div class="hero-panel">
+        <div class="live-line">
+          <span class="pulse"></span>
+          Systeemdashboard
+        </div>
 
-        <h2>Diensten en projecten</h2>
-
-        <div class="grid">
-          <article class="card">
-            <h3>Websites</h3>
-            <p>
-              Heldere digitale oplossingen met een moderne,
-              responsieve gebruikersinterface.
-            </p>
+        <div class="metric-grid">
+          <article>
+            <span>Status</span>
+            <strong id="systemStatus">Controleren…</strong>
           </article>
 
-          <article class="card">
-            <h3>Androidprojecten</h3>
-            <p>
-              Transparante projectinformatie en duidelijke
-              omschrijvingen van de aangeboden functionaliteit.
-            </p>
+          <article>
+            <span>Workers</span>
+            <strong>20</strong>
           </article>
 
-          <article class="card">
-            <h3>Technische ondersteuning</h3>
-            <p>
-              Contact en ondersteuning verlopen rechtstreeks,
-              zonder verborgen kosten of misleidende beloften.
-            </p>
+          <article>
+            <span>Website</span>
+            <strong>Online</strong>
+          </article>
+
+          <article>
+            <span>Versie</span>
+            <strong>2.0</strong>
           </article>
         </div>
       </div>
     </section>
 
-    <section>
-      <div class="container policy">
-        <h2>Open taken en samenwerking</h2>
+    <section id="diensten" class="section">
+      <div class="section-heading">
+        <span class="tag">Mogelijkheden</span>
+        <h2>Van idee tot werkend digitaal product</h2>
+      </div>
 
-        <p>
-          Bekijk openbare technische taken, meld verbeteringen en lees
-          vooraf of een bijdrage vrijwillig of mogelijk betaald is.
-        </p>
+      <div class="cards">
+        <article class="card">
+          <div class="icon">🌐</div>
+          <h3>Websites</h3>
+          <p>
+            Snelle, moderne websites die goed werken op telefoon,
+            tablet en computer.
+          </p>
+        </article>
 
-        <a class="button" href="jobs.html">
-          Bekijk jobs en beloningen
-        </a>
+        <article class="card">
+          <div class="icon">⚙️</div>
+          <h3>Automatisering</h3>
+          <p>
+            Werkstromen en tools die terugkerende handelingen
+            eenvoudiger maken.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="icon">📊</div>
+          <h3>Dashboards</h3>
+          <p>
+            Duidelijke statuspagina's voor taken, systemen,
+            bestellingen en resultaten.
+          </p>
+        </article>
       </div>
     </section>
 
-
-    <section>
-      <div class="container policy">
-        <h2>Betalingen</h2>
+    <section id="dashboard" class="section control">
+      <div>
+        <span class="tag">Order Bot</span>
+        <h2>Beheer de wachtrij vanaf je Android-toestel</h2>
 
         <p>
-          Betalingen worden pas aangeboden nadat prijzen,
-          levering, terugbetaling en contactgegevens volledig
-          zijn gepubliceerd.
+          De Order Bot draait lokaal in Termux op poort 8795.
+          Start de server en open daarna het bedieningspaneel.
         </p>
+      </div>
 
-        <p class="notice">
-          Plaats nooit een geheime Stripe API-sleutel in deze
-          openbare GitHub-repository. Gebruik voor een statische
-          website uitsluitend een officiële Stripe Payment Link,
-          of plaats de geheime sleutel op een beveiligde backend.
-        </p>
+      <div class="control-actions">
+        <button class="button primary" id="openDashboard">
+          Wachtrij beheren
+        </button>
 
-        <a
-          id="stripePaymentButton"
-          class="button"
-          href="#"
-          hidden
-          rel="noopener"
-        >
-          Veilig betalen via Stripe
-        </a>
+        <button class="button secondary" id="checkDashboard">
+          Verbinding controleren
+        </button>
+      </div>
+
+      <div id="botMessage" class="message">
+        Nog niet gecontroleerd.
+      </div>
+    </section>
+
+    <section id="status" class="section">
+      <div class="section-heading">
+        <span class="tag">Live status</span>
+        <h2>Platformonderdelen</h2>
+      </div>
+
+      <div class="status-list">
+        <div>
+          <span class="status-dot online"></span>
+          <strong>GitHub Pages</strong>
+          <span>Online</span>
+        </div>
+
+        <div>
+          <span class="status-dot" id="botDot"></span>
+          <strong>Lokale Order Bot</strong>
+          <span id="botState">Niet gecontroleerd</span>
+        </div>
+
+        <div>
+          <span class="status-dot online"></span>
+          <strong>Mobiele website</strong>
+          <span>Beschikbaar</span>
+        </div>
       </div>
     </section>
   </main>
 
   <footer>
-  <div class="container">
-    <strong>Mikis13</strong>
-    <p>
-      Software, websites en digitale demonstratieprojecten vanuit België.
-    </p>
-    <p class="small">
-      © <span id="year"></span> Mikis13. Alle rechten voorbehouden.
-    </p>
-  </div>
+    <strong>Mikis13 Pro</strong>
+    <span>© <span id="year"></span> Matty Moors</span>
+  </footer>
 
-  <script>
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
-  </script>
-</footer>
-
-  <script>
-    /*
-      Voeg later alleen een openbare Stripe Payment Link toe.
-      Voorbeeld:
-      const stripePaymentLink = "https://buy.stripe.com/...";
-    */
-    const stripePaymentLink = "";
-
-    const paymentButton =
-      document.getElementById("stripePaymentButton");
-
-    if (stripePaymentLink.startsWith("https://buy.stripe.com/")) {
-      paymentButton.href = stripePaymentLink;
-      paymentButton.hidden = false;
-    }
-  </script>
-
-<a href="shop/"
-   style="display:inline-block;margin:12px;padding:14px 20px;border-radius:14px;
-          background:linear-gradient(135deg,#38bdf8,#8b5cf6);
-          color:white;text-decoration:none;font-weight:800">
-  Open Mikis13 Cyber & Tech Shop
-</a>
-
+  <script src="assets/app.js"></script>
 </body>
 </html>

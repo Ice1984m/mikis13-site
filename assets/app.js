@@ -1,60 +1,66 @@
-const chatButton = document.querySelector("#chatButton");
-const chatPanel = document.querySelector("#chatPanel");
-const chatForm = document.querySelector("#chatForm");
-const chatInput = document.querySelector("#chatInput");
-const messages = document.querySelector("#chatMessages");
+"use strict";
 
-chatButton?.addEventListener("click", () => {
-    chatPanel.classList.toggle("open");
-});
+const BOT_URL = "http://127.0.0.1:8795";
+const botMessage = document.getElementById("botMessage");
+const botState = document.getElementById("botState");
+const botDot = document.getElementById("botDot");
+const systemStatus = document.getElementById("systemStatus");
 
-function addMessage(text, user = false) {
-    const message = document.createElement("div");
-    message.className = user ? "message user" : "message";
-    message.textContent = text;
-    messages.appendChild(message);
-    messages.scrollTop = messages.scrollHeight;
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+function openBot() {
+  window.location.href = `${BOT_URL}/?v=${Date.now()}`;
 }
 
-function localAnswer(question) {
-    const text = question.toLowerCase();
+async function checkBot() {
+  botMessage.textContent = "Lokale Order Bot controleren…";
 
-    if (text.includes("github") || text.includes("push")) {
-        return "Gebruik meestal: git add . && git commit -m \"Update\" && git push origin main";
+  try {
+    const response = await fetch(
+      `${BOT_URL}/health?t=${Date.now()}`,
+      {
+        method: "GET",
+        cache: "no-store"
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
     }
 
-    if (text.includes("website") || text.includes("pages")) {
-        return "Controleer GitHub → repository → Settings → Pages. De bron moet main en /root zijn.";
-    }
+    const data = await response.json();
 
-    if (text.includes("dns") || text.includes("domein")) {
-        return "Voor www.mikis13.nl moet bij Combell een CNAME-record staan: www → ice1984m.github.io.";
-    }
+    botDot.className = "status-dot online";
+    botState.textContent =
+      `${data.activeWorkers || 0}/${data.maxWorkers || 20} actief`;
 
-    if (text.includes("termux")) {
-        return "Plak uitsluitend codeblokken in Termux. Gewone uitleg, pijlen en tabellen zijn geen commando’s.";
-    }
+    systemStatus.textContent = "Online";
 
-    if (text.includes("fout")) {
-        return "Kopieer de exacte foutmelding. Controleer ook: gh auth status, git status en git remote -v.";
-    }
+    botMessage.textContent =
+      `Order Bot online — wachtend: ${data.waiting || 0}, ` +
+      `voltooid: ${data.completed || 0}.`;
+  } catch (error) {
+    botDot.className = "status-dot offline";
+    botState.textContent = "Niet bereikbaar";
+    systemStatus.textContent = "Website online";
 
-    return "Deze lokale helper geeft basisinformatie. Voor een uitgebreid antwoord kun je de knop ‘Vraag ChatGPT’ gebruiken.";
+    botMessage.textContent =
+      "De publieke website werkt. Start de lokale Order Bot " +
+      "in Termux om de wachtrij te beheren.";
+  }
 }
 
-chatForm?.addEventListener("submit", (event) => {
-    event.preventDefault();
+document
+  .getElementById("openBot")
+  .addEventListener("click", openBot);
 
-    const question = chatInput.value.trim();
+document
+  .getElementById("openDashboard")
+  .addEventListener("click", openBot);
 
-    if (!question) {
-        return;
-    }
+document
+  .getElementById("checkDashboard")
+  .addEventListener("click", checkBot);
 
-    addMessage(question, true);
-    chatInput.value = "";
-
-    window.setTimeout(() => {
-        addMessage(localAnswer(question));
-    }, 300);
-});
+checkBot();
