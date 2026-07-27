@@ -1,30 +1,270 @@
-name: Publiceer Mikis13 website
+name: Controleer en publiceer Mikis13
 
 on:
   push:
     branches:
       - main
+
+  pull_request:
+    branches:
+      - main
+
   workflow_dispatch:
+
+  schedule:
+    - cron: "17 6 * * *"
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: pages
+  group: mikis13-pages-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  controleren:
+    name: Website controleren
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Broncode ophalen
+        uses: actions/checkout@v4
+
+      - name: Python instellen
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Verplichte bestanden controleren
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+
+          verplicht=(
+            index.html
+            contact.html
+            privacy.html
+            voorwaarden.html
+            assets/style.css
+          )
+
+          fout=0
+
+          for bestand in "${verplicht[@]}"; do
+            if [[ ! -s "$bestand" ]]; then
+              echo "::error file=$bestand::Bestand ontbreekt of is leeg"
+              fout=1
+            else
+              echo "OK: $bestand"
+            fi
+          done
+
+          exit "$fout"
+
+      - name: Openbare repository op geheimen controleren
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+
+          patroon='sk_live_|sk_test_|github_pat_|ghp_|gho_'
+          patroon+='|AKIA[0-9A-Z]{16}'
+          patroon+='|-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----'
+
+          if grep \
+            --recursive \
+            --line-number \
+            --extended-regexp \
+            "$patroon" \
+            . \
+            --exclude-dir=.git \
+            --exclude='*.md'
+          then
+            echo "::error::Mogelijk geheim gevonden."
+            echo "::error::Publicatie is uit veiligheid geblokkeerd."
+            exit 1
+          fi
+
+          echo "Geen bekend geheim patroon gevonden."
+
+      - name: HTML en interne links controleren
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+
+          python - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          from urllib.parse import unquote, urlsplit
+
+          root = Path(".").resolve()
+          html_files = sorted(root.rglob("*.html"))
+          errors: list[str] = []
+
+          class PageParser(HTMLParser):
+              def __init__(self, source: Path) -> None:
+                  super().__init__(convert_charrefs=True)
+                  self.source = source
+                  self.ids: set[str] = set()
+                  self.links: list[tuple[str, str]] = []
+
+              def handle_starttag(self, tag, attrs):
+                  attributes = dict(attrs)
+
+                  element_id = attributes.get("id")
+                  if element_id:
+                      self.ids.add(element_id)
+
+                  for name in ("href", "src"):
+                      value = attributes.get(name)
+                      if value:
+                          self.links.append((name, value))
+
+          parsed: dict[Path, PageParser] = {}
+
+          for file in html_files:
+              parser = PageParser(file)
+
+              try:
+                  content = file.read_text(encoding="utf-8")
+                  parser.feed(content)
+              except Exception as exc:
+                  errors.append(
+                      f"{file.relative_to(root)}: HTML-fout: {exc}"
+                  )
+
+              parsed[file] = parser
+
+          for source, parser in list(parsed.items()):
+              for attribute, raw_value in parser.links:
+                  value = raw_value.strip()
+
+                  if not value:
+                      continue
+
+                  if value.startswith(
+                      ("mailto:", "tel:", "data:", "javascript:")
+                  ):
+                      continue
+
+                  if value.startswith("#"):
+                      fragment = unquote(value[1:])
+
+                      if fragment and fragment not in parser.ids:
+                          errors.append(
+                              f"{source.relative_to(root)}: "
+                              f"ontbrekend anker #{fragment}"
+                          )
+
+                      continue
+
+                  parts = urlsplit(value)
+
+                  if parts.scheme in ("http", "https"):
+                      continue
+
+                  if value.startswith("//"):
+                      continue
+
+                  target_text = unquote(parts.path)
+
+                  if not target_text:
+                      continue
+
+                  target = (source.parent / target_text).resolve()
+
+                  try:
+                      target.relative_to(root)
+                  except ValueError:
+                      errors.append(
+                          f"{source.relative_to(root)}: "
+                          f"link buiten website: {value}"
+                      )
+                      continue
+
+                  if target_text.endswith("/"):
+                      target = target / "index.html"
+
+                  if not target.exists():
+                      errors.append(
+                          f"{source.relative_to(root)}: "
+                          f"ontbrekende {attribute}: {value}"
+                      )
+                      continue
+
+                  if (
+                      parts.fragment
+                      and target.suffix.lower() == ".html"
+                  ):
+                      target_parser = parsed.get(target)
+
+                      if target_parser is None:
+                          target_parser = PageParser(target)
+
+                          target_parser.feed(
+                              target.read_text(encoding="utf-8")
+                          )
+
+                          parsed[target] = target_parser
+
+                      fragment = unquote(parts.fragment)
+
+                      if fragment not in target_parser.ids:
+                          errors.append(
+                              f"{source.relative_to(root)}: "
+                              f"ontbrekend anker in {value}"
+                          )
+
+          if not html_files:
+              errors.append("Geen HTML-bestanden gevonden.")
+
+          if errors:
+              for error in errors:
+                  print(f"::error::{error}")
+
+              raise SystemExit(1)
+
+          print(
+              f"Geslaagd: {len(html_files)} "
+              "HTML-bestand(en) gecontroleerd."
+          )
+          PY
+
+      - name: Controleoverzicht maken
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "## Mikis13 websitecontrole"
+            echo
+            echo "- Commit: \`${GITHUB_SHA}\`"
+            echo "- Actie: \`${GITHUB_EVENT_NAME}\`"
+            echo "- Repository: \`${GITHUB_REPOSITORY}\`"
+            echo "- Tijdstip UTC: $(date -u '+%Y-%m-%d %H:%M:%S')"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  publiceren:
+    name: GitHub Pages publiceren
+
+    if: >-
+      github.event_name != 'pull_request' &&
+      github.event_name != 'schedule'
+
+    needs:
+      - controleren
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
-    runs-on: ubuntu-latest
-
     steps:
-      - name: Website ophalen
+      - name: Broncode ophalen
         uses: actions/checkout@v4
 
       - name: GitHub Pages configureren
@@ -38,3 +278,51 @@ jobs:
       - name: Website publiceren
         id: deployment
         uses: actions/deploy-pages@v4
+
+  live-status:
+    name: Live website controleren
+
+    if: github.event_name == 'schedule'
+
+    needs:
+      - controleren
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: GitHub Pages URL controleren
+        shell: bash
+        env:
+          WEBSITE_URL: >-
+            https://ice1984m.github.io/mikis13-site/
+        run: |
+          set -Eeuo pipefail
+
+          status="$(
+            curl \
+              --silent \
+              --show-error \
+              --location \
+              --retry 3 \
+              --retry-delay 5 \
+              --connect-timeout 15 \
+              --max-time 45 \
+              --output /dev/null \
+              --write-out '%{http_code}' \
+              "$WEBSITE_URL"
+          )"
+
+          echo "HTTP-status: $status"
+
+          if [[ "$status" != "200" ]]; then
+            echo "::error::Website gaf HTTP-status $status"
+            exit 1
+          fi
+
+          {
+            echo "## Live status"
+            echo
+            echo "- URL: $WEBSITE_URL"
+            echo "- HTTP-status: $status"
+            echo "- Controle: geslaagd"
+          } >> "$GITHUB_STEP_SUMMARY"
