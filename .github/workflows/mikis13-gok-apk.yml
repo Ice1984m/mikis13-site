@@ -1,0 +1,55 @@
+name: Mikis13 Gok APK
+
+on:
+  workflow_dispatch:
+
+  push:
+    branches:
+      - main
+    paths:
+      - "android-app/**"
+      - ".github/workflows/mikis13-gok-apk.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  build-apk:
+    name: APK bouwen
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repository ophalen
+        uses: actions/checkout@v4
+
+      - name: Java 17 instellen
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Android SDK instellen
+        uses: android-actions/setup-android@v3
+
+      - name: Gradle 8.9 instellen
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.9"
+
+      - name: Debug-APK bouwen
+        working-directory: android-app
+        run: gradle --no-daemon assembleDebug
+
+      - name: APK hernoemen
+        run: |
+          cp \
+            android-app/app/build/outputs/apk/debug/app-debug.apk \
+            android-app/app/build/outputs/apk/debug/Mikis13-Gok.apk
+
+      - name: APK als artifact opslaan
+        uses: actions/upload-artifact@v4
+        with:
+          name: Mikis13-Gok-APK
+          path: android-app/app/build/outputs/apk/debug/Mikis13-Gok.apk
+          if-no-files-found: error
+          retention-days: 30
