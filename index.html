@@ -1,114 +1,156 @@
 <!doctype html>
-<html lang="nl">
+<html lang="nl-BE">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport"
-        content="width=device-width,initial-scale=1">
-  <meta name="description"
-        content="Mikis13 software, AI en projecten">
-  <title>Mikis13</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+  <meta
+    name="description"
+    content="De centrale website voor Mikis13-projecten, software, ondersteuning en toekomstige digitale diensten."
+  >
+  <title>Mikis13 — officiële website</title>
   <link rel="stylesheet" href="assets/style.css">
 </head>
+
 <body>
-<header>
-  <nav class="container">
-    <a class="logo" href="index.html">MIKIS13</a>
+  <nav>
+  <div class="container nav-inner">
+    <a class="brand" href="index.html">Mikis13</a>
 
-    <div class="links">
+    <div class="nav-links">
       <a href="index.html">Start</a>
-      <a href="pro.html">Mikis13 Pro</a>
-      <a href="ai.html">Mikis13 AI</a>
-      <a href="projecten.html">Projecten</a>
-      <a href="status.html">Status</a>
-    </div>
-  </nav>
-</header>
-<main>
-  <section class="hero container">
-    <div class="status">● Mikis13-platform</div>
-
-    <h1>Software, AI en digitale projecten.</h1>
-
-    <p>
-      Eén centrale website voor Mikis13 Site,
-      Mikis13 Pro en Mikis13 AI.
-    </p>
-
-    <div class="buttons">
-      <a class="button primary" href="projecten.html">
-        Bekijk projecten
-      </a>
-
-      <a class="button"
-         href="https://github.com/Ice1984m"
-         target="_blank"
-         rel="noopener noreferrer">
-        GitHub openen
-      </a>
-
-      <a class="button"
-         href="https://chatgpt.com/"
-         target="_blank"
-         rel="noopener noreferrer">
-        Vraag ChatGPT
-      </a>
-    </div>
-  </section>
-
-  <section class="grid container">
-    <article class="card">
-      <div class="status">Online</div>
-      <h2>Mikis13 Site</h2>
-      <p>De centrale website en navigatie.</p>
-      <a class="button"
-         href="https://github.com/Ice1984m/mikis13-site"
-         target="_blank"
-         rel="noopener noreferrer">
-        Repository
-      </a>
-    </article>
-
-    <article class="card">
-      <div class="status">Repository: false</div>
-      <h2>Mikis13 Pro</h2>
-      <p>Professionele tools en dashboards.</p>
-      <a class="button" href="pro.html">Bekijken</a>
-    </article>
-
-    <article class="card">
-      <div class="status">Repository: true</div>
-      <h2>Mikis13 AI</h2>
-      <p>AI-prototypes en programmeerhulp.</p>
-      <a class="button" href="ai.html">Bekijken</a>
-    </article>
-  </section>
-</main>
-<button id="chatButton"
-        class="chat-button"
-        aria-label="Open programmeerhulp">💬</button>
-
-<section id="chatPanel" class="chat-panel">
-  <div class="chat-header">Mikis13 programmeerhulp</div>
-
-  <div id="chatMessages" class="chat-messages">
-    <div class="message">
-      Hallo! Vraag iets over Termux, GitHub, DNS of GitHub Pages.
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="voorwaarden.html">Voorwaarden</a>
+      <a href="https://github.com/Ice1984m/mikis13-site">GitHub</a>
     </div>
   </div>
+</nav>
 
-  <form id="chatForm" class="chat-form">
-    <input id="chatInput"
-           placeholder="Typ je vraag…"
-           autocomplete="off">
-    <button class="button primary" type="submit">Stuur</button>
-  </form>
-</section>
-<footer>
+  <main>
+    <header class="hero">
+      <div class="container">
+        <span class="badge">Mikis13 • België</span>
+
+        <h1>Mikis13 — officiële website</h1>
+
+        <p class="lead">
+          De centrale website voor Mikis13-projecten, software, ondersteuning en toekomstige digitale diensten.
+        </p>
+
+        <div class="actions">
+          <a class="button" href="contact.html">
+            Contact opnemen
+          </a>
+
+          <a
+            class="button secondary"
+            href="https://github.com/Ice1984m/mikis13-site"
+          >
+            Broncode bekijken
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <section>
+      <div class="container">
+        <p class="status">Website en projectpagina actief</p>
+
+        <h2>Diensten en projecten</h2>
+
+        <div class="grid">
+          <article class="card">
+            <h3>Websites</h3>
+            <p>
+              Heldere digitale oplossingen met een moderne,
+              responsieve gebruikersinterface.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Androidprojecten</h3>
+            <p>
+              Transparante projectinformatie en duidelijke
+              omschrijvingen van de aangeboden functionaliteit.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Technische ondersteuning</h3>
+            <p>
+              Contact en ondersteuning verlopen rechtstreeks,
+              zonder verborgen kosten of misleidende beloften.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container policy">
+        <h2>Betalingen</h2>
+
+        <p>
+          Betalingen worden pas aangeboden nadat prijzen,
+          levering, terugbetaling en contactgegevens volledig
+          zijn gepubliceerd.
+        </p>
+
+        <p class="notice">
+          Plaats nooit een geheime Stripe API-sleutel in deze
+          openbare GitHub-repository. Gebruik voor een statische
+          website uitsluitend een officiële Stripe Payment Link,
+          of plaats de geheime sleutel op een beveiligde backend.
+        </p>
+
+        <a
+          id="stripePaymentButton"
+          class="button"
+          href="#"
+          hidden
+          rel="noopener"
+        >
+          Veilig betalen via Stripe
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
   <div class="container">
-    Mikis13 — statische website zonder advertentietrackers.
+    <strong>Mikis13</strong>
+    <p>
+      Software, websites en digitale demonstratieprojecten vanuit België.
+    </p>
+    <p class="small">
+      © <span id="year"></span> Mikis13. Alle rechten voorbehouden.
+    </p>
   </div>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
 </footer>
 
-<script src="assets/app.js"></script>
+  <script>
+    /*
+      Voeg later alleen een openbare Stripe Payment Link toe.
+      Voorbeeld:
+      const stripePaymentLink = "https://buy.stripe.com/...";
+    */
+    const stripePaymentLink = "";
+
+    const paymentButton =
+      document.getElementById("stripePaymentButton");
+
+    if (stripePaymentLink.startsWith("https://buy.stripe.com/")) {
+      paymentButton.href = stripePaymentLink;
+      paymentButton.hidden = false;
+    }
+  </script>
 </body>
 </html>
