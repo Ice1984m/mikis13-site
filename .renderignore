@@ -1,8 +1,8 @@
 .git
 .github
-*.backup-*
 *.log
-node_modules
-__pycache__
+*.backup-*
 .env
 .env.*
+node_modules
+__pycache__
