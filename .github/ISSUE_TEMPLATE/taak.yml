@@ -1,0 +1,58 @@
+name: Taak of samenwerking
+description: Stel een duidelijke technische verbetering voor.
+title: "[TAAK] "
+labels:
+  - enhancement
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Plaats geen wachtwoorden, tokens, bankgegevens of andere
+        persoonsgegevens in dit openbare formulier.
+
+  - type: textarea
+    id: probleem
+    attributes:
+      label: Probleem
+      description: Wat moet worden verbeterd?
+      placeholder: Beschrijf het probleem duidelijk.
+    validations:
+      required: true
+
+  - type: textarea
+    id: oplossing
+    attributes:
+      label: Voorgestelde oplossing
+      description: Welke oplossing stel je voor?
+    validations:
+      required: true
+
+  - type: textarea
+    id: criteria
+    attributes:
+      label: Oplevercriteria
+      description: Hoe kunnen we controleren dat de taak klaar is?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: vergoeding
+    attributes:
+      label: Soort taak
+      options:
+        - Vrijwillige bijdrage
+        - Beloning nog niet afgesproken
+        - Vooraf schriftelijk bevestigde beloning
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: akkoord
+    attributes:
+      label: Bevestiging
+      options:
+        - label: Ik begin pas nadat de eigenaar mij heeft toegewezen.
+          required: true
+        - label: Ik publiceer geen geheimen of persoonsgegevens.
+          required: true

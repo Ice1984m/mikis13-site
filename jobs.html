@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="nl-BE">
+<head>
+  <meta charset="utf-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+  <meta
+    name="description"
+    content="Open Mikis13-taken, samenwerkingen en vooraf goedgekeurde beloningen."
+  >
+  <title>Mikis13 — Jobs en beloningen</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+  <nav>
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">Mikis13</a>
+
+      <div class="nav-links">
+        <a href="index.html">Start</a>
+        <a href="jobs.html">Jobs</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="voorwaarden.html">Voorwaarden</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="hero">
+      <div class="container">
+        <span class="badge">Mikis13 • samenwerking</span>
+
+        <h1>Jobs, opdrachten en beloningen</h1>
+
+        <p class="lead">
+          Open technische taken voor de Mikis13-website en
+          softwareprojecten. Een financiële beloning geldt alleen
+          wanneer het bedrag vooraf schriftelijk in het GitHub-issue
+          is bevestigd.
+        </p>
+
+        <div class="actions">
+          <a
+            class="button"
+            href="https://github.com/Ice1984m/mikis13-site/issues"
+          >
+            Open taken bekijken
+          </a>
+
+          <a
+            class="button secondary"
+            href="https://github.com/Ice1984m/mikis13-site/issues/new/choose"
+          >
+            Verbetering voorstellen
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <section>
+      <div class="container">
+        <h2>Hoe samenwerken werkt</h2>
+
+        <div class="grid">
+          <article class="card">
+            <h3>1. Kies een issue</h3>
+            <p>
+              Kies een open taak met een duidelijke omschrijving en
+              controleerbare oplevercriteria.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>2. Vraag toewijzing</h3>
+            <p>
+              Beschrijf eerst je aanpak. Begin pas nadat de eigenaar
+              je schriftelijk aan de taak heeft toegewezen.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>3. Lever veilig op</h3>
+            <p>
+              Lever via een pull request. De wijziging wordt getest
+              en beoordeeld voordat ze wordt samengevoegd.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container policy">
+        <h2>Beloningsvoorwaarden</h2>
+
+        <ul>
+          <li>
+            Er is geen automatische of gegarandeerde betaling.
+          </li>
+          <li>
+            Bedrag, betaalwijze en oplevercriteria moeten vóór de
+            start in het issue zijn bevestigd.
+          </li>
+          <li>
+            Vrijwillige issues hebben geen financiële vergoeding.
+          </li>
+          <li>
+            Gekopieerde, illegale of onveilige code wordt geweigerd.
+          </li>
+          <li>
+            Plaats nooit API-sleutels, wachtwoorden, adressen of
+            bankgegevens in een openbaar issue.
+          </li>
+          <li>
+            Alleen geaccepteerd werk dat aan alle criteria voldoet,
+            kan voor een bevestigde beloning in aanmerking komen.
+          </li>
+        </ul>
+
+        <p class="notice">
+          Mikis13 is momenteel een klein project. Controleer ieder
+          issue afzonderlijk om te zien of het vrijwillig of betaald is.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <strong>Mikis13</strong>
+      <p>Software, websites en digitale projecten vanuit België.</p>
+      <p class="small">
+        © <span id="year"></span> Mikis13.
+      </p>
+    </div>
+
+    <script>
+      document.getElementById("year").textContent =
+        new Date().getFullYear();
+    </script>
+  </footer>
+</body>
+</html>
