@@ -1,0 +1,187 @@
+#m13-editor-toggle {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    z-index: 2147483647;
+    min-width: 58px;
+    min-height: 58px;
+    padding: 0 18px;
+    border: 1px solid rgba(56, 189, 248, 0.75);
+    border-radius: 999px;
+    background: linear-gradient(135deg, #0284c7, #22c55e);
+    color: #fff;
+    font: 900 15px/1 system-ui, sans-serif;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+    cursor: pointer;
+}
+
+#m13-editor-toggle.active {
+    background: linear-gradient(135deg, #dc2626, #f59e0b);
+}
+
+#m13-editor-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 2147483646;
+    width: min(430px, 100vw);
+    height: 100vh;
+    overflow-y: auto;
+    padding: 20px;
+    border-left: 1px solid rgba(148, 163, 184, 0.28);
+    background: rgba(2, 6, 23, 0.98);
+    color: #f8fafc;
+    font-family: system-ui, sans-serif;
+    box-shadow: -20px 0 55px rgba(0, 0, 0, 0.45);
+    transform: translateX(105%);
+    transition: transform 0.22s ease;
+}
+
+#m13-editor-panel.open {
+    transform: translateX(0);
+}
+
+#m13-editor-panel * {
+    box-sizing: border-box;
+}
+
+#m13-editor-panel h2 {
+    margin: 0 0 6px;
+    font-size: 1.35rem;
+}
+
+#m13-editor-panel h3 {
+    margin: 24px 0 10px;
+    font-size: 1rem;
+    color: #7dd3fc;
+}
+
+#m13-editor-panel p {
+    color: #94a3b8;
+    line-height: 1.5;
+}
+
+.m13-editor-field {
+    display: grid;
+    gap: 7px;
+    margin-bottom: 14px;
+}
+
+.m13-editor-field label {
+    color: #cbd5e1;
+    font-size: 0.84rem;
+    font-weight: 800;
+}
+
+.m13-editor-field input,
+.m13-editor-field textarea,
+.m13-editor-field select {
+    width: 100%;
+    min-height: 43px;
+    padding: 10px 12px;
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    border-radius: 10px;
+    outline: none;
+    background: #0f172a;
+    color: #fff;
+    font: inherit;
+}
+
+.m13-editor-field textarea {
+    min-height: 105px;
+    resize: vertical;
+}
+
+.m13-editor-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.m13-editor-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.m13-editor-action {
+    min-height: 44px;
+    padding: 0 12px;
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    border-radius: 11px;
+    background: #0f172a;
+    color: #fff;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.m13-editor-action.primary {
+    border-color: #22c55e;
+    background: rgba(34, 197, 94, 0.2);
+}
+
+.m13-editor-action.warning {
+    border-color: #f59e0b;
+    background: rgba(245, 158, 11, 0.15);
+}
+
+.m13-editor-action.danger {
+    border-color: #ef4444;
+    background: rgba(239, 68, 68, 0.15);
+}
+
+.m13-editor-close {
+    float: right;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    border-radius: 10px;
+    background: #0f172a;
+    color: white;
+    cursor: pointer;
+}
+
+.m13-editor-active [data-m13-editable="true"] {
+    cursor: crosshair !important;
+}
+
+.m13-editor-active [data-m13-editable="true"]:hover {
+    outline: 2px dashed #38bdf8 !important;
+    outline-offset: 4px !important;
+}
+
+.m13-editor-selected {
+    outline: 3px solid #22c55e !important;
+    outline-offset: 4px !important;
+}
+
+#m13-editor-status {
+    position: fixed;
+    left: 12px;
+    bottom: 12px;
+    z-index: 2147483645;
+    display: none;
+    max-width: calc(100vw - 120px);
+    padding: 10px 14px;
+    border: 1px solid rgba(34, 197, 94, 0.4);
+    border-radius: 10px;
+    background: rgba(2, 6, 23, 0.96);
+    color: #bbf7d0;
+    font: 700 13px/1.4 system-ui, sans-serif;
+}
+
+.m13-editor-active #m13-editor-status {
+    display: block;
+}
+
+@media (max-width: 560px) {
+    #m13-editor-panel {
+        width: 100vw;
+    }
+
+    .m13-editor-grid,
+    .m13-editor-actions {
+        grid-template-columns: 1fr;
+    }
+}
