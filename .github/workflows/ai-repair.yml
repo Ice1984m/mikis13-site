@@ -1,0 +1,81 @@
+name: Mikis13 Auto Repair
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "37 7 * * *"
+  workflow_run:
+    workflows: ["Controleer en publiceer Mikis13"]
+    types: [completed]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  actions: read
+
+concurrency:
+  group: mikis13-auto-repair
+  cancel-in-progress: false
+
+jobs:
+  repair:
+    if: >-
+      github.event_name != 'workflow_run' ||
+      (
+        github.event.workflow_run.conclusion == 'failure' &&
+        !startsWith(github.event.workflow_run.head_branch, 'ai-repair/')
+      )
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+
+      - name: Reparatie uitvoeren
+        id: repair
+        shell: bash
+        run: |
+          set +e
+          node scripts/mikis13-repair.mjs | tee repair-result.json
+          code=${PIPESTATUS[0]}
+          set -e
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+
+      - name: Herstel-pull-request maken
+        if: steps.repair.outputs.code == '0'
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          if git diff --quiet; then
+            echo "Website is gezond; geen wijzigingen nodig."
+            exit 0
+          fi
+
+          branch="ai-repair/run-${GITHUB_RUN_ID}"
+          git config user.name "mikis13-repair[bot]"
+          git config user.email "mikis13-repair[bot]@users.noreply.github.com"
+          git switch -c "$branch"
+          git add CNAME index.html
+          git commit -m "fix: automatisch websiteherstel"
+          git push origin "$branch"
+          gh pr create \
+            --base main \
+            --head "$branch" \
+            --title "Automatisch websiteherstel ${GITHUB_RUN_ID}" \
+            --body "Vaste veilige reparaties. Merge uitsluitend nadat de controles groen zijn."
+
+      - name: Blokkade melden
+        if: steps.repair.outputs.code != '0'
+        shell: bash
+        run: |
+          gh issue create \
+            --title "Auto Repair geblokkeerd — run ${GITHUB_RUN_ID}" \
+            --body-file repair-result.json

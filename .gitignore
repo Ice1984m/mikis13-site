@@ -12,3 +12,9 @@ cloudflare.env
 credentials.json
 credentials/
 secrets/
+!.env.example
+*.log
+logs/
+*.backup-*
+*.p12
+*.keystore
