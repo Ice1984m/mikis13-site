@@ -1,0 +1,140 @@
+[
+  {
+    "team": "Scout",
+    "bots": 8,
+    "task": "Zoekt expliciet betaalde issues",
+    "status": "actief",
+    "last_action": "Team geactiveerd en 5 bots toegevoegd",
+    "updated_at": "2026-07-27T05:57:39+02:00",
+    "permissions": [
+      "zoeken",
+      "analyseren",
+      "lokale code voorbereiden",
+      "testen",
+      "rapporteren"
+    ],
+    "blocked_actions": [
+      "automatisch publiceren",
+      "automatisch reageren",
+      "accounts aanmaken",
+      "betalingen uitvoeren",
+      "inkomsten verzinnen",
+      "spam versturen"
+    ]
+  },
+  {
+    "team": "Analyse",
+    "bots": 8,
+    "task": "Controleert scope, taal, tests en haalbaarheid",
+    "status": "actief",
+    "last_action": "Team geactiveerd en 5 bots toegevoegd",
+    "updated_at": "2026-07-27T05:57:39+02:00",
+    "permissions": [
+      "zoeken",
+      "analyseren",
+      "lokale code voorbereiden",
+      "testen",
+      "rapporteren"
+    ],
+    "blocked_actions": [
+      "automatisch publiceren",
+      "automatisch reageren",
+      "accounts aanmaken",
+      "betalingen uitvoeren",
+      "inkomsten verzinnen",
+      "spam versturen"
+    ]
+  },
+  {
+    "team": "Security",
+    "bots": 7,
+    "task": "Controleert geheimen, afhankelijkheden en risico's",
+    "status": "actief",
+    "last_action": "Team geactiveerd en 5 bots toegevoegd",
+    "updated_at": "2026-07-27T05:57:39+02:00",
+    "permissions": [
+      "zoeken",
+      "analyseren",
+      "lokale code voorbereiden",
+      "testen",
+      "rapporteren"
+    ],
+    "blocked_actions": [
+      "automatisch publiceren",
+      "automatisch reageren",
+      "accounts aanmaken",
+      "betalingen uitvoeren",
+      "inkomsten verzinnen",
+      "spam versturen"
+    ]
+  },
+  {
+    "team": "Build",
+    "bots": 9,
+    "task": "Maakt lokale oplossing en tests",
+    "status": "actief",
+    "last_action": "Team geactiveerd en 5 bots toegevoegd",
+    "updated_at": "2026-07-27T05:57:39+02:00",
+    "permissions": [
+      "zoeken",
+      "analyseren",
+      "lokale code voorbereiden",
+      "testen",
+      "rapporteren"
+    ],
+    "blocked_actions": [
+      "automatisch publiceren",
+      "automatisch reageren",
+      "accounts aanmaken",
+      "betalingen uitvoeren",
+      "inkomsten verzinnen",
+      "spam versturen"
+    ]
+  },
+  {
+    "team": "Review",
+    "bots": 7,
+    "task": "Controleert diff, licentie en kwaliteit",
+    "status": "actief",
+    "last_action": "Team geactiveerd en 5 bots toegevoegd",
+    "updated_at": "2026-07-27T05:57:39+02:00",
+    "permissions": [
+      "zoeken",
+      "analyseren",
+      "lokale code voorbereiden",
+      "testen",
+      "rapporteren"
+    ],
+    "blocked_actions": [
+      "automatisch publiceren",
+      "automatisch reageren",
+      "accounts aanmaken",
+      "betalingen uitvoeren",
+      "inkomsten verzinnen",
+      "spam versturen"
+    ]
+  },
+  {
+    "team": "Admin",
+    "bots": 6,
+    "task": "Houdt bedragen, facturen en statussen bij",
+    "status": "actief",
+    "last_action": "Team geactiveerd en 5 bots toegevoegd",
+    "updated_at": "2026-07-27T05:57:39+02:00",
+    "permissions": [
+      "zoeken",
+      "analyseren",
+      "lokale code voorbereiden",
+      "testen",
+      "rapporteren"
+    ],
+    "blocked_actions": [
+      "automatisch publiceren",
+      "automatisch reageren",
+      "accounts aanmaken",
+      "betalingen uitvoeren",
+      "inkomsten verzinnen",
+      "spam versturen"
+    ]
+  }
+]

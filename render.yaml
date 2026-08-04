@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: mikis13-site
+    runtime: node
+    repo: https://github.com/Ice1984m/mikis13-site
+    branch: main
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    autoDeployTrigger: commit

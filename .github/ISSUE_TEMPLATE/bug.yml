@@ -1,0 +1,34 @@
+name: Websitefout melden
+description: Meld een controleerbaar probleem met de website.
+title: "[BUG] "
+labels:
+  - bug
+
+body:
+  - type: input
+    id: pagina
+    attributes:
+      label: Pagina
+      placeholder: Bijvoorbeeld https://www.mikis13.nl/jobs.html
+    validations:
+      required: true
+
+  - type: textarea
+    id: fout
+    attributes:
+      label: Wat gaat fout?
+    validations:
+      required: true
+
+  - type: textarea
+    id: verwacht
+    attributes:
+      label: Wat had moeten gebeuren?
+    validations:
+      required: true
+
+  - type: input
+    id: apparaat
+    attributes:
+      label: Apparaat en browser
+      placeholder: Bijvoorbeeld Android 16 en Chrome

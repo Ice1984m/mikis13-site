@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+  <title>Mikis13 AI Command Center</title>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --background: #050816;
+      --panel: rgba(15, 23, 42, 0.92);
+      --border: rgba(148, 163, 184, 0.22);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --success: #4ade80;
+      --danger: #fb7185;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top, #172554, transparent 38%),
+        var(--background);
+      color: var(--text);
+      font-family:
+        Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 12px;
+      background: rgba(5, 8, 22, 0.94);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+    }
+
+    nav a {
+      padding: 10px 13px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    nav a.active {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    main {
+      width: min(1500px, 96%);
+      margin: 24px auto 60px;
+    }
+
+    .hero,
+    .command-panel,
+    .console {
+      border: 1px solid var(--border);
+      background: var(--panel);
+      border-radius: 18px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+    }
+
+    .hero {
+      padding: 24px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+    }
+
+    .status {
+      color: var(--muted);
+    }
+
+    .command-panel {
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 130px;
+      resize: vertical;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      background: #020617;
+      color: var(--text);
+      font: inherit;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    button {
+      cursor: pointer;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 11px 15px;
+      background: #0f172a;
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    button.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #02131d;
+    }
+
+    button:disabled {
+      opacity: 0.55;
+      cursor: wait;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .console {
+      min-height: 390px;
+      overflow: hidden;
+    }
+
+    .console:last-child {
+      grid-column: 1 / -1;
+    }
+
+    .console-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 15px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .console-header h2 {
+      margin: 0;
+      font-size: 1.05rem;
+    }
+
+    .model {
+      color: var(--accent);
+      font-size: 0.82rem;
+    }
+
+    .task {
+      padding: 12px 15px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .output {
+      min-height: 230px;
+      max-height: 500px;
+      overflow: auto;
+      margin: 0;
+      padding: 15px;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      font-family: "Roboto Mono", monospace;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      background: #020617;
+    }
+
+    .console-footer {
+      padding: 12px 15px;
+    }
+
+    .error {
+      color: var(--danger);
+    }
+
+    .success {
+      color: var(--success);
+    }
+
+    .combined {
+      margin-top: 18px;
+      padding: 18px;
+      border: 1px solid var(--accent);
+      border-radius: 18px;
+      background: var(--panel);
+    }
+
+    .combined pre {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    @media (max-width: 850px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .console:last-child {
+        grid-column: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <a href="./index.html">🌐 Mikis13 Live</a>
+    <a href="./monitor.html">📡 Monitor</a>
+    <a href="./goksites.html">🎰 Mikis13 Gok</a>
+    <a href="./inkomsten.html">💶 Inkomsten</a>
+    <a class="active" href="./ai-console.html">🤖 Vijf AI-consoles</a>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <h1>🤖 Mikis13 AI Command Center</h1>
+      <div id="serverStatus" class="status">
+        Server controleren…
+      </div>
+    </section>
+
+    <section class="command-panel">
+      <label for="masterPrompt">
+        <strong>Geef één opdracht aan de bots</strong>
+      </label>
+
+      <textarea
+        id="masterPrompt"
+        placeholder="Bijvoorbeeld: controleer mijn goksites.html, herstel alle fouten en maak de mobiele navigatie beter."
+      ></textarea>
+
+      <div class="actions">
+        <button
+          id="runAll"
+          class="primary"
+          type="button"
+        >
+          ▶ Start alle 5 bots en combineer
+        </button>
+
+        <button
+          id="clearAll"
+          type="button"
+        >
+          🗑 Wis consoles
+        </button>
+      </div>
+    </section>
+
+    <section id="consoleGrid" class="grid"></section>
+
+    <section id="combinedPanel" class="combined" hidden>
+      <h2>✅ Gecombineerde eindoplossing</h2>
+      <pre id="combinedOutput"></pre>
+    </section>
+  </main>
+
+  <script>
+    const grid = document.querySelector("#consoleGrid");
+    const masterPrompt = document.querySelector("#masterPrompt");
+    const runAllButton = document.querySelector("#runAll");
+    const clearButton = document.querySelector("#clearAll");
+    const combinedPanel = document.querySelector("#combinedPanel");
+    const combinedOutput = document.querySelector("#combinedOutput");
+    const serverStatus = document.querySelector("#serverStatus");
+
+    let bots = [];
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;");
+    }
+
+    function createConsole(bot) {
+      const article = document.createElement("article");
+      article.className = "console";
+      article.dataset.bot = bot.id;
+
+      article.innerHTML = `
+        <header class="console-header">
+          <div>
+            <h2>${escapeHtml(bot.name)}</h2>
+            <div class="model">${escapeHtml(bot.model)}</div>
+          </div>
+
+          <button
+            type="button"
+            class="run-one"
+            data-bot="${escapeHtml(bot.id)}"
+          >
+            Start
+          </button>
+        </header>
+
+        <div class="task">${escapeHtml(bot.task)}</div>
+
+        <pre
+          class="output"
+          id="output-${escapeHtml(bot.id)}"
+        >Wacht op een opdracht…</pre>
+
+        <footer class="console-footer">
+          <span id="state-${escapeHtml(bot.id)}">Gereed</span>
+        </footer>
+      `;
+
+      return article;
+    }
+
+    function setOutput(botId, text, isError = false) {
+      const output = document.querySelector(`#output-${botId}`);
+      const state = document.querySelector(`#state-${botId}`);
+
+      output.textContent = text;
+      output.classList.toggle("error", isError);
+      state.textContent = isError ? "Fout" : "Voltooid";
+      state.className = isError ? "error" : "success";
+    }
+
+    async function askBot(botId) {
+      const prompt = masterPrompt.value.trim();
+
+      if (!prompt) {
+        alert("Voer eerst een opdracht in.");
+        return;
+      }
+
+      const button = document.querySelector(
+        `.run-one[data-bot="${botId}"]`
+      );
+
+      const output = document.querySelector(`#output-${botId}`);
+      const state = document.querySelector(`#state-${botId}`);
+
+      button.disabled = true;
+      output.textContent = "Bot werkt aan de opdracht…";
+      output.className = "output";
+      state.textContent = "Bezig…";
+      state.className = "";
+
+      try {
+        const response = await fetch("/api/ask", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            bot: botId,
+            prompt
+          })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || "Opdracht mislukt.");
+        }
+
+        const modelText = data.fallbackUsed
+          ? `Terugvalmodel gebruikt: ${data.usedModel}\n\n`
+          : `Model: ${data.usedModel}\n\n`;
+
+        setOutput(botId, modelText + data.answer);
+      } catch (error) {
+        setOutput(botId, error.message, true);
+      } finally {
+        button.disabled = false;
+      }
+    }
+
+    async function runAll() {
+      const prompt = masterPrompt.value.trim();
+
+      if (!prompt) {
+        alert("Voer eerst een opdracht in.");
+        return;
+      }
+
+      runAllButton.disabled = true;
+      runAllButton.textContent = "⏳ Vijf bots werken…";
+      combinedPanel.hidden = false;
+      combinedOutput.textContent =
+        "Bots uitvoeren en eindantwoord combineren…";
+
+      for (const bot of bots) {
+        const output = document.querySelector(`#output-${bot.id}`);
+        const state = document.querySelector(`#state-${bot.id}`);
+
+        output.textContent = "Wachten op gecombineerd proces…";
+        output.className = "output";
+        state.textContent = "Bezig…";
+        state.className = "";
+      }
+
+      try {
+        const response = await fetch("/api/combine", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ prompt })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || "Combineren mislukt.");
+        }
+
+        for (const result of data.results) {
+          setOutput(
+            result.id,
+            `Model: ${result.model}\n\n${result.answer}`
+          );
+        }
+
+        combinedOutput.textContent = data.finalAnswer;
+      } catch (error) {
+        combinedOutput.textContent = error.message;
+        combinedOutput.className = "error";
+      } finally {
+        runAllButton.disabled = false;
+        runAllButton.textContent = "▶ Start alle 5 bots en combineer";
+      }
+    }
+
+    async function loadStatus() {
+      try {
+        const response = await fetch("/api/status");
+        const data = await response.json();
+
+        bots = data.bots;
+        grid.replaceChildren(...bots.map(createConsole));
+
+        serverStatus.innerHTML = data.apiKeyConfigured
+          ? `<span class="success">● Server online — API-sleutel ingesteld — poort ${data.port}</span>`
+          : `<span class="error">● Server online — API-sleutel ontbreekt — poort ${data.port}</span>`;
+
+        document.querySelectorAll(".run-one").forEach(button => {
+          button.addEventListener("click", () => {
+            askBot(button.dataset.bot);
+          });
+        });
+      } catch (error) {
+        serverStatus.innerHTML =
+          `<span class="error">Server niet bereikbaar: ${escapeHtml(error.message)}</span>`;
+      }
+    }
+
+    runAllButton.addEventListener("click", runAll);
+
+    clearButton.addEventListener("click", () => {
+      for (const bot of bots) {
+        const output = document.querySelector(`#output-${bot.id}`);
+        const state = document.querySelector(`#state-${bot.id}`);
+
+        output.textContent = "Wacht op een opdracht…";
+        output.className = "output";
+        state.textContent = "Gereed";
+        state.className = "";
+      }
+
+      combinedPanel.hidden = true;
+      combinedOutput.textContent = "";
+      combinedOutput.className = "";
+    });
+
+    loadStatus();
+  </script>
+</body>
+</html>

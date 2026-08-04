@@ -1,0 +1,20 @@
+
+# Geheimen
+*.jks
+*.key
+*.pem
+*.token
+.cloudflare/
+.env
+.env.*
+.mikis13/
+cloudflare.env
+credentials.json
+credentials/
+secrets/
+!.env.example
+*.log
+logs/
+*.backup-*
+*.p12
+*.keystore

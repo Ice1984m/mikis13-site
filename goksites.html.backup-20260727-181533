@@ -1,0 +1,953 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#070b16">
+  <meta name="description"
+        content="Mikis13 informatieplatform voor het veilig vergelijken van vergunde goksites.">
+  <title>Mikis13 Gids | Veilig vergelijken</title>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #070b16;
+      --panel: rgba(18, 26, 48, .86);
+      --line: rgba(255,255,255,.12);
+      --text: #f7f9ff;
+      --muted: #aab4cc;
+      --green: #58e6ad;
+      --gold: #ffcc66;
+      --danger: #ff7a8a;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont,
+                   "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 5%,
+          rgba(65, 99, 255, .20),
+          transparent 32rem),
+        radial-gradient(circle at 95% 25%,
+          rgba(88, 230, 173, .12),
+          transparent 30rem),
+        var(--bg);
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .shell {
+      width: min(1160px, calc(100% - 30px));
+      margin-inline: auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      border-bottom: 1px solid var(--line);
+      background: rgba(7, 11, 22, .84);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      min-height: 70px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 900;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      color: #07110d;
+      background: linear-gradient(135deg, var(--green), var(--gold));
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .hero {
+      padding: 75px 0 45px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .tag {
+      display: inline-flex;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--green);
+      background: rgba(88, 230, 173, .08);
+      font-size: .8rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 18px 0 15px;
+      font-size: clamp(2.7rem, 8vw, 5.4rem);
+      line-height: .98;
+      letter-spacing: -.055em;
+    }
+
+    h2 {
+      font-size: clamp(1.9rem, 5vw, 3rem);
+      letter-spacing: -.035em;
+    }
+
+    .hero p,
+    .muted {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .hero p {
+      max-width: 680px;
+      font-size: 1.08rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 11px;
+      margin-top: 26px;
+    }
+
+    .button {
+      min-height: 48px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 18px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      color: var(--text);
+      background: rgba(255,255,255,.05);
+      text-decoration: none;
+      font-weight: 900;
+    }
+
+    .button.primary {
+      border-color: transparent;
+      color: #06110d;
+      background: var(--green);
+    }
+
+    .panel,
+    .card,
+    .notice {
+      border: 1px solid var(--line);
+      border-radius: 23px;
+      background: var(--panel);
+      box-shadow: 0 24px 70px rgba(0,0,0,.30);
+    }
+
+    .panel {
+      padding: 24px;
+    }
+
+    .checks {
+      display: grid;
+      gap: 13px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .checks li {
+      display: flex;
+      gap: 10px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .check {
+      color: var(--green);
+      font-weight: 900;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 13px;
+      padding: 8px 0 45px;
+    }
+
+    .stat {
+      padding: 19px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,.04);
+    }
+
+    .stat strong,
+    .stat span {
+      display: block;
+    }
+
+    .stat strong {
+      font-size: 1.3rem;
+    }
+
+    .stat span {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: .88rem;
+    }
+
+    .section {
+      padding: 50px 0;
+    }
+
+    .section-head {
+      margin-bottom: 22px;
+    }
+
+    .section-head h2 {
+      margin: 10px 0;
+    }
+
+    .filters {
+      display: grid;
+      grid-template-columns: 1fr 190px 180px;
+      gap: 11px;
+      margin-bottom: 19px;
+    }
+
+    .field {
+      min-height: 50px;
+      width: 100%;
+      padding: 0 14px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      color: var(--text);
+      background: #0d1426;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 17px;
+    }
+
+    .card {
+      min-height: 330px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+    }
+
+    .icon {
+      width: 55px;
+      height: 55px;
+      display: grid;
+      place-items: center;
+      border-radius: 17px;
+      background: rgba(124, 167, 255, .13);
+      font-size: 1.5rem;
+    }
+
+    .score {
+      text-align: right;
+    }
+
+    .score strong {
+      display: block;
+      color: var(--gold);
+      font-size: 1.45rem;
+    }
+
+    .score span {
+      color: var(--muted);
+      font-size: .77rem;
+    }
+
+    .card h3 {
+      margin: 18px 0 5px;
+      font-size: 1.35rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 12px 0 18px;
+    }
+
+    .chip {
+      padding: 7px 9px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      font-size: .78rem;
+      font-weight: 800;
+    }
+
+    .card-actions {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      margin-top: auto;
+    }
+
+    .details {
+      min-width: 85px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      color: var(--text);
+      background: rgba(255,255,255,.05);
+      font-weight: 900;
+    }
+
+    .disabled {
+      opacity: .68;
+      cursor: not-allowed;
+    }
+
+    .notice {
+      padding: 25px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 18px;
+    }
+
+    .notice-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      color: var(--danger);
+      background: rgba(255, 122, 138, .13);
+      font-size: 1.4rem;
+      font-weight: 900;
+    }
+
+    .guide {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 24px;
+    }
+
+    footer {
+      margin-top: 35px;
+      padding: 34px 0 42px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .age-gate {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      place-items: center;
+      padding: 20px;
+      background: rgba(2, 5, 12, .91);
+      backdrop-filter: blur(18px);
+    }
+
+    .age-gate.open {
+      display: grid;
+    }
+
+    .age-box {
+      width: min(520px, 100%);
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: #0d1426;
+      text-align: center;
+    }
+
+    .age-box h2 {
+      margin: 8px 0;
+    }
+
+    .age-icon {
+      font-size: 3rem;
+    }
+
+    .age-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .age-actions button {
+      min-height: 50px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      font-weight: 900;
+    }
+
+    .confirm {
+      border-color: transparent !important;
+      color: #06110d;
+      background: var(--green);
+    }
+
+    .leave {
+      color: var(--text);
+      background: rgba(255,255,255,.05);
+    }
+
+    .toast {
+      position: fixed;
+      right: 17px;
+      bottom: 17px;
+      z-index: 60;
+      display: none;
+      max-width: 350px;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #121a30;
+    }
+
+    .toast.show {
+      display: block;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .cards,
+      .guide {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .filters {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .nav-links a:not(:last-child) {
+        display: none;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .notice {
+        grid-template-columns: 1fr;
+      }
+
+      .age-actions,
+      .card-actions {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="age-gate"
+       id="ageGate"
+       role="dialog"
+       aria-modal="true"
+       aria-labelledby="ageTitle">
+
+    <div class="age-box">
+      <div class="age-icon">🔞</div>
+      <h2 id="ageTitle">Ben je 18 jaar of ouder?</h2>
+
+      <p class="muted">
+        Deze pagina bevat informatie over kansspelen.
+        Gokken kan geld kosten en verslavend zijn.
+      </p>
+
+      <div class="age-actions">
+        <button class="confirm" id="confirmAge">
+          Ja, ik ben 18+
+        </button>
+
+        <button class="leave" id="leavePage">
+          Nee, pagina verlaten
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <header class="topbar">
+    <div class="shell nav">
+      <a class="brand" href="index.html">
+        <span class="logo">M13</span>
+        <span>Mikis13 Gids</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#vergelijken">Vergelijken</a>
+        <a href="#veilig">Veilig spelen</a>
+        <a href="index.html">Home</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div>
+          <span class="tag">
+            Informatiewijzer · 18+
+          </span>
+
+          <h1>
+            Vergelijk slimmer.
+            Speel bewuster.
+          </h1>
+
+          <p>
+            Mikis13 helpt bezoekers letten op vergunningen,
+            limieten, voorwaarden en verantwoord-spelenfuncties.
+            Wij verwerken zelf geen inzetten, stortingen of
+            uitbetalingen.
+          </p>
+
+          <div class="actions">
+            <a class="button primary" href="#vergelijken">
+              Bekijk vergelijker
+            </a>
+
+            <a class="button" href="#veilig">
+              Veiligheidscheck
+            </a>
+          </div>
+        </div>
+
+        <aside class="panel">
+          <span class="tag">Controlelijst</span>
+
+          <h2>Controleer vóór je speelt</h2>
+
+          <ul class="checks">
+            <li>
+              <span class="check">✓</span>
+              Een geldige, verifieerbare vergunning.
+            </li>
+
+            <li>
+              <span class="check">✓</span>
+              Duidelijke bonus- en opnamevoorwaarden.
+            </li>
+
+            <li>
+              <span class="check">✓</span>
+              Instelbare geld-, verlies- en tijdslimieten.
+            </li>
+
+            <li>
+              <span class="check">✓</span>
+              Eenvoudige zelfuitsluiting en hulpverlening.
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="shell stats">
+      <div class="stat">
+        <strong>18+</strong>
+        <span>Alleen voor volwassenen</span>
+      </div>
+
+      <div class="stat">
+        <strong>Geen inzetten</strong>
+        <span>Mikis13 verwerkt geen gokgeld</span>
+      </div>
+
+      <div class="stat">
+        <strong>Transparant</strong>
+        <span>Criteria zichtbaar uitgelegd</span>
+      </div>
+
+      <div class="stat">
+        <strong>Mobiel</strong>
+        <span>Geschikt voor Android</span>
+      </div>
+    </section>
+
+    <section class="section" id="vergelijken">
+      <div class="shell">
+        <div class="section-head">
+          <span class="tag">Vergelijker</span>
+          <h2>Voorbeeldcategorieën</h2>
+
+          <p class="muted">
+            De onderstaande kaarten zijn demonstraties.
+            Er zijn bewust nog geen externe goklinks toegevoegd.
+          </p>
+        </div>
+
+        <div class="filters">
+          <input
+            class="field"
+            id="search"
+            type="search"
+            placeholder="Zoek op naam of eigenschap…"
+          >
+
+          <select class="field" id="category">
+            <option value="all">Alle categorieën</option>
+            <option value="sport">Sport</option>
+            <option value="casino">Casino</option>
+            <option value="lotto">Loterij</option>
+          </select>
+
+          <select class="field" id="sort">
+            <option value="score">Hoogste score</option>
+            <option value="name">Naam A–Z</option>
+          </select>
+        </div>
+
+        <div class="cards" id="cards">
+          <article
+            class="card"
+            data-name="Sport Select"
+            data-category="sport"
+            data-score="8.8"
+            data-tags="sport limieten mobiel"
+          >
+            <div class="card-top">
+              <div class="icon">⚽</div>
+
+              <div class="score">
+                <strong>8,8</strong>
+                <span>informatiescore</span>
+              </div>
+            </div>
+
+            <h3>Sport Select</h3>
+
+            <p>
+              Demoprofiel voor het vergelijken van vergunning,
+              quoteringen, limieten en live-informatie.
+            </p>
+
+            <div class="chips">
+              <span class="chip">Sport</span>
+              <span class="chip">Limieten</span>
+              <span class="chip">Mobiel</span>
+            </div>
+
+            <div class="card-actions">
+              <button class="button disabled" disabled>
+                Geen externe link
+              </button>
+
+              <button
+                class="details"
+                data-detail="Controleer vergunning, quoteringen, limieten en uitsluitingsopties."
+              >
+                Details
+              </button>
+            </div>
+          </article>
+
+          <article
+            class="card"
+            data-name="Casino Check"
+            data-category="casino"
+            data-score="8.5"
+            data-tags="casino voorwaarden spellen"
+          >
+            <div class="card-top">
+              <div class="icon">🎰</div>
+
+              <div class="score">
+                <strong>8,5</strong>
+                <span>informatiescore</span>
+              </div>
+            </div>
+
+            <h3>Casino Check</h3>
+
+            <p>
+              Demoprofiel met aandacht voor spelregels,
+              bonusvoorwaarden en verantwoord-spelenfuncties.
+            </p>
+
+            <div class="chips">
+              <span class="chip">Casino</span>
+              <span class="chip">Voorwaarden</span>
+              <span class="chip">18+</span>
+            </div>
+
+            <div class="card-actions">
+              <button class="button disabled" disabled>
+                Geen externe link
+              </button>
+
+              <button
+                class="details"
+                data-detail="Controleer spelregels, bonusvoorwaarden en wettelijke vergunning."
+              >
+                Details
+              </button>
+            </div>
+          </article>
+
+          <article
+            class="card"
+            data-name="Loterij Wijzer"
+            data-category="lotto"
+            data-score="8.1"
+            data-tags="loterij trekking uitslagen"
+          >
+            <div class="card-top">
+              <div class="icon">🎟️</div>
+
+              <div class="score">
+                <strong>8,1</strong>
+                <span>informatiescore</span>
+              </div>
+            </div>
+
+            <h3>Loterij Wijzer</h3>
+
+            <p>
+              Demoprofiel voor officiële trekkingen,
+              deelnamevoorwaarden en transparante uitslagen.
+            </p>
+
+            <div class="chips">
+              <span class="chip">Loterij</span>
+              <span class="chip">Trekkingen</span>
+              <span class="chip">Officieel</span>
+            </div>
+
+            <div class="card-actions">
+              <button class="button disabled" disabled>
+                Geen externe link
+              </button>
+
+              <button
+                class="details"
+                data-detail="Vermeld steeds winkansen, voorwaarden en leeftijdsgrenzen."
+              >
+                Details
+              </button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="veilig">
+      <div class="shell">
+        <div class="notice">
+          <div class="notice-icon">!</div>
+
+          <div>
+            <h3>
+              Gokken lost schulden of geldproblemen niet op
+            </h3>
+
+            <p class="muted">
+              Leen nooit geld om te gokken. Stel vooraf een
+              vaste geld- en tijdslimiet in en stop wanneer
+              spelen stress veroorzaakt.
+            </p>
+          </div>
+        </div>
+
+        <div class="guide">
+          <article class="panel">
+            <span class="tag">01</span>
+            <h3>Vergunning eerst</h3>
+            <p class="muted">
+              Een logo is niet voldoende. Controleer de aanbieder
+              bij de officiële toezichthouder.
+            </p>
+          </article>
+
+          <article class="panel">
+            <span class="tag">02</span>
+            <h3>Voorwaarden lezen</h3>
+            <p class="muted">
+              Bonussen, opnames en identiteitseisen moeten vooraf
+              volledig zichtbaar zijn.
+            </p>
+          </article>
+
+          <article class="panel">
+            <span class="tag">03</span>
+            <h3>Limieten gebruiken</h3>
+            <p class="muted">
+              Stel stortings-, verlies- en tijdslimieten in voordat
+              je begint te spelen.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-grid">
+      <div>
+        <strong>Mikis13 Gids</strong><br>
+        Informatieplatform — geen casino of bookmaker
+      </div>
+
+      <div>
+        18+ · Speel verantwoord · Controleer lokale wetgeving
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const ageGate = document.getElementById("ageGate");
+
+    if (localStorage.getItem("mikis13_age_ok") !== "yes") {
+      ageGate.classList.add("open");
+    }
+
+    document
+      .getElementById("confirmAge")
+      .addEventListener("click", () => {
+        localStorage.setItem("mikis13_age_ok", "yes");
+        ageGate.classList.remove("open");
+      });
+
+    document
+      .getElementById("leavePage")
+      .addEventListener("click", () => {
+        window.location.href = "index.html";
+      });
+
+    const search = document.getElementById("search");
+    const category = document.getElementById("category");
+    const sort = document.getElementById("sort");
+    const cards = document.getElementById("cards");
+
+    function refreshCards() {
+      const term = search.value.trim().toLowerCase();
+      const selectedCategory = category.value;
+      const items = [...cards.querySelectorAll(".card")];
+
+      items.forEach(card => {
+        const text = (
+          card.dataset.name + " " +
+          card.dataset.category + " " +
+          card.dataset.tags
+        ).toLowerCase();
+
+        const matchesSearch = text.includes(term);
+        const matchesCategory =
+          selectedCategory === "all" ||
+          card.dataset.category === selectedCategory;
+
+        card.hidden = !(matchesSearch && matchesCategory);
+      });
+
+      items.sort((a, b) => {
+        if (sort.value === "name") {
+          return a.dataset.name.localeCompare(
+            b.dataset.name,
+            "nl"
+          );
+        }
+
+        return Number(b.dataset.score) -
+               Number(a.dataset.score);
+      });
+
+      items.forEach(card => cards.appendChild(card));
+    }
+
+    search.addEventListener("input", refreshCards);
+    category.addEventListener("change", refreshCards);
+    sort.addEventListener("change", refreshCards);
+
+    const toast = document.getElementById("toast");
+
+    document.querySelectorAll(".details").forEach(button => {
+      button.addEventListener("click", () => {
+        toast.textContent = button.dataset.detail;
+        toast.classList.add("show");
+
+        clearTimeout(window.mikis13Toast);
+
+        window.mikis13Toast = setTimeout(() => {
+          toast.classList.remove("show");
+        }, 5000);
+      });
+    });
+  </script>
+</body>
+</html>

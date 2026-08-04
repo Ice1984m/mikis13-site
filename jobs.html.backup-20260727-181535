@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>Opdracht aanvragen | Mikis13</title>
+
+  <link rel="stylesheet" href="assets/style.css">
+
+  <style>
+    .job-page {
+      width: min(920px, calc(100% - 32px));
+      margin: 48px auto;
+    }
+
+    .job-card {
+      padding: 28px;
+      border: 1px solid rgba(148, 163, 184, 0.24);
+      border-radius: 20px;
+      background: rgba(15, 23, 42, 0.88);
+    }
+
+    .job-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      margin-top: 18px;
+      padding: 0 24px;
+      border-radius: 12px;
+      background: #ffffff;
+      color: #111827;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .job-button:hover {
+      transform: translateY(-1px);
+    }
+
+    .job-warning {
+      margin-top: 20px;
+      padding: 16px;
+      border-left: 4px solid #f59e0b;
+      background: rgba(245, 158, 11, 0.12);
+    }
+  </style>
+</head>
+
+<body>
+  <main class="job-page">
+    <section class="job-card">
+      <p>
+        <a href="index.html">← Terug naar Mikis13</a>
+      </p>
+
+      <h1>Technische opdracht aanvragen</h1>
+
+      <p>
+        Vraag hulp aan voor een openbare GitHub Pages-site,
+        GitHub Actions-workflow, websitecontrole of
+        Termux-script.
+      </p>
+
+      <h2>GitHub Pages-controle</h2>
+
+      <p>
+        Controle van één openbare repository, belangrijke
+        websitebestanden, interne links en de Pages-workflow.
+      </p>
+
+      <a
+        class="job-button"
+        href="https://github.com/Ice1984m/mikis13-site/issues/new?template=opdracht.yml"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Opdracht aanvragen
+      </a>
+
+      <div class="job-warning">
+        <strong>Belangrijk:</strong>
+        plaats nooit wachtwoorden, tokens, bankgegevens,
+        identiteitsdocumenten of Stripe-sleutels in een
+        GitHub-issue.
+      </div>
+
+      <p>
+        Een aanvraag is nog geen betaalde overeenkomst.
+        De prijs, opdracht, deadline en oplevering worden
+        eerst schriftelijk bevestigd.
+      </p>
+    </section>
+  </main>
+</body>
+</html>
