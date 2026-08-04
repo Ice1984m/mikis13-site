@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mikis13 Gok Games Apps</title>
+    <meta
+        name="description"
+        content="Mikis13 demo-omgeving voor het ontwikkelen van gokachtige games en apps zonder echt geld."
+    >
+
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #050816;
+            --panel: rgba(15, 23, 42, 0.9);
+            --border: rgba(148, 163, 184, 0.2);
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --accent: #38bdf8;
+            --success: #22c55e;
+            --warning: #f59e0b;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family:
+                Inter,
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(56, 189, 248, 0.12),
+                    transparent 34%
+                ),
+                var(--bg);
+            color: var(--text);
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            border-bottom: 1px solid var(--border);
+            background: rgba(2, 6, 23, 0.94);
+            backdrop-filter: blur(14px);
+        }
+
+        .topbar-inner {
+            width: min(1160px, calc(100% - 24px));
+            min-height: 68px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .brand {
+            font-weight: 900;
+            letter-spacing: 0.12em;
+            color: var(--accent);
+            white-space: nowrap;
+        }
+
+        .nav {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+
+        .nav a {
+            display: inline-flex;
+            align-items: center;
+            min-height: 40px;
+            padding: 0 15px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            text-decoration: none;
+            white-space: nowrap;
+            background: rgba(15, 23, 42, 0.8);
+        }
+
+        .nav a:hover,
+        .nav a.active {
+            border-color: var(--accent);
+            background: rgba(14, 116, 144, 0.22);
+        }
+
+        main {
+            width: min(1160px, calc(100% - 24px));
+            margin: 0 auto;
+            padding: 52px 0 72px;
+        }
+
+        .hero {
+            padding: 34px;
+            border: 1px solid var(--border);
+            border-radius: 26px;
+            background:
+                radial-gradient(
+                    circle at top left,
+                    rgba(34, 197, 94, 0.12),
+                    transparent 40%
+                ),
+                var(--panel);
+            box-shadow: 0 26px 70px rgba(0, 0, 0, 0.25);
+        }
+
+        .eyebrow {
+            color: var(--accent);
+            font-size: 0.78rem;
+            font-weight: 900;
+            letter-spacing: 0.16em;
+        }
+
+        h1 {
+            margin: 10px 0 14px;
+            font-size: clamp(2rem, 7vw, 4.7rem);
+            line-height: 1;
+        }
+
+        .hero p {
+            max-width: 760px;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .notice {
+            margin-top: 22px;
+            padding: 16px 18px;
+            border: 1px solid rgba(245, 158, 11, 0.35);
+            border-radius: 16px;
+            background: rgba(245, 158, 11, 0.08);
+            color: #fde68a;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+            gap: 18px;
+            margin-top: 28px;
+        }
+
+        .card {
+            min-height: 220px;
+            padding: 24px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: var(--panel);
+        }
+
+        .card h2 {
+            margin: 12px 0 8px;
+            font-size: 1.35rem;
+        }
+
+        .card p {
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .icon {
+            font-size: 2rem;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            margin-top: 14px;
+            padding: 0 17px;
+            border: 1px solid var(--accent);
+            border-radius: 12px;
+            color: white;
+            text-decoration: none;
+            background: rgba(14, 116, 144, 0.22);
+            font-weight: 800;
+        }
+
+        .button.disabled {
+            border-color: var(--border);
+            color: var(--muted);
+            background: rgba(15, 23, 42, 0.6);
+            cursor: default;
+        }
+
+        .section-title {
+            margin: 42px 0 12px;
+        }
+
+        .steps {
+            display: grid;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .step {
+            padding: 18px;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            background: rgba(15, 23, 42, 0.72);
+        }
+
+        footer {
+            padding: 30px 12px;
+            text-align: center;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+        }
+
+        @media (max-width: 680px) {
+            .brand {
+                display: none;
+            }
+
+            .topbar-inner {
+                width: calc(100% - 16px);
+            }
+
+            .nav {
+                width: 100%;
+            }
+
+            .hero {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="topbar-inner">
+            <div class="brand">MIKIS13</div>
+
+            <nav class="nav" aria-label="Hoofdnavigatie">
+                <a href="./index.html">🏠 Home</a>
+                <a href="./goksites.html">🎰 Goksites</a>
+                <a class="active" href="./gok-games-apps.html">
+                    🎮 Games Apps
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="eyebrow">MIKIS13 APP LAB</div>
+
+            <h1>Gok Games Apps ontwikkelen</h1>
+
+            <p>
+                Een aparte ontwikkelpagina voor casinostijl games,
+                sportvoorspellingen en kansspellen als demo. Alle games
+                gebruiken uitsluitend virtuele punten en hebben geen
+                stortingen, uitbetalingen of echt geld.
+            </p>
+
+            <div class="notice">
+                18+ ontwerpomgeving. Geen echte gokdienst, geen betalingen
+                en geen financiële beloningen.
+            </div>
+        </section>
+
+        <section class="grid">
+            <article class="card">
+                <div class="icon">🎰</div>
+                <h2>Slot Demo</h2>
+                <p>
+                    Bouw een eenvoudige slotsimulator met animaties,
+                    symbolen en virtuele credits.
+                </p>
+                <span class="button disabled">Binnenkort</span>
+            </article>
+
+            <article class="card">
+                <div class="icon">🎡</div>
+                <h2>Lucky Wheel</h2>
+                <p>
+                    Ontwikkel een rad-van-fortuinspel met punten,
+                    kansen en dagelijkse demo-beloningen.
+                </p>
+                <span class="button disabled">Binnenkort</span>
+            </article>
+
+            <article class="card">
+                <div class="icon">🃏</div>
+                <h2>Kaartspel</h2>
+                <p>
+                    Maak een blackjack-achtige oefengame zonder echt geld
+                    of uitbetalingen.
+                </p>
+                <span class="button disabled">Binnenkort</span>
+            </article>
+
+            <article class="card">
+                <div class="icon">⚽</div>
+                <h2>Sportvoorspelling</h2>
+                <p>
+                    Laat gebruikers wedstrijden voorspellen en virtuele
+                    punten verdienen.
+                </p>
+                <span class="button disabled">Binnenkort</span>
+            </article>
+
+            <article class="card">
+                <div class="icon">📱</div>
+                <h2>Android App</h2>
+                <p>
+                    Verpak de demo later als PWA of Android-app voor
+                    installatie op je telefoon.
+                </p>
+                <span class="button disabled">In ontwikkeling</span>
+            </article>
+
+            <article class="card">
+                <div class="icon">🛠️</div>
+                <h2>Developer Dashboard</h2>
+                <p>
+                    Beheer demo-games, versies, gebruikersscores en
+                    testgegevens vanuit één overzicht.
+                </p>
+                <span class="button disabled">Gepland</span>
+            </article>
+        </section>
+
+        <section>
+            <h2 class="section-title">Ontwikkelplan</h2>
+
+            <div class="steps">
+                <div class="step">
+                    <strong>1. Game kiezen</strong><br>
+                    Kies eerst Slot Demo, Lucky Wheel of Sportvoorspelling.
+                </div>
+
+                <div class="step">
+                    <strong>2. Demo bouwen</strong><br>
+                    HTML, CSS en JavaScript met uitsluitend virtuele punten.
+                </div>
+
+                <div class="step">
+                    <strong>3. Testen op telefoon</strong><br>
+                    Open via de lokale Mikis13-server op poort 3000.
+                </div>
+
+                <div class="step">
+                    <strong>4. Publiceren</strong><br>
+                    Push de pagina naar GitHub Pages.
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        © 2026 Mikis13 — demo-ontwikkeling zonder echt geld
+    </footer>
+</body>
+</html>

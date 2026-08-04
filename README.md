@@ -2,6 +2,15 @@
 
 Professionele digitale oplossingen — software, websites en AI-integratie.
 
+## Live website
+
+https://ice1984m.github.io/mikis13-site/
+
+## Publicatie
+
+De website wordt automatisch via GitHub Actions en GitHub Pages
+gepubliceerd na iedere push naar de branch `main`.
+
 ## 🐳 Docker
 
 ### Image bouwen (lokaal)
@@ -94,3 +103,8 @@ git push origin v1.0.0
 ```
 
 De GitHub Actions workflow bouwt daarna automatisch de image en publiceert die als `v1.0.0` en `1.0` naar GHCR.
+
+## Beveiliging
+
+Plaats nooit Stripe secret keys, GitHub tokens, wachtwoorden,
+webhook secrets of andere gevoelige informatie in deze repository.

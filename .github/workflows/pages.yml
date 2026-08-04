@@ -1,0 +1,432 @@
+name: Controleer en publiceer Mikis13
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+  schedule:
+    - cron: "17 6 * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mikis13-pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  controleren:
+    name: Website controleren
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Broncode ophalen
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Python instellen
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Verplichte bestanden controleren
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+
+          verplicht=(
+            "index.html"
+            "contact.html"
+            "privacy.html"
+            "voorwaarden.html"
+            "jobs.html"
+            "assets/style.css"
+          )
+
+          fout=0
+
+          for bestand in "${verplicht[@]}"; do
+            if [[ ! -s "$bestand" ]]; then
+              echo "::error file=$bestand::Bestand ontbreekt of is leeg"
+              fout=1
+            else
+              echo "OK: $bestand"
+            fi
+          done
+
+          exit "$fout"
+
+      - name: Repository veilig op geheimen controleren
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+
+          python - <<'PY'
+          import re
+          import subprocess
+          from pathlib import Path
+
+          root = Path(".").resolve()
+
+          scanner_file = Path(
+              ".github/workflows/pages.yml"
+          ).as_posix()
+
+          result = subprocess.run(
+              ["git", "ls-files", "-z"],
+              check=True,
+              capture_output=True,
+          )
+
+          files = [
+              Path(item.decode("utf-8"))
+              for item in result.stdout.split(b"\0")
+              if item
+          ]
+
+          patterns = {
+              "Stripe live-sleutel": re.compile(
+                  b"sk" + b"_live_" + b"[A-Za-z0-9]{10,}"
+              ),
+              "Stripe testsleutel": re.compile(
+                  b"sk" + b"_test_" + b"[A-Za-z0-9]{10,}"
+              ),
+              "GitHub PAT": re.compile(
+                  b"github" + b"_pat_" + b"[A-Za-z0-9_]{20,}"
+              ),
+              "GitHub token": re.compile(
+                  b"gh" + b"p_" + b"[A-Za-z0-9]{20,}"
+              ),
+              "AWS key": re.compile(
+                  b"AKIA[A-Z0-9]{16}"
+              ),
+              "Privésleutel": re.compile(
+                  b"-----BEGIN "
+                  b"(?:RSA |EC |OPENSSH )?"
+                  b"PRIVATE KEY-----"
+              ),
+          }
+
+          findings = []
+
+          for relative in files:
+              relative_name = relative.as_posix()
+
+              # De scanner bevat zelf herkenningspatronen.
+              # Daarom wordt alleen dit ene bestand overgeslagen.
+              if relative_name == scanner_file:
+                  continue
+
+              path = root / relative
+
+              if not path.is_file():
+                  continue
+
+              try:
+                  data = path.read_bytes()
+              except OSError:
+                  continue
+
+              if b"\0" in data[:4096]:
+                  continue
+
+              for label, pattern in patterns.items():
+                  for match in pattern.finditer(data):
+                      line = data[:match.start()].count(b"\n") + 1
+
+                      findings.append(
+                          f"{relative_name}:{line}: {label}"
+                      )
+
+          if findings:
+              for finding in findings:
+                  print(f"::error::{finding}")
+
+              print(
+                  "::error::Mogelijk echt geheim gevonden. "
+                  "Publicatie is geblokkeerd."
+              )
+
+              raise SystemExit(1)
+
+          print(
+              "Geen herkenbare geheime sleutels "
+              "in de bijgehouden bestanden gevonden."
+          )
+          PY
+
+      - name: HTML en interne links controleren
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+
+          python - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          from urllib.parse import unquote, urlsplit
+
+          root = Path(".").resolve()
+          html_files = sorted(root.rglob("*.html"))
+          errors = []
+
+          ignored_parts = {
+              ".git",
+              "node_modules",
+              "vendor",
+          }
+
+          html_files = [
+              path for path in html_files
+              if not ignored_parts.intersection(path.parts)
+          ]
+
+          class Parser(HTMLParser):
+              def __init__(self, source):
+                  super().__init__(convert_charrefs=True)
+                  self.source = source
+                  self.ids = set()
+                  self.references = []
+
+              def handle_starttag(self, tag, attrs):
+                  attributes = dict(attrs)
+
+                  element_id = attributes.get("id")
+
+                  if element_id:
+                      self.ids.add(element_id)
+
+                  for attribute in ("href", "src"):
+                      value = attributes.get(attribute)
+
+                      if value:
+                          self.references.append(
+                              (attribute, value.strip())
+                          )
+
+          parsed = {}
+
+          for file in html_files:
+              parser = Parser(file)
+
+              try:
+                  parser.feed(
+                      file.read_text(encoding="utf-8")
+                  )
+              except Exception as exc:
+                  errors.append(
+                      f"{file.relative_to(root)}: {exc}"
+                  )
+
+              parsed[file] = parser
+
+          for source, parser in list(parsed.items()):
+              for attribute, value in parser.references:
+                  if not value:
+                      continue
+
+                  if value.startswith(
+                      (
+                          "mailto:",
+                          "tel:",
+                          "data:",
+                          "javascript:",
+                      )
+                  ):
+                      continue
+
+                  if value.startswith("#"):
+                      fragment = unquote(value[1:])
+
+                      if fragment and fragment not in parser.ids:
+                          errors.append(
+                              f"{source.relative_to(root)}: "
+                              f"anker ontbreekt: #{fragment}"
+                          )
+
+                      continue
+
+                  parts = urlsplit(value)
+
+                  if parts.scheme in ("http", "https"):
+                      continue
+
+                  if value.startswith("//"):
+                      continue
+
+                  relative_path = unquote(parts.path)
+
+                  if not relative_path:
+                      continue
+
+                  target = (
+                      source.parent / relative_path
+                  ).resolve()
+
+                  try:
+                      target.relative_to(root)
+                  except ValueError:
+                      errors.append(
+                          f"{source.relative_to(root)}: "
+                          f"link buiten website: {value}"
+                      )
+                      continue
+
+                  if relative_path.endswith("/"):
+                      target = target / "index.html"
+
+                  if not target.exists():
+                      errors.append(
+                          f"{source.relative_to(root)}: "
+                          f"{attribute} ontbreekt: {value}"
+                      )
+                      continue
+
+                  if (
+                      parts.fragment
+                      and target.suffix.lower() == ".html"
+                  ):
+                      target_parser = parsed.get(target)
+
+                      if target_parser is None:
+                          target_parser = Parser(target)
+
+                          target_parser.feed(
+                              target.read_text(
+                                  encoding="utf-8"
+                              )
+                          )
+
+                          parsed[target] = target_parser
+
+                      fragment = unquote(parts.fragment)
+
+                      if fragment not in target_parser.ids:
+                          errors.append(
+                              f"{source.relative_to(root)}: "
+                              f"anker ontbreekt in {value}"
+                          )
+
+          if not html_files:
+              errors.append(
+                  "Geen HTML-bestanden gevonden."
+              )
+
+          if errors:
+              for error in errors:
+                  print(f"::error::{error}")
+
+              raise SystemExit(1)
+
+          print(
+              f"{len(html_files)} HTML-bestanden "
+              "en interne links zijn geldig."
+          )
+          PY
+
+      - name: Websitecontrole samenvatten
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "## Mikis13 websitecontrole"
+            echo
+            echo "- Commit: \`${GITHUB_SHA}\`"
+            echo "- Gebeurtenis: \`${GITHUB_EVENT_NAME}\`"
+            echo "- Repository: \`${GITHUB_REPOSITORY}\`"
+            echo "- UTC: $(date -u '+%Y-%m-%d %H:%M:%S')"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  publiceren:
+    name: GitHub Pages publiceren
+
+    if: >-
+      github.event_name != 'pull_request' &&
+      github.event_name != 'schedule'
+
+    needs:
+      - controleren
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Broncode ophalen
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: GitHub Pages configureren
+        uses: actions/configure-pages@v5
+
+      - name: Website uploaden
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Website publiceren
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  live-status:
+    name: Live website controleren
+
+    if: github.event_name == 'schedule'
+
+    needs:
+      - controleren
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Live URL controleren
+        shell: bash
+        env:
+          WEBSITE_URL: >-
+            https://ice1984m.github.io/mikis13-site/
+        run: |
+          set -Eeuo pipefail
+
+          status="$(
+            curl \
+              --silent \
+              --show-error \
+              --location \
+              --retry 3 \
+              --retry-delay 5 \
+              --connect-timeout 15 \
+              --max-time 45 \
+              --output /dev/null \
+              --write-out '%{http_code}' \
+              "$WEBSITE_URL"
+          )"
+
+          echo "HTTP-status: $status"
+
+          if [[ "$status" != "200" ]]; then
+            echo "::error::Website gaf HTTP-status $status"
+            exit 1
+          fi
+
+          {
+            echo "## Live website"
+            echo
+            echo "- URL: $WEBSITE_URL"
+            echo "- HTTP-status: $status"
+            echo "- Controle: geslaagd"
+          } >> "$GITHUB_STEP_SUMMARY"

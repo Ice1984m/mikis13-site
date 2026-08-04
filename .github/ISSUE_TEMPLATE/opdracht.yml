@@ -1,0 +1,62 @@
+name: Opdracht aanvragen
+description: Vraag een technische Mikis13-opdracht aan
+title: "[OPDRACHT] "
+labels:
+  - opdracht
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Bedankt voor je aanvraag.
+
+        Plaats hier geen wachtwoorden, API-sleutels,
+        bankgegevens, identiteitsdocumenten of andere
+        gevoelige persoonsgegevens.
+
+        Een aanvraag geeft nog geen toestemming om
+        betaald werk te starten. Bedrag, opdracht,
+        deadline en oplevercriteria moeten eerst
+        schriftelijk worden bevestigd.
+
+  - type: dropdown
+    id: soort
+    attributes:
+      label: Soort opdracht
+      options:
+        - GitHub Pages controleren
+        - GitHub Actions herstellen
+        - Website controleren
+        - Termux-script nakijken
+        - Andere technische vraag
+    validations:
+      required: true
+
+  - type: input
+    id: openbare-url
+    attributes:
+      label: Openbare website of repository
+      placeholder: https://github.com/gebruiker/repository
+
+  - type: textarea
+    id: probleem
+    attributes:
+      label: Wat moet worden opgelost?
+      description: Beschrijf de fout en het gewenste resultaat.
+    validations:
+      required: true
+
+  - type: textarea
+    id: foutmelding
+    attributes:
+      label: Foutmelding
+      description: Verwijder eerst alle sleutels en privégegevens.
+
+  - type: checkboxes
+    id: toestemming
+    attributes:
+      label: Bevestiging
+      options:
+        - label: Ik heb geen wachtwoorden of betaalgegevens geplaatst.
+          required: true
+        - label: Ik begrijp dat de opdracht pas start na schriftelijke bevestiging.
+          required: true

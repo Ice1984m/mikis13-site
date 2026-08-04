@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description"
+        content="Mikis13 Cyber & Tech Shop: gaming, pc-accessoires, reparatiegereedschap, privacy en digitale handleidingen.">
+  <meta name="theme-color" content="#070b18">
+  <title>Mikis13 Cyber & Tech Shop</title>
+  <link rel="stylesheet" href="assets/shop.css">
+</head>
+
+<body>
+<header class="topbar">
+  <a class="brand" href="../">
+    <span class="brand-mark">M13</span>
+    <span>
+      <strong>Mikis13</strong>
+      <small>Cyber & Tech Shop</small>
+    </span>
+  </a>
+
+  <nav>
+    <a href="#producten">Producten</a>
+    <a href="#categorieen">Categorieën</a>
+    <a href="#waarom">Waarom Mikis13?</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <button id="cartButton" class="cart-button" type="button">
+    Winkelwagen
+    <span id="cartCount">0</span>
+  </button>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-content">
+      <span class="eyebrow">GAMING • PC • REPARATIE • CYBERSECURITY</span>
+      <h1>Professionele technologie voor een kleine prijs</h1>
+      <p>
+        Ontdek betaalbare accessoires voor consoles, pc, onderhoud,
+        privacy en reparatie. Duidelijke uitleg, eerlijke prijzen en
+        praktische Mikis13-video’s.
+      </p>
+
+      <div class="hero-actions">
+        <a class="primary-button" href="#producten">Bekijk producten</a>
+        <a class="secondary-button" href="#nieuwsbrief">Ontvang aanbiedingen</a>
+      </div>
+
+      <div class="trust-row">
+        <span>✓ EU-leveranciers als voorkeur</span>
+        <span>✓ Veilige betaalpagina gepland</span>
+        <span>✓ Duidelijke retourinformatie</span>
+      </div>
+    </div>
+
+    <div class="hero-panel">
+      <div class="scanner"></div>
+      <span>MIKIS13 TECH STATUS</span>
+      <strong>SHOP ONLINE</strong>
+      <p>Nieuwe producten worden eerst gecontroleerd voordat ze te koop komen.</p>
+    </div>
+  </section>
+
+  <section id="categorieen" class="section">
+    <div class="section-heading">
+      <span>SHOP PER CATEGORIE</span>
+      <h2>Alles voor gamers en technologieliefhebbers</h2>
+    </div>
+
+    <div class="category-grid">
+      <button class="category active" data-category="all">
+        <span>⚡</span><strong>Alles</strong><small>Alle producten</small>
+      </button>
+      <button class="category" data-category="gaming">
+        <span>🎮</span><strong>Gaming</strong><small>Console-accessoires</small>
+      </button>
+      <button class="category" data-category="pc">
+        <span>🖥️</span><strong>PC</strong><small>Bureau en computer</small>
+      </button>
+      <button class="category" data-category="repair">
+        <span>🔧</span><strong>Reparatie</strong><small>Gereedschap en onderhoud</small>
+      </button>
+      <button class="category" data-category="security">
+        <span>🛡️</span><strong>Privacy</strong><small>Legale beveiliging</small>
+      </button>
+      <button class="category" data-category="digital">
+        <span>📘</span><strong>Digitaal</strong><small>Gidsen en checklists</small>
+      </button>
+    </div>
+  </section>
+
+  <section id="producten" class="section products-section">
+    <div class="products-toolbar">
+      <div>
+        <span class="eyebrow">MIKIS13 SELECTIE</span>
+        <h2>Uitgelichte producten</h2>
+      </div>
+
+      <label class="search-box">
+        <span>⌕</span>
+        <input id="searchInput"
+               type="search"
+               placeholder="Zoek een product..."
+               autocomplete="off">
+      </label>
+    </div>
+
+    <div id="productGrid" class="product-grid"></div>
+  </section>
+
+  <section id="waarom" class="section benefits">
+    <article>
+      <span>01</span>
+      <h3>Eerst controleren</h3>
+      <p>Productinformatie, levertijd en leverancier worden gecontroleerd voordat verkoop wordt geactiveerd.</p>
+    </article>
+
+    <article>
+      <span>02</span>
+      <h3>Nuttige uitleg</h3>
+      <p>Producten worden gekoppeld aan video's over gebruik, onderhoud en eenvoudige reparaties.</p>
+    </article>
+
+    <article>
+      <span>03</span>
+      <h3>Veilig assortiment</h3>
+      <p>Geen spyware, illegale hackmiddelen, stoorzenders of hulpmiddelen om accounts binnen te dringen.</p>
+    </article>
+  </section>
+
+  <section id="nieuwsbrief" class="section newsletter">
+    <div>
+      <span class="eyebrow">MIKIS13 UPDATES</span>
+      <h2>Ontvang nieuwe producten en video's</h2>
+      <p>Blijf op de hoogte van gamingnieuws, reparatietips, software en aanbiedingen.</p>
+    </div>
+
+    <form id="newsletterForm">
+      <input type="email"
+             id="newsletterEmail"
+             placeholder="jouw@email.be"
+             required>
+      <button type="submit">Inschrijven</button>
+    </form>
+
+    <p id="newsletterMessage" class="form-message"></p>
+  </section>
+</main>
+
+<footer id="contact">
+  <div>
+    <strong>Mikis13 Cyber & Tech Shop</strong>
+    <p>Gaming, pc, software, onderhoud en legale cybersecurity.</p>
+  </div>
+
+  <div>
+    <strong>Contact</strong>
+    <a href="mailto:moorsmatty@outlook.be">moorsmatty@outlook.be</a>
+  </div>
+
+  <div>
+    <strong>Belangrijk</strong>
+    <p>Demowinkel. Betalingen worden pas geactiveerd na controle van bedrijfs-, consumenten- en leveranciersgegevens.</p>
+  </div>
+</footer>
+
+<div id="cartDrawer" class="cart-drawer" aria-hidden="true">
+  <div class="cart-header">
+    <div>
+      <span class="eyebrow">MIKIS13 SHOP</span>
+      <h2>Winkelwagen</h2>
+    </div>
+    <button id="closeCart" class="icon-button" type="button">×</button>
+  </div>
+
+  <div id="cartItems" class="cart-items"></div>
+
+  <div class="cart-summary">
+    <div>
+      <span>Totaal</span>
+      <strong id="cartTotal">€ 0,00</strong>
+    </div>
+
+    <button id="checkoutButton" class="checkout-button" type="button">
+      Naar veilige betaling
+    </button>
+
+    <small>
+      Betaling staat nog in demomodus. Voeg later Stripe Checkout toe via
+      een beveiligde backend.
+    </small>
+  </div>
+</div>
+
+<div id="overlay" class="overlay"></div>
+
+<div id="toast" class="toast" role="status"></div>
+
+<script src="assets/shop.js"></script>
+</body>
+</html>

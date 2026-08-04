@@ -1,0 +1,1395 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="refresh" content="60">
+<title>Mikis13 GitHub Bounty Admin</title>
+<style>
+body {
+  margin:0;
+  background:#07101d;
+  color:#eef5ff;
+  font-family:system-ui,sans-serif;
+}
+header,main {
+  width:min(1500px,96%);
+  margin:auto;
+  padding:20px;
+}
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:14px;
+}
+.card,article,section {
+  background:#101d30;
+  border:1px solid #29415f;
+  border-radius:15px;
+  padding:18px;
+  margin-bottom:16px;
+}
+.value {
+  font-size:29px;
+  font-weight:800;
+}
+.table {
+  overflow-x:auto;
+}
+table {
+  width:100%;
+  border-collapse:collapse;
+  min-width:950px;
+}
+th,td {
+  padding:10px;
+  border-bottom:1px solid #29415f;
+  text-align:left;
+}
+a {
+  color:#70b7ff;
+}
+.warning {
+  border-left:5px solid #f1b64b;
+}
+span {
+  background:#243d61;
+  padding:5px 9px;
+  border-radius:999px;
+}
+</style>
+</head>
+<body>
+<!-- MIKIS13-PAGE-SWITCHER-START -->
+<nav class="mikis-page-switcher" aria-label="Mikis13 paginanavigatie">
+    <div class="mikis-page-switcher-inner">
+        <div class="mikis-page-brand">MIKIS13</div>
+        <div class="mikis-page-links">
+            <a class="mikis-page-link active" href="github-admin.html">🔗 Github admin</a><a class="mikis-page-link" href="../ai.html">🔗 Ai</a><a class="mikis-page-link" href="../contact.html">✉️ Contact</a><a class="mikis-page-link" href="../goksites.html">🎰 Goksites</a><a class="mikis-page-link" href="../index.html">🏠 Home</a><a class="mikis-page-link" href="../jobs.html">🔗 Jobs</a><a class="mikis-page-link" href="../privacy.html">🔗 Privacy</a><a class="mikis-page-link" href="../pro.html">🔗 Pro</a><a class="mikis-page-link" href="../projecten.html">🔗 Projecten</a><a class="mikis-page-link" href="../shop/index.html">🏠 Home</a><a class="mikis-page-link" href="../status.html">🟢 Status</a><a class="mikis-page-link" href="../voorwaarden.html">🔗 Voorwaarden</a>
+        </div>
+    </div>
+</nav>
+
+<style>
+.mikis-page-switcher {
+    position: sticky;
+    top: 0;
+    z-index: 99999;
+    width: 100%;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+    background: rgba(2, 6, 23, 0.94);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.22);
+}
+
+.mikis-page-switcher-inner {
+    width: min(1180px, calc(100% - 24px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    min-height: 66px;
+}
+
+.mikis-page-brand {
+    flex: 0 0 auto;
+    color: #38bdf8;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    font-size: 0.88rem;
+}
+
+.mikis-page-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 10px 0;
+    scrollbar-width: thin;
+}
+
+.mikis-page-link {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 0 15px;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.82);
+    color: #e2e8f0;
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 750;
+    transition:
+        transform 0.18s ease,
+        border-color 0.18s ease,
+        background 0.18s ease;
+}
+
+.mikis-page-link:hover,
+.mikis-page-link:focus {
+    transform: translateY(-2px);
+    border-color: #38bdf8;
+    background: rgba(14, 116, 144, 0.25);
+    outline: none;
+}
+
+.mikis-page-link.active {
+    border-color: #22c55e;
+    background: rgba(34, 197, 94, 0.18);
+    color: #ffffff;
+    box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.2);
+}
+
+@media (max-width: 700px) {
+    .mikis-page-switcher-inner {
+        width: calc(100% - 16px);
+        min-height: 58px;
+        gap: 10px;
+    }
+
+    .mikis-page-brand {
+        display: none;
+    }
+
+    .mikis-page-links {
+        width: 100%;
+    }
+
+    .mikis-page-link {
+        min-height: 38px;
+        padding: 0 13px;
+        font-size: 0.86rem;
+    }
+}
+</style>
+<!-- MIKIS13-PAGE-SWITCHER-END -->
+
+<header>
+<h1>Mikis13 — GitHub Bounty Admin</h1>
+<p>Bijgewerkt: 2026-07-27T05:48:23+02:00</p>
+<div class="card warning">
+Een gevonden issue is nog geen verdiend bedrag. Alleen een expliciet
+toegekende en bevestigde bounty mag als onderweg of ontvangen worden geboekt.
+</div>
+</header>
+
+<main>
+<div class="grid">
+<div class="card">
+  <small>Kandidaten</small>
+  <div class="value">1000</div>
+</div>
+<div class="card">
+  <small>Goedgekeurd voor werk</small>
+  <div class="value">0</div>
+</div>
+<div class="card">
+  <small>Onderweg</small>
+  <div class="value">€ 250,00</div>
+</div>
+<div class="card">
+  <small>Ontvangen</small>
+  <div class="value">€ 0,00</div>
+</div>
+</div>
+
+<section>
+<h2>Botteams</h2>
+<div class="grid">
+    <article>
+      <h3>Scout</h3>
+      <strong>3 bots</strong>
+      <p>Zoekt expliciet betaalde issues</p>
+      <span>actief</span>
+    </article>
+    
+    <article>
+      <h3>Analyse</h3>
+      <strong>3 bots</strong>
+      <p>Controleert scope, taal, tests en haalbaarheid</p>
+      <span>actief</span>
+    </article>
+    
+    <article>
+      <h3>Security</h3>
+      <strong>2 bots</strong>
+      <p>Controleert geheimen, afhankelijkheden en risico&#x27;s</p>
+      <span>actief</span>
+    </article>
+    
+    <article>
+      <h3>Build</h3>
+      <strong>4 bots</strong>
+      <p>Maakt lokale oplossing en tests</p>
+      <span>wacht_op_opdracht</span>
+    </article>
+    
+    <article>
+      <h3>Review</h3>
+      <strong>2 bots</strong>
+      <p>Controleert diff, licentie en kwaliteit</p>
+      <span>wacht_op_opdracht</span>
+    </article>
+    
+    <article>
+      <h3>Admin</h3>
+      <strong>1 bots</strong>
+      <p>Houdt bedragen, facturen en statussen bij</p>
+      <span>actief</span>
+    </article>
+    </div>
+</section>
+
+<section>
+<h2>Bounty-kandidaten</h2>
+<div class="table">
+<table>
+<thead>
+<tr>
+<th>Repository</th><th>Issue</th><th>Titel</th>
+<th>Zekerheid</th><th>Status</th><th>Goedgekeurd</th>
+</tr>
+</thead>
+<tbody>
+
+    <tr>
+      <td>2i2c-org/team-compass</td>
+      <td>#1121</td>
+      <td><a href="https://github.com/2i2c-org/team-compass/issues/1121">
+          Broken links in documentation
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>4laric/er-archipelago</td>
+      <td>#217</td>
+      <td><a href="https://github.com/4laric/er-archipelago/issues/217">
+          Roderika&#x27;s drops are not randomized (Spirit Jellyfish Ashes + Sitting Sideways)
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>96loveslife/big_model_radar</td>
+      <td>#67</td>
+      <td><a href="https://github.com/96loveslife/big_model_radar/issues/67">
+          📰 Hacker News AI 社区动态日报 2026-06-27
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>ABTT-ESK/DayZ-DialogueFramework-Release</td>
+      <td>#1</td>
+      <td><a href="https://github.com/ABTT-ESK/DayZ-DialogueFramework-Release/issues/1">
+          Bug upon Quest completion
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>ASAC-DE-bigkk/ASAC-DAG</td>
+      <td>#476</td>
+      <td><a href="https://github.com/ASAC-DE-bigkk/ASAC-DAG/issues/476">
+          [Feat][기획] 공개 API 진입점 통합 — 게이트웨이 Worker + 도메인 Worker
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>ASAC-DE-bigkk/ASAC-DAG</td>
+      <td>#520</td>
+      <td><a href="https://github.com/ASAC-DE-bigkk/ASAC-DAG/issues/520">
+          [Feat] culture_serving_export DAG — 외부 gold 7종 D1 게시 (공통 Publisher factory 1호)
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>ASAC-DE-bigkk/ASAC-DBT</td>
+      <td>#346</td>
+      <td><a href="https://github.com/ASAC-DE-bigkk/ASAC-DBT/issues/346">
+          [Feat] culture 외부 gold 7종 meta.serving 계약 선언 — Serving Contract v1.1 첫 도메인 채택
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>Adamantine-guild/guildpass-app</td>
+      <td>#105</td>
+      <td><a href="https://github.com/Adamantine-guild/guildpass-app/issues/105">
+          Rename the malformed test file `webhook mapper.test.ts`
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>Adamantine-guild/guildpass-sdk</td>
+      <td>#213</td>
+      <td><a href="https://github.com/Adamantine-guild/guildpass-sdk/issues/213">
+          EIP‑1271 smart-contract wallet signature support in `verifySiweSignature`
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>AdguardTeam/AdguardFilters</td>
+      <td>#236763</td>
+      <td><a href="https://github.com/AdguardTeam/AdguardFilters/issues/236763">
+          tuma.jp
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>AdguardTeam/AdguardFilters</td>
+      <td>#236765</td>
+      <td><a href="https://github.com/AdguardTeam/AdguardFilters/issues/236765">
+          www.peekvids.com
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>AdguardTeam/AdguardFilters</td>
+      <td>#236768</td>
+      <td><a href="https://github.com/AdguardTeam/AdguardFilters/issues/236768">
+          www.zoomit.ir
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>AgesEmpire/StellarSwipe-Contract</td>
+      <td>#861</td>
+      <td><a href="https://github.com/AgesEmpire/StellarSwipe-Contract/issues/861">
+          Introduce deterministic rounding and overflow safeguards in fee calculations
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>AnalyThothAI/tracefold</td>
+      <td>#16</td>
+      <td><a href="https://github.com/AnalyThothAI/tracefold/issues/16">
+          Macro decision workbench hard cut: clock-driven workers, typed facts, six modules, and daily judgment
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>AstronLabs/remitMortage</td>
+      <td>#364</td>
+      <td><a href="https://github.com/AstronLabs/remitMortage/issues/364">
+          feat(contracts): Implement Native Yield Token Wrapping for Stellar Liquidity Pools
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>Asymmetric-al/core</td>
+      <td>#1036</td>
+      <td><a href="https://github.com/Asymmetric-al/core/issues/1036">
+          [Phase 20] PRD — Accounting Exports &amp; Reconciliation
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>Augustrains/agents-radar</td>
+      <td>#729</td>
+      <td><a href="https://github.com/Augustrains/agents-radar/issues/729">
+          📊 AI CLI Tools Digest 2026-07-27
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>Augustrains/agents-radar</td>
+      <td>#730</td>
+      <td><a href="https://github.com/Augustrains/agents-radar/issues/730">
+          🦞 OpenClaw Ecosystem Digest 2026-07-27
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>AwsomeFox/campfire</td>
+      <td>#1065</td>
+      <td><a href="https://github.com/AwsomeFox/campfire/issues/1065">
+          [persona-audit] No monetary cost model — DMs enable paid AI with only a token budget, no $ estimate or disclosure
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>AwsomeFox/campfire</td>
+      <td>#1476</td>
+      <td><a href="https://github.com/AwsomeFox/campfire/issues/1476">
+          Initiative breakdown and group initiative are computed, stored, returned to the client — and never shown
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>AwsomeFox/campfire</td>
+      <td>#1483</td>
+      <td><a href="https://github.com/AwsomeFox/campfire/issues/1483">
+          A quest&#x27;s title, reward, giver, and parent can never be edited after creation
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>BVLC/caffe</td>
+      <td>#7489</td>
+      <td><a href="https://github.com/BVLC/caffe/issues/7489">
+          Top 10  Working Free Monopoly Go! Free Dice Links (Updates 2026) Rewards
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>BWBama85/ai-dev-baseline</td>
+      <td>#31</td>
+      <td><a href="https://github.com/BWBama85/ai-dev-baseline/issues/31">
+          Roadmap &amp; execution order — build in milestone order (M1 → M6)
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>Blummer92/agent-os</td>
+      <td>#568</td>
+      <td><a href="https://github.com/Blummer92/agent-os/issues/568">
+          DOC6A — Add offline documentation coverage and drift metrics
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>Briany4717/Byard</td>
+      <td>#161</td>
+      <td><a href="https://github.com/Briany4717/Byard/issues/161">
+          The profiler can only be read one second at a time (RFC-0030 §V5)
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>BullishNode/bullnym</td>
+      <td>#246</td>
+      <td><a href="https://github.com/BullishNode/bullnym/issues/246">
+          [critical] Restore reproducible API-Orders callback authentication for Bullnym settlements
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>BullishNode/bullnym</td>
+      <td>#254</td>
+      <td><a href="https://github.com/BullishNode/bullnym/issues/254">
+          [bug] Preserve fiat fallback linkage in paid transaction history
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>Byline-CMS/bylinecms.dev</td>
+      <td>#14</td>
+      <td><a href="https://github.com/Byline-CMS/bylinecms.dev/issues/14">
+          Admin route splat handler: host-owned admin route resolution
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>COW-MJU-Craft/COW-MJCRAFT-BE</td>
+      <td>#129</td>
+      <td><a href="https://github.com/COW-MJU-Craft/COW-MJCRAFT-BE/issues/129">
+          fix: 프로젝트·상품 물리 삭제가 주문 이력과 정산 데이터를 파괴한다
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>COW-MJU-Craft/COW-MJCRAFT-BE</td>
+      <td>#134</td>
+      <td><a href="https://github.com/COW-MJU-Craft/COW-MJCRAFT-BE/issues/134">
+          fix: MailOutbox aggregate_version 고정으로 메일 재발송이 불가능하다
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>Cavewhere/cavewhere</td>
+      <td>#636</td>
+      <td><a href="https://github.com/Cavewhere/cavewhere/issues/636">
+          AsyncFuture: Deferred::complete(QFuture) and combine() install a watcher even for already-finished futures
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>ChainLearnOfficial/chainlearn-contracts</td>
+      <td>#68</td>
+      <td><a href="https://github.com/ChainLearnOfficial/chainlearn-contracts/issues/68">
+          claim_reward
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>ChainLearnOfficial/chainlearn-contracts</td>
+      <td>#72</td>
+      <td><a href="https://github.com/ChainLearnOfficial/chainlearn-contracts/issues/72">
+          claim_reward
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>ChainLearnOfficial/chainlearn-contracts</td>
+      <td>#73</td>
+      <td><a href="https://github.com/ChainLearnOfficial/chainlearn-contracts/issues/73">
+          claim_reward
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>ChasarooniZ/pf2e-trigger-animations-collection</td>
+      <td>#18</td>
+      <td><a href="https://github.com/ChasarooniZ/pf2e-trigger-animations-collection/issues/18">
+          [Animation Set] Focus Spells
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>Chestnuts-0/os-feed</td>
+      <td>#585</td>
+      <td><a href="https://github.com/Chestnuts-0/os-feed/issues/585">
+          📊 AI CLI 工具社区动态日报 2026-07-27
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>Chestnuts-0/os-feed</td>
+      <td>#587</td>
+      <td><a href="https://github.com/Chestnuts-0/os-feed/issues/587">
+          📊 AI CLI Tools Digest 2026-07-27
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>Chris0Jeky/Taskdeck</td>
+      <td>#1482</td>
+      <td><a href="https://github.com/Chris0Jeky/Taskdeck/issues/1482">
+          Taskdeck name: pre-commercial legal residuals (attorney opinion, UKIPO/EUIPO gaps, perishable namespaces)
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>Chronicle20/atlas</td>
+      <td>#6</td>
+      <td><a href="https://github.com/Chronicle20/atlas/issues/6">
+          Dependency Dashboard
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CloudStrife7/LL-RelicHunters</td>
+      <td>#164</td>
+      <td><a href="https://github.com/CloudStrife7/LL-RelicHunters/issues/164">
+          Boss # 3 - The Succu-boss
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CloudStrife7/LL-RelicHunters</td>
+      <td>#165</td>
+      <td><a href="https://github.com/CloudStrife7/LL-RelicHunters/issues/165">
+          Boss #2 The Soverign
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CloudStrife7/LL-RelicHunters</td>
+      <td>#190</td>
+      <td><a href="https://github.com/CloudStrife7/LL-RelicHunters/issues/190">
+          Boss: THE PAYWALL — DONE gate
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CloudStrife7/LL-RelicHunters</td>
+      <td>#192</td>
+      <td><a href="https://github.com/CloudStrife7/LL-RelicHunters/issues/192">
+          Boss: Slop Bosses (×4, procedural) — DONE gate
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CoralSwap-Finance/coralswap-core</td>
+      <td>#233</td>
+      <td><a href="https://github.com/CoralSwap-Finance/coralswap-core/issues/233">
+          [Core] Add add_reward_token() to configure incentive tokens
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CoralSwap-Finance/coralswap-sdk</td>
+      <td>#443</td>
+      <td><a href="https://github.com/CoralSwap-Finance/coralswap-sdk/issues/443">
+          [SDK] Add integration tests for flash-loan module against Stellar Testnet
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CoralSwap-Finance/coralswap-sdk</td>
+      <td>#446</td>
+      <td><a href="https://github.com/CoralSwap-Finance/coralswap-sdk/issues/446">
+          [SDK] Add integration tests for liquidity module against Stellar Testnet
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CoralSwap-Finance/coralswap-sdk</td>
+      <td>#448</td>
+      <td><a href="https://github.com/CoralSwap-Finance/coralswap-sdk/issues/448">
+          [SDK] Add integration tests for oracle module against Stellar Testnet
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CoralSwap-Finance/coralswap-sdk</td>
+      <td>#464</td>
+      <td><a href="https://github.com/CoralSwap-Finance/coralswap-sdk/issues/464">
+          [SDK] Add transaction-status lookup utility for safe retry of state-changing calls
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CoralSwap-Finance/coralswap-sdk</td>
+      <td>#470</td>
+      <td><a href="https://github.com/CoralSwap-Finance/coralswap-sdk/issues/470">
+          [SDK] Use idempotent resubmission for stop-loss order placement
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CoralSwap-Finance/coralswap-sdk</td>
+      <td>#496</td>
+      <td><a href="https://github.com/CoralSwap-Finance/coralswap-sdk/issues/496">
+          [SDK] Add composed swap + create-stop-loss flow
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CoralSwap-Finance/coralswap-sdk</td>
+      <td>#503</td>
+      <td><a href="https://github.com/CoralSwap-Finance/coralswap-sdk/issues/503">
+          [SDK] Validate flash-loan receiver contract interface before executing, not just its address format
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CoralSwap-Finance/coralswap-sdk</td>
+      <td>#504</td>
+      <td><a href="https://github.com/CoralSwap-Finance/coralswap-sdk/issues/504">
+          [SDK] Wire calculateRepayment()/validateFeeFloor() into flash-loan execute() to verify the actual on-chain result
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CoralSwap-Finance/coralswap-sdk</td>
+      <td>#505</td>
+      <td><a href="https://github.com/CoralSwap-Finance/coralswap-sdk/issues/505">
+          [SDK] Wire getVotingPowerAtLedger() into governance proposal/vote flow for snapshot-based voting power
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CoralSwap-Finance/coralswap-sdk</td>
+      <td>#506</td>
+      <td><a href="https://github.com/CoralSwap-Finance/coralswap-sdk/issues/506">
+          [SDK] Surface stake cooldown / vote-eligibility state for building safer governance UIs
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CoralSwap-Finance/coralswap-sdk</td>
+      <td>#507</td>
+      <td><a href="https://github.com/CoralSwap-Finance/coralswap-sdk/issues/507">
+          [SDK] Fix TransactionPoller logging the full raw transaction status on failure
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CoralSwap-Finance/coralswap-sdk</td>
+      <td>#508</td>
+      <td><a href="https://github.com/CoralSwap-Finance/coralswap-sdk/issues/508">
+          [SDK] Trim full simulation/response object logging in client.ts
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CoralSwap-Finance/coralswap-sdk</td>
+      <td>#509</td>
+      <td><a href="https://github.com/CoralSwap-Finance/coralswap-sdk/issues/509">
+          [SDK] Sanitize raw caught error object before logging in client.ts submitTransaction
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CoralSwap-Finance/coralswap-sdk</td>
+      <td>#510</td>
+      <td><a href="https://github.com/CoralSwap-Finance/coralswap-sdk/issues/510">
+          [SDK] Audit remaining SDK files for logger/error secret-leakage patterns
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CoralSwap-Finance/coralswap-sdk</td>
+      <td>#511</td>
+      <td><a href="https://github.com/CoralSwap-Finance/coralswap-sdk/issues/511">
+          [SDK] Add a scoped (non-infinite) approve() helper to the tokens module
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CoralSwap-Finance/coralswap-sdk</td>
+      <td>#512</td>
+      <td><a href="https://github.com/CoralSwap-Finance/coralswap-sdk/issues/512">
+          [SDK] Audit limit-orders.ts (and other unaudited modules) for oracle.ts TWAP consumption and inherited manipulation risk
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CoralSwap-Finance/coralswap-sdk</td>
+      <td>#513</td>
+      <td><a href="https://github.com/CoralSwap-Finance/coralswap-sdk/issues/513">
+          [SDK] Add adversarial-input fuzzing for event decoders against malicious on-chain data
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CoralSwap-Finance/coralswap-sdk</td>
+      <td>#514</td>
+      <td><a href="https://github.com/CoralSwap-Finance/coralswap-sdk/issues/514">
+          [SDK] Audit contract-address trust boundary for pairAddress/contractAddress parameters
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#673</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/673">
+          Add a `/api/deps` endpoint listing downstream dependency health
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#679</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/679">
+          Add a &quot;prepared statement cache size&quot; metric
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#683</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/683">
+          Add a &quot;reset test DB&quot; script for local dev
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#684</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/684">
+          Add unit tests for the `withTransaction` helper
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#692</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/692">
+          Add a per-endpoint TODO/FIXME audit
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#694</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/694">
+          Add unit tests for the cache-key builder
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#696</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/696">
+          Add a docs/INCIDENT_RESPONSE.md with severity levels
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#698</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/698">
+          Add docs/API_ERRORS.md listing every stable error code
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#704</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/704">
+          Add a per-key metric of `redis_key_size_bytes` histograms
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#713</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/713">
+          Add a docs/TYPE_SAFETY.md describing the request/response pipeline
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#715</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/715">
+          Add a load test scenario using k6 for the write path
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#721</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/721">
+          Add a warning banner to the admin UI when the backup job is stale
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#725</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/725">
+          Add a &quot;graceful maintenance&quot; flag with 503+Retry-After
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#727</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/727">
+          Add unit tests for the idempotency-key sweeper
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#730</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/730">
+          Add a `X-Correlation-ID` middleware that forwards to downstream calls
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#736</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/736">
+          Add a docs/RUNBOOK_DATABASE.md describing on-call DB steps
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#737</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/737">
+          Add a `POST /admin/reset-cache` endpoint gated by admin auth
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#738</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/738">
+          Add a `/api/v1/self` endpoint returning current-tenant identity
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#740</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/740">
+          Add a `x-rate-limit-remaining` header on every response
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#753</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/753">
+          Add a `/health/dependencies` endpoint deep-checking each downstream
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#759</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/759">
+          Add tests for the replay-webhook endpoint
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#762</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/762">
+          Add a `x-response-time-ms` header on every response
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#765</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/765">
+          Add tests for the session-pruner batch semantics
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#767</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/767">
+          Add a docs/API_CLIENTS.md listing sanctioned client libraries
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#804</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/804">
+          Add a `/api/v1/echo` endpoint for connectivity testing
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#806</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/806">
+          Add a `req.metrics` shim for lightweight per-request counters
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#808</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/808">
+          Add a docs/METRICS_DASHBOARDS.md linking to Grafana boards
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#809</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/809">
+          Add a POST /admin/rotate-signing-key endpoint
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#811</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/811">
+          Add a docs/KEY_ROTATION_PROCEDURE.md
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#815</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/815">
+          Add a docs/CACHE_NAMESPACES.md list
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#818</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/818">
+          Add a `Link` header with next/prev URLs on paginated responses
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#820</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/820">
+          Add a docs/API_CHANGELOG.md format guide
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#823</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/823">
+          Add a `Sunset` header on deprecated endpoints
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#824</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/824">
+          Add tests for the Sunset header on deprecated endpoints
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#825</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/825">
+          Add a docs/RETRY_SEMANTICS.md
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#832</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/832">
+          Add tests for the backfill-status endpoint
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#835</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/835">
+          Add a `POST /admin/pause-outbox` for maintenance windows
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+    <tr>
+      <td>CredenceOrg/Credence-Backend</td>
+      <td>#847</td>
+      <td><a href="https://github.com/CredenceOrg/Credence-Backend/issues/847">
+          Add tests for the nosniff header presence
+      </a></td>
+      <td>laag</td>
+      <td>kandidaat</td>
+      <td>Nee</td>
+    </tr>
+    
+</tbody>
+</table>
+</div>
+</section>
+
+<section>
+<h2>GitHub-inkomsten</h2>
+<div class="table">
+<table>
+<thead>
+<tr>
+<th>Referentie</th><th>Platform</th><th>Repository</th>
+<th>Issue</th><th>Factuur</th><th>Status</th>
+<th>Bruto</th><th>Kosten</th><th>Netto</th>
+</tr>
+</thead>
+<tbody>
+
+    <tr>
+      <td>GH-BOUNTY-2026-0001</td>
+      <td>GitHub</td>
+      <td>eigenaar/repository</td>
+      <td>#123</td>
+      <td>INV-2026-0001</td>
+      <td>onderweg</td>
+      <td>€ 250,00</td>
+      <td>€ 0,00</td>
+      <td>€ 250,00</td>
+    </tr>
+    
+</tbody>
+</table>
+</div>
+</section>
+</main>
+</body>
+</html>
