@@ -44,3 +44,13 @@ node_modules/
 *.log
 *.pid
 backup/
+openai.key
+.mikis13-server.pid
+.env
+.env.*
+*.key
+openai.key
+server-*.log
+*.pid
+chatgpt-export/
+private-backups/
