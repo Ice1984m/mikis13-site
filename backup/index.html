@@ -1,0 +1,696 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta
+    name="description"
+    content="Mikis13 Pro — websites, automatisering en slimme software."
+  >
+  <title>Mikis13 Pro</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+
+<!-- MIKIS13-MENU-START -->
+<header class="m13-menu">
+  <div class="m13-menu-inner">
+
+    <a class="m13-brand" href="./index.html">
+      <span class="m13-logo">M13</span>
+      <span>Mikis13</span>
+    </a>
+
+    <button
+      class="m13-toggle"
+      type="button"
+      aria-label="Keuzemenu openen"
+      aria-expanded="false"
+      onclick="toggleM13Menu(this)"
+    >
+      ☰
+    </button>
+
+    <nav class="m13-links" id="m13Links" aria-label="Mikis13 keuzemenu">
+
+      <a data-page="index.html" href="./index.html">
+        🌐 Mikis13 Live
+      </a>
+
+      <a data-page="monitor.html" href="./monitor.html">
+        📡 Mikis13 Monitor
+      </a>
+
+      <a data-page="goksites.html" href="./goksites.html">
+        🎰 Mikis13 Gok
+      </a>
+
+      <a data-page="inkomsten.html" href="./inkomsten.html">
+        💶 Inkomsten
+      </a>
+
+    
+<a href="./ai-console.html" style="display:inline-block;padding:10px 14px;margin:6px;border:1px solid #38bdf8;border-radius:12px;color:#38bdf8;text-decoration:none;background:#0f172a">🤖 Vijf AI-consoles</a>
+</nav>
+  </div>
+</header>
+
+<style>
+.m13-menu {
+  position: sticky;
+  top: 0;
+  z-index: 999999;
+  width: 100%;
+  border-bottom: 1px solid rgba(148,163,184,.22);
+  background: rgba(2,6,23,.97);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.28);
+}
+
+.m13-menu-inner {
+  width: min(1240px, calc(100% - 24px));
+  min-height: 72px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.m13-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.m13-logo {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 13px;
+  background: linear-gradient(135deg,#0284c7,#22c55e);
+  color: white;
+  font-size: .8rem;
+}
+
+.m13-links {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 9px;
+}
+
+.m13-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 43px;
+  padding: 0 15px;
+  border: 1px solid rgba(148,163,184,.22);
+  border-radius: 13px;
+  background: rgba(15,23,42,.82);
+  color: #e2e8f0;
+  text-decoration: none;
+  font-size: .9rem;
+  font-weight: 800;
+  white-space: nowrap;
+  transition:
+    transform .18s ease,
+    border-color .18s ease,
+    background .18s ease;
+}
+
+.m13-links a:hover,
+.m13-links a:focus {
+  transform: translateY(-2px);
+  border-color: #38bdf8;
+  background: rgba(14,116,144,.24);
+  outline: none;
+}
+
+.m13-links a.active {
+  border-color: #22c55e;
+  background: rgba(34,197,94,.2);
+  color: white;
+}
+
+.m13-toggle {
+  display: none;
+  width: 45px;
+  height: 45px;
+  margin-left: auto;
+  border: 1px solid rgba(148,163,184,.22);
+  border-radius: 13px;
+  background: rgba(15,23,42,.9);
+  color: white;
+  font-size: 1.35rem;
+}
+
+@media (max-width: 950px) {
+  .m13-menu-inner {
+    position: relative;
+    min-height: 64px;
+  }
+
+  .m13-toggle {
+    display: block;
+  }
+
+  .m13-links {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 12px;
+    border: 1px solid rgba(148,163,184,.22);
+    border-top: 0;
+    border-radius: 0 0 18px 18px;
+    background: rgba(2,6,23,.99);
+    box-shadow: 0 20px 35px rgba(0,0,0,.35);
+  }
+
+  .m13-links.open {
+    display: grid;
+  }
+
+  .m13-links a {
+    justify-content: flex-start;
+    min-height: 48px;
+  }
+}
+
+@media (max-width: 560px) {
+  .m13-brand > span:last-child {
+    display: none;
+  }
+
+  .m13-links {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<script>
+function toggleM13Menu(button) {
+  const menu = document.getElementById("m13Links");
+  const open = menu.classList.toggle("open");
+
+  button.setAttribute("aria-expanded", String(open));
+  button.textContent = open ? "✕" : "☰";
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  let current = window.location.pathname.split("/").pop();
+
+  if (!current) {
+    current = "index.html";
+  }
+
+  document.querySelectorAll(".m13-links a").forEach(function (link) {
+    link.classList.toggle(
+      "active",
+      link.dataset.page === current
+    );
+  });
+});
+</script>
+<!-- MIKIS13-MENU-EINDE -->
+
+
+<!-- MIKIS13-PAGE-SWITCHER-START -->
+<nav class="mikis-page-switcher" aria-label="Mikis13 paginanavigatie">
+    <div class="mikis-page-switcher-inner">
+        <div class="mikis-page-brand">MIKIS13</div>
+        <div class="mikis-page-links">
+            <a class="mikis-page-link" href="admin/github-admin.html">🔗 Github admin</a><a class="mikis-page-link" href="ai.html">🔗 Ai</a><a class="mikis-page-link" href="contact.html">✉️ Contact</a><a class="mikis-page-link" href="gok-games-apps.html">🔗 Gok games apps</a><a class="mikis-page-link" href="goksites.html">🎰 Goksites</a><a class="mikis-page-link active" href="index.html">🏠 Home</a><a class="mikis-page-link" href="jobs.html">🔗 Jobs</a><a class="mikis-page-link" href="privacy.html">🔗 Privacy</a><a class="mikis-page-link" href="pro.html">🔗 Pro</a><a class="mikis-page-link" href="projecten.html">🔗 Projecten</a><a class="mikis-page-link" href="shop/index.html">🏠 Home</a><a class="mikis-page-link" href="status.html">🟢 Status</a><a class="mikis-page-link" href="voorwaarden.html">🔗 Voorwaarden</a>
+        </div>
+    </div>
+</nav>
+
+<style>
+.mikis-page-switcher {
+    position: sticky;
+    top: 0;
+    z-index: 99999;
+    width: 100%;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+    background: rgba(2, 6, 23, 0.94);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.22);
+}
+
+.mikis-page-switcher-inner {
+    width: min(1180px, calc(100% - 24px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    min-height: 66px;
+}
+
+.mikis-page-brand {
+    flex: 0 0 auto;
+    color: #38bdf8;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    font-size: 0.88rem;
+}
+
+.mikis-page-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 10px 0;
+    scrollbar-width: thin;
+}
+
+.mikis-page-link {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 0 15px;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.82);
+    color: #e2e8f0;
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 750;
+    transition:
+        transform 0.18s ease,
+        border-color 0.18s ease,
+        background 0.18s ease;
+}
+
+.mikis-page-link:hover,
+.mikis-page-link:focus {
+    transform: translateY(-2px);
+    border-color: #38bdf8;
+    background: rgba(14, 116, 144, 0.25);
+    outline: none;
+}
+
+.mikis-page-link.active {
+    border-color: #22c55e;
+    background: rgba(34, 197, 94, 0.18);
+    color: #ffffff;
+    box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.2);
+}
+
+@media (max-width: 700px) {
+    .mikis-page-switcher-inner {
+        width: calc(100% - 16px);
+        min-height: 58px;
+        gap: 10px;
+    }
+
+    .mikis-page-brand {
+        display: none;
+    }
+
+    .mikis-page-links {
+        width: 100%;
+    }
+
+    .mikis-page-link {
+        min-height: 38px;
+        padding: 0 13px;
+        font-size: 0.86rem;
+    }
+}
+</style>
+<!-- MIKIS13-PAGE-SWITCHER-END -->
+
+  <header class="header">
+    <a class="logo" href="#top">
+      <span class="logo-mark">M13</span>
+      <span>Mikis13 Pro</span>
+    </a>
+
+    <nav>
+      <a href="#diensten">Diensten</a>
+      <a href="#dashboard">Dashboard</a>
+      <a href="#status">Status</a>
+      <a href="goksites.html" target="_blank" rel="noopener">Goksites</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="tag">Software • Automatisering • AI</span>
+
+        <h1>
+          Slimme digitale oplossingen voor jouw volgende project
+        </h1>
+
+        <p>
+          Mikis13 Pro bouwt moderne websites, dashboards en
+          automatiseringen die overzichtelijk en mobielvriendelijk zijn.
+        </p>
+
+        <div class="actions">
+          <a class="button primary" href="#diensten">
+            Bekijk diensten
+          </a>
+
+          <button class="button secondary" id="openBot">
+            Open Order Bot
+          </button>
+
+          <a
+            class="button secondary"
+            href="goksites.html"
+            target="_blank"
+            rel="noopener"
+          >
+            Open goksites
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-panel">
+        <div class="live-line">
+          <span class="pulse"></span>
+          Systeemdashboard
+        </div>
+
+        <div class="metric-grid">
+          <article>
+            <span>Status</span>
+            <strong id="systemStatus">Controleren…</strong>
+          </article>
+
+          <article>
+            <span>Workers</span>
+            <strong>20</strong>
+          </article>
+
+          <article>
+            <span>Website</span>
+            <strong>Online</strong>
+          </article>
+
+          <article>
+            <span>Versie</span>
+            <strong>2.0</strong>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="diensten" class="section">
+      <div class="section-heading">
+        <span class="tag">Mogelijkheden</span>
+        <h2>Van idee tot werkend digitaal product</h2>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <div class="icon">🌐</div>
+          <h3>Websites</h3>
+          <p>
+            Snelle, moderne websites die goed werken op telefoon,
+            tablet en computer.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="icon">⚙️</div>
+          <h3>Automatisering</h3>
+          <p>
+            Werkstromen en tools die terugkerende handelingen
+            eenvoudiger maken.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="icon">📊</div>
+          <h3>Dashboards</h3>
+          <p>
+            Duidelijke statuspagina's voor taken, systemen,
+            bestellingen en resultaten.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="dashboard" class="section control">
+      <div>
+        <span class="tag">Order Bot</span>
+        <h2>Beheer de wachtrij vanaf je Android-toestel</h2>
+
+        <p>
+          De Order Bot draait lokaal in Termux op poort 8795.
+          Start de server en open daarna het bedieningspaneel.
+        </p>
+      </div>
+
+      <div class="control-actions">
+        <button class="button primary" id="openDashboard">
+          Wachtrij beheren
+        </button>
+
+        <button class="button secondary" id="checkDashboard">
+          Verbinding controleren
+        </button>
+      </div>
+
+      <div id="botMessage" class="message">
+        Nog niet gecontroleerd.
+      </div>
+    </section>
+
+    <section id="status" class="section">
+      <div class="section-heading">
+        <span class="tag">Live status</span>
+        <h2>Platformonderdelen</h2>
+      </div>
+
+      <div class="status-list">
+        <div>
+          <span class="status-dot online"></span>
+          <strong>GitHub Pages</strong>
+          <span>Online</span>
+        </div>
+
+        <div>
+          <span class="status-dot" id="botDot"></span>
+          <strong>Lokale Order Bot</strong>
+          <span id="botState">Niet gecontroleerd</span>
+        </div>
+
+        <div>
+          <span class="status-dot online"></span>
+          <strong>Mobiele website</strong>
+          <span>Beschikbaar</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <strong>Mikis13 Pro</strong>
+    <span>© <span id="year"></span> Matty Moors</span>
+  </footer>
+
+  <script src="assets/app.js"></script>
+
+<!-- MIKIS13-SNELKNOPPEN-START -->
+<section class="mikis-quick-section" id="snelle-links">
+    <div class="mikis-quick-heading">
+        <p class="mikis-quick-label">SNEL NAVIGEREN</p>
+        <h2>Open een Mikis13-pagina</h2>
+        <p>Kies hieronder waar je naartoe wilt.</p>
+    </div>
+
+    <div class="mikis-quick-grid">
+        <a class="mikis-quick-card mikis-home-card" href="./index.html">
+            <span class="mikis-quick-title">🏠 Hoofdpagina</span>
+            <span class="mikis-quick-description">Terug naar de startpagina</span>
+        </a>
+        
+<a class="mikis-quick-card" href="./admin/github-admin.html">
+    <span class="mikis-quick-title">🔗 Github admin</span>
+    <span class="mikis-quick-description">Open deze pagina</span>
+</a>
+<a class="mikis-quick-card" href="./ai.html">
+    <span class="mikis-quick-title">🔗 Ai</span>
+    <span class="mikis-quick-description">Open deze pagina</span>
+</a>
+<a class="mikis-quick-card" href="./contact.html">
+    <span class="mikis-quick-title">✉️ Contact</span>
+    <span class="mikis-quick-description">Open de contactpagina</span>
+</a>
+<a class="mikis-quick-card" href="./goksites.html">
+    <span class="mikis-quick-title">🎰 Mikis13 Gok</span>
+    <span class="mikis-quick-description">Open de goksites-pagina</span>
+</a>
+<a class="mikis-quick-card" href="./jobs.html">
+    <span class="mikis-quick-title">🔗 Jobs</span>
+    <span class="mikis-quick-description">Open deze pagina</span>
+</a>
+<a class="mikis-quick-card" href="./privacy.html">
+    <span class="mikis-quick-title">🔗 Privacy</span>
+    <span class="mikis-quick-description">Open deze pagina</span>
+</a>
+<a class="mikis-quick-card" href="./pro.html">
+    <span class="mikis-quick-title">🔗 Pro</span>
+    <span class="mikis-quick-description">Open deze pagina</span>
+</a>
+<a class="mikis-quick-card" href="./projecten.html">
+    <span class="mikis-quick-title">🔗 Projecten</span>
+    <span class="mikis-quick-description">Open deze pagina</span>
+</a>
+<a class="mikis-quick-card" href="./shop/index.html">
+    <span class="mikis-quick-title">🔗 Index</span>
+    <span class="mikis-quick-description">Open deze pagina</span>
+</a>
+<a class="mikis-quick-card" href="./status.html">
+    <span class="mikis-quick-title">🟢 Website-status</span>
+    <span class="mikis-quick-description">Bekijk de systeemstatus</span>
+</a>
+<a class="mikis-quick-card" href="./voorwaarden.html">
+    <span class="mikis-quick-title">🔗 Voorwaarden</span>
+    <span class="mikis-quick-description">Open deze pagina</span>
+</a>
+    </div>
+</section>
+
+<style>
+.mikis-quick-section {
+    width: min(1120px, calc(100% - 32px));
+    margin: 48px auto;
+    padding: 30px;
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    border-radius: 24px;
+    background:
+        radial-gradient(circle at top right, rgba(59, 130, 246, 0.16), transparent 38%),
+        rgba(15, 23, 42, 0.88);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+}
+
+.mikis-quick-heading {
+    margin-bottom: 24px;
+}
+
+.mikis-quick-heading h2 {
+    margin: 4px 0 8px;
+    font-size: clamp(1.7rem, 5vw, 2.6rem);
+    color: #f8fafc;
+}
+
+.mikis-quick-heading p {
+    color: #94a3b8;
+}
+
+.mikis-quick-label {
+    color: #38bdf8 !important;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+}
+
+.mikis-quick-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 16px;
+}
+
+.mikis-quick-card {
+    display: flex;
+    min-height: 112px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+    padding: 20px;
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    border-radius: 18px;
+    background: rgba(2, 6, 23, 0.72);
+    color: #ffffff;
+    text-decoration: none;
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.mikis-quick-card:hover,
+.mikis-quick-card:focus {
+    transform: translateY(-4px);
+    border-color: #38bdf8;
+    box-shadow: 0 14px 35px rgba(56, 189, 248, 0.18);
+    outline: none;
+}
+
+.mikis-quick-title {
+    font-size: 1.12rem;
+    font-weight: 800;
+}
+
+.mikis-quick-description {
+    color: #94a3b8;
+    font-size: 0.92rem;
+    line-height: 1.4;
+}
+
+.mikis-home-card {
+    border-color: rgba(34, 197, 94, 0.45);
+}
+
+@media (max-width: 600px) {
+    .mikis-quick-section {
+        width: min(100% - 20px, 1120px);
+        margin: 28px auto;
+        padding: 20px;
+        border-radius: 18px;
+    }
+
+    .mikis-quick-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+<!-- MIKIS13-SNELKNOPPEN-EINDE -->
+
+<!-- MIKIS13-GAME-APP-BUTTON -->
+<section style="
+    width:min(1120px,calc(100% - 24px));
+    margin:28px auto;
+">
+    <a
+        href="./gok-games-apps.html"
+        style="
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            min-height:72px;
+            padding:18px;
+            border:1px solid rgba(56,189,248,.5);
+            border-radius:18px;
+            background:rgba(14,116,144,.2);
+            color:white;
+            font-weight:900;
+            font-size:1.1rem;
+            text-decoration:none;
+        "
+    >
+        🎮 Open Mikis13 Gok Games Apps
+    </a>
+</section>
+
+</body>
+</html>
