@@ -1,0 +1,9 @@
+User-agent: *
+
+Disallow: /vault/
+Disallow: /admin-backup/
+Disallow: /credentials/
+Disallow: /security/
+Disallow: /.env
+Disallow: /backup.zip
+Disallow: /database.sql

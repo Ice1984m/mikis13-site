@@ -1,0 +1,8 @@
+MIKIS13 INTERNAL API BACKUP
+
+DECOY DATA ONLY
+
+OPENAI_API_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+GITHUB_TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+CLOUDFLARE_TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+JWT_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

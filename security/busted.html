@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
+
+<meta name="robots"
+content="noindex,nofollow">
+
+<title>Mikis13 Security</title>
+
+<style>
+* {
+  box-sizing:border-box;
+}
+
+html,
+body {
+  width:100%;
+  height:100%;
+  margin:0;
+}
+
+body {
+  overflow:hidden;
+  background:#000;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+.screen {
+  position:fixed;
+  inset:0;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+
+  background:
+    radial-gradient(
+      circle,
+      #350047 0%,
+      #120018 42%,
+      #020003 75%
+    );
+}
+
+.grid {
+  position:absolute;
+  inset:0;
+
+  background-image:
+    linear-gradient(
+      rgba(200,0,255,.09) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(200,0,255,.09) 1px,
+      transparent 1px
+    );
+
+  background-size:42px 42px;
+}
+
+.scan {
+  position:absolute;
+
+  left:0;
+  right:0;
+
+  height:4px;
+
+  background:#e100ff;
+
+  box-shadow:
+    0 0 25px #d000ff,
+    0 0 50px #9000ff;
+
+  animation:
+    scan 2s linear infinite;
+}
+
+.busted {
+  z-index:2;
+
+  color:#f5c5ff;
+
+  font-size:
+    clamp(58px,14vw,180px);
+
+  font-weight:900;
+
+  letter-spacing:.08em;
+
+  text-shadow:
+    0 0 5px white,
+    0 0 15px #ef00ff,
+    0 0 35px #d000ff,
+    0 0 75px #a000ff,
+    0 0 130px #7600ff;
+
+  animation:
+    pulse .65s infinite alternate;
+}
+
+.subtitle {
+  z-index:2;
+
+  color:#e4a5ff;
+
+  font-size:
+    clamp(20px,4vw,44px);
+
+  margin-top:28px;
+
+  font-weight:bold;
+
+  letter-spacing:.25em;
+}
+
+.status {
+  z-index:2;
+
+  margin-top:35px;
+
+  color:#c8a1d5;
+
+  letter-spacing:.15em;
+}
+
+@keyframes pulse {
+  from {
+    filter:brightness(.75);
+    transform:scale(.98);
+  }
+
+  to {
+    filter:brightness(1.3);
+    transform:scale(1.025);
+  }
+}
+
+@keyframes scan {
+  from {
+    top:-5%;
+  }
+
+  to {
+    top:105%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="screen">
+
+<div class="grid"></div>
+<div class="scan"></div>
+
+<div class="busted">
+BUSTED
+</div>
+
+<div class="subtitle">
+HONEYPOT TRIGGERED
+</div>
+
+<div class="status">
+ACCESS EVENT MONITORED
+</div>
+
+</div>
+
+</body>
+</html>
