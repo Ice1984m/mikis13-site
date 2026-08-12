@@ -1,3 +1,191 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+set -e
+
+SITE_DIR="$HOME/mikis13-site"
+BACKUP_DIR="$SITE_DIR/backup/neon-$(date +%Y%m%d-%H%M%S)"
+
+cd "$SITE_DIR"
+mkdir -p "$BACKUP_DIR" assets
+
+[ -f index.html ] && cp index.html "$BACKUP_DIR/index.html"
+[ -f assets/style.css ] && cp assets/style.css "$BACKUP_DIR/style.css"
+
+cat > index.html <<'HTML'
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#09000f">
+<meta name="description" content="Mikis13 — Ik bouw wat nog niet bestaat.">
+<title>Mikis13 — Ik bouw wat nog niet bestaat</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💜</text></svg>">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+<div class="stars"></div>
+
+<nav>
+  <a class="logo" href="#home">MIKIS<span>13</span></a>
+
+  <div class="menu">
+    <a href="#projecten">Projecten</a>
+    <a href="#human-os">Human OS</a>
+    <a href="#github">GitHub</a>
+  </div>
+
+  <button class="menu-button" aria-label="Menu openen">☰</button>
+</nav>
+
+<main id="home">
+  <section class="hero">
+    <p class="eyebrow">MATTY MOORS — DIGITAL CREATOR</p>
+
+    <div class="globe" aria-hidden="true">
+      <div class="globe-ring"></div>
+    </div>
+
+    <h1>
+      IK BOUW
+      <span>WAT NOG</span>
+      NIET BESTAAT
+    </h1>
+
+    <a class="human-button" href="#human-os">HUMAN OS</a>
+
+    <p class="intro">
+      Ik bouw tools, systemen en ervaringen die technologie menselijk maken.
+      Open. Veilig. Nuttig. Voor iedereen.
+    </p>
+
+    <a class="scroll" href="#projecten" aria-label="Naar projecten">♡</a>
+  </section>
+
+  <section class="projects" id="projecten">
+    <header>
+      <p class="eyebrow">MIJN PROJECTEN</p>
+      <h2>NEON LAB</h2>
+    </header>
+
+    <div class="project-grid">
+      <article class="card">
+        <div class="icon">◉</div>
+        <div>
+          <small>01 / INTELLIGENCE</small>
+          <h3>AI ASSISTENTEN</h3>
+          <p>Slimme hulpmiddelen die meedenken en ondersteunen.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="icon">〉_</div>
+        <div>
+          <small>02 / MOBILE LAB</small>
+          <h3>TERMUX ONTWIKKELING</h3>
+          <p>Websites en programma’s rechtstreeks gebouwd vanaf Android.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="icon">⬡</div>
+        <div>
+          <small>03 / SECURITY</small>
+          <h3>CYBER & PRIVACY</h3>
+          <p>Bescherming, bewustzijn en privacy als vaste basis.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="icon">▣</div>
+        <div>
+          <small>04 / CREATION</small>
+          <h3>WEBSITES & APPS</h3>
+          <p>Moderne en mensgerichte digitale ervaringen.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="icon">▥</div>
+        <div>
+          <small>05 / DASHBOARD</small>
+          <h3>MINEVAULT</h3>
+          <p>Educatieve simulaties, controle en inzichten in één dashboard.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="icon">⚒</div>
+        <div>
+          <small>06 / REPAIR</small>
+          <h3>REPAIR TECHNOLOGIE</h3>
+          <p>Repareren, hergebruiken en waardevolle techniek behouden.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="icon">✣</div>
+        <div>
+          <small>07 / WORLDS</small>
+          <h3>GAMING</h3>
+          <p>Games en digitale werelden die verbinden en inspireren.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="icon">♥</div>
+        <div>
+          <small>08 / HUMAN FIRST</small>
+          <h3>HULP VOOR MENSEN</h3>
+          <p>Praktische hulpmiddelen voor een betere toekomst.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="human-os" id="human-os">
+    <p class="eyebrow">EEN NIEUW SOORT BESTURINGSSYSTEEM</p>
+
+    <h2>HUMAN <span>OS</span></h2>
+
+    <blockquote>
+      Technologie hoort mensen sterker te maken,
+      zonder iemand schade te doen.
+    </blockquote>
+
+    <div class="principles">
+      <span>01 — MENS EERST</span>
+      <span>02 — OPEN EN UITLEGBAAR</span>
+      <span>03 — PRIVACY</span>
+      <span>04 — GEEN SCHADE</span>
+    </div>
+  </section>
+
+  <section class="github-section" id="github">
+    <div class="github-icon">⌘</div>
+
+    <div>
+      <p class="eyebrow">OPEN SOURCE</p>
+      <h2>BOUW MEE OP GITHUB</h2>
+      <p>Samen bouwen. Iedere goede bijdrage maakt het project sterker.</p>
+    </div>
+
+    <a href="https://github.com/Ice1984m"
+       target="_blank"
+       rel="noopener">OPEN GITHUB →</a>
+  </section>
+</main>
+
+<footer>
+  <strong>MIKIS13</strong>
+  <small>© 2026 Matty Moors — alle rechten voorbehouden</small>
+</footer>
+</body>
+</html>
+HTML
+
+cat > assets/style.css <<'CSS'
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Montserrat:wght@400;600;800&display=swap');
 
 :root{
@@ -333,3 +521,13 @@ footer{
   .github-icon{margin:auto}
   footer{display:grid;gap:15px;text-align:center}
 }
+CSS
+
+printf '\nnode_modules/\n.env\n.env.*\n*.log\n*.pid\nbackup/\n' >> .gitignore
+
+echo
+echo "Mikis13 Neon-website is aangemaakt."
+echo "Back-up: $BACKUP_DIR"
+echo
+echo "Test met:"
+echo "python -m http.server 4500"

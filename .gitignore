@@ -30,3 +30,17 @@ node_modules/
 *.log
 *.pid
 .DS_Store
+
+node_modules/
+.env
+.env.*
+*.log
+*.pid
+backup/
+
+node_modules/
+.env
+.env.*
+*.log
+*.pid
+backup/

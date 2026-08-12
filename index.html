@@ -4,163 +4,168 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#09000f">
+<meta name="description" content="Mikis13 — Ik bouw wat nog niet bestaat.">
 <title>Mikis13 — Ik bouw wat nog niet bestaat</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Montserrat:wght@400;700;900&display=swap');
-
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
- margin:0;color:#fff;background:#08000d;
- font-family:Montserrat,sans-serif;overflow-x:hidden
-}
-body:before{
- content:"";position:fixed;inset:0;z-index:-2;
- background:
- radial-gradient(circle at 80% 20%,#7800b8 0,transparent 28%),
- radial-gradient(circle at 10% 60%,#31004b 0,transparent 30%)
-}
-body:after{
- content:"";position:fixed;inset:0;z-index:-1;opacity:.25;
- background-image:radial-gradient(#f06cff 1px,transparent 1px);
- background-size:55px 55px
-}
-nav,section,footer{width:min(1150px,calc(100% - 36px));margin:auto}
-nav{
- height:80px;display:flex;align-items:center;justify-content:space-between;
- border-bottom:1px solid #ffffff25
-}
-.logo{font-weight:900;letter-spacing:4px}
-.logo b{color:#ee3cff;text-shadow:0 0 18px #d000ff}
-nav a{color:#fff;text-decoration:none}
-nav .github{font-size:11px;color:#e788ff;letter-spacing:2px}
-
-.hero{min-height:720px;padding:95px 0;position:relative}
-.label{font-size:10px;letter-spacing:3px;color:#de9bff;font-weight:700}
-h1{
- max-width:1000px;margin:40px 0 30px;position:relative;z-index:2;
- font-family:"Cinzel Decorative",serif;
- font-size:clamp(52px,9vw,125px);line-height:.88;letter-spacing:-5px
-}
-h1 span{
- display:block;color:transparent;-webkit-text-stroke:2px #ec46ff;
- filter:drop-shadow(0 0 13px #ba00ff)
-}
-.intro{max-width:580px;color:#bca7c3;line-height:1.8}
-.button{
- display:inline-block;margin-top:28px;padding:17px 24px;
- color:#17001f;background:#ed3cff;text-decoration:none;
- font-size:11px;font-weight:900;letter-spacing:1px;
- box-shadow:0 0 35px #d000ff88
-}
-.orb{
- position:absolute;width:330px;height:330px;right:-60px;top:170px;
- border-radius:50%;z-index:0;opacity:.75;
- background:radial-gradient(circle at 35% 25%,#ffb0ff,#9200e8 43%,#250035 72%);
- box-shadow:0 0 100px #a600ff
-}
-
-.lab{padding:110px 0}
-h2{font-size:clamp(48px,8vw,95px);letter-spacing:-5px;margin:15px 0 45px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.card{
- padding:22px;border:1px solid #d94cff55;
- background:linear-gradient(145deg,#190024,#0b0011);
- transition:.3s
-}
-.card:hover{transform:translateY(-8px);border-color:#ef55ff}
-.card small{color:#ec5cff}
-.icon{
- height:180px;margin:20px 0;display:grid;place-items:center;
- font-size:60px;font-weight:900;color:transparent;
- -webkit-text-stroke:1px #f283ff;
- background:radial-gradient(circle,#8f00d7,#1c0029 65%)
-}
-.card p{color:#ae99b5;font-size:13px;line-height:1.7}
-
-.manifest{
- width:100%;padding:100px max(22px,calc((100% - 1114px)/2));
- background:#f6eaff;color:#18001d
-}
-.manifest blockquote{
- margin:35px 0;font-size:clamp(35px,6vw,75px);
- line-height:1;font-weight:900;letter-spacing:-4px
-}
-.manifest span{color:#9300db}
-footer{padding:90px 0 30px}
-footer h2{margin-bottom:30px}
-footer a{color:#ef83ff}
-footer small{
- display:block;margin-top:70px;padding-top:20px;
- color:#846f8b;border-top:1px solid #ffffff25
-}
-
-@media(max-width:720px){
- h1{font-size:16vw;letter-spacing:-3px}
- .orb{width:220px;height:220px;right:-110px;top:310px}
- .grid{grid-template-columns:1fr}
- .hero{min-height:650px}
-}
-</style>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💜</text></svg>">
+<link rel="stylesheet" href="assets/style.css">
 </head>
+
 <body>
+<div class="stars"></div>
+
 <nav>
- <a class="logo" href="#">MIKIS<b>13</b></a>
- <a class="github" href="https://github.com/Ice1984m">GITHUB ↗</a>
+  <a class="logo" href="#home">MIKIS<span>13</span></a>
+
+  <div class="menu">
+    <a href="#projecten">Projecten</a>
+    <a href="#human-os">Human OS</a>
+    <a href="#github">GitHub</a>
+  </div>
+
+  <button class="menu-button" aria-label="Menu openen">☰</button>
 </nav>
 
-<section class="hero">
- <p class="label">◆ MATTY MOORS — DIGITAL CREATOR</p>
- <h1>IK BOUW <span>WAT NOG</span> NIET BESTAAT</h1>
- <p class="intro">
-  Nieuwe websites, apps en digitale werelden waarin technologie,
-  creativiteit en menselijkheid samenkomen.
- </p>
- <a class="button" href="#lab">ONTDEK HET LAB</a>
- <div class="orb"></div>
-</section>
+<main id="home">
+  <section class="hero">
+    <p class="eyebrow">MATTY MOORS — DIGITAL CREATOR</p>
 
-<section class="lab" id="lab">
- <p class="label">/ FUTURE PROJECTS</p>
- <h2>NEON LAB</h2>
+    <div class="globe" aria-hidden="true">
+      <div class="globe-ring"></div>
+    </div>
 
- <div class="grid">
-  <article class="card">
-   <small>01 / INTELLIGENCE</small>
-   <div class="icon">AI</div>
-   <h3>AI SYSTEMEN</h3>
-   <p>Slimme hulpmiddelen waarbij de mens beslist en AI ondersteunt.</p>
-  </article>
+    <h1>
+      IK BOUW
+      <span>WAT NOG</span>
+      NIET BESTAAT
+    </h1>
 
-  <article class="card">
-   <small>02 / CREATION</small>
-   <div class="icon">WEB</div>
-   <h3>WEBSITES & APPS</h3>
-   <p>Futuristische ervaringen met een herkenbare eigen stijl.</p>
-  </article>
+    <a class="human-button" href="#human-os">HUMAN OS</a>
 
-  <article class="card">
-   <small>03 / HUMAN FIRST</small>
-   <div class="icon">OS</div>
-   <h3>HUMAN OS</h3>
-   <p>Technologie die mensen helpt zonder iemand schade te doen.</p>
-  </article>
- </div>
-</section>
+    <p class="intro">
+      Ik bouw tools, systemen en ervaringen die technologie menselijk maken.
+      Open. Veilig. Nuttig. Voor iedereen.
+    </p>
 
-<section class="manifest">
- <p class="label">/ HET MANIFEST</p>
- <blockquote>
-  DE TOEKOMST IS NIET IETS WAAROP WE WACHTEN.
-  <span>HET IS IETS DAT WE BOUWEN.</span>
- </blockquote>
-</section>
+    <a class="scroll" href="#projecten" aria-label="Naar projecten">♡</a>
+  </section>
+
+  <section class="projects" id="projecten">
+    <header>
+      <p class="eyebrow">MIJN PROJECTEN</p>
+      <h2>NEON LAB</h2>
+    </header>
+
+    <div class="project-grid">
+      <article class="card">
+        <div class="icon">◉</div>
+        <div>
+          <small>01 / INTELLIGENCE</small>
+          <h3>AI ASSISTENTEN</h3>
+          <p>Slimme hulpmiddelen die meedenken en ondersteunen.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="icon">〉_</div>
+        <div>
+          <small>02 / MOBILE LAB</small>
+          <h3>TERMUX ONTWIKKELING</h3>
+          <p>Websites en programma’s rechtstreeks gebouwd vanaf Android.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="icon">⬡</div>
+        <div>
+          <small>03 / SECURITY</small>
+          <h3>CYBER & PRIVACY</h3>
+          <p>Bescherming, bewustzijn en privacy als vaste basis.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="icon">▣</div>
+        <div>
+          <small>04 / CREATION</small>
+          <h3>WEBSITES & APPS</h3>
+          <p>Moderne en mensgerichte digitale ervaringen.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="icon">▥</div>
+        <div>
+          <small>05 / DASHBOARD</small>
+          <h3>MINEVAULT</h3>
+          <p>Educatieve simulaties, controle en inzichten in één dashboard.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="icon">⚒</div>
+        <div>
+          <small>06 / REPAIR</small>
+          <h3>REPAIR TECHNOLOGIE</h3>
+          <p>Repareren, hergebruiken en waardevolle techniek behouden.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="icon">✣</div>
+        <div>
+          <small>07 / WORLDS</small>
+          <h3>GAMING</h3>
+          <p>Games en digitale werelden die verbinden en inspireren.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="icon">♥</div>
+        <div>
+          <small>08 / HUMAN FIRST</small>
+          <h3>HULP VOOR MENSEN</h3>
+          <p>Praktische hulpmiddelen voor een betere toekomst.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="human-os" id="human-os">
+    <p class="eyebrow">EEN NIEUW SOORT BESTURINGSSYSTEEM</p>
+
+    <h2>HUMAN <span>OS</span></h2>
+
+    <blockquote>
+      Technologie hoort mensen sterker te maken,
+      zonder iemand schade te doen.
+    </blockquote>
+
+    <div class="principles">
+      <span>01 — MENS EERST</span>
+      <span>02 — OPEN EN UITLEGBAAR</span>
+      <span>03 — PRIVACY</span>
+      <span>04 — GEEN SCHADE</span>
+    </div>
+  </section>
+
+  <section class="github-section" id="github">
+    <div class="github-icon">⌘</div>
+
+    <div>
+      <p class="eyebrow">OPEN SOURCE</p>
+      <h2>BOUW MEE OP GITHUB</h2>
+      <p>Samen bouwen. Iedere goede bijdrage maakt het project sterker.</p>
+    </div>
+
+    <a href="https://github.com/Ice1984m"
+       target="_blank"
+       rel="noopener">OPEN GITHUB →</a>
+  </section>
+</main>
 
 <footer>
- <p class="label">/ READY FOR THE UNKNOWN?</p>
- <h2>LET'S CREATE.</h2>
- <a href="https://github.com/Ice1984m">DOE MEE OP GITHUB ↗</a>
- <small>© 2026 Matty Moors — Mikis13 · Alle rechten voorbehouden</small>
+  <strong>MIKIS13</strong>
+  <small>© 2026 Matty Moors — alle rechten voorbehouden</small>
 </footer>
 </body>
 </html>
