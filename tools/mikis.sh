@@ -19,7 +19,7 @@ case "${1:-help}" in
   check)
     echo "=== Mikis13 controle ==="
 
-    for file in index.html assets/css/style.css assets/js/app.js
+    for file in index.html assets/style.css assets/js/app.js
     do
       if [ -f "$file" ]; then
         echo "OK: $file"
