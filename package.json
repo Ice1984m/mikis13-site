@@ -9,5 +9,8 @@
   "dependencies": {
     "express": "^5.1.0",
     "openai": "^7.3.0"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }

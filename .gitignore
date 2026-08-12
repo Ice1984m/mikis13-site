@@ -18,3 +18,5 @@ logs/
 *.backup-*
 *.p12
 *.keystore
+
+node_modules/

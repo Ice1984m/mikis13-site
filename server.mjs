@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 
 const app = express();
 const PORT = Number(process.env.PORT || 4500);
-const HOST = process.env.HOST || "127.0.0.1";
+const HOST = process.env.HOST || "0.0.0.0";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -77,6 +77,13 @@ async function askModel(client, model, instructions, input) {
 
   return response.output_text || "Geen tekst ontvangen.";
 }
+
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "ok",
+    service: "mikis13-site"
+  });
+});
 
 app.get("/api/status", (req, res) => {
   res.json({
