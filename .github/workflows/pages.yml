@@ -181,6 +181,8 @@ jobs:
               ".git",
               "node_modules",
               "vendor",
+              "archive",
+              "admin-backup",
           }
 
           html_files = [
@@ -375,7 +377,7 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Website uploaden
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: .
 
