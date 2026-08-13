@@ -31,7 +31,7 @@ trap cleanup EXIT
 for _ in $(seq 1 20); do
   if curl -fsS \
     "http://127.0.0.1:$PORT/" \
-    >/dev/null
+    >/dev/null 2>&1
   then
     echo "✅ Local HTTP 200"
     exit 0

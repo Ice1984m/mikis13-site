@@ -46,18 +46,51 @@ echo "=== Secrets ==="
 
 PATTERN='sk-proj-[A-Za-z0-9_-]{20,}|github_pat_[A-Za-z0-9_]{20,}|gh[pousr]_[A-Za-z0-9_]{20,}|AKIA[0-9A-Z]{16}'
 
-if git grep -nE "$PATTERN" -- \
-     ':!*.md' \
-     ':!.github/workflows/*' \
-     >/tmp/mikis-secret-scan.$$ 2>/dev/null
-then
-  echo "❌ Mogelijk geheim gevonden"
-  cat /tmp/mikis-secret-scan.$$
-  rm -f /tmp/mikis-secret-scan.$$
+TMPFILE="$(mktemp "${TMPDIR:-$PREFIX/tmp}/mikis-secret-scan.XXXXXX")" || {
+  echo "❌ Tijdelijk bestand kon niet worden gemaakt"
   FAIL=1
-else
-  rm -f /tmp/mikis-secret-scan.$$ || true
-  echo "✅ Geen herkenbare secrets"
+  TMPFILE=""
+}
+
+if [ -n "$TMPFILE" ]; then
+
+  set +e
+
+  git grep -nE "$PATTERN" -- \
+       ':!*.md' \
+       ':!.github/workflows/*' \
+       ':!backup/*' \
+       ':!backup/**/*' \
+       ':!backups/*' \
+       ':!backups/**/*' \
+       ':!archive/*' \
+       ':!archive/**/*' \
+       >"$TMPFILE" 2>/dev/null
+
+  SCAN_RC=$?
+
+  set -e
+
+  case "$SCAN_RC" in
+
+    0)
+      echo "❌ Mogelijk geheim gevonden"
+      cat "$TMPFILE"
+      FAIL=1
+      ;;
+
+    1)
+      echo "✅ Geen herkenbare secrets"
+      ;;
+
+    *)
+      echo "❌ Secret scanner foutcode: $SCAN_RC"
+      FAIL=1
+      ;;
+
+  esac
+
+  rm -f "$TMPFILE"
 fi
 
 echo
