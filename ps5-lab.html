@@ -1,49 +1,183 @@
 <!doctype html>
 <html lang="nl">
+
 <head>
+
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Mikis13 PS5 Lab V4</title>
-<link rel="stylesheet" href="assets/style.css">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
+
+<title>
+Mikis13 PS5 Runtime
+</title>
+
+<link rel="stylesheet"
+href="assets/style.css">
+
 <style>
-body{background:#07000d;color:#eee}
-main{width:min(1100px,calc(100% - 32px));margin:auto;padding:80px 0}
-.hero,.card{background:#110019;border:1px solid #824fff;border-radius:20px}
-.hero{padding:45px;text-align:center}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;margin-top:25px}
-.card{padding:20px}
-.download{display:inline-block;padding:14px 20px;margin-top:20px;border:1px solid #57ffb0;color:#57ffb0}
-.warn{color:#ffd46a}
+
+body{
+ background:#06000b;
+ color:#eee;
+}
+
+main{
+ width:min(1100px,calc(100% - 32px));
+ margin:auto;
+ padding:80px 0;
+}
+
+.hero,.card{
+ background:#110018;
+ border:1px solid #7f4cff;
+ border-radius:20px;
+}
+
+.hero{
+ padding:45px;
+ text-align:center;
+}
+
+.grid{
+ display:grid;
+ grid-template-columns:
+ repeat(auto-fit,minmax(220px,1fr));
+ gap:15px;
+ margin-top:25px;
+}
+
+.card{
+ padding:20px;
+}
+
+.button{
+ display:inline-block;
+ margin:10px;
+ padding:15px 22px;
+ border:1px solid #5dffb2;
+ color:#5dffb2;
+ text-decoration:none;
+}
+
+.warning{
+ color:#ffd16a;
+}
+
 </style>
+
 </head>
+
 <body>
+
 <main>
+
 <section class="hero">
-<p>10 / EMULATION RESEARCH</p>
-<h1>PS5 LAB V4</h1>
+
 <p>
-ELF loader • Memory • CPU • Scheduler • Syscalls • GPU • Audio • Input • Debugger
+10 / EMULATION RESEARCH
 </p>
-<p class="warn">
-Research build. Geen firmware, console keys, DRM-bypass of commerciële game-downloads.
+
+<h1>
+PS5 RUNTIME V5
+</h1>
+
+<p>
+Echte upstream emulatorcode +
+Mikis13 build-, doctor- en repairlaag.
 </p>
-<a class="download"
-href="https://github.com/Ice1984m/mikis13-ps5-lab/actions"
-target="_blank" rel="noopener">
-⬇ PC BUILDS
+
+<p class="warning">
+Experimenteel.
+Compatibiliteit verschilt per titel.
+Gebruik alleen eigen legaal verkregen content.
+Geen firmware, keys of game-downloads inbegrepen.
+</p>
+
+<a
+class="button"
+href="https://github.com/Ice1984m/mikis13-ps5-runtime/actions/workflows/mikis-windows-build.yml"
+target="_blank"
+rel="noopener">
+⬇ WINDOWS BUILD
 </a>
+
+<a
+class="button"
+href="https://github.com/Ice1984m/mikis13-ps5-runtime"
+target="_blank"
+rel="noopener">
+SOURCE CODE →
+</a>
+
 </section>
 
 <section class="grid">
-<div class="card"><h3>ELF Loader</h3><p>Homebrew/test ELF inspectie.</p></div>
-<div class="card"><h3>Virtual Memory</h3><p>Guest memory prototype.</p></div>
-<div class="card"><h3>CPU Core</h3><p>Test interpreter.</p></div>
-<div class="card"><h3>Scheduler</h3><p>Guest thread prototype.</p></div>
-<div class="card"><h3>Syscalls</h3><p>Compatibiliteitslaag.</p></div>
-<div class="card"><h3>GPU</h3><p>Command abstraction.</p></div>
-<div class="card"><h3>Audio/Input</h3><p>PC abstraction.</p></div>
-<div class="card"><h3>Repair Bot</h3><p>Build → test → clean rebuild.</p></div>
+
+<div class="card">
+<h3>REAL RUNTIME CORE</h3>
+<p>
+Gebaseerd op actieve open-source
+PS5-emulatorontwikkeling.
+</p>
+</div>
+
+<div class="card">
+<h3>EBOOT / ELF</h3>
+<p>
+Runtime-architectuur voor echte
+executable loading.
+</p>
+</div>
+
+<div class="card">
+<h3>CPU</h3>
+<p>
+Native guest execution research.
+</p>
+</div>
+
+<div class="card">
+<h3>KERNEL</h3>
+<p>
+Compatibiliteitswerk voor kernel-API's.
+</p>
+</div>
+
+<div class="card">
+<h3>GRAPHICS</h3>
+<p>
+Shader-, AGC- en video-outputontwikkeling.
+</p>
+</div>
+
+<div class="card">
+<h3>REPAIR BOT</h3>
+<p>
+CI diagnose, veilige reruns
+en upstream updatecontrole.
+</p>
+</div>
+
+<div class="card">
+<h3>WINDOWS X64</h3>
+<p>
+Automatische PC-build via GitHub Actions.
+</p>
+</div>
+
+<div class="card">
+<h3>UPSTREAM SYNC</h3>
+<p>
+Nieuwe emulatorontwikkeling kan via
+gecontroleerde pull requests worden geïntegreerd.
+</p>
+</div>
+
 </section>
+
 </main>
+
 </body>
+
 </html>
