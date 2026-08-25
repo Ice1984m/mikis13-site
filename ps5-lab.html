@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="nl">
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
+
+<meta name="theme-color"
+content="#09000f">
+
+<title>
+Mikis13 PS5 Emulator Lab
+</title>
+
+<link rel="stylesheet"
+href="assets/style.css">
+
+<style>
+
+.lab{
+ width:min(1100px,calc(100% - 32px));
+ margin:auto;
+ padding:80px 0 120px;
+}
+
+.hero-lab{
+ padding:60px 30px;
+ border:1px solid #8c54ff;
+ background:
+ radial-gradient(
+ circle at 50% 0,
+ #6333ff55,
+ transparent 40%
+ ),
+ #09000f;
+ text-align:center;
+}
+
+.hero-lab h1{
+ font-size:clamp(45px,8vw,90px);
+}
+
+.cards{
+ display:grid;
+ grid-template-columns:
+ repeat(auto-fit,minmax(230px,1fr));
+ gap:16px;
+ margin-top:30px;
+}
+
+.labcard{
+ padding:22px;
+ border:1px solid #7e4dff66;
+ background:#100018;
+}
+
+.download{
+ display:inline-block;
+ margin-top:25px;
+ padding:16px 24px;
+ border:1px solid #63ffbd;
+ color:#63ffbd;
+ text-decoration:none;
+}
+
+.warning{
+ margin-top:25px;
+ color:#ffd274;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<nav>
+
+<a class="logo"
+href="index.html">
+MIKIS<span>13</span>
+</a>
+
+<div class="menu">
+
+<a href="index.html#projecten">
+Projecten
+</a>
+
+<a href="ps5-lab.html">
+PS5 Lab
+</a>
+
+<a href="index.html#github">
+GitHub
+</a>
+
+</div>
+
+</nav>
+
+<main class="lab">
+
+<section class="hero-lab">
+
+<p class="eyebrow">
+10 / EMULATION RESEARCH
+</p>
+
+<h1>
+PS5
+<span>EMULATOR LAB</span>
+</h1>
+
+<p>
+Experimenteel pc-emulatieplatform
+met C++ core, ELF loader,
+repair-bot en compatibility testing.
+</p>
+
+<p class="warning">
+Voor homebrew, testsoftware en
+legaal verkregen eigen content.
+Geen firmware, keys, DRM-bypass
+of commerciële game-downloads.
+</p>
+
+<a
+class="download"
+href="https://github.com/Ice1984m/mikis13-ps5-lab/releases/latest"
+target="_blank"
+rel="noopener">
+⬇ DOWNLOAD PC BUILD
+</a>
+
+</section>
+
+<section class="cards">
+
+<div class="labcard">
+<h3>🧠 CPU CORE</h3>
+<p>
+Guest CPU translation research.
+</p>
+</div>
+
+<div class="labcard">
+<h3>💾 MEMORY</h3>
+<p>
+Virtual memory architecture.
+</p>
+</div>
+
+<div class="labcard">
+<h3>🎮 VULKAN</h3>
+<p>
+Graphics translation research.
+</p>
+</div>
+
+<div class="labcard">
+<h3>🧪 ELF LOADER</h3>
+<p>
+Homebrew en testbinary inspectie.
+</p>
+</div>
+
+<div class="labcard">
+<h3>🔧 REPAIR BOT</h3>
+<p>
+Build, tests en herstel tot
+maximaal drie gecontroleerde pogingen.
+</p>
+</div>
+
+<div class="labcard">
+<h3>🖥 PC BUILDS</h3>
+<p>
+Linux en Windows downloads via
+GitHub Actions.
+</p>
+</div>
+
+</section>
+
+</main>
+
+</body>
+</html>
