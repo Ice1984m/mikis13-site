@@ -1,264 +1,49 @@
 <!doctype html>
 <html lang="nl">
-
 <head>
-
 <meta charset="utf-8">
-<meta name="viewport"
-content="width=device-width,initial-scale=1">
-
-<meta name="theme-color"
-content="#09000f">
-
-<title>
-Mikis13 PS5 Emulator Lab V3
-</title>
-
-<link rel="stylesheet"
-href="assets/style.css">
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mikis13 PS5 Lab V4</title>
+<link rel="stylesheet" href="assets/style.css">
 <style>
-
-.lab{
- width:min(1120px,calc(100% - 34px));
- margin:auto;
- padding:80px 0 120px;
-}
-
-.hero-lab{
- padding:65px 30px;
- text-align:center;
- border:1px solid #8d54ff;
- background:
- radial-gradient(
-   circle at 50% 0,
-   #6135ff55,
-   transparent 40%
- ),
- #09000f;
-}
-
-.hero-lab h1{
- font-size:clamp(45px,8vw,92px);
-}
-
-.cards{
- display:grid;
- grid-template-columns:
- repeat(auto-fit,minmax(230px,1fr));
- gap:16px;
- margin-top:32px;
-}
-
-.card-v3{
- padding:24px;
- border:1px solid #7e4dff66;
- background:#100018;
-}
-
-.card-v3 strong{
- color:#ba92ff;
-}
-
-.download{
- display:inline-block;
- margin-top:25px;
- padding:16px 24px;
- border:1px solid #63ffbd;
- color:#63ffbd;
- text-decoration:none;
-}
-
-.warning{
- margin-top:25px;
- color:#ffd274;
-}
-
-.flow{
- margin-top:35px;
- padding:28px;
- border:1px solid #7e4dff;
- background:#08000d;
-}
-
-.flow pre{
- white-space:pre-wrap;
- overflow:auto;
- line-height:1.7;
-}
-
+body{background:#07000d;color:#eee}
+main{width:min(1100px,calc(100% - 32px));margin:auto;padding:80px 0}
+.hero,.card{background:#110019;border:1px solid #824fff;border-radius:20px}
+.hero{padding:45px;text-align:center}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;margin-top:25px}
+.card{padding:20px}
+.download{display:inline-block;padding:14px 20px;margin-top:20px;border:1px solid #57ffb0;color:#57ffb0}
+.warn{color:#ffd46a}
 </style>
-
 </head>
-
 <body>
-
-<div class="stars"></div>
-
-<nav>
-
-<a class="logo"
-href="index.html">
-MIKIS<span>13</span>
-</a>
-
-<div class="menu">
-
-<a href="index.html#projecten">
-Projecten
-</a>
-
-<a href="ps5-lab.html">
-PS5 Lab
-</a>
-
-<a href="index.html#github">
-GitHub
-</a>
-
-</div>
-
-</nav>
-
-<main class="lab">
-
-<section class="hero-lab">
-
-<p class="eyebrow">
-10 / EMULATION RESEARCH
-</p>
-
-<h1>
-PS5
-<span>LAB V3</span>
-</h1>
-
+<main>
+<section class="hero">
+<p>10 / EMULATION RESEARCH</p>
+<h1>PS5 LAB V4</h1>
 <p>
-Experimentele emulator-core met
-virtual memory, instruction decoder,
-syscall abstraction, GPU command layer,
-shader pipeline, controller-input
-en debugger.
+ELF loader • Memory • CPU • Scheduler • Syscalls • GPU • Audio • Input • Debugger
 </p>
-
-<p class="warning">
-Researchproject voor homebrew,
-testsoftware en eigen legaal verkregen content.
-Geen firmware, keys, DRM-bypass
-of commerciële game-downloads.
+<p class="warn">
+Research build. Geen firmware, console keys, DRM-bypass of commerciële game-downloads.
 </p>
-
-<a
-class="download"
-href="https://github.com/Ice1984m/mikis13-ps5-lab/releases/latest"
-target="_blank"
-rel="noopener">
-⬇ DOWNLOAD PC BUILD
+<a class="download"
+href="https://github.com/Ice1984m/mikis13-ps5-lab/actions"
+target="_blank" rel="noopener">
+⬇ PC BUILDS
 </a>
-
 </section>
 
-<section class="cards">
-
-<div class="card-v3">
-<strong>💾 VIRTUAL MEMORY</strong>
-<p>
-Prototype geheugenmanager
-voor guest address space.
-</p>
-</div>
-
-<div class="card-v3">
-<strong>🧠 DECODER</strong>
-<p>
-Instruction decoder framework
-voor toekomstige guest CPU translation.
-</p>
-</div>
-
-<div class="card-v3">
-<strong>⚙️ SYSCALL LAYER</strong>
-<p>
-Geïsoleerde system-call abstraction.
-</p>
-</div>
-
-<div class="card-v3">
-<strong>🎮 GPU COMMANDS</strong>
-<p>
-Grafische command queue
-als voorbereiding op Vulkan.
-</p>
-</div>
-
-<div class="card-v3">
-<strong>✨ SHADERS</strong>
-<p>
-Shader translation abstraction
-richting SPIR-V research.
-</p>
-</div>
-
-<div class="card-v3">
-<strong>🕹 INPUT</strong>
-<p>
-Controller-state abstraction
-voor toekomstige PC-controller mapping.
-</p>
-</div>
-
-<div class="card-v3">
-<strong>🐞 DEBUGGER</strong>
-<p>
-Logging en debugging framework.
-</p>
-</div>
-
-<div class="card-v3">
-<strong>🔧 REPAIR BOT</strong>
-<p>
-Build → test → clean rebuild,
-maximaal drie veilige herstelrondes.
-</p>
-</div>
-
-<div class="card-v3">
-<strong>🖥 PC BUILDS</strong>
-<p>
-Linux en Windows builds
-via GitHub Actions.
-</p>
-</div>
-
+<section class="grid">
+<div class="card"><h3>ELF Loader</h3><p>Homebrew/test ELF inspectie.</p></div>
+<div class="card"><h3>Virtual Memory</h3><p>Guest memory prototype.</p></div>
+<div class="card"><h3>CPU Core</h3><p>Test interpreter.</p></div>
+<div class="card"><h3>Scheduler</h3><p>Guest thread prototype.</p></div>
+<div class="card"><h3>Syscalls</h3><p>Compatibiliteitslaag.</p></div>
+<div class="card"><h3>GPU</h3><p>Command abstraction.</p></div>
+<div class="card"><h3>Audio/Input</h3><p>PC abstraction.</p></div>
+<div class="card"><h3>Repair Bot</h3><p>Build → test → clean rebuild.</p></div>
 </section>
-
-<section class="flow">
-
-<h2>V3 ARCHITECTUUR</h2>
-
-<pre>
-HOMEbrew / TEST ELF
-        ↓
-     ELF LOADER
-        ↓
-  VIRTUAL MEMORY
-        ↓
- INSTRUCTION DECODER
-        ↓
-  SYSCALL ABSTRACTION
-        ↓
-    GPU COMMANDS
-        ↓
- SHADER TRANSLATION
-        ↓
-     VULKAN
-        ↓
-      PC GPU
-</pre>
-
-</section>
-
 </main>
-
 </body>
 </html>
