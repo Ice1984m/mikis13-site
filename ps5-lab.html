@@ -1,67 +1,122 @@
 <!doctype html>
+
 <html lang="nl">
 
 <head>
 
 <meta charset="utf-8">
 
-<meta name="viewport"
+<meta
+name="viewport"
 content="width=device-width,initial-scale=1">
 
+<meta
+name="theme-color"
+content="#09000f">
+
+<meta
+name="description"
+content="Mikis13 PS5 Runtime V6">
+
 <title>
-Mikis13 PS5 Runtime
+Mikis13 PS5 Runtime V6
 </title>
 
-<link rel="stylesheet"
+<link
+rel="stylesheet"
 href="assets/style.css">
 
 <style>
 
 body{
- background:#06000b;
- color:#eee;
+  background:#06000b;
+  color:#eee;
 }
 
 main{
- width:min(1100px,calc(100% - 32px));
- margin:auto;
- padding:80px 0;
+  width:min(1100px,calc(100% - 30px));
+  margin:auto;
+  padding:65px 0;
 }
 
-.hero,.card{
- background:#110018;
- border:1px solid #7f4cff;
- border-radius:20px;
+.hero,
+.card{
+  background:#110018;
+  border:1px solid #7f4cff;
+  border-radius:20px;
 }
 
 .hero{
- padding:45px;
- text-align:center;
+  text-align:center;
+  padding:42px 24px;
+  box-shadow:
+  0 0 45px rgba(127,76,255,.20);
 }
 
-.grid{
- display:grid;
- grid-template-columns:
- repeat(auto-fit,minmax(220px,1fr));
- gap:15px;
- margin-top:25px;
+.status{
+  display:inline-block;
+  padding:8px 14px;
+  border-radius:999px;
+  border:1px solid #5dffb2;
+  color:#5dffb2;
+  margin:10px;
 }
 
-.card{
- padding:20px;
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:12px;
+  margin-top:25px;
 }
 
 .button{
- display:inline-block;
- margin:10px;
- padding:15px 22px;
- border:1px solid #5dffb2;
- color:#5dffb2;
- text-decoration:none;
+  display:inline-block;
+  padding:15px 22px;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:800;
+  border:1px solid #7f4cff;
+  color:#d6c0ff;
+}
+
+.download{
+  background:#5dffb2;
+  border-color:#5dffb2;
+  color:#050009;
+}
+
+.games{
+  border-color:#bd63ff;
+  color:#dfb6ff;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:
+  repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;
+  margin-top:25px;
+}
+
+.card{
+  padding:22px;
 }
 
 .warning{
- color:#ffd16a;
+  color:#ffd16a;
+  line-height:1.6;
+}
+
+.steps{
+  text-align:left;
+  max-width:760px;
+  margin:25px auto 0;
+}
+
+code{
+  color:#83ffd0;
+  word-break:break-word;
 }
 
 </style>
@@ -79,27 +134,33 @@ main{
 </p>
 
 <h1>
-PS5 RUNTIME V5
+🎮 PS5 RUNTIME V6
 </h1>
 
+<div class="status">
+✓ WINDOWS BUILD ONLINE
+</div>
+
 <p>
-Echte upstream emulatorcode +
-Mikis13 build-, doctor- en repairlaag.
+SharpEmu +
+Mikis13 V6 repair,
+logging,
+maintenance
+en automatische builds.
 </p>
 
-<p class="warning">
-Experimenteel.
-Compatibiliteit verschilt per titel.
-Gebruik alleen eigen legaal verkregen content.
-Geen firmware, keys of game-downloads inbegrepen.
-</p>
+<div class="actions">
 
 <a
-class="button"
-href="https://github.com/Ice1984m/mikis13-ps5-runtime/actions/workflows/mikis-windows-build.yml"
-target="_blank"
-rel="noopener">
-⬇ WINDOWS BUILD
+class="button download"
+href="https://github.com/Ice1984m/mikis13-ps5-runtime/releases/latest/download/mikis13-ps5-runtime-v6-windows-x64.zip">
+⬇ DOWNLOAD V6 WINDOWS
+</a>
+
+<a
+class="button games"
+href="#games">
+🎮 GAMES
 </a>
 
 <a
@@ -107,72 +168,138 @@ class="button"
 href="https://github.com/Ice1984m/mikis13-ps5-runtime"
 target="_blank"
 rel="noopener">
-SOURCE CODE →
+GITHUB →
 </a>
+
+</div>
+
+<p class="warning">
+Gebruik alleen eigen legaal verkregen
+PS5-gamebestanden.
+
+Er worden geen commerciële games,
+firmware of keys aangeboden.
+</p>
 
 </section>
 
 <section class="grid">
 
 <div class="card">
-<h3>REAL RUNTIME CORE</h3>
+
+<h3>
+⬇ ONE CLICK DOWNLOAD
+</h3>
+
 <p>
-Gebaseerd op actieve open-source
-PS5-emulatorontwikkeling.
+Download altijd automatisch
+de nieuwste publieke V6 Windows-build.
 </p>
+
 </div>
 
 <div class="card">
-<h3>EBOOT / ELF</h3>
+
+<h3>
+🤖 REPAIR BOT
+</h3>
+
 <p>
-Runtime-architectuur voor echte
-executable loading.
+Buildproblemen,
+cacheproblemen en mislukte
+workflows worden gecontroleerd.
 </p>
+
 </div>
 
 <div class="card">
-<h3>CPU</h3>
+
+<h3>
+🔄 AUTO UPDATE
+</h3>
+
 <p>
-Native guest execution research.
+Nieuwe groene builds kunnen
+automatisch als Latest Release
+worden gepubliceerd.
 </p>
+
 </div>
 
 <div class="card">
-<h3>KERNEL</h3>
+
+<h3>
+📋 LOG ANALYSE
+</h3>
+
 <p>
-Compatibiliteitswerk voor kernel-API's.
+De Windows launcher bewaart
+runtime-logs voor verdere diagnose.
 </p>
+
 </div>
 
-<div class="card">
-<h3>GRAPHICS</h3>
+</section>
+
+<section
+class="hero"
+id="games"
+style="margin-top:25px">
+
+<h2>
+🎮 GAME STARTEN
+</h2>
+
+<div class="steps">
+
 <p>
-Shader-, AGC- en video-outputontwikkeling.
+<strong>1.</strong>
+Klik op
+<strong>DOWNLOAD V6 WINDOWS</strong>.
 </p>
+
+<p>
+<strong>2.</strong>
+Pak de ZIP uit op je Windows-pc.
+</p>
+
+<p>
+<strong>3.</strong>
+Open de uitgepakte map.
+</p>
+
+<p>
+<strong>4.</strong>
+Start:
+</p>
+
+<code>
+Mikis13-V6-Launcher.ps1
+</code>
+
+<p>
+<strong>5.</strong>
+Selecteer het
+<code>eboot.bin</code>
+bestand van je eigen legaal verkregen game.
+</p>
+
+<p>
+<strong>6.</strong>
+SharpEmu start en V6 bewaart automatisch
+een diagnose-log.
+</p>
+
 </div>
 
-<div class="card">
-<h3>REPAIR BOT</h3>
-<p>
-CI diagnose, veilige reruns
-en upstream updatecontrole.
-</p>
-</div>
+<p class="warning">
+Termux beheert de builds en GitHub.
 
-<div class="card">
-<h3>WINDOWS X64</h3>
-<p>
-Automatische PC-build via GitHub Actions.
+De Windows emulator en
+PowerShell launcher draaien
+op je Windows-pc,
+niet rechtstreeks in Android Termux.
 </p>
-</div>
-
-<div class="card">
-<h3>UPSTREAM SYNC</h3>
-<p>
-Nieuwe emulatorontwikkeling kan via
-gecontroleerde pull requests worden geïntegreerd.
-</p>
-</div>
 
 </section>
 
