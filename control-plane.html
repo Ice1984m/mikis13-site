@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#09000f">
+<meta name="description" content="Mikis13 Control Plane - centraal beheer voor website, GitHub, security, containers, tests, repair en releases.">
+<title>Mikis13 Control Plane</title>
+<link rel="stylesheet" href="assets/style.css">
+
+<style>
+.control-page{
+  width:min(1120px,calc(100% - 36px));
+  margin:auto;
+  padding:70px 0 120px;
+}
+
+.control-hero{
+  padding:70px 35px;
+  text-align:center;
+  border:1px solid #ee55ff88;
+  background:
+    radial-gradient(circle at 50% 10%,#8e00d755,transparent 38%),
+    linear-gradient(135deg,#180021,#09000e);
+  box-shadow:0 0 60px #8500c744;
+}
+
+.control-hero h1{
+  margin:25px 0;
+  font-size:clamp(48px,8vw,95px);
+}
+
+.control-intro{
+  max-width:760px;
+  margin:25px auto;
+  color:#d7c0df;
+  line-height:1.8;
+}
+
+.control-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:16px;
+  margin-top:36px;
+}
+
+.control-card{
+  padding:24px;
+  border:1px solid #d85cff55;
+  background:linear-gradient(135deg,#180021dd,#09000e);
+}
+
+.control-card strong{
+  display:block;
+  margin-bottom:12px;
+  color:#ee55ff;
+  font-family:Orbitron,sans-serif;
+}
+
+.control-card p{
+  margin:0;
+  color:#bba4c4;
+  line-height:1.65;
+}
+
+.control-flow{
+  margin-top:40px;
+  padding:30px;
+  border:1px solid #a400ff;
+  background:#0b0010;
+}
+
+.control-flow pre{
+  overflow:auto;
+  white-space:pre-wrap;
+  color:#f3d7ff;
+  line-height:1.8;
+}
+
+.control-actions{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:14px;
+  margin-top:30px;
+}
+
+.control-button{
+  display:inline-block;
+  padding:15px 23px;
+  border:1px solid #ee55ff;
+  background:#24002f;
+  color:#f3d7ff;
+  font-family:Orbitron,sans-serif;
+  font-size:11px;
+  letter-spacing:2px;
+}
+
+.control-button.primary{
+  background:#ee55ff;
+  color:#18001f;
+}
+
+.tech-line{
+  margin-top:24px;
+  color:#56ffaf;
+  font-size:12px;
+  letter-spacing:2px;
+}
+
+@media(max-width:760px){
+  .control-hero{
+    padding:45px 20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<nav>
+  <a class="logo" href="index.html">MIKIS<span>13</span></a>
+
+  <div class="menu">
+    <a href="index.html#projecten">Projecten</a>
+    <a href="control-plane.html">Control Plane</a>
+    <a href="index.html#github">GitHub</a>
+  </div>
+</nav>
+
+<main class="control-page">
+
+<section class="control-hero">
+
+<p class="eyebrow">09 / SYSTEM CONTROL</p>
+
+<h1>
+CONTROL
+<span>PLANE</span>
+</h1>
+
+<p class="control-intro">
+Mikis13 Control Plane brengt mijn websitebeheer, GitHub-workflows,
+securitycontroles, containers, automatische tests, repair-bots,
+historiek en releasebeheer samen in één centraal systeem.
+</p>
+
+<p class="tech-line">
+TERMUX • GITHUB ACTIONS • AUTOMATION • SECURITY • DEVOPS
+</p>
+
+<div class="control-actions">
+
+<a class="control-button primary"
+   href="https://github.com/Ice1984m/mikis13-control-plane"
+   target="_blank"
+   rel="noopener">
+BEKIJK PROJECT OP GITHUB →
+</a>
+
+<a class="control-button"
+   href="index.html#projecten">
+← TERUG NAAR PROJECTEN
+</a>
+
+</div>
+
+</section>
+
+<section class="control-grid">
+
+<div class="control-card">
+<strong>🌐 LIVE STATUS</strong>
+<p>Domeinen, HTTPS, HTTP-status en responstijden automatisch controleren.</p>
+</div>
+
+<div class="control-card">
+<strong>🤖 REPAIR BOT</strong>
+<p>Mislukte workflows herkennen, classificeren en gecontroleerd opnieuw uitvoeren.</p>
+</div>
+
+<div class="control-card">
+<strong>🐳 CONTAINERS</strong>
+<p>Container-builds, GitHub Actions en GHCR vanuit één controlelaag volgen.</p>
+</div>
+
+<div class="control-card">
+<strong>🛡 SECURITY</strong>
+<p>Secret scanning en veiligheidscontroles voordat wijzigingen gepubliceerd worden.</p>
+</div>
+
+<div class="control-card">
+<strong>🧪 E2E TESTS</strong>
+<p>Belangrijke websitepagina's automatisch testen na wijzigingen.</p>
+</div>
+
+<div class="control-card">
+<strong>📊 OBSERVABILITY</strong>
+<p>Statushistoriek bewaren zodat problemen en verbeteringen zichtbaar worden.</p>
+</div>
+
+<div class="control-card">
+<strong>🚦 RELEASE GATE</strong>
+<p>Publiceren alleen wanneer vereiste controles groen zijn.</p>
+</div>
+
+<div class="control-card">
+<strong>📦 RELEASES</strong>
+<p>Versiebeheer, changelogs en GitHub-releases centraal organiseren.</p>
+</div>
+
+<div class="control-card">
+<strong>📱 TERMUX CENTER</strong>
+<p>Eén centraal mobiel commando voor status, testen, repair en beheer.</p>
+</div>
+
+<div class="control-card">
+<strong>🧠 DRIFT DETECTOR</strong>
+<p>Vergelijkt lokale code met GitHub zodat afwijkingen snel zichtbaar worden.</p>
+</div>
+
+</section>
+
+<section class="control-flow">
+
+<p class="eyebrow">CONTROL FLOW</p>
+
+<pre>
+ANDROID / TERMUX
+       ↓
+MIKIS13 CONTROL PLANE
+       ├── STATUS
+       ├── SECURITY
+       ├── E2E TESTS
+       ├── REPAIR BOT
+       ├── CONTAINERS
+       ├── HISTORY
+       ├── RELEASE GATE
+       └── DRIFT DETECTOR
+                 ↓
+              GITHUB
+                 ↓
+         GITHUB ACTIONS
+                 ↓
+            MIKIS13.NL
+</pre>
+
+</section>
+
+</main>
+
+<footer>
+<strong>MIKIS13</strong>
+<small>Control Plane • Termux + GitHub</small>
+</footer>
+
+</body>
+</html>
