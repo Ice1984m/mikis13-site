@@ -14,6 +14,7 @@ content="width=device-width,initial-scale=1">
 rel="stylesheet"
 href="assets/css/style.css">
 
+<script src="assets/js/legal-runtime.js"></script>
 </head>
 
 <body>
@@ -145,6 +146,39 @@ location="admin.html";
 
 draw();
 
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  setTimeout(() => {
+
+    if(window.MIKIS_COMMERCE_READY){
+      return;
+    }
+
+    document.querySelectorAll("button").forEach(button => {
+
+      const text =
+        (button.textContent || "").toLowerCase();
+
+      if(
+        text.includes("bestel") ||
+        text.includes("betaal") ||
+        text.includes("checkout") ||
+        text.includes("afronden")
+      ){
+        button.disabled = true;
+        button.title =
+          "Verkoop is nog niet juridisch vrijgegeven.";
+      }
+
+    });
+
+  },500);
+
+});
 </script>
 
 </body>
