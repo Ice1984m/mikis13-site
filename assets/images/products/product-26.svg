@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+width="1200" height="900">
+
+<defs>
+<linearGradient id="g">
+<stop stop-color="#070711"/>
+<stop offset="1" stop-color="hsl(242,75%,40%)"/>
+</linearGradient>
+</defs>
+
+<rect width="1200" height="900"
+rx="50" fill="url(#g)"/>
+
+<circle cx="600" cy="330"
+r="220"
+fill="white"
+opacity=".07"/>
+
+<text x="600" y="420"
+font-size="180"
+text-anchor="middle">
+❄
+</text>
+
+<text x="600"
+y="670"
+text-anchor="middle"
+fill="white"
+font-family="Arial"
+font-size="50"
+font-weight="bold">
+Nekventilator
+</text>
+
+<text x="600"
+y="740"
+text-anchor="middle"
+fill="#ddd"
+font-family="Arial"
+font-size="28">
+MIKIS13 • PRODUCT 26
+</text>
+
+</svg>

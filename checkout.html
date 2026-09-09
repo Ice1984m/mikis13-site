@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="nl">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
+
+<title>Checkout</title>
+
+<link
+rel="stylesheet"
+href="assets/css/style.css">
+
+</head>
+
+<body>
+
+<main class="wrap">
+
+<h1>Winkelwagen</h1>
+
+<div
+id="cart"
+class="panel">
+</div>
+
+<div class="panel">
+
+<h2>Klantgegevens</h2>
+
+<p>
+<input id="name"
+placeholder="Naam">
+</p>
+
+<p>
+<input id="email"
+placeholder="E-mail">
+</p>
+
+<p>
+<textarea
+id="address"
+placeholder="Adres">
+</textarea>
+</p>
+
+<button
+class="btn"
+onclick="order()">
+
+Bestelling opslaan
+
+</button>
+
+</div>
+
+<a href="index.html">
+← verder winkelen
+</a>
+
+</main>
+
+<script>
+
+let basket=
+JSON.parse(
+localStorage.getItem("cart")||"[]"
+);
+
+function draw(){
+
+let total=0;
+
+cart.innerHTML=
+basket.map(p=>{
+
+let x=p.price*p.qty;
+
+total+=x;
+
+return `
+<p>
+${p.qty} ×
+${p.name}
+—
+€${x.toFixed(2)}
+</p>
+`;
+
+}).join("")
++
+`
+<hr>
+<h2>
+Totaal €${total.toFixed(2)}
+</h2>
+`;
+
+}
+
+function order(){
+
+if(!basket.length){
+alert("Winkelwagen leeg");
+return;
+}
+
+let orders=
+JSON.parse(
+localStorage.getItem("orders")||"[]"
+);
+
+orders.push({
+
+id:"ORD-"+Date.now(),
+
+name:name.value,
+
+email:email.value,
+
+address:address.value,
+
+items:basket,
+
+status:"Nieuw"
+
+});
+
+localStorage.setItem(
+"orders",
+JSON.stringify(orders)
+);
+
+localStorage.removeItem("cart");
+
+alert("Bestelling opgeslagen");
+
+location="admin.html";
+
+}
+
+draw();
+
+</script>
+
+</body>
+</html>

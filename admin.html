@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="nl">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
+
+<title>Mikis13 Admin</title>
+
+<link
+rel="stylesheet"
+href="assets/css/style.css">
+
+</head>
+
+<body>
+
+<div class="admin">
+
+<aside class="sidebar">
+
+<h2>
+MIKIS13
+</h2>
+
+<p>
+Adminpaneel
+</p>
+
+<a
+class="btn"
+href="index.html">
+Webshop
+</a>
+
+</aside>
+
+<main class="content">
+
+<h1>
+Webshop beheer
+</h1>
+
+<div class="panel">
+
+<h2>
+Status
+</h2>
+
+<p>
+✅ 50 producten
+</p>
+
+<p>
+✅ 50 afbeeldingen
+</p>
+
+<p>
+✅ winkelwagen
+</p>
+
+<p>
+✅ checkout
+</p>
+
+<p>
+✅ orderbeheer
+</p>
+
+<p>
+🟡 Stripe live koppeling nog server-side instellen
+</p>
+
+</div>
+
+<div class="panel">
+
+<h2>
+Instellingen
+</h2>
+
+<p>
+30% standaard opslag op inkoopprijs
+</p>
+
+<input
+placeholder="Leverancier">
+
+<br><br>
+
+<input
+placeholder="Leverancier URL">
+
+<br><br>
+
+<input
+placeholder="Stripe publishable key">
+
+</div>
+
+<div class="panel">
+
+<h2>
+Producten
+</h2>
+
+<table>
+
+<thead>
+
+<tr>
+<th>SKU</th>
+<th>Product</th>
+<th>Inkoop</th>
+<th>Verkoop</th>
+</tr>
+
+</thead>
+
+<tbody id="products">
+</tbody>
+
+</table>
+
+</div>
+
+<div class="panel">
+
+<h2>
+Bestellingen
+</h2>
+
+<div id="orders">
+</div>
+
+</div>
+
+</main>
+
+</div>
+
+<script>
+
+fetch("data/products.json")
+.then(r=>r.json())
+.then(data=>{
+
+products.innerHTML=
+data.map(p=>`
+
+<tr>
+
+<td>
+${p.sku}
+</td>
+
+<td>
+${p.name}
+</td>
+
+<td>
+€${p.cost.toFixed(2)}
+</td>
+
+<td>
+€${p.price.toFixed(2)}
+</td>
+
+</tr>
+
+`).join("");
+
+});
+
+let orderData=
+JSON.parse(
+localStorage.getItem("orders")||"[]"
+);
+
+orders.innerHTML=
+orderData.length
+?
+orderData.map(o=>`
+
+<p>
+<b>${o.id}</b>
+—
+${o.name}
+—
+${o.status}
+</p>
+
+`).join("")
+:
+"Nog geen bestellingen";
+
+</script>
+
+</body>
+</html>
