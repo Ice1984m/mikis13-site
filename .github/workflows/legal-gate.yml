@@ -1,0 +1,65 @@
+name: Mikis13 Legal Gate
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+
+  legal:
+
+    name: Belgium EU webshop legal gate
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Legal gate
+        run: |
+          python scripts/legal-gate.py
+
+      - name: Secret scan
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+
+          if grep -R \
+            --exclude-dir=.git \
+            -E 'sk_live_[A-Za-z0-9]{10,}|sk_test_[A-Za-z0-9]{10,}|github_pat_[A-Za-z0-9_]{20,}|ghp_[A-Za-z0-9]{20,}' \
+            .
+          then
+            echo "::error::Mogelijk geheim gevonden"
+            exit 1
+          fi
+
+      - name: HTML files
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+
+          test -s index.html
+          test -s checkout.html
+          test -s legal/voorwaarden.html
+          test -s legal/herroeping.html
+          test -s legal/privacy.html
+          test -s legal/wettelijke-vermeldingen.html
+
+          echo "Legal HTML aanwezig"

@@ -1,0 +1,15 @@
+{
+  "store_name": "mikis13shop",
+  "commerce_ready": false,
+  "business_ready": false,
+  "gpsr_ready": false,
+  "currency": "EUR",
+  "country": "BE",
+  "consumer_sales": true,
+  "withdrawal_days": 14,
+  "legal_guarantee_years": 2,
+  "delivery_max_days": 30,
+  "prices_include_taxes": true,
+  "return_shipping": "customer_unless_defective_or_otherwise_agreed",
+  "last_legal_review": "2026-09-09"
+}
