@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mikis13 Testaankoop</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+<main class="wrap">
+
+<div class="panel">
+<h1>🧪 Testaankoop</h1>
+
+<p>
+Dit is uitsluitend een testomgeving.
+Er wordt geen echte betaling uitgevoerd
+en er wordt niets naar een leverancier gestuurd.
+</p>
+</div>
+
+<div class="panel">
+
+<h2>Product</h2>
+
+<select id="product"></select>
+
+<p>
+Aantal:
+<input
+ id="qty"
+ type="number"
+ min="1"
+ value="1">
+</p>
+
+<h2>Testklant</h2>
+
+<p>
+<input
+ id="name"
+ placeholder="Naam"
+ value="Test Klant">
+</p>
+
+<p>
+<input
+ id="email"
+ placeholder="E-mail"
+ value="test@mikis13.invalid">
+</p>
+
+<p>
+<textarea
+ id="address"
+ placeholder="Adres">TESTADRES - NIET VERZENDEN</textarea>
+</p>
+
+<p id="total"></p>
+
+<button
+ class="btn"
+ id="orderButton">
+TESTBESTELLING PLAATSEN
+</button>
+
+</div>
+
+<div class="panel">
+<h2>Resultaat</h2>
+<pre id="result">Nog geen testbestelling.</pre>
+</div>
+
+<p>
+<a href="admin.html">
+← Naar admin
+</a>
+</p>
+
+<p>
+<a href="index.html">
+← Naar webshop
+</a>
+</p>
+
+</main>
+
+<script>
+let products=[];
+
+const product =
+  document.getElementById("product");
+
+const qty =
+  document.getElementById("qty");
+
+const total =
+  document.getElementById("total");
+
+const result =
+  document.getElementById("result");
+
+function calculate(){
+
+  const item =
+    products.find(
+      p => String(p.id) === product.value
+    );
+
+  if(!item) return;
+
+  const amount =
+    Number(qty.value || 1);
+
+  total.textContent =
+    "Testtotaal: €" +
+    (item.price * amount).toFixed(2);
+}
+
+fetch("data/products.json")
+.then(r => r.json())
+.then(data => {
+
+  products=data;
+
+  product.innerHTML =
+    products.map(p =>
+      `<option value="${p.id}">
+       ${p.sku} — ${p.name} — €${p.price.toFixed(2)}
+       </option>`
+    ).join("");
+
+  calculate();
+});
+
+product.addEventListener(
+  "change",
+  calculate
+);
+
+qty.addEventListener(
+  "input",
+  calculate
+);
+
+orderButton.addEventListener(
+  "click",
+  () => {
+
+    const item =
+      products.find(
+        p => String(p.id) === product.value
+      );
+
+    if(!item){
+      alert("Geen product geselecteerd");
+      return;
+    }
+
+    const amount =
+      Math.max(
+        1,
+        Number(qty.value || 1)
+      );
+
+    const order = {
+
+      id:
+        "TEST-" +
+        Date.now(),
+
+      test: true,
+
+      created_at:
+        new Date().toISOString(),
+
+      name:
+        name.value ||
+        "Test Klant",
+
+      email:
+        email.value ||
+        "test@mikis13.invalid",
+
+      address:
+        address.value ||
+        "TESTADRES",
+
+      items: [
+        {
+          id:item.id,
+          sku:item.sku,
+          name:item.name,
+          qty:amount,
+          price:item.price
+        }
+      ],
+
+      total:
+        Number(
+          (item.price * amount)
+          .toFixed(2)
+        ),
+
+      payment:
+        "TEST_GEEN_BETALING",
+
+      supplier:
+        "NIET_VERSTUREN",
+
+      status:
+        "Testbestelling"
+    };
+
+    const orders =
+      JSON.parse(
+        localStorage.getItem("orders")
+        || "[]"
+      );
+
+    orders.unshift(order);
+
+    localStorage.setItem(
+      "orders",
+      JSON.stringify(orders)
+    );
+
+    result.textContent =
+      JSON.stringify(
+        order,
+        null,
+        2
+      );
+
+    alert(
+      "Testbestelling aangemaakt: "
+      + order.id
+    );
+  }
+);
+</script>
+
+</body>
+</html>
