@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mikis13 Supplier & GPSR Control Center</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+body{margin:0}
+.wrap{max-width:1400px;margin:auto;padding:24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.card{padding:18px;border:1px solid #333;border-radius:14px;margin-bottom:16px}
+.big{font-size:2rem;font-weight:700}
+table{width:100%;border-collapse:collapse}
+th,td{padding:10px;border-bottom:1px solid #333;text-align:left;vertical-align:top}
+.ok{font-weight:700}
+.bad{font-weight:700}
+.small{font-size:.88rem;opacity:.8}
+input{padding:10px;width:100%;box-sizing:border-box;margin-bottom:16px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<p><a href="admin.html">Terug naar admin</a></p>
+
+<h1>Supplier & GPSR Control Center</h1>
+
+<p>
+Deze pagina controleert de productcatalogus.
+Verkoop blijft geblokkeerd zolang verplichte leverancier-
+of productveiligheidsinformatie ontbreekt.
+</p>
+
+<div class="grid">
+<div class="card">
+<div class="small">Producten</div>
+<div class="big" id="total">-</div>
+</div>
+
+<div class="card">
+<div class="small">Supplier gekoppeld</div>
+<div class="big" id="supplierCount">-</div>
+</div>
+
+<div class="card">
+<div class="small">GPSR gereed</div>
+<div class="big" id="gpsrCount">-</div>
+</div>
+
+<div class="card">
+<div class="small">Commerce ready</div>
+<div class="big" id="commerce">-</div>
+</div>
+</div>
+
+<div class="card">
+<h2>Wat ontbreekt nog?</h2>
+<div id="missingSummary">Laden...</div>
+</div>
+
+<div class="card">
+<h2>Productcontrole</h2>
+
+<input
+ id="search"
+ placeholder="Zoek SKU, product of categorie">
+
+<div style="overflow:auto">
+<table>
+<thead>
+<tr>
+<th>SKU</th>
+<th>Product</th>
+<th>Leverancier</th>
+<th>Fabrikant</th>
+<th>EU verantwoordelijke</th>
+<th>CE</th>
+<th>GPSR</th>
+<th>Ontbrekend</th>
+</tr>
+</thead>
+<tbody id="rows"></tbody>
+</table>
+</div>
+</div>
+
+<div class="card">
+<h2>Activeringsregel</h2>
+<p>
+Een product wordt pas als GPSR-gereed beschouwd wanneer de echte
+leveranciers- en productveiligheidsgegevens zijn gecontroleerd.
+Een algemene placeholder is niet voldoende.
+</p>
+
+<p>
+Stripe, betalingen en centrale bestellingen vereisen daarnaast nog
+een server-side backend. Geheimen horen nooit in deze publieke repository.
+</p>
+</div>
+
+</div>
+
+<script>
+let products = [];
+let config = {};
+
+function missing(p){
+  const fields = [];
+
+  if(!p.supplier) fields.push("leverancier");
+  if(!p.supplier_url) fields.push("leverancier URL");
+  if(!p.manufacturer_name) fields.push("fabrikant");
+  if(!p.manufacturer_address) fields.push("fabrikant adres");
+  if(!p.manufacturer_email) fields.push("fabrikant e-mail");
+
+  if(!p.eu_responsible_person_name)
+    fields.push("EU verantwoordelijke");
+
+  if(!p.eu_responsible_person_address)
+    fields.push("EU verantwoordelijke adres");
+
+  if(!p.eu_responsible_person_email)
+    fields.push("EU verantwoordelijke e-mail");
+
+  if(!p.product_identifier)
+    fields.push("product-ID");
+
+  if(!p.country_of_origin)
+    fields.push("land oorsprong");
+
+  if(p.ce_required === true && p.ce_verified !== true)
+    fields.push("CE verificatie");
+
+  if(p.gpsr_ready !== true)
+    fields.push("GPSR goedkeuring");
+
+  return fields;
+}
+
+function draw(filter=""){
+  filter = filter.toLowerCase();
+
+  const filtered = products.filter(p =>
+    `${p.sku} ${p.name} ${p.category}`
+      .toLowerCase()
+      .includes(filter)
+  );
+
+  rows.innerHTML = filtered.map(p => {
+    const m = missing(p);
+
+    return `
+      <tr>
+        <td>${p.sku}</td>
+        <td>
+          <b>${p.name}</b><br>
+          <span class="small">${p.category}</span>
+        </td>
+        <td>${p.supplier || "ONTBREEKT"}</td>
+        <td>${p.manufacturer_name || "ONTBREEKT"}</td>
+        <td>${p.eu_responsible_person_name || "ONTBREEKT"}</td>
+        <td>
+          ${
+            p.ce_required === true
+              ? (p.ce_verified ? "Geverifieerd" : "Nog controleren")
+              : (p.ce_required === false ? "Niet vereist" : "Onbekend")
+          }
+        </td>
+        <td>${p.gpsr_ready ? "GEREED" : "NIET GEREED"}</td>
+        <td>${m.join(", ") || "Compleet"}</td>
+      </tr>
+    `;
+  }).join("");
+}
+
+Promise.all([
+  fetch("data/products.json").then(r => r.json()),
+  fetch("data/store-config.json").then(r => r.json())
+]).then(([p,c]) => {
+
+  products = p;
+  config = c;
+
+  total.textContent = products.length;
+
+  supplierCount.textContent =
+    products.filter(p =>
+      p.supplier &&
+      p.supplier_url
+    ).length + " / " + products.length;
+
+  gpsrCount.textContent =
+    products.filter(p =>
+      p.gpsr_ready === true
+    ).length + " / " + products.length;
+
+  commerce.textContent =
+    config.commerce_ready
+      ? "ACTIEF"
+      : "GEBLOKKEERD";
+
+  const allMissing = {};
+
+  products.forEach(p => {
+    missing(p).forEach(field => {
+      allMissing[field] =
+        (allMissing[field] || 0) + 1;
+    });
+  });
+
+  missingSummary.innerHTML =
+    Object.entries(allMissing)
+      .sort((a,b) => b[1]-a[1])
+      .map(([name,count]) =>
+        `<p><b>${count}</b> producten: ${name}</p>`
+      ).join("") ||
+      "<p>Alle productgegevens zijn compleet.</p>";
+
+  draw();
+
+  search.addEventListener(
+    "input",
+    () => draw(search.value)
+  );
+});
+</script>
+
+</body>
+</html>
