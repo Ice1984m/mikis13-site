@@ -1,229 +1,215 @@
 <!doctype html>
 <html lang="nl">
 <head>
+
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#09000f">
-<meta name="description" content="Mikis13 — Ik bouw wat nog niet bestaat.">
-<title>Mikis13 — Ik bouw wat nog niet bestaat</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💜</text></svg>">
-<link rel="stylesheet" href="assets/style.css">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
+
+<title>Mikis13 Shop</title>
+
+<link
+rel="stylesheet"
+href="assets/css/style.css">
+
 </head>
 
 <body>
-<div class="stars"></div>
+
+<header>
+
+<div class="wrap">
 
 <nav>
-  <a class="logo" href="#home">MIKIS<span>13</span></a>
 
-  <div class="menu">
-    <a href="#projecten">Projecten</a>
-    <a href="ps5-lab.html">Games</a>
-    <a href="#human-os">Human OS</a>
-    <a href="control-plane.html">Control Plane</a>
-    <a href="#github">GitHub</a>
-  </div>
+<div class="brand">
+MIKIS<span>13</span> SHOP
+</div>
 
-  <button class="menu-button" aria-label="Menu openen">☰</button>
+<div>
+
+<a
+class="btn"
+href="checkout.html">
+🛒 Winkelwagen
+</a>
+
+<a
+class="btn"
+href="admin.html">
+Admin
+</a>
+
+</div>
+
 </nav>
 
-<main id="home">
-  <section class="hero">
-    <p class="eyebrow">MATTY MOORS — DIGITAL CREATOR</p>
+</div>
 
-    <div class="globe" aria-hidden="true">
-      <div class="globe-ring"></div>
-    </div>
+</header>
 
-    <h1>
-      IK BOUW
-      <span>WAT NOG</span>
-      NIET BESTAAT
-    </h1>
+<main class="wrap">
 
-    <a class="human-button" href="#human-os">HUMAN OS</a>
+<section class="hero">
 
-    <p class="intro">
-      Ik bouw tools, systemen en ervaringen die technologie menselijk maken.
-      Open. Veilig. Nuttig. Voor iedereen.
-    </p>
+<h1>
+Mikis13<br>
+Webshop
+</h1>
 
-    <a class="scroll" href="#projecten" aria-label="Naar projecten">♡</a>
-  
-<a class="card"
-   href="ps5-lab.html">
+<p>
+50 geselecteerde startproducten
+voor de Mikis13 dropshipping webshop.
+</p>
 
-  <div class="icon">🎮</div>
-
-  <div>
-
-    <small>
-    10 / EMULATION RESEARCH
-    </small>
-
-    <h3>
-    PS5 RUNTIME V6
-    </h3>
-
-    <p>
-    Open-source PS5 emulator research,
-    ELF loader, repair-bot
-    en Windows/Linux builds.
-    </p>
-
-  </div>
-
-</a>
 </section>
 
-  <section class="projects" id="projecten">
-    <header>
-      <p class="eyebrow">MIJN PROJECTEN</p>
-      <h2>NEON LAB</h2>
-    </header>
+<div class="controls">
 
-    <div class="project-grid">
-      <article class="card">
-        <div class="icon">◉</div>
-        <div>
-          <small>01 / INTELLIGENCE</small>
-          <h3>AI ASSISTENTEN</h3>
-          <p>Slimme hulpmiddelen die meedenken en ondersteunen.</p>
-        </div>
-      </article>
+<input
+id="search"
+placeholder="Zoeken...">
 
-      <article class="card">
-        <div class="icon">〉_</div>
-        <div>
-          <small>02 / MOBILE LAB</small>
-          <h3>TERMUX ONTWIKKELING</h3>
-          <p>Websites en programma’s rechtstreeks gebouwd vanaf Android.</p>
-        </div>
-      </article>
+<select id="category">
 
-      <article class="card">
-        <div class="icon">⬡</div>
-        <div>
-          <small>03 / SECURITY</small>
-          <h3>CYBER & PRIVACY</h3>
-          <p>Bescherming, bewustzijn en privacy als vaste basis.</p>
-        </div>
-      </article>
+<option value="">
+Alle categorieën
+</option>
 
-      <article class="card">
-        <div class="icon">▣</div>
-        <div>
-          <small>04 / CREATION</small>
-          <h3>WEBSITES & APPS</h3>
-          <p>Moderne en mensgerichte digitale ervaringen.</p>
-        </div>
-      </article>
+</select>
 
-      <article class="card">
-        <div class="icon">▥</div>
-        <div>
-          <small>05 / DASHBOARD</small>
-          <h3>MINEVAULT</h3>
-          <p>Educatieve simulaties, controle en inzichten in één dashboard.</p>
-        </div>
-      </article>
+</div>
 
-      <article class="card">
-        <div class="icon">⚒</div>
-        <div>
-          <small>06 / REPAIR</small>
-          <h3>REPAIR TECHNOLOGIE</h3>
-          <p>Repareren, hergebruiken en waardevolle techniek behouden.</p>
-        </div>
-      </article>
+<section
+id="products"
+class="grid">
+</section>
 
-      <article class="card">
-        <div class="icon">✣</div>
-        <div>
-          <small>07 / WORLDS</small>
-          <h3>GAMING</h3>
-          <p>Games en digitale werelden die verbinden en inspireren.</p>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="icon">♥</div>
-        <div>
-          <small>08 / HUMAN FIRST</small>
-          <h3>HULP VOOR MENSEN</h3>
-          <p>Praktische hulpmiddelen voor een betere toekomst.</p>
-        </div>
-      </article>
-
-      <a class="card"
-         href="control-plane.html"
-         aria-label="Bekijk Mikis13 Control Plane">
-        <div class="icon">⌘</div>
-        <div>
-          <small>09 / SYSTEM CONTROL</small>
-          <h3>MIKIS13 CONTROL PLANE</h3>
-          <p>
-            Centraal beheer voor website, GitHub,
-            security, containers, tests, repair en releases.
-          </p>
-        </div>
-      </a>
-
-      <!-- evolution-lab:development-blueprint-incubator -->
-      <a class="card"
-         href="https://github.com/Ice1984m/mikis13-lab-development-blueprint-incubator"
-         target="_blank"
-         rel="noopener">
-        <div class="icon">⚡</div>
-        <div>
-          <small>11 / EVOLUTION LAB</small>
-          <h3>DEVELOPMENT BLUEPRINT INCUBATOR</h3>
-          <p>
-            Automatisch ontdekt Mikis13 LAB-experiment.
-            Blueprint score 96/100.
-            Onderzoek en ontwikkeling — nog geen afgewerkt product.
-          </p>
-        </div>
-      </a>
-    </div>
-  </section>
-
-  <section class="human-os" id="human-os">
-    <p class="eyebrow">EEN NIEUW SOORT BESTURINGSSYSTEEM</p>
-
-    <h2>HUMAN <span>OS</span></h2>
-
-    <blockquote>
-      Technologie hoort mensen sterker te maken,
-      zonder iemand schade te doen.
-    </blockquote>
-
-    <div class="principles">
-      <span>01 — MENS EERST</span>
-      <span>02 — OPEN EN UITLEGBAAR</span>
-      <span>03 — PRIVACY</span>
-      <span>04 — GEEN SCHADE</span>
-    </div>
-  </section>
-
-  <section class="github-section" id="github">
-    <div class="github-icon">⌘</div>
-
-    <div>
-      <p class="eyebrow">OPEN SOURCE</p>
-      <h2>BOUW MEE OP GITHUB</h2>
-      <p>Samen bouwen. Iedere goede bijdrage maakt het project sterker.</p>
-    </div>
-
-    <a href="https://github.com/Ice1984m"
-       target="_blank"
-       rel="noopener">OPEN GITHUB →</a>
-  </section>
 </main>
 
-<footer>
-  <strong>MIKIS13</strong>
-  <small>© 2026 Matty Moors — alle rechten voorbehouden</small>
-</footer>
+<script>
+
+let products=[];
+
+let cart=
+JSON.parse(
+localStorage.getItem("cart")||"[]"
+);
+
+async function start(){
+
+products=
+await fetch("data/products.json")
+.then(r=>r.json());
+
+let cats=[
+...new Set(products.map(p=>p.category))
+];
+
+category.innerHTML+=
+cats.map(c=>
+`<option>${c}</option>`
+).join("");
+
+render(products);
+
+}
+
+function render(list){
+
+productsEl=
+document.getElementById("products");
+
+productsEl.innerHTML=
+list.map(p=>`
+
+<div class="card">
+
+<img
+src="${p.image}"
+alt="${p.name}">
+
+<div class="pad">
+
+<small class="muted">
+${p.category}
+</small>
+
+<h3>
+${p.name}
+</h3>
+
+<div class="row">
+
+<span class="price">
+€${p.price.toFixed(2)}
+</span>
+
+<button
+class="btn"
+onclick="add(${p.id})">
+Kopen
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`).join("");
+
+}
+
+function add(id){
+
+let product=
+products.find(p=>p.id===id);
+
+let existing=
+cart.find(p=>p.id===id);
+
+if(existing){
+existing.qty++;
+}else{
+cart.push({...product,qty:1});
+}
+
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
+
+alert("Toegevoegd aan winkelwagen");
+
+}
+
+function filter(){
+
+let q=
+search.value.toLowerCase();
+
+let c=
+category.value;
+
+render(
+products.filter(
+p=>
+p.name.toLowerCase().includes(q)
+&&
+(!c||p.category===c)
+)
+);
+
+}
+
+search.oninput=filter;
+category.onchange=filter;
+
+start();
+
+</script>
+
 </body>
 </html>
