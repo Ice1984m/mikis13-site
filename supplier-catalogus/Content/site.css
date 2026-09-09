@@ -1,0 +1,172 @@
+﻿body, html {
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+
+/* Set padding to keep content from hitting the edges */
+
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+
+.dl-horizontal dt { white-space: normal; }
+
+/* Set width on the form input elements since they're 100% wide by default */
+
+input,
+select,
+textarea { }
+
+.myuserlayoutbacktoshop { color: white !important; }
+
+.myheader {
+    margin: 0 !important;
+    padding-bottom: 22px !important;
+}
+
+
+.topMenuSelected {
+    background-color: #428bca;
+    color: #ffffff;
+    outline: 0;
+    text-decoration: none;
+}
+
+.nieuwsberichtenfoto span img { width: 50px; }
+
+/*.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width:950px;
+  transform: translate(-90%, -50%);
+}*/
+
+.modal-dialog { left: 0% !important; }
+
+.mce-notification-inner { display: none !important; }
+
+.mce-widget mce-notification mce-notification-warning mce-has-close mce-in { display: none !important; }
+
+.usermenulistitem .list-group-item {
+    background-color: #0087e3 !important;
+    color: white;
+}
+
+.usermenulistitem .list-group-item a { color: white !important; }
+
+.usermenulistitem .list-group-item a:hover { color: white !important; }
+
+.list-group-item { border: 0.1em solid black !important; }
+
+
+.mypannelstyle {
+    background-color: #f4f4f4;
+    margin: 5px 0px 15px 0px;
+    padding: 15px;
+}
+
+.usermenutitels {
+    color: black !important;
+    font-weight: 800 !important;
+}
+
+.usermenutitels span {
+    color: black !important;
+    font-weight: 800 !important;
+}
+
+.usermenutitels {
+    color: black !important;
+    cursor: context-menu;
+    font-weight: 800 !important;
+    text-decoration: none !important;
+}
+
+.myuserpannel {
+    background-color: #f4f4f4;
+    margin: 5px 0px 15px 0px;
+    padding: 15px;
+}
+
+.mce-menu { position: fixed !important }
+
+/*anders blijven de dropdown menu's staan als er in de pagina gescrolled is */
+
+/*.page-header.custom
+{
+     background-color: #217edd !important; 
+     color: transparent !important; 
+     border-color: black !important; 
+}*/
+
+.newsmargin { margin-top: 30px; }
+
+.wwwtextbox { width: 85%; }
+
+/*Everything needed to make sure the product items are loaded correctly with the kendo ListView*/
+
+.product {
+    float: left;
+    margin-bottom: 0 !important;
+    padding-bottom: 10px;
+}
+
+#ListView {
+    border: none;
+    /* Avoid cutout if font or line is bigger */
+    font: inherit;
+    margin-bottom: -1px;
+    min-height: 510px;
+    padding: 10px 5px;
+}
+
+.k-listview:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+.k-state-selected {
+    background-color: #e43a3b;
+    border-color: #e43a3b;
+}
+
+.k-pager-wrap {
+    background-color: #ffffff;
+    border: none;
+    padding: 5px 15px;
+}
+
+.product { margin-bottom: 10px; }
+
+.product .product-price-container {
+    bottom: auto !important;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.dropdown-menu > li > a.topMenuSelected { color: white; }
+
+.header-top .header-dropdown > a:hover { color: white !important; }
+
+/*To make sure the bootstrap modal does not add padding*/
+
+.modal-open { padding-right: 0px !important; }
+
+.navbar-nav .dropdown-menu.megamenu a:hover, .navbar-nav .dropdown-menu li.dropdown a:hover { color: white !important; }
+
+.category-filter-row { margin-bottom: 10px !important; }
+
+.navbar-toggle .icon-bar, .menu-toggle .icon-bar, .sidemenu-toggle .icon-bar { width: 16px !important; }
+
+.k-edit-form-container .k-button, .k-edit-form-container .k-primary:active, .k-popup .k-button, .k-popup .k-primary:active, .k-popup .k-primary:active:hover { color: white; }
+
+.k-picker-wrap.k-state-focused .k-input, .k-picker-wrap.k-state-hover .k-input { background-color: transparent; }

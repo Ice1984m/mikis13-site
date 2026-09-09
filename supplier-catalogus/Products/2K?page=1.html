@@ -1,0 +1,1388 @@
+
+
+
+<!DOCTYPE html>
+<html lang="nl-be">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-control" content="public" max-age="3600">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon" sizes="16x16">
+    <meta name="description">
+    <title>Sweater/Trui - ROX</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7COpen+Sans:300,300i,400,400i,600,600i,700,800" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" rel="stylesheet" />
+    <link href="https://kendo.cdn.telerik.com/2019.3.917/styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="https://kendo.cdn.telerik.com/2019.3.917/styles/kendo.default.min.css" rel="stylesheet" />
+    <link href="../Content/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="../Content/mySiteCss.css%3Fv=9%252F09%252F2026%200:00:00.css" rel="stylesheet" />
+    <link href="../Content/datepicker.css" rel="stylesheet" />
+
+    
+    <link href="../Content/bootstrap.css" rel="stylesheet"/>
+<link href="../Content/site.css" rel="stylesheet"/>
+<link href="../Content/css/layers.css" rel="stylesheet"/>
+<link href="../Content/css/navigation.css" rel="stylesheet"/>
+<link href="../Content/css/plugins.min.css" rel="stylesheet"/>
+<link href="../Content/css/settings.css" rel="stylesheet"/>
+<link href="../Content/css/style.css" rel="stylesheet"/>
+
+    <script src="../Scripts/modernizr-2.6.2.js"></script>
+
+    <script src="../Content/js/plugins.min.js"></script>
+<script src="../Content/js/main.js"></script>
+<script src="../Content/js/jquery.themepunch.revolution.min.js"></script>
+<script src="../Content/js/jquery.themepunch.tools.min.js"></script>
+
+
+    <!--This bundle was moved by the Telerik VS Extensions for compatibility reasons-->
+    <script src="https://kendo.cdn.telerik.com/2019.3.917/js/jquery.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2019.3.917/js/kendo.all.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2019.3.917/js/kendo.aspnetmvc.min.js"></script>
+    <script src="../Scripts/cultures/kendo.culture.nl-BE.min.js"></script>
+    <script>
+        kendo.culture("nl-BE");
+    </script>
+<link rel="stylesheet" href="../mikis13.css">
+</head>
+<body>
+<div class="mikis13-header">
+<h1>Mikis13 Webshop</h1>
+<p>Supplier catalogus - verkoopprijs inclusief 25% opslag</p>
+</div>
+
+    <div class="">
+        <header class="header sticky-header">
+
+            <!-- 1. TOPBALK (Login, Registreren, Taal) -->
+            <div class="header-top" style="background-color: #ffffff; border-bottom: 1px solid #eee;">
+                <div class="container">
+
+
+<div class="container">
+    <div class="top-bar-right pull-right" style="display: flex; justify-content: flex-end; align-items: center; gap: 20px; font-size: 11px; text-transform: uppercase; padding: 5px 0;">
+
+            <a href="https://webshop.roxis.eu/Account/Login" style="color: #333; font-weight: bold; text-decoration: none;">Klantenlogin</a>
+                <a href="https://webshop.roxis.eu/Account/Register" style="color: #333; font-weight: bold; text-decoration: none;">Registreren als klant</a>
+
+        <!-- NIEUW: De Contact link zonder de <li> tag, perfect passend bij de rest -->
+        <a href="https://webshop.roxis.eu/Contact" style="color: #333; font-weight: bold; text-decoration: none;">Contact</a>
+
+            <div class="dropdown header-dropdown">
+                <a href="2K%3Fpage=1.html#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: #333; font-weight: bold; text-decoration: none;">Taal</a>
+                <ul class="dropdown-menu dropdown-menu-right" style="min-width: auto;">
+                        <li>
+                            <a href="https://webshop.roxis.eu/Menu/LanguageCookie?language=D" class="setlangcookie ">Duits</a>
+                        </li>
+                        <li>
+                            <a href="https://webshop.roxis.eu/Menu/LanguageCookie?language=E" class="setlangcookie ">Engels</a>
+                        </li>
+                        <li>
+                            <a href="https://webshop.roxis.eu/Menu/LanguageCookie?language=F" class="setlangcookie ">Frans</a>
+                        </li>
+                        <li>
+                            <a href="https://webshop.roxis.eu/Menu/LanguageCookie?language=N" class="setlangcookie topMenuSelected">Nederlands</a>
+                        </li>
+                </ul>
+            </div>
+
+    </div>
+</div>
+
+
+
+
+                </div>
+            </div>
+
+            <!-- 2. INNER BALK (Logo links, Winkelmand rechts) -->
+            <div class="header-inner" style="background-color: #ffffff; padding: 15px 0;">
+                <!-- De container heb je al in de Inner file gezet, dus die laden we hier direct in -->
+
+
+<!-- Geen .container meer nodig, want dit zit al in de flexbox van de Layout -->
+<div class="container logo-cart-wrapper" style="align-items: center; justify-content: space-between; width: 100%;">
+
+    <!-- Het Logo -->
+    <a href="https://roxis.eu" class="site-logo" title="logo">
+        <img src="../Content/images/logoRox.png" alt="logo" style="max-height: 50px;" />
+    </a>
+
+    <!-- Het Winkelmandje -->
+    <div class="cart-wrapper" style="">
+
+<!--Shopping Cart-->
+
+<script>
+    function clearCart() {
+        $.ajax({
+            url: "/Cart/ResetCookieCart",
+            type: "GET",
+            dataType: 'json',
+            success: function(data) {
+                //everything went fine
+                if (!data.error) {
+                    $('#ShoppingCart').load('/Menu/_MenuCart');
+                } else {
+                    alert(data.message);
+                }
+            },
+            error: function(data) {
+                //something went wrong
+                alert(error);
+            }
+        });
+    }
+
+    function reloadCart() {
+        $('#ShoppingCart').load('/Menu/_MenuCart');
+    }
+</script>
+    </div>
+
+</div>
+
+<script>
+    var i = "False";
+    var id = "f434356f-ab97-40f0-b080-1ef3d734cb4d";
+    $(document).ready(function() {
+        //if (i == "True")
+        //{
+        //fillCartOnload(id);
+        //}
+    });
+</script>
+
+
+            </div>
+
+            <!-- 3. BOTTOM BALK (Menu gecentreerd in de grijze balk) -->
+            <div class="header-bottom" style="background-color: #f6f6f9; border-top: 1px solid #eaeaea; border-bottom: 1px solid #eaeaea;">
+                <div class="container">
+
+<style>
+    /* Styling voor het nieuwe strakke hoofdmenu */
+    .main-navigation {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        gap: 30px;
+        align-items: center;
+        justify-content: right;
+        width: 100%;
+    }
+
+        .main-navigation > li > a {
+            display: block;
+            padding: 20px 0;
+            color: #000;
+            font-weight: bold;
+            font-size: 13px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s ease;
+            white-space: nowrap; /* <-- DEZE REGEL VOORKOMT DAT WOORDEN AFBREKEN */
+        }
+
+        /* De rode lijn voor actieve items en hover */
+        .main-navigation > li.active > a,
+        .main-navigation > li:hover > a {
+            border-bottom: 2px solid #e30613;
+        }
+
+        .main-navigation .fa-angle-down {
+            font-size: 12px;
+            margin-left: 4px;
+            color: #666;
+        }
+
+    .nav-custom-reset {
+        background: transparent;
+        border: none;
+        margin-bottom: 0;
+    }
+
+    /* MEGA MENU STYLING (Voor "Ons Aanbod") */
+    .megamenu-container {
+        position: static !important; /* Zorgt dat het menu de hele breedte kan pakken */
+    }
+        .megamenu-container > a {
+            position: relative;
+            z-index: 1001;
+        }
+
+    .megamenu-dropdown {
+        position: absolute;
+        left: 0;
+        right: 0;
+        width: 100%;
+        background: #fff;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        padding: 30px;
+        display: none; /* Standaard verborgen */
+        z-index: 1000;
+        border-top: 1px solid #eee;
+    }
+
+
+    .megamenu-container:hover .megamenu-dropdown {
+        display: block; /* Toon bij hover */
+    }
+
+    .mega-menu-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3 kolommen naast elkaar */
+        gap: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .mega-category-item {
+        text-align: center;
+        padding: 20px;
+        border: 1px solid #f0f0f0;
+        border-radius: 4px;
+        text-decoration: none;
+        color: #000;
+        transition: box-shadow 0.3s ease;
+    }
+
+        .mega-category-item:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            text-decoration: none;
+            color: #e30613;
+        }
+
+        .mega-category-item img {
+            max-height: 80px;
+            margin-bottom: 15px;
+            object-fit: contain;
+        }
+
+    .mega-category-title {
+        font-weight: bold;
+        font-size: 14px;
+        text-transform: uppercase;
+    }
+
+    /* --- STYLING SPECIFIEK VOOR HET MERKEN GRID --- */
+    .brands-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr); /* 5 logo's naast elkaar */
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+        align-items: center; /* Zorgt dat alle logo's verticaal perfect in het midden staan */
+    }
+
+    .mega-brand-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 15px;
+        transition: transform 0.2s ease-in-out;
+    }
+
+        /* Een subtiel zoom-effectje als je met de muis over het logo gaat */
+        .mega-brand-item:hover {
+            transform: scale(1.08);
+        }
+
+        .mega-brand-item img {
+            max-width: 100%;
+            max-height: 70px; /* Zorgt dat geen enkel logo te hoog uitschiet */
+            object-fit: contain;
+            transition: filter 0.3s ease;
+        }
+
+    /* --- STYLING VOOR ZOEKBALK EN SNEL BESTELLEN --- */
+    .menu-action-item {
+        display: flex;
+        align-items: center;
+        margin-left: 15px; /* Beetje afstand van de gewone menu items */
+    }
+
+    .menu-search-form {
+        display: flex;
+        margin: 0;
+        align-items: center;
+    }
+
+    .menu-search-input {
+        height: 34px;
+        border: 1px solid #ccc;
+        border-right: none;
+        border-radius: 4px 0 0 4px;
+        box-shadow: none;
+        font-size: 12px;
+        padding: 5px 10px;
+        width: 160px;
+    }
+
+    .menu-search-btn {
+        height: 34px;
+        background-color: #e30613;
+        color: white;
+        border: 1px solid #e30613;
+        border-radius: 0 4px 4px 0;
+        padding: 0 12px;
+        transition: background 0.3s;
+    }
+
+        .menu-search-btn:hover {
+            background-color: #b30510; /* Iets donkerder rood bij hover */
+            color: white;
+        }
+
+    /* Maakt van 'Snel bestellen' een mooie knop in het menu */
+    .btn-quickorder {
+        display: inline-block !important;
+        padding: 8px 15px !important;
+        border: 2px solid #e30613 !important;
+        border-radius: 4px !important;
+        color: #e30613 !important;
+        background-color: transparent;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 12px;
+        line-height: 1;
+        transition: all 0.3s ease;
+    }
+
+        .btn-quickorder:hover {
+            background-color: #e30613 !important;
+            color: #ffffff !important;
+        }
+
+    /* Zorg dat standaard dropdowns (zoals Praktisch) ook op hover openen op grote schermen */
+    .main-navigation .dropdown:hover > .dropdown-menu {
+        display: block;
+        margin-top: 0; /* Zorgt dat hij strak aansluit */
+    }
+</style>
+
+<div style="position: relative; width: 100%;">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav-container">
+        <span class="toggle-text">Menu</span>
+        <span class="icon-bar" style="background-color:#333;"></span>
+        <span class="icon-bar" style="background-color:#333;"></span>
+        <span class="icon-bar" style="background-color:#333;"></span>
+    </button>
+
+    <div class="container collapse navbar-collapse" id="main-nav-container" style="padding: 0;">
+        <ul class="main-navigation">
+
+            <li class="active"><a href="https://roxis.eu">Home</a></li>
+
+            <!-- MEGA MENU: ONZE MERKEN -->
+            <li class="dropdown megamenu-container">
+                <a href="https://roxis.eu/onze-merken/" class="dropdown-toggle">
+                    Onze merken <i class="fa fa-angle-down"></i>
+                </a>
+
+                <div class="megamenu-dropdown">
+                    <div class="brands-grid">
+                        <!-- Merk 1 -->
+                        <a href="https://roxis.eu/merk/diadora-utility/" class="mega-brand-item">
+                            <img src="../Content/images/merken/diadora.png" alt="Diadora" />
+                        </a>
+                        <!-- Merk 2 -->
+                        <a href="https://roxis.eu/merk/buff-safety/" class="mega-brand-item">
+                            <img src="../Content/images/merken/buff-v2.png" alt="Buff" />
+                        </a>
+                        <!-- Merk 3 -->
+                        <a href="https://roxis.eu/merk/odin/" class="mega-brand-item">
+                            <img src="../Content/images/merken/odin.png" alt="Odin" />
+                        </a>
+                        <!-- Merk 4 -->
+                        <a href="https://roxis.eu/merk/lemaitre-securite/" class="mega-brand-item">
+                            <img src="../Content/images/merken/lemaitre.png" alt="Lemaitre" />
+                        </a>
+                        <!-- Merk 5 -->
+                        <a href="https://roxis.eu/merk/birckenstock-professional/" class="mega-brand-item">
+                            <img src="../Content/images/merken/birk.png" alt="Birkenstock" />
+                        </a>
+                        <!-- Merk 6 -->
+                        <a href="https://roxis.eu/merk/kratos-safety/" class="mega-brand-item">
+                            <img src="../Content/images/merken/kratos.png" alt="Kratos Safety" />
+                        </a>
+                        <!-- Merk 7 -->
+                        <a href="https://roxis.eu/merk/pyramex/" class="mega-brand-item">
+                            <img src="../Content/images/merken/pyrex.png" alt="Pyramex" />
+                        </a>
+                        <!-- Merk 8 -->
+                        <a href="https://roxis.eu/merk/techno-boots/" class="mega-brand-item">
+                            <img src="../Content/images/merken/technoboots-v2.png" alt="Technoboots" />
+                        </a>
+                        <!-- Merk 9 -->
+                        <a href="https://roxis.eu/merk/lagolight/" class="mega-brand-item">
+                            <img src="../Content/images/merken/lagolight.png" alt="Lagolight" />
+                        </a>
+                        <!-- Merk 10 -->
+                        <a href="https://roxis.eu/merk/bennon/" class="mega-brand-item">
+                            <img src="../Content/images/merken/bennon.png" alt="Bennon" />
+                        </a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- HET NIEUWE ONS AANBOD (Mega Menu) -->
+                <li class="dropdown megamenu-container" style="">
+                    <a href="https://roxis.eu/ons-aanbod" class="dropdown-toggle">
+                        Ons aanbod <i class="fa fa-angle-down"></i>
+                    </a>
+
+                    <div class="megamenu-dropdown">
+                        <div class="mega-menu-grid">
+                            <!-- Loop door de hoofdcategorieën (vader == null) -->
+                                <a href="https://webshop.roxis.eu/Categories/1" class="mega-category-item">
+                                    <!-- Tip: Pas het src pad aan naar waar jullie de categorie-afbeeldingen opslaan -->
+                                    <img src="https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/Hoofdbescherming.jpg" onerror="this.src='/Content/images/product.jpg'" alt="Hoofdbescherming" />
+                                    <div class="mega-category-title">Hoofdbescherming</div>
+                                </a>
+                                <a href="https://webshop.roxis.eu/Categories/2" class="mega-category-item">
+                                    <!-- Tip: Pas het src pad aan naar waar jullie de categorie-afbeeldingen opslaan -->
+                                    <img src="https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/Lichaamsbescherming.jpg" onerror="this.src='/Content/images/product.jpg'" alt="Lichaamsbescherming" />
+                                    <div class="mega-category-title">Lichaamsbescherming</div>
+                                </a>
+                                <a href="https://webshop.roxis.eu/Categories/3" class="mega-category-item">
+                                    <!-- Tip: Pas het src pad aan naar waar jullie de categorie-afbeeldingen opslaan -->
+                                    <img src="https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/hand.jpg" onerror="this.src='/Content/images/product.jpg'" alt="Handbescherming" />
+                                    <div class="mega-category-title">Handbescherming</div>
+                                </a>
+                                <a href="https://webshop.roxis.eu/Categories/4" class="mega-category-item">
+                                    <!-- Tip: Pas het src pad aan naar waar jullie de categorie-afbeeldingen opslaan -->
+                                    <img src="https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/Voetbescherming.jpg" onerror="this.src='/Content/images/product.jpg'" alt="Voetbescherming" />
+                                    <div class="mega-category-title">Voetbescherming</div>
+                                </a>
+                                <a href="https://webshop.roxis.eu/Categories/5" class="mega-category-item">
+                                    <!-- Tip: Pas het src pad aan naar waar jullie de categorie-afbeeldingen opslaan -->
+                                    <img src="https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/Valbeveiliging.jpg" onerror="this.src='/Content/images/product.jpg'" alt="Valbeveiliging" />
+                                    <div class="mega-category-title">Valbeveiliging</div>
+                                </a>
+                                <a href="https://webshop.roxis.eu/Categories/6" class="mega-category-item">
+                                    <!-- Tip: Pas het src pad aan naar waar jullie de categorie-afbeeldingen opslaan -->
+                                    <img src="https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/Veiligheidstoebehoren.jpg" onerror="this.src='/Content/images/product.jpg'" alt="Veiligheidstoebehoren en collectieve bescherming" />
+                                    <div class="mega-category-title">Veiligheidstoebehoren en collectieve bescherming</div>
+                                </a>
+                                <a href="https://webshop.roxis.eu/Categories/7" class="mega-category-item">
+                                    <!-- Tip: Pas het src pad aan naar waar jullie de categorie-afbeeldingen opslaan -->
+                                    <img src="https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/Displays.jpg" onerror="this.src='/Content/images/product.jpg'" alt="Displays" />
+                                    <div class="mega-category-title">Displays</div>
+                                </a>
+                                <a href="https://webshop.roxis.eu/Categories/8" class="mega-category-item">
+                                    <!-- Tip: Pas het src pad aan naar waar jullie de categorie-afbeeldingen opslaan -->
+                                    <img src="https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/Outlet.jpg" onerror="this.src='/Content/images/product.jpg'" alt="Outlet" />
+                                    <div class="mega-category-title">Outlet</div>
+                                </a>
+                                <a href="https://webshop.roxis.eu/Categories/9" class="mega-category-item">
+                                    <!-- Tip: Pas het src pad aan naar waar jullie de categorie-afbeeldingen opslaan -->
+                                    <img src="https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/Tools.jpg" onerror="this.src='/Content/images/product.jpg'" alt="Gereedschap" />
+                                    <div class="mega-category-title">Gereedschap</div>
+                                </a>
+                        </div>
+                    </div>
+                </li>
+
+            <li class="">
+                <a href="https://roxis.eu/inspiratie">Inspiratie</a>
+            </li>
+
+            <li class="">
+                <a href="https://roxis.eu/verkooppunten">Verkooppunten</a>
+            </li>
+
+            <!-- PRAKTISCH (Voorheen "Meer info") -->
+            <li class="dropdown">
+                <a href="2K%3Fpage=1.html#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                    Praktisch <i class="fa fa-angle-down"></i>
+                </a>
+                <ul class="dropdown-menu bottom-dd-bg-color" role="menu">
+                    
+                    <li><a href="https://webshop.roxis.eu/moreInfo/PrivacyPolicy">Privacybeleid</a></li>
+                    <li><a href="https://webshop.roxis.eu/moreInfo/Disclaimer">Voorwaarden</a></li>
+                    
+                    <li><a href="https://webshop.roxis.eu/moreInfo/GarantieRetouren">Garantie en Retouren</a></li>
+                </ul>
+            </li>
+
+            <!-- NIEUW: SNEL BESTELLEN KNOP -->
+
+            <!-- NIEUW: ZOEKFUNCTIE (Nu perfect uitgelijnd) -->
+                    <li class="menu-action-item">
+                        <form method="post" action="https://webshop.roxis.eu/Products/Search" class="menu-search-form">
+                            <input id="search" name="search" type="search" class="menu-search-input" placeholder="Zoeken..." required>
+                            <button type="submit" class="menu-search-btn">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </form>
+                    </li>
+
+        </ul>
+    </div>
+</div>
+
+
+                </div>
+            </div>
+
+            <!-- EVENTUEEL COOKIE SCRIPT (Alleen in shoplayout) -->
+            <!-- Laat in de shoplayout je cookie script hier netjes staan, vlak voor </header> -->
+            <!-- Jouw originele cookieconsent script blijft hier netjes staan -->
+            <!--https://cookieconsent.insites.com/download/-->
+            <!--https://www.lincelot.com/cookiewetgeving-website-belgie/-->
+            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+            <script>
+                window.addEventListener("load",
+                    function () {
+                        window.cookieconsent.initialise({
+                            "palette": {
+                                "popup": {
+                                    "background": "#e43a3b"
+                                },
+                                "button": {
+                                    "background": "#fff",
+                                    "text": "#e43a3b"
+                                }
+                            },
+                            "theme": "classic",
+                            "content": {
+                                "message": "",
+                                "dismiss": "",
+                                "link": "",
+                                "href": ""
+                            }
+                        });
+                    });
+            </script>
+
+        </header>
+        <div class="main backgroundShopSite">
+            <div class="container">
+                
+
+<style>
+    /* Zorgt ervoor dat de link geen standaard blauwe of paarse kleur krijgt */
+    .rox-banner-link {
+        text-decoration: none !important;
+        display: block;
+    }
+
+    .rox-dealer-banner {
+        padding: 15px 20px;
+        border: 2px solid #e30613; /* Het ROX rood */
+        background-color: #fff5f5; /* Heel subtiele, lichte rode/roze gloed als achtergrond */
+        color: #333333; /* Goed leesbare donkere tekst */
+        border-radius: 4px; /* Subtiel afgeronde hoeken, passend bij de rest van de shop */
+        font-size: 14px;
+        line-height: 1.5;
+        transition: all 0.3s ease;
+    }
+
+    /* Subtiel effect wanneer de klant met de muis over de banner beweegt */
+    .rox-banner-link:hover .rox-dealer-banner {
+        background-color: #e30613; /* Achtergrond wordt volledig rood */
+        color: #ffffff; /* Tekst wordt wit */
+        box-shadow: 0 4px 12px rgba(227, 6, 19, 0.15); /* Zachte schaduw */
+    }
+
+        /* Zorgt dat het icoontje ook netjes meekleurt bij de hover */
+        .rox-banner-link:hover .rox-dealer-banner i {
+            color: #ffffff !important;
+        }
+</style>
+
+<div class="row">
+    <div style="">
+        
+<style>
+    .isa_info, .isa_success, .isa_warning, .isa_error {
+        border-radius: 2px;
+        margin: 10px 0px;
+        padding: 2px;
+    }
+
+    .isa_info {
+        background-color: #BDE5F8;
+        color: #00529B;
+    }
+
+    .isa_success {
+        background-color: #DFF2BF;
+        color: #4F8A10;
+    }
+
+    .isa_warning {
+        background-color: #FEEFB3;
+        color: #9F6000;
+    }
+
+    .isa_error {
+        background-color: #FFD2D2;
+        color: #D8000C;
+    }
+
+    .isa_info i, .isa_success i, .isa_warning i, .isa_error i {
+        font-size: 1em;
+        margin: 10px 22px;
+        vertical-align: middle;
+    }
+</style>
+
+    </div>
+</div>
+
+<div class="row mt25">
+    <div class="col-md-12">
+        <a href="https://roxis.eu/verkooppunten/" class="rox-banner-link">
+            <div class="rox-dealer-banner" role="alert">
+                <i class="fa fa-map-marker" style="margin-right: 8px; font-size: 16px;"></i>
+                Het aanbod van ROX is enkel verkrijgbaar via onze erkende verkooppunten. <strong>Ontdek hier een verkooppunt in jouw buurt.</strong>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="mb25"></div>
+        <!--filters-->
+
+<style>
+
+    .k-slider-horizontal .k-slider-selection, .k-slider-horizontal .k-slider-track {
+        background-repeat: repeat-x;
+        height: 8px;
+        margin-top: -4px;
+        top: 50%;
+    }
+
+
+    .center {
+        margin-bottom: auto;
+        margin-top: auto;
+        text-align: center;
+    }
+
+
+    .k-slider-selection { background-color: #e43a3b; }
+
+
+    .sidebar .filter-group-widget .panel-body { padding: 25px 0 30px; }
+
+
+    li.k-tick { display: none; }
+
+    .k-draghandle.k-state-focused.k-state-selected {
+        background-color: #b31213 !important;
+        border-color: #b31213 !important;
+    }
+</style>
+<aside id="filtermenu" class="col-md-3 sidebar shop-sidebar sidemenushow" style="padding-left: 30px; padding-right: 30px;">
+    <div class="widget">
+        <div class="filter-group-widget">
+            <div class="panel-group mt45" role="tablist" aria-multiselectable="true">
+                <form id="SidePannelForm" name="formToSerialize">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="brandFilter-header">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="2K%3Fpage=1.html#brandFilter" aria-expanded="true" aria-controls="brandFilter">
+                                        Merk
+                                        <span class="panel-icon"></span>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="brandFilter" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="brandFilter-header" aria-expanded="true" style="">
+                                <div class="panel-body">
+                                    <ul class="filter-brand-list">
+                                            <li data-merk="DIADOR"><input class="k-checkbox" id="Merken_0__Value" name="Merken[0].Value" type="checkbox" value="true" /><label class="k-checkbox-label" for="Merken_0__Value">DIADORA</label><input name="Merken[0].Value" type="hidden" value="false" /></li>
+                                    </ul>
+                                </div><!-- End .panel-body -->
+                            </div>
+                        </div>
+
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="brandFilter-0-header">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" href="2K%3Fpage=1.html#brandFilter0" aria-expanded="true" aria-controls="brandFilter0">
+                                            Alle maten
+                                            <span class="panel-icon"></span>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="brandFilter0" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="brandFilter-0-header" aria-expanded="true" style="">
+                                    <div class="panel-body">
+                                        <ul class="filter-brand-list">
+                                                <li data-eig="SC" data-waarde="XS"><input class="k-checkbox" id="ProductEigenschappen_0__Waarden_0__value" name="ProductEigenschappen[0].Waarden[0].value" type="checkbox" value="true" /><label class="k-checkbox-label" for="ProductEigenschappen_0__Waarden_0__value">XS</label><input name="ProductEigenschappen[0].Waarden[0].value" type="hidden" value="false" /></li>
+                                                <li data-eig="SC" data-waarde="S"><input class="k-checkbox" id="ProductEigenschappen_0__Waarden_1__value" name="ProductEigenschappen[0].Waarden[1].value" type="checkbox" value="true" /><label class="k-checkbox-label" for="ProductEigenschappen_0__Waarden_1__value">S</label><input name="ProductEigenschappen[0].Waarden[1].value" type="hidden" value="false" /></li>
+                                                <li data-eig="SC" data-waarde="M"><input class="k-checkbox" id="ProductEigenschappen_0__Waarden_2__value" name="ProductEigenschappen[0].Waarden[2].value" type="checkbox" value="true" /><label class="k-checkbox-label" for="ProductEigenschappen_0__Waarden_2__value">M</label><input name="ProductEigenschappen[0].Waarden[2].value" type="hidden" value="false" /></li>
+                                                <li data-eig="SC" data-waarde="L"><input class="k-checkbox" id="ProductEigenschappen_0__Waarden_3__value" name="ProductEigenschappen[0].Waarden[3].value" type="checkbox" value="true" /><label class="k-checkbox-label" for="ProductEigenschappen_0__Waarden_3__value">L</label><input name="ProductEigenschappen[0].Waarden[3].value" type="hidden" value="false" /></li>
+                                                <li data-eig="SC" data-waarde="XL"><input class="k-checkbox" id="ProductEigenschappen_0__Waarden_4__value" name="ProductEigenschappen[0].Waarden[4].value" type="checkbox" value="true" /><label class="k-checkbox-label" for="ProductEigenschappen_0__Waarden_4__value">XL</label><input name="ProductEigenschappen[0].Waarden[4].value" type="hidden" value="false" /></li>
+                                                <li data-eig="SC" data-waarde="2XL"><input class="k-checkbox" id="ProductEigenschappen_0__Waarden_5__value" name="ProductEigenschappen[0].Waarden[5].value" type="checkbox" value="true" /><label class="k-checkbox-label" for="ProductEigenschappen_0__Waarden_5__value">2XL</label><input name="ProductEigenschappen[0].Waarden[5].value" type="hidden" value="false" /></li>
+                                                <li data-eig="SC" data-waarde="3XL"><input class="k-checkbox" id="ProductEigenschappen_0__Waarden_6__value" name="ProductEigenschappen[0].Waarden[6].value" type="checkbox" value="true" /><label class="k-checkbox-label" for="ProductEigenschappen_0__Waarden_6__value">3XL</label><input name="ProductEigenschappen[0].Waarden[6].value" type="hidden" value="false" /></li>
+                                                <li data-eig="SC" data-waarde="4XL"><input class="k-checkbox" id="ProductEigenschappen_0__Waarden_7__value" name="ProductEigenschappen[0].Waarden[7].value" type="checkbox" value="true" /><label class="k-checkbox-label" for="ProductEigenschappen_0__Waarden_7__value">4XL</label><input name="ProductEigenschappen[0].Waarden[7].value" type="hidden" value="false" /></li>
+                                                                                    </ul>
+                                    </div><!-- End .panel-body -->
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="brandFilter-1-header">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" href="2K%3Fpage=1.html#brandFilter1" aria-expanded="true" aria-controls="brandFilter1">
+                                            Kleur
+                                            <span class="panel-icon"></span>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="brandFilter1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="brandFilter-1-header" aria-expanded="true" style="">
+                                    <div class="panel-body">
+                                        <ul class="filter-brand-list">
+                                                <li data-eig="KLEUR" data-waarde="ZWART"><input class="k-checkbox" id="ProductEigenschappen_1__Waarden_0__value" name="ProductEigenschappen[1].Waarden[0].value" type="checkbox" value="true" /><label class="k-checkbox-label" for="ProductEigenschappen_1__Waarden_0__value">Zwart</label><input name="ProductEigenschappen[1].Waarden[0].value" type="hidden" value="false" /></li>
+                                                <li data-eig="KLEUR" data-waarde="BLAUW"><input class="k-checkbox" id="ProductEigenschappen_1__Waarden_1__value" name="ProductEigenschappen[1].Waarden[1].value" type="checkbox" value="true" /><label class="k-checkbox-label" for="ProductEigenschappen_1__Waarden_1__value">Blauw</label><input name="ProductEigenschappen[1].Waarden[1].value" type="hidden" value="false" /></li>
+                                                <li data-eig="KLEUR" data-waarde="GRIJS"><input class="k-checkbox" id="ProductEigenschappen_1__Waarden_2__value" name="ProductEigenschappen[1].Waarden[2].value" type="checkbox" value="true" /><label class="k-checkbox-label" for="ProductEigenschappen_1__Waarden_2__value">Grijs</label><input name="ProductEigenschappen[1].Waarden[2].value" type="hidden" value="false" /></li>
+                                                <li data-eig="KLEUR" data-waarde="GROEN"><input class="k-checkbox" id="ProductEigenschappen_1__Waarden_3__value" name="ProductEigenschappen[1].Waarden[3].value" type="checkbox" value="true" /><label class="k-checkbox-label" for="ProductEigenschappen_1__Waarden_3__value">Groen</label><input name="ProductEigenschappen[1].Waarden[3].value" type="hidden" value="false" /></li>
+                                                                                    </ul>
+                                    </div><!-- End .panel-body -->
+                                </div>
+                            </div>
+
+
+                    <input data-val="true" data-val-number="The field BuyPriceLow must be a number." data-val-required="Het veld BuyPriceLow is vereist." id="BuyPriceLow" name="BuyPriceLow" type="hidden" value="0" />
+                    <input data-val="true" data-val-number="The field BuyPriceHigh must be a number." data-val-required="Het veld BuyPriceHigh is vereist." id="BuyPriceHigh" name="BuyPriceHigh" type="hidden" value="0" />
+                    <input id="Cat" name="Cat" type="hidden" value="2K" />
+                    <input data-val="true" data-val-number="The field Sort must be a number." data-val-required="Het veld Sort is vereist." id="Sort" name="Sort" type="hidden" value="1" />
+                    <input id="Search" name="Search" type="hidden" value="" />
+
+
+                                                <div class="filter-price-action mt10 center">
+                                <a href="2K%3Fpage=1.html#" class="btn btn-custom btn-sm" style="width: 49%" id="filterButton">Filter</a>
+                                <a href="2K%3Fpage=1.html#" class="btn btn-black btn-sm" style="width: 49%" id="resetButton">Opnieuw instellen</a>
+                            </div>
+                            <!-- End .filter-price -->
+                </form>
+            </div><!-- End .panel-group -->
+        </div><!-- End .filter-widget -->
+    </div><!-- End .widget -->
+    <div class="mt25 mb25"></div>
+</aside>
+
+<script>
+    $(document).ready(function() {
+        if ($("#priceFilter-header").length > 0) {
+            var slider = $("#slider").data("kendoRangeSlider");
+            $("#BuyPriceLow").val(slider.values()[0]);
+            $("#BuyPriceHigh").val(slider.values()[1]);
+            $("#price-range-low").val(slider.values()[0]);
+            $("#price-range-high").val(slider.values()[1]);
+        }
+    });
+
+
+    $(window).on('resize',
+        function() {
+            if ($("#priceFilter-header").length > 0) {
+                var slider = $("#slider").data("kendoRangeSlider");
+                slider.wrapper.css("width", "90%");
+                slider.resize();
+            }
+        });
+
+
+    function sliderFilterChange(e) {
+        $("#BuyPriceLow").val(e.values[0]);
+        $("#price-range-low").val(e.values[0]);
+        $("#BuyPriceHigh").val(e.values[1]);
+        $("#price-range-high").val(e.values[1]);
+    }
+
+
+    $("#price-range-low").change(function() {
+        var slider = $("#slider").data("kendoRangeSlider");
+        $("#BuyPriceLow").val($("#price-range-low").val());
+        slider.values([$("#BuyPriceLow").val(), $("#BuyPriceHigh").val()]);
+    });
+
+
+    $("#price-range-high").change(function() {
+        var slider = $("#slider").data("kendoRangeSlider");
+        $("#BuyPriceHigh").val($("#price-range-high").val());
+        slider.values([$("#BuyPriceLow").val(), $("#BuyPriceHigh").val()]);
+    });
+    
+    // Bouwt de filter-payload uit enkel de AANGEVINKTE selectie. Het volledige paneel
+    // meesturen liep in grote categorieen over de request-limieten van IIS/HTTP.sys.
+    function buildFilterPayload() {
+        var data = {}, form = $('#SidePannelForm');
+        if (!form.length) { return data; }
+
+        $.each(['Cat', 'Sort', 'BuyPriceLow', 'BuyPriceHigh', 'Search'], function(_, id) {
+            var el = form.find('#' + id);
+            if (el.length) { data[id] = el.val(); }
+        });
+
+        // Indices moeten aaneensluitend zijn: de model binder van MVC stopt bij het eerste gat.
+        // Daarom tellen m/e/w over de aangevinkte items, niet over de rij in het paneel.
+        var m = 0;
+        form.find('li[data-merk]').has('input[type=checkbox]:checked').each(function() {
+            data['Merken[' + m + '].MerkNaam'] = $(this).attr('data-merk');
+            data['Merken[' + m + '].Value'] = true;
+            m++;
+        });
+
+        var e = 0, byEig = {};
+        form.find('li[data-waarde]').has('input[type=checkbox]:checked').each(function() {
+            var eig = $(this).attr('data-eig');
+            if (!(eig in byEig)) {
+                byEig[eig] = { i: e++, w: 0 };
+                data['ProductEigenschappen[' + byEig[eig].i + '].eigenschap_code'] = eig;
+            }
+            var p = 'ProductEigenschappen[' + byEig[eig].i + '].Waarden[' + byEig[eig].w++ + ']';
+            data[p + '.waarde_code'] = $(this).attr('data-waarde');
+            data[p + '.value'] = true;
+        });
+
+        return data;
+    }
+
+
+    $("#resetButton").click(function() {
+        if ($("#priceFilter-header").length > 0) {
+            $("input[type='checkbox']").removeAttr('checked');
+            var slider = $("#slider").data("kendoRangeSlider");
+            slider.values([slider.min(), slider.max()]);
+            $("#price-range-low").val(slider.min());
+            $("#price-range-high").val(slider.max());
+            $("#BuyPriceHigh").val(slider.max());
+            $("#BuyPriceLow").val(slider.min());
+        } else {
+            $("input[type='checkbox']").removeAttr('checked');
+        }
+
+
+        $.ajax({
+            url: '/Menu/ResetFilters',
+            type: 'POST',
+            dataType: 'json',
+            data: buildFilterPayload(),
+            success: function(data) {
+                //everything went fine
+                if (data.error === false) {
+                    $("#replacethis").parent().html(data.message);
+                    $("#countForProducts").text("Totaal: " + data.productCount);
+                    resetHeightItems();
+                } else {
+                    //things went wrong, show error
+                    alert("else function went wrong");
+                }
+            },
+            error: function(data) {
+                //something went wrong
+                alert('something went wrong');
+            }
+        });
+    });
+
+
+    $("#filterButton").click(function() {
+        var cardView = false;
+        var values = $('#ddNumberOfValues').val();
+        var search = $('#SearchedString').val();
+        var sort = $('#ddSortBy').val();
+
+
+        if ($('#btnListViewGrid').hasClass('btn-custom')) {
+            cardView = true;
+        }
+
+        $.ajax({
+            url: '/Products/FilterAndSort',
+            type: 'POST',
+            dataType: 'json',
+            data: $.extend(buildFilterPayload(), {
+                zoeknaam: search,
+                sort: sort,
+                pagesize: values,
+                cardView: cardView
+            }),
+            success: function(data) {
+                //everything went fine
+                if (data.error === false) {
+                    $("#replacethis").parent().html(data.message);
+                    $("#countForProducts").text("Totaal: " + data.productCount);
+                    resetHeightItems();
+                } else {
+                    //things went wrong, show error
+                    alert("else function went wrong");
+                }
+            },
+            error: function(data) {
+                //something went wrong
+                alert('something went wrong');
+            }
+        });
+    });
+
+
+</script>
+    <!--producten-->
+    <div class="col-md-9">
+        <div class="col-md-12">
+                <h1 class="pagetitels">Sweater/Trui</h1>
+
+            <div class="category-filter-row">
+                <div class="right">
+                    <span id="countForProducts">Totaal: 11</span>
+                    <div class="filter-product-view">
+                            <button onclick="ChangeProductListView(this)" id="btnListViewGrid" class="btn btn-sm btn-custom" title="Category Grid">
+                                <i class="fa fa-th"></i>
+                            </button>
+                            <button onclick="ChangeProductListView(this)" id="btnListViewList" class="btn btn-sm btn-gray" title="Category List">
+                                <i class="fa fa-th-list"></i>
+                            </button>
+                    </div>
+                </div><!-- end .right -->
+                <div class="left">
+                    <div class="filter-container filter-sort">
+                        <input type="hidden" value="2K" id="CategoryCode" />
+                        <input type="hidden" value="" id="SearchedString" />
+                        <label>Sorteer:</label>
+                        <select class="form-control input-sm" id="ddSortBy">
+                                <option selected="selected" value="1"></option>
+                                                            <option selected="selected" value="1">Standaard</option>
+                                                            <option value="2">Naam: A - Z</option>
+                                                            <option value="3">Naam: Z - A</option>
+                                                            <option value="4">Productcode</option>
+                                                            <option value="5">Prijs: Laag - Hoog</option>
+                                                            <option value="6">Prijs: Hoog - Laag</option>
+                        </select>
+                    </div><!-- End .filter-sort -->
+                    <div class="filter-container filter-show">
+                        <label>Toon:</label>
+                        <select class="form-control input-sm" id="ddNumberOfValues">
+                                    <option value="10">10</option>
+                                    <option selected="selected" value="20">20</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="keepthishere">
+                <div id="replacethis" class="max-col-4" style="margin-bottom: 80px;">
+    <div class="row" id="productlist">
+<div id="ListView"></div><div class="k-pager-wrap" id="ListView_pager"></div><script>
+	kendo.syncReady(function(){jQuery("#ListView").kendoListView({"dataBinding":ListViewChange,"dataBound":lvChange,"dataSource":{"type":(function(){if(kendo.data.transports['aspnetmvc-ajax']){return 'aspnetmvc-ajax';} else{throw new Error('The kendo.aspnetmvc.min.js script is not included.');}})(),"transport":{"read":{"url":""},"prefix":""},"pageSize":20,"page":1,"total":11,"schema":{"data":"Data","total":"Total","errors":"Errors","model":{"fields":{"Merk":{"type":"string"},"Merk_Omschrijving":{"type":"string"},"ProdKode":{"type":"string"},"Omschrijving":{"type":"string"},"FotoKlein":{"type":"string"},"MinAmount":{"type":"number"},"FotoKleinToString":{"editable":false,"type":"string"},"IsMaatKleur":{"type":"boolean"},"OrderToString":{"editable":false,"type":"string"},"HoverFotoKlein":{"type":"string"},"HoverFotoKleinToString":{"editable":false,"type":"string"},"PromoPrijs":{"type":"number"},"VerkoopPrijs":{"type":"number"},"PriceExclVat":{"type":"number"},"PriceInclVat":{"type":"number"},"Beschikbaar":{"type":"number"},"BeschikbaarToString":{"editable":false,"type":"string"},"CurrencySign":{"type":"string"},"InfoAlgemeen":{"type":"string"},"PromoKorting":{"type":"number"},"PromoKortingToString":{"editable":false,"type":"string"},"ScratchedPriceToString":{"editable":false,"type":"string"},"BigPriceInclVatToString":{"editable":false,"type":"string"},"BigPriceExclVatToString":{"editable":false,"type":"string"},"BigPriceToString":{"editable":false,"type":"string"},"PriceToPay":{"editable":false,"type":"number"},"VoorraadIndicatie":{"type":"string"},"VoorraadIndicatieColor":{"type":"string"},"Voorraad":{"type":"number"},"Volgorde":{"type":"number"}}}},"data":{"Data":[{"Merk":"DIADOR","Merk_Omschrijving":"DIADORA","ProdKode":"028611","Omschrijving":"SWEATSHIRT FZ SMART 2.0","FotoKlein":"https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/28611 zw.jpg","MinAmount":1.0000,"FotoKleinToString":"https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/28611 zw.jpg","IsMaatKleur":false,"OrderToString":"Toevoegen aan winkelwagen\r\n","HoverFotoKlein":"","HoverFotoKleinToString":"https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/28611 zw.jpg","PromoPrijs":25.3140,"VerkoopPrijs":42.1901,"PriceExclVat":25.3140,"PriceInclVat":30.6299,"Beschikbaar":0.0000,"BeschikbaarToString":"0","CurrencySign":"€","InfoAlgemeen":"","PromoKorting":40.0000,"PromoKortingToString":"-40%","ScratchedPriceToString":"€ 52,74","BigPriceInclVatToString":"€ 31,64","BigPriceExclVatToString":"€ 31,64","BigPriceToString":"€ 52,74","PriceToPay":25.3140,"VoorraadIndicatie":"Niet in voorraad","VoorraadIndicatieColor":"#FF0000","Voorraad":0.0000,"Volgorde":0.0000},{"Merk":"DIADOR","Merk_Omschrijving":"DIADORA","ProdKode":"028441","Omschrijving":"POLAR FLEECE FREEDOM","FotoKlein":"https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/28441groen.jpg","MinAmount":1.0000,"FotoKleinToString":"https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/28441groen.jpg","IsMaatKleur":false,"OrderToString":"Toevoegen aan winkelwagen\r\n","HoverFotoKlein":"","HoverFotoKleinToString":"https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/28441groen.jpg","PromoPrijs":45.8158,"VerkoopPrijs":76.3597,"PriceExclVat":45.8158,"PriceInclVat":55.4371,"Beschikbaar":0.0000,"BeschikbaarToString":"0","CurrencySign":"€","InfoAlgemeen":"","PromoKorting":40.0000,"PromoKortingToString":"-40%","ScratchedPriceToString":"€ 95,45","BigPriceInclVatToString":"€ 57,27","BigPriceExclVatToString":"€ 57,27","BigPriceToString":"€ 95,45","PriceToPay":45.8158,"VoorraadIndicatie":"Niet in voorraad","VoorraadIndicatieColor":"#FF0000","Voorraad":0.0000,"Volgorde":2118.5000},{"Merk":"DIADOR","Merk_Omschrijving":"DIADORA","ProdKode":"019250","Omschrijving":"SWEATER PILE FULL ZIP","FotoKlein":"https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/19250 zwart.jpg","MinAmount":1.0000,"FotoKleinToString":"https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/19250 zwart.jpg","IsMaatKleur":false,"OrderToString":"Toevoegen aan winkelwagen\r\n","HoverFotoKlein":"","HoverFotoKleinToString":"https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/19250 zwart.jpg","PromoPrijs":28.2805,"VerkoopPrijs":47.1342,"PriceExclVat":28.2805,"PriceInclVat":34.2194,"Beschikbaar":41.0000,"BeschikbaarToString":"41,00","CurrencySign":"€","InfoAlgemeen":"","PromoKorting":40.0000,"PromoKortingToString":"-40%","ScratchedPriceToString":"€ 58,91","BigPriceInclVatToString":"€ 35,35","BigPriceExclVatToString":"€ 35,35","BigPriceToString":"€ 58,91","PriceToPay":28.2805,"VoorraadIndicatie":"In voorraad","VoorraadIndicatieColor":"#00FF00","Voorraad":41.0000,"Volgorde":2300.0000},{"Merk":"DIADOR","Merk_Omschrijving":"DIADORA","ProdKode":"028155","Omschrijving":"POLAR FLEECE EVOLUTION","FotoKlein":"https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/28155.jpg","MinAmount":1.0000,"FotoKleinToString":"https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/28155.jpg","IsMaatKleur":false,"OrderToString":"Toevoegen aan winkelwagen\r\n","HoverFotoKlein":"","HoverFotoKleinToString":"https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/28155.jpg","PromoPrijs":58.4068,"VerkoopPrijs":97.3448,"PriceExclVat":58.4068,"PriceInclVat":70.6722,"Beschikbaar":48.0000,"BeschikbaarToString":"48,00","CurrencySign":"€","InfoAlgemeen":"","PromoKorting":40.0000,"PromoKortingToString":"-40%","ScratchedPriceToString":"€ 121,68","BigPriceInclVatToString":"€ 73,01","BigPriceExclVatToString":"€ 73,01","BigPriceToString":"€ 121,68","PriceToPay":58.4068,"VoorraadIndicatie":"In voorraad","VoorraadIndicatieColor":"#00FF00","Voorraad":48.0000,"Volgorde":2301.0000},{"Merk":"DIADOR","Merk_Omschrijving":"DIADORA","ProdKode":"022399","Omschrijving":"SWEATER LITEWORK FULL ZIP","FotoKlein":"https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/22393.jpg","MinAmount":1.0000,"FotoKleinToString":"https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/22393.jpg","IsMaatKleur":false,"OrderToString":"Toevoegen aan winkelwagen\r\n","HoverFotoKlein":"","HoverFotoKleinToString":"https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/22393.jpg","PromoPrijs":26.8962,"VerkoopPrijs":44.8270,"PriceExclVat":26.8962,"PriceInclVat":32.5444,"Beschikbaar":0.0000,"BeschikbaarToString":"0","CurrencySign":"€","InfoAlgemeen":"","PromoKorting":40.0000,"PromoKortingToString":"-40%","ScratchedPriceToString":"€ 56,04","BigPriceInclVatToString":"€ 33,62","BigPriceExclVatToString":"€ 33,62","BigPriceToString":"€ 56,04","PriceToPay":26.8962,"VoorraadIndicatie":"Niet in voorraad","VoorraadIndicatieColor":"#FF0000","Voorraad":0.0000,"Volgorde":2303.0000},{"Merk":"DIADOR","Merk_Omschrijving":"DIADORA","ProdKode":"022417","Omschrijving":"SWEATER LITEWORK HALF ZIP","FotoKlein":"https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/22423.jpg","MinAmount":1.0000,"FotoKleinToString":"https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/22423.jpg","IsMaatKleur":false,"OrderToString":"Toevoegen aan winkelwagen\r\n","HoverFotoKlein":"","HoverFotoKleinToString":"https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/22423.jpg","PromoPrijs":25.5777,"VerkoopPrijs":42.6296,"PriceExclVat":25.5777,"PriceInclVat":30.9490,"Beschikbaar":0.0000,"BeschikbaarToString":"0","CurrencySign":"€","InfoAlgemeen":"","PromoKorting":40.0000,"PromoKortingToString":"-40%","ScratchedPriceToString":"€ 53,29","BigPriceInclVatToString":"€ 31,97","BigPriceExclVatToString":"€ 31,97","BigPriceToString":"€ 53,29","PriceToPay":25.5777,"VoorraadIndicatie":"Niet in voorraad","VoorraadIndicatieColor":"#FF0000","Voorraad":0.0000,"Volgorde":2304.0000},{"Merk":"DIADOR","Merk_Omschrijving":"DIADORA","ProdKode":"026122","Omschrijving":"SWEATER ZIP LITEWORK","FotoKlein":"https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/26122.jpg","MinAmount":1.0000,"FotoKleinToString":"https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/26122.jpg","IsMaatKleur":false,"OrderToString":"Toevoegen aan winkelwagen\r\n","HoverFotoKlein":"","HoverFotoKleinToString":"https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/26122.jpg","PromoPrijs":26.2369,"VerkoopPrijs":43.7283,"PriceExclVat":26.2369,"PriceInclVat":31.7466,"Beschikbaar":0.0000,"BeschikbaarToString":"0","CurrencySign":"€","InfoAlgemeen":"","PromoKorting":40.0000,"PromoKortingToString":"-40%","ScratchedPriceToString":"€ 54,66","BigPriceInclVatToString":"€ 32,80","BigPriceExclVatToString":"€ 32,80","BigPriceToString":"€ 54,66","PriceToPay":26.2369,"VoorraadIndicatie":"Niet in voorraad","VoorraadIndicatieColor":"#FF0000","Voorraad":0.0000,"Volgorde":2305.0000},{"Merk":"DIADOR","Merk_Omschrijving":"DIADORA","ProdKode":"026190","Omschrijving":"SWEATER CREW LITEWORK","FotoKlein":"https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/26190.jpg","MinAmount":1.0000,"FotoKleinToString":"https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/26190.jpg","IsMaatKleur":false,"OrderToString":"Toevoegen aan winkelwagen\r\n","HoverFotoKlein":"","HoverFotoKleinToString":"https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/26190.jpg","PromoPrijs":23.6001,"VerkoopPrijs":39.3335,"PriceExclVat":23.6001,"PriceInclVat":28.5561,"Beschikbaar":0.0000,"BeschikbaarToString":"0","CurrencySign":"€","InfoAlgemeen":"","PromoKorting":40.0000,"PromoKortingToString":"-40%","ScratchedPriceToString":"€ 49,16","BigPriceInclVatToString":"€ 29,50","BigPriceExclVatToString":"€ 29,50","BigPriceToString":"€ 49,16","PriceToPay":23.6001,"VoorraadIndicatie":"Niet in voorraad","VoorraadIndicatieColor":"#FF0000","Voorraad":0.0000,"Volgorde":2307.0000},{"Merk":"DIADOR","Merk_Omschrijving":"DIADORA","ProdKode":"028040","Omschrijving":"VEST POLAR FLEECE TECHNO","FotoKlein":"https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/28040BLA.jpg","MinAmount":1.0000,"FotoKleinToString":"https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/28040BLA.jpg","IsMaatKleur":false,"OrderToString":"Toevoegen aan winkelwagen\r\n","HoverFotoKlein":"","HoverFotoKleinToString":"https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/28040BLA.jpg","PromoPrijs":39.2236,"VerkoopPrijs":65.3727,"PriceExclVat":39.2236,"PriceInclVat":47.4605,"Beschikbaar":0.0000,"BeschikbaarToString":"0","CurrencySign":"€","InfoAlgemeen":"","PromoKorting":40.0000,"PromoKortingToString":"-40%","ScratchedPriceToString":"€ 81,71","BigPriceInclVatToString":"€ 49,02","BigPriceExclVatToString":"€ 49,02","BigPriceToString":"€ 81,71","PriceToPay":39.2236,"VoorraadIndicatie":"Niet in voorraad","VoorraadIndicatieColor":"#FF0000","Voorraad":0.0000,"Volgorde":2308.0000},{"Merk":"DIADOR","Merk_Omschrijving":"DIADORA","ProdKode":"028141","Omschrijving":"SWEATSHIRT HYBRID TACTIC","FotoKlein":"https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/028141.png","MinAmount":1.0000,"FotoKleinToString":"https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/028141.png","IsMaatKleur":false,"OrderToString":"Toevoegen aan winkelwagen\r\n","HoverFotoKlein":"","HoverFotoKleinToString":"https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/028141.png","PromoPrijs":41.5308,"VerkoopPrijs":69.2181,"PriceExclVat":41.5308,"PriceInclVat":50.2522,"Beschikbaar":0.0000,"BeschikbaarToString":"0","CurrencySign":"€","InfoAlgemeen":"","PromoKorting":40.0000,"PromoKortingToString":"-40%","ScratchedPriceToString":"€ 86,53","BigPriceInclVatToString":"€ 51,91","BigPriceExclVatToString":"€ 51,91","BigPriceToString":"€ 86,53","PriceToPay":41.5308,"VoorraadIndicatie":"Niet in voorraad","VoorraadIndicatieColor":"#FF0000","Voorraad":0.0000,"Volgorde":2309.0000},{"Merk":"DIADOR","Merk_Omschrijving":"DIADORA","ProdKode":"028414","Omschrijving":"SWEATSHIRT SHADOW","FotoKlein":"https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/28414.jpg","MinAmount":1.0000,"FotoKleinToString":"https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/28414.jpg","IsMaatKleur":false,"OrderToString":"Toevoegen aan winkelwagen\r\n","HoverFotoKlein":"","HoverFotoKleinToString":"https://rox-s3-bucket.s3.eu-central-1.amazonaws.com/product-images/28414.jpg","PromoPrijs":33.8839,"VerkoopPrijs":56.4732,"PriceExclVat":33.8839,"PriceInclVat":40.9995,"Beschikbaar":0.0000,"BeschikbaarToString":"0","CurrencySign":"€","InfoAlgemeen":"","PromoKorting":40.0000,"PromoKortingToString":"-40%","ScratchedPriceToString":"€ 70,59","BigPriceInclVatToString":"€ 42,35","BigPriceExclVatToString":"€ 42,35","BigPriceToString":"€ 70,59","PriceToPay":33.8839,"VoorraadIndicatie":"Niet in voorraad","VoorraadIndicatieColor":"#FF0000","Voorraad":0.0000,"Volgorde":2311.0000}],"Total":11,"AggregateResults":null}},"template":kendo.template(jQuery('#card').html()),"pageable":{"autoBind":false,"input":true,"numeric":false,"buttonCount":10,"pagerId":"ListView_pager"}});});
+</script>        <script type="text/x-kendo-tmpl" id="card">
+                    <div class="product product-auto-height">
+                        <div style="padding: 10px;">
+                            <div class="product-top">
+                                
+                                <figure>
+                                    <a href="https://webshop.roxis.eu/Product/#:ProdKode#" title="#:Omschrijving#">
+                                        <img src="2K%3Fpage=1.html#:FotoKleinToString#" class="product-image" alt="Not Found" onerror="this.src='/Content/images/product.jpg';">
+                                        
+                                    </a>
+                                </figure>
+                                
+                            </div>
+                            <h3 class="product-title"><a href="https://webshop.roxis.eu/Product/#:ProdKode#">#:Omschrijving#</a></h3>
+                            <span>
+                                #if (IsMaatKleur) { #
+                                    <i>Prijsverschil grotere maten</i>
+                                # } #
+                            </span>
+                                    <p><span class="product-price" style="font-size:16px; font-weight:600;">#:BigPriceToString#<small style="color:black; font-size:x-small;"> (excl. btw)</small></span></p>
+                        </div>
+                    </div>
+        </script>
+    </div>
+</div>
+
+<script>
+    function ListViewChange() {
+        var page = $('#ListView').data().kendoListView.dataSource.page();
+        var category = "2K";
+        window.history.pushState('pagina ' + page, 'Sweater/Trui', '/Products/'+category+'?page='+page);
+    }
+
+
+</script>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+            </div>
+        </div>
+        <div class="backgroundShopFooter">
+
+<footer class="footer">
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="widget about-widget">
+                <img src="../Content/images/logo-zwart.png" alt="Footer Logo" style="width:100%;">
+                <hr>
+<font color="#ffffff">Bij ROX zit u goed!</font>                <address>
+                    <label>Adres:</label>
+                    Industrielaan 14, 8810 Lichtervelde
+                </address>
+                <label>Telefoon:</label> +32 (0)51 72 91 12<br>
+                <label>E-mail:</label> <a href="mailto:info@roxis.eu">info@roxis.eu</a>
+                <div class="social-icons">
+                    <label>Social media:</label>
+                        <a href="https://www.facebook.com/rox.workwear.safety/" class="social-icon" title="Facebook" target="_blank">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+
+                    <a href="https://www.linkedin.com/company/rox-workwear-safety" class="social-icon" title="Linkedin" target="_blank">
+                        <i class="fa fa-linkedin"></i>
+                    </a>
+
+                                                        </div><!-- End .social-icons -->
+            </div><!-- End .widget -->
+        </div><!-- End .col-md-5 -->
+        <div class="col-md-6 col-md-offset-1 hidden-xs hidden-sm">
+            <div class="row">
+                        <div class="col-sm-4 pull-right">
+                            <div class="widget">
+                                <h4 class="widget-title">Nieuws</h4>
+                                <ul class="fa-ul">
+                                        <li>
+                                            <a href="https://webshop.roxis.eu/News/18">
+                                                <i class="fa-li fa fa-chain"></i>Veiligheid, Comfort en Personalisatie - Alles-in-&#233;</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://webshop.roxis.eu/News/16">
+                                                <i class="fa-li fa fa-chain"></i>Veiligheid &#233;n Comfort: Birkenstock</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://webshop.roxis.eu/News/13">
+                                                <i class="fa-li fa fa-chain"></i>Catalogus 2025-2026 Rox </a>
+                                        </li>
+                                        <li>
+                                            <a href="https://webshop.roxis.eu/News/1">
+                                                <i class="fa-li fa fa-chain"></i>Shop online bij ROX</a>
+                                        </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                                        <div class="col-sm-4 pull-right">
+                            <div class="widget">
+
+                                <h4 class="widget-title">Categorie&#235;n</h4>
+                                <ul class="fa-ul">
+                                        <li>
+                                            <a href="https://webshop.roxis.eu/Categories/1">
+                                                <i class="fa-li fa fa-chain"></i>Hoofdbescherming</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://webshop.roxis.eu/Categories/2">
+                                                <i class="fa-li fa fa-chain"></i>Lichaamsbescherming</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://webshop.roxis.eu/Categories/3">
+                                                <i class="fa-li fa fa-chain"></i>Handbescherming</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://webshop.roxis.eu/Categories/4">
+                                                <i class="fa-li fa fa-chain"></i>Voetbescherming</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://webshop.roxis.eu/Categories/5">
+                                                <i class="fa-li fa fa-chain"></i>Valbeveiliging</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://webshop.roxis.eu/Categories/6">
+                                                <i class="fa-li fa fa-chain"></i>Veiligheidstoebehoren en collectieve bescherming</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://webshop.roxis.eu/Categories/7">
+                                                <i class="fa-li fa fa-chain"></i>Displays</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://webshop.roxis.eu/Categories/8">
+                                                <i class="fa-li fa fa-chain"></i>Outlet</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://webshop.roxis.eu/Categories/9">
+                                                <i class="fa-li fa fa-chain"></i>Gereedschap</a>
+                                        </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                <div class="col-sm-4 pull-right">
+                    <div class="widget">
+                        <h4 class="widget-title">Pagina&#39;s</h4>
+                        <ul class="fa-ul">
+                            
+                            <li>
+                                <a href="https://webshop.roxis.eu/MoreInfo/PrivacyPolicy">
+                                    <i class="fa-li fa fa-chain"></i>Privacybeleid
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://webshop.roxis.eu/moreInfo/Disclaimer">
+                                    <i class="fa-li fa fa-chain"></i>Voorwaarden
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="https://webshop.roxis.eu/MoreInfo/GarantieRetouren">
+                                    <i class="fa-li fa fa-chain"></i>Garantie en Retouren
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </div><!-- End .widget -->
+                </div><!-- End .col-sm-4 -->
+            </div><!-- End .row -->
+        </div><!-- End .col-md-6 -->
+    </div><!-- End .row -->
+</div><!-- End .container -->
+<div class="footer-bottom">
+    <div class="container">
+        <div class="footer-right">
+            <ul class="footer-menu">
+                <li>
+                    <a href="https://webshop.roxis.eu/">Home</a>
+                </li>
+                <li>
+                    <a href="https://webshop.roxis.eu/About">Over ons</a>
+                </li>
+                    <li>
+                        <a href="https://webshop.roxis.eu/Products">Categorie&#235;n</a>
+                    </li>
+                <li>
+                    <a href="https://webshop.roxis.eu/Contact">Contact</a>
+                </li>
+            </ul>
+        </div><!-- End .footer-right -->
+        <p class="copyright">ROX - All rights reserved - 2026 &copy; Made by <a href="https://www.inmotionsoftware.be" target="_blank" title="In-Motion Software">In-Motion Software</a>.</p>
+    </div><!-- End .container -->
+</div>
+</footer>
+        </div>
+    </div>
+    <a id="scroll-top" href="2K%3Fpage=1.html#top" title="Scroll top">
+        <i class="fa fa-angle-up"></i>
+    </a>
+    <script src="../Content/js/Cookie.js"></script>
+<script src="../Content/js/Menu.js"></script>
+<script src="../Content/js/Product.js"></script>
+
+    
+    
+    <script src="../Scripts/_ListViewProductResizer.js%3Fv=2"></script>
+    <script>
+        $(document).ready(function () {
+            resetHeightItems(0);
+        });
+
+        //Verander van Grid naar Lijst en omgekeerd
+        function ChangeProductListView(button) {
+            var button2;
+            if (button.classList.contains("btn-gray") === true) {
+                //Change button from color
+                if (button.id === "btnListViewGrid") {
+                    button.classList.remove("btn-gray");
+                    button.classList.add("btn-custom");
+                    button2 = document.getElementById("btnListViewList");
+                    button2.classList.remove("btn-custom");
+                    button2.classList.add("btn-gray");
+                    setCookie("ProductListDefaultCardView", true);
+                } else {
+                    button.classList.remove("btn-gray");
+                    button.classList.add("btn-custom");
+                    button2 = document.getElementById("btnListViewGrid");
+                    button2.classList.remove("btn-custom");
+                    button2.classList.add("btn-gray");
+                    setCookie("ProductListDefaultCardView", false);
+                }
+                newListProducts();
+            }
+        }
+
+        //Reload de producten met een nieuwe pagesize
+        $('#ddNumberOfValues').on('change',
+            function() {
+                //Change number of items in ListView
+                newListProducts();
+            });
+
+        //Sorteer de producten
+        $('#ddSortBy').on('change',function() {
+                //Change number of items in ListView
+            $("#Sort").val($("#ddSortBy").val());
+            var cardView = false;
+            var values = $('#ddNumberOfValues').val();
+            var search = $('#SearchedString').val();
+            var sort = $('#ddSortBy').val();
+            var category = $('#CategoryCode').val();
+
+            if ($('#btnListViewGrid').hasClass('btn-custom')) {
+                cardView = true;
+            }
+                newListProducts();
+                
+
+            
+
+            
+        });
+
+        function insertParam(key, value) {
+            key = encodeURI(key);
+            value = encodeURI(value);
+
+            var kvp = document.location.search.substr(1).split('&');
+
+            var i = kvp.length;
+            var x;
+            while (i--) {
+                x = kvp[i].split('=');
+
+                if (x[0] == key) {
+                    x[1] = value;
+                    kvp[i] = x.join('=');
+                    break;
+                }
+            }
+
+            if (i < 0) {
+                kvp[kvp.length] = [key, value].join('=');
+            }
+
+            //this will reload the page, it's likely better to store this until finished
+            document.location.search = kvp.join('&');
+        }
+
+        $.fn.replaceWithCallback = function(replace, callback) {
+            var ret = $.fn.replaceWith.call(this, replace); // Call replaceWith
+            if (typeof callback === 'function') {
+                callback.call(ret); // Call your callback
+            }
+            return ret; // For chaining
+        };
+
+        function newListProducts() {
+            var cardView = false;
+            var values = $('#ddNumberOfValues').val();
+            var search = $('#SearchedString').val();
+            var sort = $('#ddSortBy').val();
+
+            if ($('#btnListViewGrid').hasClass('btn-custom')) {
+                cardView = true;
+            }
+
+            // buildFilterPayload leeft in SidePannel.cshtml en bestaat dus niet op de
+            // zoekresultatenpagina, waar geen side panel gerenderd wordt.
+            var payload = (typeof buildFilterPayload === 'function') ? buildFilterPayload() : {};
+            $.extend(payload, {
+                zoeknaam: search,
+                sort: sort,
+                pagesize: values,
+                cardView: cardView
+            });
+
+            $.ajax({
+                url: '/Products/FilterAndSort',
+                type: 'POST',
+                dataType: 'json',
+                data: payload,
+                success: function(data) {
+                    //everything went fine
+                    if (data.error === false) {
+                        $("#replacethis").parent().html(data.message);
+                        $("#countForProducts").text("Totaal: " + data.productCount);
+                        resetHeightItems();
+                    } else {
+                        //things went wrong, show error
+                        alert("else function went wrong");
+                    }
+                },
+                error: function(data) {
+                    //something went wrong
+                    alert('something went wrong');
+                }
+            });
+        }
+
+        function lvChange(arg) {
+            resetHeightItems(0);
+            window.scrollTo(0, 0);
+        };
+
+    </script>
+    <script>
+        function addToCard(isMaatKleur, productCode, btn) {
+            var text = "Product in winkelkar";
+            if (isMaatKleur) {
+                var url =
+                    "https://webshop.roxis.eu/Product/" +
+                        productCode;
+                window.location.assign(url);
+            } else {
+                $.ajax({
+                    url: "/Cart/AddToCart?productCode=" + productCode + "&amount=1",
+                    type: "GET",
+                    dataType: 'json',
+                    success: function(data) {
+                        //everything went fine
+                        if (!data.error) {
+                            btn.innerText = "Toegevoegd aan winkelkar";
+                            reloadCart();
+                            //Make cart shake
+                            setTimeout(function() { $("#shopanid").addClass("shake"); }, 150);
+                            setTimeout(function() { $("#shopanid").removeClass("shake"); }, 1000);
+                            setTimeout(function() { btn.innerText = text; }, 1000);
+                        } else {
+                            alert(data.message);
+                        }
+                    },
+                    error: function(data) {
+                        //something went wrong
+                        alert(error);
+                    }
+                });
+            }
+        }
+    </script>
+
+
+    <script>
+    $(window).on('load',
+        function() {
+            $.ajax({
+                url: "/Home/ChangeLanguageCookie",
+                type: "GET",
+                dataType: 'json',
+                success: function(data) {
+                    if (data.error) {
+                    } else {
+                        var tekst = "<span id='cookieconsent:desc' class='cc-message'>" +
+                            data.message +
+                            " <a aria-label='learn more about cookies' role='button' tabindex='0' class='cc-link' href='https://webshop.roxis.eu/moreInfo/PrivacyPolicy' target='_blank'>" +
+                            data.lees_meer +
+                            "</a></span>";
+                        $(".cc-message").html(tekst);
+                        $(".cc-btn.cc-dismiss").html(data.button);
+                    }
+                },
+                error: function(data) {
+                }
+            });
+        });
+    </script>
+
+    <script src="../Scripts/datepicker.js"></script>
+    <script src="../Scripts/datepicker.nl-NL.js"></script>
+</body>
+</html>
