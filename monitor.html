@@ -1,232 +1,244 @@
 <!doctype html>
 <html lang="nl">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Mikis13 Monitor</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description"
+        content="Read-only statusdashboard voor de Mikis13 GitHub-repositories.">
+  <title>Repo Monitor | Mikis13</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #080812;
+      --panel: #111120;
+      --border: #29293d;
+      --purple: #8b5cf6;
+      --green: #22c55e;
+      --yellow: #f59e0b;
+      --muted: #aaa;
+    }
+
+    .monitor-shell {
+      width: min(1200px, calc(100% - 32px));
+      margin: auto;
+      padding: 28px 0 60px;
+    }
+
+    .monitor-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      padding: 18px 0;
+    }
+
+    .monitor-brand {
+      font-size: 1.4rem;
+      font-weight: 900;
+    }
+
+    .monitor-brand span {
+      color: var(--purple);
+    }
+
+    .hero-monitor {
+      padding: 55px 0 28px;
+    }
+
+    .hero-monitor h1 {
+      margin: 0 0 14px;
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      line-height: .95;
+    }
+
+    .hero-monitor p {
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    .safe-banner {
+      padding: 16px;
+      border: 1px solid rgba(34,197,94,.45);
+      border-radius: 14px;
+      background: rgba(34,197,94,.09);
+    }
+
+    .repo-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .repo-card {
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--panel);
+    }
+
+    .repo-card h2 {
+      margin: 8px 0 10px;
+      font-size: 1.1rem;
+      overflow-wrap: anywhere;
+    }
+
+    .repo-state {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--green);
+      font-weight: 800;
+    }
+
+    .repo-state::before {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: currentColor;
+      content: "";
+      box-shadow: 0 0 12px currentColor;
+    }
+
+    .repo-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 18px;
+    }
+
+    .repo-links a {
+      padding: 9px 11px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #18182a;
+      font-size: .88rem;
+      font-weight: 700;
+    }
+
+    .repo-links a:hover,
+    .repo-links a:focus {
+      border-color: var(--purple);
+      outline: none;
+    }
+
+    .notice {
+      margin-top: 24px;
+      padding: 18px;
+      border: 1px solid rgba(245,158,11,.4);
+      border-radius: 14px;
+      background: rgba(245,158,11,.08);
+      color: #f8d58a;
+    }
+
+    footer {
+      margin-top: 45px;
+      padding-top: 22px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    @media (max-width: 600px) {
+      .monitor-header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
+
 <body>
-
-<!-- MIKIS13-MENU-START -->
-<header class="m13-menu">
-  <div class="m13-menu-inner">
-
-    <a class="m13-brand" href="./index.html">
-      <span class="m13-logo">M13</span>
-      <span>Mikis13</span>
-    </a>
-
-    <button
-      class="m13-toggle"
-      type="button"
-      aria-label="Keuzemenu openen"
-      aria-expanded="false"
-      onclick="toggleM13Menu(this)"
-    >
-      ☰
-    </button>
-
-    <nav class="m13-links" id="m13Links" aria-label="Mikis13 keuzemenu">
-
-      <a data-page="index.html" href="./index.html">
-        🌐 Mikis13 Live
+  <header>
+    <div class="monitor-shell monitor-header">
+      <a class="monitor-brand" href="index.html">
+        MIKIS<span>13</span>
       </a>
 
-      <a data-page="monitor.html" href="./monitor.html">
-        📡 Mikis13 Monitor
-      </a>
+      <nav aria-label="Hoofdnavigatie">
+        <a class="btn" href="index.html">Webshop</a>
+        <a class="btn" href="status.html">Status</a>
+      </nav>
+    </div>
+  </header>
 
-      <a data-page="goksites.html" href="./goksites.html">
-        🎰 Mikis13 Gok
-      </a>
+  <main class="monitor-shell">
+    <section class="hero-monitor">
+      <p>MIKIS13 CONTROL PLANE</p>
+      <h1>Repository Monitor</h1>
+      <p>
+        Eén read-only overzicht voor workflows, pull requests,
+        security en dependencycontroles van de belangrijkste
+        Mikis13-repositories.
+      </p>
+    </section>
 
-      <a data-page="inkomsten.html" href="./inkomsten.html">
-        💶 Inkomsten
-      </a>
+    <section class="safe-banner">
+      <strong>Veilige modus:</strong>
+      dit dashboard voert geen merges, workflow-reruns,
+      commits of repositorywijzigingen uit.
+    </section>
 
-    
-<a href="./ai-console.html" style="display:inline-block;padding:10px 14px;margin:6px;border:1px solid #38bdf8;border-radius:12px;color:#38bdf8;text-decoration:none;background:#0f172a">🤖 Vijf AI-consoles</a>
-</nav>
-  </div>
-</header>
+    <section class="repo-grid" aria-label="Repositories">
+      <article class="repo-card">
+        <div class="repo-state">Publieke controle</div>
+        <h2>mikis13-site</h2>
+        <p>Webshop, GitHub Pages en productiewebsite.</p>
+        <div class="repo-links">
+          <a href="https://github.com/Ice1984m/mikis13-site/actions">CI</a>
+          <a href="https://github.com/Ice1984m/mikis13-site/pulls">PR’s</a>
+          <a href="https://github.com/Ice1984m/mikis13-site/security">Security</a>
+          <a href="https://www.mikis13.nl">Website</a>
+        </div>
+      </article>
 
-<style>
-.m13-menu {
-  position: sticky;
-  top: 0;
-  z-index: 999999;
-  width: 100%;
-  border-bottom: 1px solid rgba(148,163,184,.22);
-  background: rgba(2,6,23,.97);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  box-shadow: 0 10px 30px rgba(0,0,0,.28);
-}
+      <article class="repo-card">
+        <div class="repo-state">Publieke controle</div>
+        <h2>mikis13-server</h2>
+        <p>Servercode, API-status en backendcontroles.</p>
+        <div class="repo-links">
+          <a href="https://github.com/Ice1984m/mikis13-server/actions">CI</a>
+          <a href="https://github.com/Ice1984m/mikis13-server/pulls">PR’s</a>
+          <a href="https://github.com/Ice1984m/mikis13-server/security">Security</a>
+        </div>
+      </article>
 
-.m13-menu-inner {
-  width: min(1240px, calc(100% - 24px));
-  min-height: 72px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
+      <article class="repo-card">
+        <div class="repo-state">Publieke controle</div>
+        <h2>mikis13-edgehub</h2>
+        <p>Edge-integraties, healthchecks en deployments.</p>
+        <div class="repo-links">
+          <a href="https://github.com/Ice1984m/mikis13-edgehub/actions">CI</a>
+          <a href="https://github.com/Ice1984m/mikis13-edgehub/pulls">PR’s</a>
+          <a href="https://github.com/Ice1984m/mikis13-edgehub/security">Security</a>
+        </div>
+      </article>
 
-.m13-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 900;
-  white-space: nowrap;
-}
+      <article class="repo-card">
+        <div class="repo-state">Nog te verifiëren</div>
+        <h2>mikis13-autodev-hub</h2>
+        <p>Veilige automatisering en centrale repositorybewaking.</p>
+        <div class="repo-links">
+          <a href="https://github.com/Ice1984m/mikis13-autodev-hub/actions">CI</a>
+          <a href="https://github.com/Ice1984m/mikis13-autodev-hub/pulls">PR’s</a>
+          <a href="https://github.com/Ice1984m/mikis13-autodev-hub/security">Security</a>
+        </div>
+      </article>
+    </section>
 
-.m13-logo {
-  display: grid;
-  width: 42px;
-  height: 42px;
-  place-items: center;
-  border-radius: 13px;
-  background: linear-gradient(135deg,#0284c7,#22c55e);
-  color: white;
-  font-size: .8rem;
-}
+    <aside class="notice">
+      GitHub toont gevoelige securitymeldingen alleen aan
+      bevoegde en aangemelde repositorybeheerders.
+    </aside>
 
-.m13-links {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-  gap: 9px;
-}
-
-.m13-links a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 43px;
-  padding: 0 15px;
-  border: 1px solid rgba(148,163,184,.22);
-  border-radius: 13px;
-  background: rgba(15,23,42,.82);
-  color: #e2e8f0;
-  text-decoration: none;
-  font-size: .9rem;
-  font-weight: 800;
-  white-space: nowrap;
-  transition:
-    transform .18s ease,
-    border-color .18s ease,
-    background .18s ease;
-}
-
-.m13-links a:hover,
-.m13-links a:focus {
-  transform: translateY(-2px);
-  border-color: #38bdf8;
-  background: rgba(14,116,144,.24);
-  outline: none;
-}
-
-.m13-links a.active {
-  border-color: #22c55e;
-  background: rgba(34,197,94,.2);
-  color: white;
-}
-
-.m13-toggle {
-  display: none;
-  width: 45px;
-  height: 45px;
-  margin-left: auto;
-  border: 1px solid rgba(148,163,184,.22);
-  border-radius: 13px;
-  background: rgba(15,23,42,.9);
-  color: white;
-  font-size: 1.35rem;
-}
-
-@media (max-width: 950px) {
-  .m13-menu-inner {
-    position: relative;
-    min-height: 64px;
-  }
-
-  .m13-toggle {
-    display: block;
-  }
-
-  .m13-links {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    left: 0;
-    display: none;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    padding: 12px;
-    border: 1px solid rgba(148,163,184,.22);
-    border-top: 0;
-    border-radius: 0 0 18px 18px;
-    background: rgba(2,6,23,.99);
-    box-shadow: 0 20px 35px rgba(0,0,0,.35);
-  }
-
-  .m13-links.open {
-    display: grid;
-  }
-
-  .m13-links a {
-    justify-content: flex-start;
-    min-height: 48px;
-  }
-}
-
-@media (max-width: 560px) {
-  .m13-brand > span:last-child {
-    display: none;
-  }
-
-  .m13-links {
-    grid-template-columns: 1fr;
-  }
-}
-</style>
-
-<script>
-function toggleM13Menu(button) {
-  const menu = document.getElementById("m13Links");
-  const open = menu.classList.toggle("open");
-
-  button.setAttribute("aria-expanded", String(open));
-  button.textContent = open ? "✕" : "☰";
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-  let current = window.location.pathname.split("/").pop();
-
-  if (!current) {
-    current = "index.html";
-  }
-
-  document.querySelectorAll(".m13-links a").forEach(function (link) {
-    link.classList.toggle(
-      "active",
-      link.dataset.page === current
-    );
-  });
-});
-</script>
-<!-- MIKIS13-MENU-EINDE -->
-
-
-    <main class="mikis-content">
-        <section class="mikis-placeholder">
-            <div class="mikis-placeholder-icon">📡</div>
-            <p class="mikis-eyebrow">MIKIS13 PLATFORM</p>
-            <h1>Mikis13 Monitor</h1>
-            <p>Controleer de status van websites, diensten en Mikis13-systemen.</p>
-        </section>
-    </main>
+    <footer>
+      Mikis13 Repo Monitor — handmatige, veilige koppelingen
+      naar officiële GitHub-statuspagina’s.
+    </footer>
+  </main>
 </body>
 </html>
