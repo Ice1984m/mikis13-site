@@ -1,0 +1,87 @@
+//Constraint: the .product has to have the added class .product-auto-height as well
+
+// Houdt bij welk #ListView-element geobserveerd wordt. Bij een AJAX-render wordt de hele
+// container vervangen; de observer moet dan opnieuw aangehaakt worden op het nieuwe element,
+// anders observeert hij een losgekoppelde node en blijft de paginering zonder resize achter.
+var listViewObserver = null;
+var listViewObserved = null;
+var listViewResizeTimer = null;
+
+$(window).on("load", function () {
+    resetHeightItems();
+});
+
+function ensureListViewObserver() {
+    if (typeof MutationObserver === "undefined") { return; }
+
+    var target = document.querySelector("#ListView");
+    if (!target || target === listViewObserved) { return; }
+
+    if (listViewObserver) { listViewObserver.disconnect(); }
+
+    listViewObserver = new MutationObserver(function () {
+        // Debounce: Kendo kan bij een render meerdere mutaties achter elkaar veroorzaken.
+        clearTimeout(listViewResizeTimer);
+        listViewResizeTimer = setTimeout(resetHeightItems, 50);
+    });
+
+    // Alleen childList/subtree, geen attributes: applyHeight wijzigt zelf het style-attribuut
+    // en zou anders zichzelf blijven triggeren.
+    listViewObserver.observe(target, { childList: true, subtree: true });
+    listViewObserved = target;
+}
+
+//the function that will actually make sure that all divs with .product-auto-height has the same height
+function resetHeightItems() {
+    ensureListViewObserver();
+
+    // Teller en totaal staan bewust in de functie-scope. Bij een filter- of sorteeractie lopen
+    // meerdere aanroepen door elkaar; met een gedeelde teller tikte de ene run de andere voorbij,
+    // waardoor er gemeten werd voordat de nieuwe foto's hoogte hadden.
+    var loaded = 0;
+    var $productImages = $("#ListView img");
+    var totalImages = $productImages.length;
+
+    // Vang het scenario op waarbij er geen producten/afbeeldingen zijn
+    if (totalImages === 0) {
+        applyHeight();
+        return;
+    }
+
+    $productImages.each(function (idx, img) {
+        // Ook .on("error"), zodat een kapotte link het script niet blokkeert
+        $("<img>").on("load", imageLoaded).on("error", imageLoaded).attr("src", $(img).attr("src"));
+    });
+
+    function imageLoaded() {
+        loaded++;
+        // >= en niet ===: een dubbele tik mag er niet voor zorgen dat er nooit gemeten wordt.
+        if (loaded >= totalImages) {
+            applyHeight();
+        }
+    }
+
+    function applyHeight() {
+        // Opnieuw selecteren, niet cachen: na een AJAX-render zijn de elementen van voor de
+        // wait-op-afbeeldingen inmiddels losgekoppeld uit de DOM.
+        var $items = $(".product-auto-height");
+        if ($items.length === 0) { return; }
+
+        // Reset eerst, om correct te kunnen meten bij filteren/pagineren.
+        // De vaste inline height wordt expliciet gewist: een oudere versie van dit script (of
+        // een gecachte kopie daarvan) zette die, en een te kleine vaste height is precies wat
+        // de content achter de rij eronder liet verdwijnen.
+        $items.css({ "height": "", "min-height": 0 });
+
+        var height = 0;
+        $items.each(function () {
+            if (height < this.offsetHeight) {
+                height = this.offsetHeight;
+            }
+        });
+
+        // min-height en niet height: valt een meting ooit te klein uit, dan groeit de card mee
+        // in plaats van dat de content achter de rij eronder verdwijnt.
+        $items.css("min-height", height + "px");
+    }
+}
