@@ -1,0 +1,61 @@
+name: Repair Daughter
+on:
+  schedule:
+    - cron: "17 5 * * *"
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Mikis13 Auto Repair",".github/workflows/mikis13-safe-repair.yml"]
+    types: [completed]
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+concurrency:
+  group: repair-daughter
+  cancel-in-progress: false
+env:
+  GH_TOKEN: ${{ github.token }}
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Controleer verplichte pagina's
+        id: check
+        run: |
+          missing=""
+          for f in contact.html privacy.html voorwaarden.html jobs.html; do
+            [ -s "$f" ] || missing="$missing $f"
+          done
+          echo "missing=${missing# }" >> "$GITHUB_OUTPUT"
+      - name: Alles in orde, sluit oude repair-issues
+        if: steps.check.outputs.missing == ''
+        run: |
+          gh issue list --state open --search "Auto Repair geblokkeerd in:title" --json number -q '.[].number' |
+          while read -r n; do
+            gh issue close "$n" --comment "Automatisch gesloten: alle verplichte pagina's zijn aanwezig."
+          done
+      - name: Herstel ontbrekende pagina's via PR
+        if: steps.check.outputs.missing != ''
+        env:
+          MISSING: ${{ steps.check.outputs.missing }}
+        run: |
+          BR="bot/repair-daughter-${GITHUB_RUN_ID}"
+          git config user.name "repair-daughter"
+          git config user.email "repair-daughter@users.noreply.github.com"
+          git checkout -b "$BR"
+          for f in $MISSING; do
+            if [ -s "templates/legal/$f" ]; then cp "templates/legal/$f" "$f"; fi
+          done
+          git add -A
+          if git diff --cached --quiet; then
+            T="Repair Daughter: kan niet herstellen"
+            if [ -z "$(gh issue list --state open --search "$T in:title" --json number -q '.[].number')" ]; then
+              gh issue create --title "$T" --body "Ontbrekend of leeg: $MISSING. Geen template in templates/legal/."
+            fi
+            exit 0
+          fi
+          git commit -m "fix: herstel $MISSING"
+          git push -u origin "$BR"
+          gh pr create --base main --head "$BR" --title "Repair Daughter: herstel verplichte pagina's" --body "Hersteld uit templates/legal/. Geen directe main-push."
+          gh pr merge "$BR" --squash --delete-branch --auto || true
