@@ -1,0 +1,136 @@
+name: Mikis13 Safe Repair
+
+on:
+  schedule:
+    - cron: "20 6,12,18 * * *"
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: safe-repair-${{ github.repository }}
+  cancel-in-progress: false
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Repository ophalen
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Omgeving voorbereiden
+        run: |
+          set -Eeuo pipefail
+          chmod +x scripts/*.sh scripts/*.py
+
+      - name: Begrensde reparaties uitvoeren
+        run: python scripts/deterministic-repair.py
+
+      - name: Controleren of iets gewijzigd is
+        id: changes
+        run: |
+          set -Eeuo pipefail
+
+          if git diff --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "✅ Geen veilige reparatie nodig."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            git diff --stat
+          fi
+
+      - name: Grootte van reparatie bewaken
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          set -Eeuo pipefail
+
+          FILES="$(git diff --name-only | wc -l)"
+          LINES="$(
+            git diff --numstat |
+            awk '{ added += $1; deleted += $2 } END { print added + deleted }'
+          )"
+
+          echo "Gewijzigde bestanden: $FILES"
+          echo "Gewijzigde regels: ${LINES:-0}"
+
+          [ "$FILES" -le 20 ]
+          [ "${LINES:-0}" -le 500 ]
+
+      - name: Tests
+        if: steps.changes.outputs.changed == 'true'
+        run: bash scripts/validate-repair.sh
+
+      - name: Securityscan
+        if: steps.changes.outputs.changed == 'true'
+        run: bash scripts/security-check.sh
+
+      - name: Healthcheck
+        if: steps.changes.outputs.changed == 'true'
+        run: bash scripts/healthcheck.sh
+
+      - name: Unieke herstelbranch en PR maken
+        if: steps.changes.outputs.changed == 'true'
+        id: pull_request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPOSITORY: ${{ github.repository }}
+          RUN_ID: ${{ github.run_id }}
+          RUN_ATTEMPT: ${{ github.run_attempt }}
+        run: |
+          set -Eeuo pipefail
+
+          BRANCH="repair/run-${RUN_ID}-attempt-${RUN_ATTEMPT}"
+
+          git config user.name "github-actions[bot]"
+          git config user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git checkout -b "$BRANCH"
+
+          git add -A
+
+          git commit \
+            -m "Repair deterministic website and repository issues"
+
+          git push origin "$BRANCH"
+
+          PR_URL="$(
+            gh pr create \
+              --repo "$REPOSITORY" \
+              --base "${{ github.event.repository.default_branch }}" \
+              --head "$BRANCH" \
+              --title "Safe repair: run ${RUN_ID}" \
+              --body "Automatische begrensde reparatie.
+
+Veiligheidscontroles:
+- geen directe wijziging van main
+- unieke herstelbranch
+- maximaal 20 bestanden
+- maximaal 500 gewijzigde regels
+- tests geslaagd
+- securityscan geslaagd
+- healthcheck geslaagd"
+          )"
+
+          echo "pr_url=$PR_URL" >> "$GITHUB_OUTPUT"
+          echo "✅ PR aangemaakt: $PR_URL"
+
+      - name: Veilige squash-merge aanvragen
+        if: steps.pull_request.outputs.pr_url != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ steps.pull_request.outputs.pr_url }}
+        run: |
+          set -Eeuo pipefail
+
+          gh pr merge "$PR_URL" \
+            --squash \
+            --auto \
+            --delete-branch
