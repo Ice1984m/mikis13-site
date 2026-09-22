@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"
+        content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#09000f">
+  <meta name="description"
+        content="De gevraagde Mikis13-pagina bestaat niet of werd verplaatst.">
+  <title>Pagina niet gevonden | Mikis13</title>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --background: #07040d;
+      --panel: rgba(20, 12, 32, .88);
+      --purple: #a855f7;
+      --purple-light: #d8b4fe;
+      --text: #f8f5ff;
+      --muted: #b8afc7;
+      --border: rgba(168, 85, 247, .35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 20% 20%,
+          rgba(126, 34, 206, .28), transparent 34%),
+        radial-gradient(circle at 80% 80%,
+          rgba(88, 28, 135, .24), transparent 38%),
+        var(--background);
+      color: var(--text);
+      font-family:
+        Inter, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+    }
+
+    body::before {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      content: "";
+      opacity: .18;
+      background-image:
+        linear-gradient(rgba(168,85,247,.15) 1px,
+          transparent 1px),
+        linear-gradient(90deg, rgba(168,85,247,.15) 1px,
+          transparent 1px);
+      background-size: 42px 42px;
+      mask-image:
+        linear-gradient(to bottom, black, transparent 85%);
+    }
+
+    .error-card {
+      position: relative;
+      width: min(760px, 100%);
+      padding: clamp(30px, 7vw, 68px);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      background: var(--panel);
+      text-align: center;
+      box-shadow:
+        0 30px 90px rgba(0, 0, 0, .55),
+        0 0 70px rgba(126, 34, 206, .16);
+      backdrop-filter: blur(18px);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--purple-light);
+      font-weight: 900;
+      letter-spacing: .14em;
+      text-decoration: none;
+    }
+
+    .code {
+      margin: 22px 0 4px;
+      font-size: clamp(6rem, 25vw, 12rem);
+      font-weight: 950;
+      line-height: .82;
+      letter-spacing: -.08em;
+      color: transparent;
+      background:
+        linear-gradient(135deg, #fff, #d8b4fe 42%, #7e22ce);
+      background-clip: text;
+      -webkit-background-clip: text;
+      filter: drop-shadow(0 0 24px rgba(168,85,247,.35));
+    }
+
+    h1 {
+      margin: 24px 0 12px;
+      font-size: clamp(1.7rem, 5vw, 2.7rem);
+    }
+
+    p {
+      max-width: 570px;
+      margin: 0 auto;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .button {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 20px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      font-weight: 800;
+      text-decoration: none;
+      transition:
+        transform .18s ease,
+        border-color .18s ease,
+        background .18s ease;
+    }
+
+    .button.primary {
+      border-color: transparent;
+      background:
+        linear-gradient(135deg, #9333ea, #6d28d9);
+      box-shadow: 0 12px 30px rgba(109,40,217,.28);
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      transform: translateY(-2px);
+      border-color: var(--purple-light);
+      outline: 3px solid rgba(168,85,247,.22);
+      outline-offset: 3px;
+    }
+
+    .hint {
+      margin-top: 28px;
+      font-size: .86rem;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .button {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="error-card">
+    <a class="brand" href="/">MIKIS13</a>
+
+    <div class="code" aria-hidden="true">404</div>
+
+    <h1>Deze pagina bestaat niet</h1>
+
+    <p>
+      De link is mogelijk verouderd, verkeerd geschreven of de
+      pagina werd verplaatst. Je gegevens zijn niet verloren:
+      kies hieronder waar je verder wilt gaan.
+    </p>
+
+    <nav class="actions"
+         aria-label="Verder navigeren">
+      <a class="button primary" href="/">
+        Naar de homepage
+      </a>
+
+      <a class="button" href="/shop/">
+        Naar de webshop
+      </a>
+
+      <a class="button" href="/projecten.html">
+        Bekijk projecten
+      </a>
+
+      <a class="button" href="/monitor.html">
+        Repo Monitor
+      </a>
+    </nav>
+
+    <p class="hint">
+      Foutcode 404 · Mikis13 GitHub Pages
+    </p>
+  </main>
+</body>
+</html>
