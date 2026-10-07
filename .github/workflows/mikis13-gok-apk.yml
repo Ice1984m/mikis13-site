@@ -20,7 +20,7 @@ jobs:
 
     steps:
       - name: Repository ophalen
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Java 17 instellen
         uses: actions/setup-java@v4
