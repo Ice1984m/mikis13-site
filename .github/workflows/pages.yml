@@ -185,6 +185,7 @@ jobs:
               "backup",
               "backups",
               "admin-backup",
+              "templates",
           }
 
           html_files = [
