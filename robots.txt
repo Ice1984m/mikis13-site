@@ -1,9 +1,13 @@
 User-agent: *
-
+Allow: /
+Disallow: /admin.html
+Disallow: /admin/
+Disallow: /checkout.html
+Disallow: /test-order.html
+Disallow: /compliance.html
 Disallow: /vault/
-Disallow: /admin-backup/
-Disallow: /credentials/
 Disallow: /security/
-Disallow: /.env
-Disallow: /backup.zip
-Disallow: /database.sql
+Disallow: /archive/
+Disallow: /backup/
+
+Sitemap: https://www.mikis13.nl/sitemap.xml
