@@ -1,0 +1,73 @@
+html,
+body {
+    background: #050505 !important;
+    color: #f5f5f5 !important;
+}
+
+body {
+    min-height: 100vh;
+}
+
+header,
+footer,
+nav,
+.navbar,
+.container,
+.content,
+.main-content,
+.page-content {
+    background-color: #050505 !important;
+    color: #fff !important;
+}
+
+.card,
+.panel,
+.thumbnail,
+.product,
+.product-item,
+.product-box,
+[class*="product"],
+[class*="Product"] {
+    background: #101010 !important;
+    color: #fff !important;
+    border: 1px solid #292929 !important;
+    border-radius: 14px !important;
+}
+
+a {
+    color: #fff !important;
+}
+
+input,
+select,
+textarea {
+    background: #141414 !important;
+    color: #fff !important;
+    border: 1px solid #333 !important;
+}
+
+button,
+.btn,
+input[type="submit"] {
+    background: #fff !important;
+    color: #000 !important;
+}
+
+.mikis13-header {
+    background: #000;
+    color: #fff;
+    padding: 18px;
+    text-align: center;
+    border-bottom: 1px solid #222;
+    font-family: Arial, sans-serif;
+}
+
+.mikis13-header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.mikis13-header p {
+    margin: 6px 0 0;
+    opacity: .72;
+}
