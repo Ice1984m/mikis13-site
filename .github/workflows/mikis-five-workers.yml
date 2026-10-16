@@ -23,7 +23,7 @@ concurrency:
 jobs:
   workers:
     name: Worker - ${{ matrix.role }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
 
     strategy:
@@ -186,7 +186,7 @@ jobs:
   approval:
     name: Menselijke goedkeuring
     needs: workers
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
 
     environment:

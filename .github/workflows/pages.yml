@@ -24,7 +24,7 @@ concurrency:
 jobs:
   controleren:
     name: Website controleren
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Broncode ophalen
@@ -358,7 +358,7 @@ jobs:
     needs:
       - controleren
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     permissions:
       contents: read
@@ -395,7 +395,7 @@ jobs:
     needs:
       - controleren
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Live URL controleren
