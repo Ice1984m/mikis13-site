@@ -26,7 +26,7 @@ jobs:
         github.event.workflow_run.conclusion == 'failure' &&
         !startsWith(github.event.workflow_run.head_branch, 'ai-repair/')
       )
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     env:
       GH_TOKEN: ${{ github.token }}
 
