@@ -1,5 +1,6 @@
 import express from "express";
 import { GoogleGenAI } from "@google/genai";
+import { paymentRoutes } from "./payments.js";
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -13,7 +14,7 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", ALLOWED_ORIGIN);
   res.setHeader("Vary", "Origin");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  res.setHeader("Access-Control-Allow-Methods", "POST,OPTIONS");
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
 
   if (req.method === "OPTIONS") {
     return res.sendStatus(204);
@@ -21,6 +22,8 @@ app.use((req, res, next) => {
 
   next();
 });
+
+app.use(paymentRoutes());
 
 app.get("/", (req, res) => {
   res.json({
