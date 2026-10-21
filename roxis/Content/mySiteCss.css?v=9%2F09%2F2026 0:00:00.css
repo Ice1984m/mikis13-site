@@ -1,0 +1,809 @@
+﻿/****************************************************************************************************************************************************************/
+/*menu shop top*/
+.backgroundShopMenu {
+    /*achtergrond kleur van menu balk top en inner*/
+    background-color: white !important;
+    color: black !important;
+}
+
+.backgroundShopMenuBelow {
+    /*menu stuk bottom in kleur*/
+    background-color: #000000 !important;
+}
+
+.top-menu.pull-right li a {
+    /*kleur van de top nav naast valuta en taal knop*/
+    color: #222; /*#222*/
+}
+
+.top-menu.pull-right li a:hover {
+    /*kleur van de top nav naast valuta en taal knop hover*/
+    color: #e43a3b; /*#222*/
+}
+
+.header-top .top-menu li a:before {
+    /*kleur van het streep je onder top nav naast valueta*/
+    background-color: #e43a3b !important;
+}
+
+.top-text {
+    /*kleur welkomstext*/
+    color: #666 !important;
+}
+
+.uitloggen {
+    /*uitloggen*/
+    color: #e43a3b !important;
+}
+
+.header-top .top-links a {
+    /*kleur van de text login + reg*/
+    /*color:lime !important;*/
+}
+
+.header-top .top-links a:before {
+    /*kleur streepje tussen login en reg*/
+    /*color:lime !important;*/
+}
+
+.uitloggen:hover {
+    /*uitloggen hover*/
+    color: black !important;
+}
+
+.header-top .header-dropdown:nth-of-type(2n) > a {
+    /*style van de valuta knop*/
+    background-color: #f6f6fa !important;
+    color: #222 !important;
+}
+
+.header-top .header-dropdown:nth-of-type(2n) > a:hover {
+    /*hover effect van de valuta knop*/
+    background-color: #e43a3b !important;
+    border-left-color: #e43a3b !important;
+}
+
+.header-top .header-dropdown > a {
+    /*style van de talen knop*/
+    background-color: #f0f0fa !important;
+    color: #222 !important;
+}
+
+.header-top .header-dropdown > a:hover {
+    /*hover effect van de talen knop*/
+    background-color: #e43a3b !important;
+    border-left-color: #e43a3b !important;
+}
+
+.topMenuSelected {
+    /*valuta en taal knop geslecteerd kleur*/
+    background-color: #e43a3b !important;
+}
+
+.setcurrencycookie:hover {
+    /*background kleur van de valuta menu hoover*/
+    background-color: #e43a3b !important;
+}
+
+.setlangcookie:hover {
+    /*background kleur van de taal menu hoover*/
+    background-color: #e43a3b !important;
+}
+
+.dropdown-menu li a:not(.topMenuSelected):not(.dropdown-toggle) {
+    /*achtergrond kleur valuta en taal niet geslecteerd en actief*/
+    background-color: white; /*white*/
+}
+
+.bottom-dd-bg-color li a {
+    /*achtergrond kleur dropdown menu's in bottom deel*/
+    background-color: #f2f2f2 !important;
+    /*color  is van meer info dd text kleur*/
+    color: black !important;
+}
+
+.bottom-dd-bg-color li a:hover {
+    /*achtergrond kleur dropdown menu's in bottom deel hover*/
+    background-color: #e43a3b !important;
+}
+
+.nav.navbar-nav li a {
+    /*bottom deel kleur text ook kleur dd meer info */
+    color: black !important;
+}
+
+.dropdown.megamenu-container ul li a {
+    /*kleur text dropdown categorieen bottom deel*/
+    color: black !important;
+}
+
+.navbar-nav > li > a:before {
+    /*streepje boven dd in bottom deel*/
+    background-color: #e43a3b;
+}
+
+.navbar-nav > li > a:hover {
+    /*achtergrond kleur voor dd in bottom deel*/
+    background-color: white !important;
+}
+
+.dropdown.cart-dropdown > a {
+    /*kleur van het winkelmandje*/
+    color: #e43a3b !important;
+}
+
+.header-info-box {
+    /*inner 3 vakjes*/
+    background-color: white !important;
+    /*text onder title*/
+    color: black;
+}
+
+.header-info-box i {
+    /*achtergrond kleur 3vakjes in inner deel*/
+    /*background-color:magenta !important;*/
+    /*sysmboolkleur 3vakjes in inner deel*/
+    /*color:lime !important;*/
+}
+
+.header-info-box div {
+    /*kleur titels inner 3 vakjes*/
+    /*color:lime !important;*/
+}
+
+#searchbox {
+    /*achtergrond kleur en text kleur zoekvak bottom deel*/
+    background-color: white !important;
+    color: black !important;
+}
+
+.snelzoeknknop {
+    /*zoekknop  zoekvak bottom deel*/
+    /*background-color:magenta !important;
+    color:lime !important;*/
+}
+
+.kaderrondzoek i {
+    /*kleur vergrootglas in bottom balk*/
+    /*color:magenta;*/
+}
+
+.kaderrondzoek2 {
+    /*achtergrond zoekvak dd bottom deel*/
+    /*background: linear-gradient(to bottom, magenta 0%, magenta 100%) !important;*/
+}
+
+/**************************************************************************END TOP MENU**************************************************************************************/
+
+/***************************************************************************SITE ZELF***************************************************************************************/
+
+.backgroundShopSite {
+    /*achtergrond kleur site zelf*/
+    background-color: white !important;
+}
+
+/*************************************************************************END SITE ZELF***************************************************************************************/
+
+/****************************************************************************FOOTER******************************************************************************************/
+
+.backgroundShopFooter {
+    /*achtergrond kleur footer boven + kleur text links*/
+    background-color: #000000 !important;
+    color: #9a9a9a;
+}
+
+.backgroundShopFooter .footer-bottom {
+    /*achtergrond onderste balk in footer; color is van made by text*/
+    background-color: #000000 !important;
+    /*color:white;*/
+}
+
+.backgroundShopFooter .widget-title {
+    /*titels in de footer*/
+    color: white !important;
+}
+
+.backgroundShopFooter .fa-ul li a {
+    /*kleur van de links rechts in de footer*/
+    color: #9a9a9a;
+}
+
+.backgroundShopFooter .fa-ul li a:hover {
+    /*kleur van de links rechts in de footer*/
+    color: #b31213;
+}
+
+.backgroundShopFooter .footer-bottom ul li a {
+    /*kleur van nav rechts onder in footer*/
+    color: #9a9a9a;
+}
+
+.backgroundShopFooter .footer-bottom ul li a:hover { color: #b31213; }
+
+.backgroundShopFooter .footer-bottom ul li.active a {
+    /*kleur van nav rechts onder in footer eerste element*/
+    color: yellow !important;
+}
+
+.backgroundShopFooter .footer-bottom p a {
+    /*n-Motion Software text in footer*/
+    color: #e43a3b !important;
+}
+
+/************************************************************************END FOOTER****************************************************************************************/
+
+/***************************************************************************HOME******************************************************************************************/
+
+.hometabs li:not(.active) a {
+    /*niet active tabs*/
+    /*background-color:red !important;
+    border-left-color:lime;
+    border-top-color:lime;
+    border-right-color:lime;*/
+}
+
+.hometabs li:not(.active) a:hover {
+    /*hover niet active tabs*/
+    /*background-color:magenta !important;*/
+}
+
+.hometabs li.active a {
+    /*active tab*/
+    /*background-color:lime !important;
+    color:magenta !important;*/
+}
+
+.hometabs li.active a:hover {
+    /*hover active tab*/
+    /*background-color:lime !important;
+    color:magenta !important;*/
+}
+
+.hometabs li.active a:before {
+    /*streepje boven active tab*/
+    /*background-color:red;*/
+}
+
+.homenewstitel {
+    /*titel van laatste nieuws*/
+    color: black;
+}
+
+.entry .entry-media {
+    /*achtergrond kleur nieuws blokken , de kleur die je ziet bij een hover*/
+    background-color: #e43a3b !important;
+}
+
+.entry .entry-media span {
+    /*kleur van datum in nieuws blok*/
+    color: white !important;
+}
+
+.entry .entry-media a {
+    /*kleur van admin text in nieuws blok*/
+    color: white !important;
+}
+
+.entry-title i {
+    /*kleur van bolletje nieuws blok*/
+    /*background-color:magenta !important;
+    color:lime !important;*/
+}
+
+.entry-title a {
+    /*kleur titel nieuws blok*/
+    /*color:lime !important;*/
+}
+
+.entry-content a {
+    /*kleur van de lees meer knop bij een nieuws blok*/
+    /*color:lime !important;*/
+}
+
+.entry-content a:hover {
+    /*kleur van de lees meer knop bij een nieuws blok bij hover*/
+    /*color:magenta !important;*/
+}
+
+.owl-dot.active {
+    /* onder nieuws blok nav actief*/
+    /*background-color:lime !important;*/
+}
+
+.owl-dot:hover {
+    /* onder nieuws blok nav hover*/
+    /*background-color:magenta !important;*/
+}
+
+.owl-dot {
+    /* onder nieuws blok nav niet actief*/
+    /*background-color:blue !important;*/
+}
+
+#scroll-top {
+    /*kleuren van knop om terug naar boven te scrollen*/
+    /*background-color:magenta !important;
+    color:lime !important;*/
+}
+
+/***********************************************************************END HOME******************************************************************************************/
+
+/*************************************************************************CAT********************************************************************************************/
+
+.filter-group-widget {
+    /*kleur tussen de headers en de filter zelf, zit onder panel-body kleur*/
+    /*background-color:yellow !important;*/
+}
+
+.panel.panel-custom .panel-heading a {
+    /*headers zonder focus*/
+    /*background-color:aqua !important;
+    border-color:lime !important;
+    color:magenta !important;*/
+}
+
+.panel.panel-custom .panel-heading a:hover, .panel.panel-custom .panel-heading a:focus {
+    /*headers op focus*/
+    /*background-color:red !important;
+    border-color:darkgreen !important;
+    color:yellow !important;*/
+}
+
+.panel-body {
+    /*achtergrond kleur van de filters*/
+    /*background-color:magenta !important;*/
+}
+
+.filter-brand-list li a {
+    margin-left: 10px;
+    /*kleur van de filter text */
+    /*color:lime !important;*/
+}
+
+/***********************************************************************END CAT******************************************************************************************/
+
+/***********************************************************************CONTACT******************************************************************************************/
+
+.contact-box {
+    /*adress box achtergrond kleur + adress en phone kleur*/
+    /*background-color:lime !important;
+    color:magenta !important;*/
+}
+
+.contact-box h3 {
+    /*kleur titel*/
+    /*color:magenta !important;*/
+}
+
+.contact-box strong {
+    /*kleur van de labels*/
+    /*color:magenta !important;*/
+}
+
+.contact-box i {
+    /*kleur sm icons*/
+    /*color:magenta !important;*/
+}
+
+.contact-box a { /*color:magenta !important;*/ }
+
+.contact-box a:hover { /*color:red !important;*/ }
+
+/**********************************************************************END CONTACT****************************************************************************************/
+
+/***********************************************************************PRODUCT******************************************************************************************/
+
+.producttitle {
+    /*title bij een product*/
+    color: black !important;
+}
+
+.product-details .review-container {
+    /*strepen onder title*/
+    /*border-bottom-color:lime !important;
+    border-top-color:magenta !important;*/
+}
+
+.product-details .product-desc-box {
+    /*achtergrond kleur van het vak*/
+    /*background-color:magenta !important;*/
+    /*kleur van de omranding*/
+    /*border-color: lime !important;*/
+    /*kleur van de text in het kader*/
+    /*color:white !important;*/
+}
+
+.product-zoom-wrapper {
+    /*omranding grote foto*/
+    background-color: white !important;
+}
+
+.product-gallery a {
+    /*omranding owl nav*/
+    background-color: white !important;
+}
+
+.producttabs li:not(.active) a {
+    /*niet active tabs*/
+    /*background-color:red !important;
+    border-left-color:lime;
+    border-top-color:lime;
+    border-right-color:lime;*/
+}
+
+.producttabs li:not(.active) a:hover {
+    /*hover niet active tabs*/
+    /*background-color:magenta !important;*/
+}
+
+.producttabs li.active a {
+    /*active tab*/
+    /*background-color:lime !important;
+    color:magenta !important;*/
+}
+
+.producttabs li.active a:hover {
+    /*hover active tab*/
+    /*background-color:lime !important;
+    color:magenta !important;*/
+}
+
+.producttabs li.active a:before {
+    /*streepje boven active tab*/
+    /*background-color:red;*/
+}
+
+.tab-pane.active h4 {
+    /*title en datum in een review*/
+    /*color:lime !important;*/
+}
+
+.tab-pane.active p {
+    /*kleur van de text bij een review*/
+    /*color:magenta !important;*/
+}
+
+#Product_description p {
+    /*kleur van de text bij beschrijving*/
+    /*color:magenta !important;*/
+}
+
+#scrollinproduct hr {
+    /*kleur van lijn onder tabs*/
+    /*border-color:lime !important;*/
+}
+
+#scrollinproduct .nav-tabs {
+    /*kleur van lijn onder tabs*/
+    /*border-bottom-color:magenta !important*/
+}
+
+.ratings:before {
+    /*kleur van de sterren*/
+    color: #f4b907 !important;
+}
+
+.product-ratings:before {
+    /*achtergrond kleur van niet active sterren*/
+    /*color:white !important;*/
+}
+
+/*****kleur en maat***/
+
+.filter-size-box.active, .filter-size-box:hover, .filter-size-box:focus {
+    background-color: #e43a3b;
+    /*maat selectie*/
+    color: #fff !important;
+    cursor: pointer;
+}
+
+.filter-color-box:hover, .filter-color-box:focus, .filter-color-box.active {
+    /*box-shadow: 0 0 15px rgba(255, 0, 255, 0.4);*/
+    /*kleur selectie*/
+    cursor: pointer;
+    text-decoration: underline !important;
+    /*width:26px;
+    height:26px;*/
+}
+
+.filter-size-box { width: 25%; }
+
+.filter-color-container, .filter-size-container {
+    /*margin-top:-10px !important;*/
+    font-size: 11px !important;
+}
+
+/*.kleurondl div:hover{
+    text-decoration: underline !important;
+    cursor:pointer;
+}*/
+
+.filter-row .kleurondl:hover div span { cursor: pointer; }
+
+.product_color_cellText {
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    background-color: #eaeaea;
+    line-height: 24px;
+    margin-bottom: 5px;
+    padding: 4px 6px;
+    text-transform: uppercase;
+    transition: all 0.5s;
+}
+
+.product_color_cellText.active {
+    background-color: #e43a3b;
+    color: white;
+}
+
+.product_color_cellText.active:hover {
+    background-color: #b31213;
+    text-decoration-line: none !important;
+}
+
+.product_color_cellText:hover {
+    background-color: #e43a3b;
+    color: white;
+}
+
+.shake { /*https://stackoverflow.com/questions/44355470/how-to-add-shake-animation-for-a-span-element-inside-div*/
+    animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
+    backface-visibility: hidden;
+    display: inline-block;
+    perspective: 1000px;
+    transform: translate3d(0, 0, 0);
+}
+
+@keyframes shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+
+    40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+/*******end kleur en maat******/
+
+/**********************************************************************END PRODUCT****************************************************************************************/
+
+/********************************************************************REG AND LOGIN***************************************************************************************/
+
+#loginForm label {
+    /*kleur van de labels op e login page*/
+    /*color:white !important;*/
+}
+
+#loginForm hr {
+    /*kleur van de streep op de login page*/
+    /*border-color:aqua !important;*/
+}
+
+.regusser a {
+    /*text reg als nieuwe gebruiker*/
+    /*color:magenta !important;*/
+}
+
+.regusser a:hover {
+    /*text reg als nieuwe gebruiker hover*/
+    /*color:lime !important;*/
+}
+
+.myuserpannel {
+    background-color: #f4f4f4;
+    margin: 5px 0px 15px 0px;
+    /*kleuren van de reg pannel*/
+    padding: 15px;
+}
+
+.panel-primary {
+    /*kleuren van de reg pannel*/
+    border: solid 1px !important;
+    border-color: #337ab7 !important;
+}
+
+.myuserpannel label {
+    /*kleur vande labels op de reg page*/
+    /*color:magenta !important;*/
+}
+
+.chkreg {
+    float: left !important;
+    height: 20px !important;
+    /*style om de chk mooi te zetten*/
+    margin-top: 10px !important;
+    width: 25px;
+}
+
+
+/*******************************************************************END REG AND LOGIN*************************************************************************************/
+
+/**************************************************************************Cart******************************************************************************************/
+
+.dropdown-menu {
+    /*achtergrondkleur van de dropdown cart + text kleur*/
+    /*background-color:magenta !important;
+    color:white !important;*/
+}
+
+.dcart-action-info p span {
+    /*kleur van de waardes*/
+    /*color:white !important;*/
+}
+
+/***********************************************************************END Cart*****************************************************************************************/
+
+/************************************************************************SHARED******************************************************************************************/
+
+.pagetitels {
+    /*kleur van de titels van een pagina*/
+    /*color:magenta !important;*/
+}
+
+.form-control {
+    /*kleur van de textboxen en border*/
+    /*background-color:lime !important;
+    border-color:magenta !important;*/
+}
+
+.form-control:focus {
+    /*kleur van de border op en focus*/
+    /*border-color:red !important;*/
+}
+
+input[type=button], input[type=submit] {
+    /*kleur van de buttons*/
+    /*background-color:lime !important;
+    border-color :magenta !important;
+    color:black !important;*/
+}
+
+input[type=button]:hover, input[type=submit]:hover {
+    /*kleur van de buttons op een hover*/
+    /*background-color:magenta !important;*/
+}
+
+.product-price {
+    /*kleur van de product prijs*/
+    /*color:magenta !important;*/
+}
+
+/***cat & products***/
+
+.product h3 a {
+    /*kleur van title*/
+    /*color:lime !important;*/
+}
+
+/**end cat**/
+
+/*table*/
+
+.table-striped > tbody > tr {
+    /*kleur transparante rijen*/
+    /*background-color:lime !important;*/
+}
+
+.table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th {
+    /*kleur van de gekleurde rijen*/
+    /*background-color:blue !important;*/
+}
+
+.table .table-bordered > tbody > tr > th, .table.table-bordered > tbody > tr > td {
+    /*border kleur van de tabel*/
+    /*border-color:magenta !important;*/
+}
+
+.table thead > tr > th {
+    /*kleur header table + kleur text + verticale borders kleur*/
+    /*background-color:red !important;
+    color:black !important;
+    border-color:magenta !important;*/
+}
+
+.table thead > tr {
+    /*border header boven kleur*/
+    /*border-top-color:magenta !important;*/
+}
+
+/*end table*/
+
+/**********************************************************************END SHARED****************************************************************************************/
+
+.sidemenushow { display: none; }
+
+.sidemenushowinv { display: block; }
+
+@media (max-width: 1200px) {
+    .carttable { display: block; }
+}
+
+@media (min-width: 768px) {
+    .sidemenushow { display: block; }
+
+    .sidemenushowinv { display: none; }
+}
+
+.k-widget.k-editor.k-editor-inline {
+    background-color: transparent;
+    border: 1px solid #f5f5f9
+}
+
+
+
+*top Cart - step for order*/
+
+.stepwizard-row {
+    display: table-row;
+}
+
+.stepwizard {
+    display: table;
+    width: 100%;
+}
+
+    /*.stepwizard-step button[disabled] {
+    opacity: 1 !important;
+    filter: alpha(opacity=100) !important;
+}*/
+
+    .stepwizard .btn.disabled, .stepwizard .btn[disabled], .stepwizard fieldset[disabled] .btn {
+        opacity: 1 !important;
+        color: #bbb;
+    }
+
+.stepwizard-row:before {
+    top: 14px;
+    bottom: 0;
+    position: absolute;
+    content: " ";
+    width: 100%;
+    height: 1px;
+    /*background-color: #ccc;*/
+    z-index: 0;
+}
+
+.stepwizard-step {
+    display: table-cell;
+    text-align: center;
+    position: relative;
+}
+
+.btn-circle {
+    font-size: 24px !important;
+    line-height: 1.5 !important;
+    border-radius: 50% !important;
+    border: 1px solid #e43a3b !important;
+    margin-bottom: 20px !important;
+}
+
+.btn-complete {
+    font-size: 24px !important;
+    line-height: 1.5 !important;
+    border-radius: 50% !important;
+    border: 1px solid #5cb85c !important;
+    margin-bottom: 20px !important;
+    color: #5cb85c;
+}
+
+.btn-grey {
+    font-size: 24px !important;
+    line-height: 1.5 !important;
+    border-radius: 50% !important;
+    border: 1px solid #bbb !important;
+    margin-bottom: 20px !important;
+}
+
+/*.btn-circle:hover {
+    color: #f5f5f9 !important;
+}*/
+
+.btn-tekst {
+    color: #e43a3b !important;
+}
+
+.tekst-grey {
+    color: #bbb !important;
+}
