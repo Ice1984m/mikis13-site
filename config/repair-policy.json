@@ -1,0 +1,17 @@
+{
+  "direct_main_write": false,
+  "force_push": false,
+  "delete_existing_branches": false,
+  "automatic_merge": true,
+  "require_tests": true,
+  "require_security_scan": true,
+  "require_healthcheck": true,
+  "allowed_branch_prefixes": [
+    "repair/",
+    "ai-repair/",
+    "autodev/",
+    "dependabot/"
+  ],
+  "maximum_files_changed": 20,
+  "maximum_lines_changed": 500
+}
