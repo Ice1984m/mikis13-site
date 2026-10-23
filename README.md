@@ -1,112 +1,21 @@
-# Mikis13 Site
+# Mikis13 Store
 
-Professionele digitale oplossingen — software, websites en AI-integratie.
+Mikis13.nl is an app and developer-tools landing page. The neon-purple store page links to the Mikis13 Stream web app, an Android APK, and official developer tool download pages.
 
-## Live website
+## Mikis13 Stream
 
-https://ice1984m.github.io/mikis13-site/
+The web and Android players open user-provided HTTPS MP3, M3U, and M3U8 streams. No channels, music, or video are supplied. Users are responsible for using streams they own or are allowed to play. The stream list is stored locally on the user's device.
 
-## Publicatie
+Open `media.html` for the web player. The Android project is in `android-app/` and uses Android Media3/ExoPlayer for MP3 and HLS playback.
 
-De website wordt automatisch via GitHub Actions en GitHub Pages
-gepubliceerd na iedere push naar de branch `main`.
+## Website deployment
 
-## Beveiliging
+The static website is published through GitHub Pages by the workflow in `.github/workflows/pages.yml`. A push to `main` triggers the website checks and publication. The workflow currently publishes only after its checks pass.
 
-Plaats nooit Stripe secret keys, GitHub tokens, wachtwoorden,
-webhook secrets of andere gevoelige informatie in deze repository.
+## Developer Hub
 
----
+`devtools.html` links to the official Kiro, Visual Studio Code, Cursor, and GitHub pages. Its clone command points to `https://github.com/Ice1984m/mikis13-site.git`.
 
-## 🐳 Docker
+## Security
 
-### Image bouwen (lokaal)
-
-```bash
-docker build -t mikis13-site .
-```
-
-### Container draaien (lokaal)
-
-```bash
-docker run -p 8080:80 mikis13-site
-```
-
-Open daarna <http://localhost:8080> in je browser.
-
-### Draaien met Docker Compose
-
-```bash
-docker compose up -d
-```
-
-De site is beschikbaar op <http://localhost:8080>.  
-Stoppen: `docker compose down`
-
----
-
-## 📦 Gepubliceerde images (GHCR)
-
-Elke push naar `main` of een versie-tag (`v*`) publiceert automatisch een image naar:
-
-```
-ghcr.io/ice1984m/mikis13-site
-```
-
-Beschikbare tags:
-
-| Tag | Wanneer |
-|-----|---------|
-| `main` | Laatste commit op de main-branch |
-| `v1.2.3` / `1.2` | Na het aanmaken van een Git-tag |
-| `sha-<commit>` | Elke individuele build |
-
-Image pullen:
-
-```bash
-docker pull ghcr.io/ice1984m/mikis13-site:main
-```
-
----
-
-## 🚀 Deployen op een Docker-host / VPS
-
-1. **Zorg dat Docker geïnstalleerd is** op je server.
-
-2. **Pull de gewenste image:**
-
-   ```bash
-   docker pull ghcr.io/ice1984m/mikis13-site:main
-   ```
-
-3. **Start de container:**
-
-   ```bash
-   docker run -d \
-     --name mikis13-site \
-     --restart unless-stopped \
-     -p 80:80 \
-     ghcr.io/ice1984m/mikis13-site:main
-   ```
-
-4. *(Optioneel)* Zet een **reverse proxy** (Nginx, Caddy, Traefik) voor HTTPS op poort 443.
-
-5. **Updaten naar een nieuwe versie:**
-
-   ```bash
-   docker pull ghcr.io/ice1984m/mikis13-site:main
-   docker stop mikis13-site
-   docker rm mikis13-site
-   # Herhaal stap 3
-   ```
-
----
-
-## 🔖 Release aanmaken
-
-```bash
-git tag v1.0.0
-git push origin v1.0.0
-```
-
-De GitHub Actions workflow bouwt daarna automatisch de image en publiceert die als `v1.0.0` en `1.0` naar GHCR.
+Do not commit access tokens, passwords, private signing keys, or stream credentials to this repository.

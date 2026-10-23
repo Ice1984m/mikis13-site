@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090611">
+<meta name="description" content="Een eenvoudige speler voor je eigen MP3-, M3U- en HLS-streams.">
+<title>Mikis13 Stream</title>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1.7.3/dist/hls.min.js" defer></script>
+<style>
+:root{color-scheme:dark;--bg:#090611;--panel:#120d1b;--line:#38264b;--muted:#b7abc7;--accent:#c97cff;--text:#f8f4ff}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 20% -15%,#3e175a 0,transparent 48%),var(--bg);color:var(--text);font:16px/1.5 system-ui,Segoe UI,Arial,sans-serif;min-height:100vh}main{width:min(980px,calc(100% - 28px));margin:auto;padding:28px 0 56px}header{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px 2px 26px}.brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.02em}.logo{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;color:#1a0928;background:linear-gradient(145deg,#b3a0ff,#ff72da);font-size:22px}.brand small{display:block;color:var(--muted);font-size:12px;font-weight:500;letter-spacing:.04em}header a,.textlink{color:var(--accent)}h1{font-size:clamp(32px,7vw,56px);line-height:1.05;margin:14px 0}p{color:var(--muted)}.intro{max-width:720px;margin-bottom:26px}.layout{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(270px,.75fr);gap:18px}.card{background:color-mix(in srgb,var(--panel) 94%,transparent);border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 18px 55px #0003}.player-card{padding:14px}.screen{width:100%;aspect-ratio:16/9;background:#050807;border-radius:14px;overflow:hidden;display:grid;place-items:center}.screen video,.screen audio{width:100%;max-height:100%;background:#050807}.screen audio{align-self:center;padding:26px}.empty{padding:24px;text-align:center;color:var(--muted)}.now{display:flex;justify-content:space-between;gap:12px;align-items:start;padding:16px 4px 3px}.now h2{font-size:17px;margin:0}.now p{font-size:13px;margin:3px 0}.status{min-height:22px;color:var(--accent);font-size:13px}.panel-title{margin:0 0 8px;font-size:19px}label{display:block;font-weight:650;font-size:13px;margin:13px 0 6px;color:#e6def0}input[type=text],input[type=url]{width:100%;padding:12px;border-radius:11px;border:1px solid #49305d;background:#100b19;color:var(--text);font:inherit;outline:none}input:focus{border-color:var(--accent);box-shadow:0 0 0 3px #c97cff1f}.row{display:flex;gap:8px}.row>*{min-width:0}.row input{flex:1}.button,.filebutton{display:inline-flex;align-items:center;justify-content:center;gap:7px;background:#241531;border:1px solid #694b89;color:var(--text);padding:10px 13px;border-radius:11px;font:inherit;font-weight:700;text-decoration:none;cursor:pointer}.button.primary{background:var(--accent);border-color:var(--accent);color:#0a1a10}.button:hover,.filebutton:hover{filter:brightness(1.12)}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.filebutton input{display:none}.hint{font-size:12px;margin:10px 0 0}.divider{border:0;border-top:1px solid var(--line);margin:18px 0}.channels{display:grid;gap:8px;max-height:330px;overflow:auto;margin-top:14px}.channel{display:flex;align-items:center;gap:8px;padding:9px;background:#100b19;border:1px solid #352342;border-radius:12px}.channel-play{flex:1;min-width:0;background:none;border:0;color:var(--text);text-align:left;font:inherit;cursor:pointer}.channel-play strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.channel-play small{display:block;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.remove{background:transparent;border:0;color:#bbc7bf;font-size:18px;cursor:pointer;padding:3px 7px}.empty-list{padding:16px;border:1px dashed #49305d;border-radius:12px;color:var(--muted);text-align:center;font-size:13px}.notice{margin-top:20px;padding:14px 16px;border-left:3px solid var(--accent);background:#171025;border-radius:0 12px 12px 0;font-size:13px;color:#ddd2ea}.foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:18px;color:var(--muted);font-size:12px}.foot a{color:var(--muted)}@media(max-width:760px){.layout{grid-template-columns:1fr}header{padding-bottom:18px}.card{padding:16px}.player-card{padding:10px}.now{padding-top:13px}}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="brand"><span class="logo" aria-hidden="true">▶</span><div>MIKIS13 STREAM<small>Jouw eigen audio- en videostreams</small></div></div>
+    <a class="textlink" href="projecten.html">Projecten</a>
+  </header>
+  <section class="intro">
+    <p>JOUW MEDIA · JOUW KEUZE</p>
+    <h1>Luister en kijk via je eigen streams.</h1>
+    <p>Voeg een MP3-stream toe of laad een eigen M3U- of M3U8-playlist. Je lijst blijft in de browser op dit apparaat bewaard.</p>
+  </section>
+  <div class="layout">
+    <section class="card player-card" aria-label="Mediaspeler">
+      <div id="screen" class="screen"><div class="empty">Kies een stream uit je lijst of voeg er zelf een toe.</div></div>
+      <div class="now"><div><h2 id="nowTitle">Nog niets afgespeeld</h2><p id="nowUrl">Je playlist wordt alleen op dit apparaat opgeslagen.</p></div></div>
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+    </section>
+    <section class="card">
+      <h2 class="panel-title">Stream toevoegen</h2>
+      <label for="streamName">Naam</label>
+      <input id="streamName" type="text" maxlength="100" placeholder="Bijvoorbeeld Radio of Favoriet">
+      <label for="streamUrl">HTTPS-stream-URL</label>
+      <div class="row"><input id="streamUrl" type="url" inputmode="url" placeholder="https://voorbeeld.nl/audio.mp3"><button id="addStream" class="button primary" type="button">Toevoegen</button></div>
+      <hr class="divider">
+      <h2 class="panel-title">Playlist laden</h2>
+      <div class="actions">
+        <label class="filebutton">📂 Kies M3U/M3U8-bestand<input id="playlistFile" type="file" accept=".m3u,.m3u8,.txt,audio/x-mpegurl,application/vnd.apple.mpegurl"></label>
+      </div>
+      <label for="playlistUrl">Of playlist-URL (HTTPS)</label>
+      <div class="row"><input id="playlistUrl" type="url" inputmode="url" placeholder="https://voorbeeld.nl/lijst.m3u"><button id="loadPlaylist" class="button" type="button">Laden</button></div>
+      <p class="hint">Een externe playlistserver moet browsertoegang (CORS) toestaan. Je kunt ook het bestand downloaden en hierboven kiezen.</p>
+    </section>
+  </div>
+  <section class="card" style="margin-top:18px">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px"><h2 class="panel-title" style="margin:0">Mijn streams</h2><button id="clearList" class="button" type="button">Lijst wissen</button></div>
+    <div id="channels" class="channels"></div>
+  </section>
+  <aside class="notice">Mikis13 Stream bevat zelf geen zenders, muziek of videobestanden. Voeg alleen streams toe die je zelf bezit of waarvoor je toestemming hebt. Stream-URL’s en je lijst worden lokaal op dit apparaat bewaard.</aside>
+  <footer class="foot"><span>Geen account, abonnement of tracking in deze speler.</span><span><a href="legal/privacy.html">Privacy</a> · <a href="legal/voorwaarden.html">Gebruiksvoorwaarden</a></span></footer>
+</main>
+<script>
+(() => {
+  const storageKey = "mikis13-streams-v1";
+  const screen = document.getElementById("screen");
+  const list = document.getElementById("channels");
+  const status = document.getElementById("status");
+  let channels = [];
+  let hls = null;
+  try { channels = JSON.parse(localStorage.getItem(storageKey) || "[]"); } catch (_) { channels = []; }
+
+  function save() { localStorage.setItem(storageKey, JSON.stringify(channels)); }
+  function safeUrl(value) {
+    try { const url = new URL(value); return url.protocol === "https:" ? url.href : null; } catch (_) { return null; }
+  }
+  function render() {
+    list.replaceChildren();
+    if (!channels.length) { const empty=document.createElement("div"); empty.className="empty-list"; empty.textContent="Nog geen streams. Voeg hierboven een stream of M3U-playlist toe."; list.append(empty); return; }
+    channels.forEach((item,index) => {
+      const row=document.createElement("div"); row.className="channel";
+      const play=document.createElement("button"); play.type="button"; play.className="channel-play"; play.setAttribute("aria-label",`Speel ${item.name}`);
+      const name=document.createElement("strong"); name.textContent=item.name;
+      const url=document.createElement("small"); url.textContent=item.url;
+      play.append(name,url); play.addEventListener("click",()=>playStream(item));
+      const remove=document.createElement("button"); remove.type="button"; remove.className="remove"; remove.textContent="×"; remove.setAttribute("aria-label",`${item.name} verwijderen`);
+      remove.addEventListener("click",()=>{channels.splice(index,1);save();render();}); row.append(play,remove); list.append(row);
+    });
+  }
+  function parseM3u(text) {
+    const result=[]; let name="";
+    for (const raw of text.replace(/^\uFEFF/,"").split(/\r?\n/)) {
+      const line=raw.trim();
+      if (!line) continue;
+      if (line.startsWith("#EXTINF:")) { const comma=line.lastIndexOf(","); name=comma>=0?line.slice(comma+1).trim():"Stream"; continue; }
+      if (line.startsWith("#")) continue;
+      const url=safeUrl(line);
+      if (url) result.push({name:name || decodeName(url),url});
+      name="";
+    }
+    return result;
+  }
+  function decodeName(url) { try { return decodeURIComponent(new URL(url).pathname.split("/").filter(Boolean).pop() || "Stream"); } catch (_) { return "Stream"; } }
+  function addChannels(items) {
+    const seen=new Set(channels.map(x=>x.url)); const unique=items.filter(x=>!seen.has(x.url));
+    channels.push(...unique); save(); render();
+    status.textContent=unique.length?`${unique.length} stream(s) toegevoegd.`:"Geen nieuwe geldige HTTPS-streams gevonden.";
+  }
+  function stopPlayer() { if(hls){hls.destroy();hls=null;} screen.replaceChildren(); }
+  function playStream(item) {
+    stopPlayer();
+    document.getElementById("nowTitle").textContent=item.name;
+    document.getElementById("nowUrl").textContent=item.url;
+    status.textContent="Stream laden…";
+    const url=new URL(item.url); const audioExt=/\.(mp3|m4a|aac|ogg|wav|flac)$/i.test(url.pathname);
+    const media=document.createElement(audioExt?"audio":"video"); media.controls=true; media.autoplay=true; media.playsInline=true;
+    if(!audioExt) media.setAttribute("poster",""); screen.append(media);
+    const isHls=/\.m3u8(?:$|\?)/i.test(item.url);
+    if(isHls && window.Hls && Hls.isSupported()) {
+      hls=new Hls(); hls.loadSource(item.url); hls.attachMedia(media);
+      hls.on(Hls.Events.MANIFEST_PARSED,()=>media.play().catch(()=>{}));
+      hls.on(Hls.Events.ERROR,(_,data)=>{if(data.fatal)status.textContent="Stream niet beschikbaar. Controleer de URL en CORS-instellingen van de stream.";});
+    } else { media.src=item.url; media.play().then(()=>status.textContent="Afspelen").catch(()=>status.textContent="Tik op Afspelen. Sommige browsers ondersteunen dit streamformaat niet."); }
+    media.addEventListener("error",()=>{status.textContent="Stream kon niet worden geladen. Controleer de URL, het formaat en de rechten van de stream.";});
+  }
+  document.getElementById("addStream").addEventListener("click",()=>{
+    const url=safeUrl(document.getElementById("streamUrl").value.trim());
+    if(!url){status.textContent="Gebruik een geldige HTTPS-stream-URL.";return;}
+    const name=document.getElementById("streamName").value.trim() || decodeName(url); addChannels([{name,url}]);
+    document.getElementById("streamName").value="";document.getElementById("streamUrl").value="";
+  });
+  document.getElementById("playlistFile").addEventListener("change",async event=>{
+    const file=event.target.files?.[0]; if(!file)return;
+    try { const text=await file.text(); const items=parseM3u(text); if(!items.length)status.textContent="Geen HTTPS-streams in dit M3U-bestand gevonden."; else addChannels(items); }
+    catch(_){status.textContent="Playlistbestand kon niet worden gelezen.";} event.target.value="";
+  });
+  document.getElementById("loadPlaylist").addEventListener("click",async()=>{
+    const url=safeUrl(document.getElementById("playlistUrl").value.trim()); if(!url){status.textContent="Gebruik een geldige HTTPS-playlist-URL.";return;}
+    status.textContent="Playlist downloaden…";
+    try { const response=await fetch(url); if(!response.ok)throw new Error("HTTP"); const text=await response.text(); const items=parseM3u(text); if(items.length)addChannels(items); else status.textContent="Geen HTTPS-streams gevonden in de playlist."; }
+    catch(_){status.textContent="Playlist niet opgehaald. De server moet HTTPS en CORS toestaan; laad anders het M3U-bestand vanaf je apparaat.";}
+  });
+  document.getElementById("clearList").addEventListener("click",()=>{channels=[];save();render();stopPlayer();status.textContent="Je streamlijst is van dit apparaat verwijderd.";});
+  render();
+})();
+</script>
+</body>
+</html>

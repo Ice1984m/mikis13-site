@@ -1,12 +1,12 @@
 <resources>
     <style
-        name="Theme.Mikis13Gok"
+        name="Theme.Mikis13Stream"
         parent="android:style/Theme.Material.NoActionBar">
 
         <item name="android:fontFamily">sans</item>
         <item name="android:windowLightStatusBar">false</item>
-        <item name="android:statusBarColor">#020617</item>
-        <item name="android:navigationBarColor">#020617</item>
-        <item name="android:windowBackground">#050816</item>
+        <item name="android:statusBarColor">#0a0612</item>
+        <item name="android:navigationBarColor">#0a0612</item>
+        <item name="android:windowBackground">#0a0612</item>
     </style>
 </resources>

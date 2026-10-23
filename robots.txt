@@ -2,9 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /admin.html
 Disallow: /admin/
-Disallow: /checkout.html
-Disallow: /test-order.html
-Disallow: /compliance.html
 Disallow: /vault/
 Disallow: /security/
 Disallow: /archive/

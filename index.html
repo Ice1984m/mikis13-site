@@ -1,293 +1,46 @@
 <!doctype html>
 <html lang="nl">
 <head>
-
 <meta charset="utf-8">
-
-<meta name="viewport"
-content="width=device-width,initial-scale=1">
-
-<title>Mikis13 Shop</title>
-
-<link
-rel="stylesheet"
-href="assets/css/style.css">
-
-<script src="assets/js/legal-runtime.js"></script>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#08050f">
+<meta name="description" content="MIKIS13 APPSTORE: ontdek apps en tools voor web en Android.">
+<title>MIKIS13 APPSTORE — Apps en tools voor web en Android</title>
+<style>
+:root{color-scheme:dark;--bg:#08050f;--panel:#110c1d;--panel2:#171025;--line:#332349;--purple:#bd76ff;--pink:#ff63d8;--cyan:#6de5ff;--text:#f7f2ff;--muted:#c0b3d0}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 78% 4%,#59257d55,transparent 34%),radial-gradient(ellipse at 4% 58%,#1a55702a,transparent 32%),var(--bg);color:var(--text);font:16px/1.55 ui-sans-serif,system-ui,"Segoe UI",sans-serif;min-height:100vh}body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.13;background-image:radial-gradient(#a87bc9 0.6px,transparent .6px);background-size:22px 22px;mask-image:linear-gradient(to bottom,#000,transparent 78%)}a{color:inherit;text-decoration:none}.wrap{width:min(1120px,calc(100% - 40px));margin:auto}.topbar{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff17;position:relative;z-index:1}.brand{display:flex;align-items:center;gap:12px;font-weight:850;letter-spacing:.08em}.brand-mark{width:40px;height:40px;display:grid;place-items:center;border-radius:12px;background:linear-gradient(145deg,var(--pink),var(--purple) 60%,var(--cyan));color:#12091d;box-shadow:0 0 28px #c15cff55;font-size:19px}.topbar nav{display:flex;gap:24px;color:#c0b3d0;font-size:14px}.topbar nav a{transition:color .18s}.topbar nav a:hover,.topbar nav a:focus-visible{color:#fff}.hero{padding:82px 0 66px;position:relative;isolation:isolate;min-height:410px}.hero:after{content:"";position:absolute;z-index:-1;right:3%;top:30px;width:min(34vw,340px);aspect-ratio:1;border:1px solid #b66cff28;border-radius:50%;background:radial-gradient(circle at 45% 42%,#ff63d82c,transparent 30%),radial-gradient(circle at 55% 54%,#6de5ff20,transparent 58%);box-shadow:inset 0 0 50px #9d55ff0c,0 0 90px #8b43bb12}.hero:before{content:"✦";position:absolute;right:16%;top:110px;color:#f2bdff;font-size:clamp(90px,15vw,170px);line-height:1;text-shadow:0 0 18px #bd76ff88,0 0 70px #bd76ff55;transform:rotate(-12deg)}.eyebrow{color:var(--cyan);font-size:11px;letter-spacing:.2em;font-weight:800;text-transform:uppercase}.hero h1{font-size:clamp(42px,7.5vw,78px);line-height:.99;letter-spacing:-.06em;max-width:760px;margin:16px 0 20px}.gradient{background:linear-gradient(95deg,#fff 5%,var(--pink) 43%,var(--purple) 72%,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{max-width:580px;color:var(--muted);font-size:17px}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:12px 17px;border:1px solid #76579d;border-radius:10px;background:#160e24;color:white;font-weight:750;transition:transform .2s,box-shadow .2s,border-color .2s}.btn:hover{transform:translateY(-2px);border-color:#d29aff;box-shadow:0 8px 28px #a640ff2e}.btn:focus-visible,a:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}.btn.primary{border:0;background:linear-gradient(100deg,#e477ef,#a58aff);color:#17091f;box-shadow:0 0 25px #b743ff38}.section-head{display:flex;align-items:end;justify-content:space-between;gap:14px;margin:0 0 18px}.section-head h2{font-size:26px;margin:0;letter-spacing:-.025em}.section-head p{margin:3px 0 0;color:var(--muted);font-size:14px}.apps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.app{position:relative;overflow:hidden;min-height:270px;padding:22px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,#181027,#0e0a17 72%);box-shadow:inset 0 1px #ffffff0d;display:flex;flex-direction:column;transition:border-color .2s,transform .2s}.app:hover{border-color:#704e91;transform:translateY(-3px)}.app:before{content:"";position:absolute;right:-60px;top:-80px;width:190px;height:190px;border-radius:50%;background:#a740ff2a;filter:blur(30px);pointer-events:none}.app>*{position:relative}.app-icon{width:54px;height:54px;border-radius:15px;display:grid;place-items:center;font-size:26px;background:linear-gradient(145deg,#ff72da,#9d6cff 55%,#6de5ff);color:#140a20;box-shadow:0 0 24px #be51e944}.app .tag{color:var(--cyan);letter-spacing:.12em;font-size:10px;font-weight:800;text-transform:uppercase;margin-top:20px}.app h3{font-size:20px;margin:5px 0}.app p{color:var(--muted);font-size:14px;margin:0 0 18px;max-width:330px}.app .btn{margin-top:auto;align-self:flex-start}.app.featured{grid-column:span 2;min-height:300px;background:linear-gradient(135deg,#211033,#100b19 70%);border-color:#624080}.featured .app-content{max-width:600px}.featured .app-icon{width:64px;height:64px;font-size:30px}.featured .tag{margin-top:17px}.featured h3{font-size:25px}.featured p{max-width:470px}.app-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:auto}.app-actions .btn{margin-top:0}.feature-glow{position:absolute!important;right:-18px;bottom:-85px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,#b144ff37,transparent 65%);pointer-events:none}.band{margin:34px 0 0;padding:20px 22px;border:1px solid #37254a;border-radius:14px;background:#110c1dbb;display:flex;align-items:center;justify-content:space-between;gap:16px}.band p{color:var(--muted);margin:3px 0 0;font-size:14px}.band strong{font-size:16px}.foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:#a99bb8;font-size:12px;padding:34px 0 28px;margin-top:28px;border-top:1px solid #ffffff12}.foot a:hover{color:#fff}.spark{color:var(--pink)}@media(max-width:760px){.wrap{width:min(100% - 32px,600px)}.topbar{height:66px}.topbar nav{gap:14px;font-size:12px}.hero{padding:62px 0 48px;min-height:0}.hero:after{right:-6%;top:28px;width:220px;opacity:.7}.hero:before{right:7%;top:77px;font-size:110px}.hero h1,.hero p{max-width:75%}.apps{grid-template-columns:1fr}.app.featured{grid-column:span 1}.feature-glow{right:-120px}.band{align-items:flex-start;flex-direction:column}}@media(max-width:480px){.wrap{width:calc(100% - 24px)}.brand{font-size:13px;gap:8px}.brand-mark{width:34px;height:34px}.topbar nav{gap:11px;font-size:11px}.topbar nav a:nth-child(2){display:none}.hero{padding:52px 0 42px}.hero h1{font-size:clamp(40px,12vw,58px);max-width:100%}.hero p{font-size:16px;max-width:100%}.hero:after{right:-12px;top:24px;width:135px;opacity:.45}.hero:before{right:4%;top:36px;font-size:78px;opacity:.65}.hero-actions .btn{flex:1}.section-head h2{font-size:23px}.app-actions .btn{flex:1}.band{padding:18px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
+</style>
 </head>
-
 <body>
-
-<header>
-
 <div class="wrap">
-
-<nav>
-
-<div class="brand">
-MIKIS<span>13</span> SHOP
+  <header class="topbar">
+    <a class="brand" href="./"><span class="brand-mark">✦</span><span>MIKIS13 <span class="spark">APPSTORE</span></span></a>
+    <nav aria-label="Hoofdnavigatie"><a href="#apps">Apps</a><a href="projecten.html">Projecten</a><a href="contact.html">Contact</a></nav>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="eyebrow">✦ De digitale wereld van Mikis13</div>
+      <h1>Tools die jouw wereld <span class="gradient">in beweging</span> brengen.</h1>
+      <p>Ontdek webapps en Android-tools, gebouwd om snel te starten en makkelijk te gebruiken. Open een app direct in je browser of haal de Android-versie op.</p>
+      <div class="hero-actions"><a class="btn primary" href="#apps">Bekijk apps <span aria-hidden="true">↓</span></a><a class="btn" href="projecten.html">Bekijk projecten <span aria-hidden="true">↗</span></a></div>
+    </section>
+    <section id="apps">
+      <div class="section-head"><div><h2>Apps & tools</h2><p>Beschikbaar voor web en Android</p></div><span class="eyebrow">01 / STORE</span></div>
+      <div class="apps">
+        <article class="app featured">
+          <div class="feature-glow"></div><div class="app-content">
+            <div class="app-icon" aria-hidden="true">♫</div><div class="tag">Audio · Video · Android</div>
+            <h3>Mikis13 Stream</h3>
+            <p>Speel je eigen MP3-streams en M3U/M3U8-playlists af. Voeg een directe stream toe, laad je eigen playlist en bewaar je lijst op je apparaat.</p>
+            <div class="app-actions"><a class="btn primary" href="media.html">Open webapp <span aria-hidden="true">↗</span></a><a class="btn" href="downloads/Mikis13Stream.apk" download>Download Android APK <span aria-hidden="true">↓</span></a></div>
+          </div>
+        </article>
+        <article class="app"><div class="app-icon" aria-hidden="true">⌘</div><div class="tag">Developer tools · Web</div><h3>Developer Hub</h3><p>Open de officiële downloadpagina’s van Kiro, VS Code en Cursor. Clone ook direct jouw GitHub-repository.</p><a class="btn" href="devtools.html">Open Developer Hub <span aria-hidden="true">↗</span></a></article>
+        <article class="app"><div class="app-icon" aria-hidden="true">⑂</div><div class="tag">GitHub · Android</div><h3>GitHub Mobile</h3><p>Bekijk repositories, issues en pull requests onderweg via de officiële GitHub-app.</p><a class="btn" href="https://play.google.com/store/apps/details?id=com.github.android" target="_blank" rel="noopener">Bekijk op Google Play <span aria-hidden="true">↗</span></a></article>
+      </div>
+    </section>
+    <aside class="band"><div><strong>Jouw stream. Jouw speler.</strong><p>Er worden geen zenders of muziek meegeleverd. Gebruik alleen streams waarvoor je toestemming hebt.</p></div><a class="btn" href="media.html">Start Mikis13 Stream <span aria-hidden="true">→</span></a></aside>
+  </main>
+  <footer class="foot"><span>© Mikis13 · Apps voor web en Android</span><span><a href="legal/privacy.html">Privacy</a> · <a href="legal/voorwaarden.html">Gebruiksvoorwaarden</a> · <a href="contact.html">Contact</a></span></footer>
 </div>
-
-<div>
-
-<a
-class="btn"
-href="checkout.html">
-🛒 Winkelwagen
-</a>
-
-<a
-class="btn"
-href="admin.html">
-Admin
-</a>
-
-</div>
-
-</nav>
-
-</div>
-
-</header>
-
-<main class="wrap">
-
-<section class="hero">
-
-<h1>
-Mikis13<br>
-Webshop
-</h1>
-
-<p>
-50 geselecteerde startproducten
-voor de Mikis13 dropshipping webshop.
-</p>
-
-</section>
-
-<div class="controls">
-
-<input
-id="search"
-placeholder="Zoeken...">
-
-<select id="category">
-
-<option value="">
-Alle categorieën
-</option>
-
-</select>
-
-</div>
-
-<section
-id="products"
-class="grid">
-</section>
-
-</main>
-
-<script>
-
-let products=[];
-
-let cart=
-JSON.parse(
-localStorage.getItem("cart")||"[]"
-);
-
-async function start(){
-
-products=
-await fetch("data/products.json")
-.then(r=>r.json());
-
-let cats=[
-...new Set(products.map(p=>p.category))
-];
-
-category.innerHTML+=
-cats.map(c=>
-`<option>${c}</option>`
-).join("");
-
-render(products);
-
-}
-
-function render(list){
-
-productsEl=
-document.getElementById("products");
-
-productsEl.innerHTML=
-list.map(p=>`
-
-<div class="card">
-
-<img
-src="${p.image}"
-alt="${p.name}">
-
-<div class="pad">
-
-<small class="muted">
-${p.category}
-</small>
-
-<h3>
-${p.name}
-</h3>
-
-<div class="row">
-
-<span class="price">
-€${p.price.toFixed(2)}
-</span>
-
-<button
-class="btn"
-onclick="add(${p.id})">
-Kopen
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-`).join("");
-
-}
-
-function add(id){
-
-if(!window.MIKIS_COMMERCE_READY){
-  alert(
-    "Dit product is nog niet vrijgegeven voor verkoop. " +
-    "De verplichte bedrijfs- en productcompliance wordt nog gecontroleerd."
-  );
-  return;
-}
-
-
-let product=
-products.find(p=>p.id===id);
-
-let existing=
-cart.find(p=>p.id===id);
-
-if(existing){
-existing.qty++;
-}else{
-cart.push({...product,qty:1});
-}
-
-localStorage.setItem(
-"cart",
-JSON.stringify(cart)
-);
-
-alert("Toegevoegd aan winkelwagen");
-
-}
-
-function filter(){
-
-let q=
-search.value.toLowerCase();
-
-let c=
-category.value;
-
-render(
-products.filter(
-p=>
-p.name.toLowerCase().includes(q)
-&&
-(!c||p.category===c)
-)
-);
-
-}
-
-search.oninput=filter;
-category.onchange=filter;
-
-start();
-
-</script>
-
-
-<footer style="
-margin-top:60px;
-padding:30px 20px;
-border-top:1px solid #333;
-text-align:center;
-font-size:14px">
-
-<a href="legal/wettelijke-vermeldingen.html">
-Wettelijke vermeldingen
-</a>
- ·
-<a href="legal/voorwaarden.html">
-Verkoopvoorwaarden
-</a>
- ·
-<a href="legal/herroeping.html">
-Retour & herroeping
-</a>
- ·
-<a href="legal/privacy.html">
-Privacy
-</a>
- ·
-<a href="legal/cookies.html">
-Cookies
-</a>
- ·
-<a href="legal/productveiligheid.html">
-Productveiligheid
-</a>
- ·
-<a href="legal/klachten.html">
-Klachten
-</a>
-
-</footer>
-
-
-<section style="
-max-width:1100px;
-margin:35px auto;
-padding:25px;
-background:#080808;
-color:white;
-border:1px solid #333;
-border-radius:16px;
-">
-<h2>Supplier catalogus</h2>
-
-<p>
-Bekijk onze uitgebreide productcatalogus.
-</p>
-
-<a
-href="supplier-catalogus/"
-style="
-display:inline-block;
-background:white;
-color:black;
-padding:12px 20px;
-border-radius:8px;
-text-decoration:none;
-font-weight:bold;
-">
-Catalogus bekijken
-</a>
-</section>
 </body>
 </html>

@@ -88,9 +88,7 @@ Home
 Projecten
 </a>
 
-<a href="shop.html">
-Shop
-</a>
+<a href="index.html">Home</a>
 
 <a href="status.html">
 Status

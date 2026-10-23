@@ -4,13 +4,13 @@ plugins {
 }
 
 android {
-    namespace = "com.mikis13.gok"
-    compileSdk = 35
+    namespace = "com.mikis13.stream"
+    compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.mikis13.gok"
+        applicationId = "com.mikis13.stream"
         minSdk = 24
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0.0"
     }
@@ -29,4 +29,11 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+}
+
+dependencies {
+    val media3Version = "1.11.1"
+    implementation("androidx.media3:media3-exoplayer:$media3Version")
+    implementation("androidx.media3:media3-exoplayer-hls:$media3Version")
+    implementation("androidx.media3:media3-ui:$media3Version")
 }

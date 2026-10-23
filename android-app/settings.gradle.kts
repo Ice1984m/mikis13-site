@@ -15,5 +15,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Mikis13Gok"
+rootProject.name = "Mikis13Stream"
 include(":app")
