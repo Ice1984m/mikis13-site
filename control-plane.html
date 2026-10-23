@@ -3,284 +3,30 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#09000f">
-<meta name="description" content="Mikis13 Control Plane - centraal beheer voor website, GitHub, security, containers, tests, repair en releases.">
-<title>Mikis13 Control Plane</title>
-<link rel="stylesheet" href="assets/style.css">
-
+<meta name="theme-color" content="#090610">
+<meta name="description" content="Officiële Android- en Windows-ontwikkeltools en Mikis13 beheerlinks.">
+<title>Beheer &amp; bouwtools | MIKIS13 APPSTORE</title>
+<link rel="stylesheet" href="assets/appstore-shell.css">
 <style>
-.control-page{
-  width:min(1120px,calc(100% - 36px));
-  margin:auto;
-  padding:70px 0 120px;
-}
-
-.control-hero{
-  padding:70px 35px;
-  text-align:center;
-  border:1px solid #ee55ff88;
-  background:
-    radial-gradient(circle at 50% 10%,#8e00d755,transparent 38%),
-    linear-gradient(135deg,#180021,#09000e);
-  box-shadow:0 0 60px #8500c744;
-}
-
-.control-hero h1{
-  margin:25px 0;
-  font-size:clamp(48px,8vw,95px);
-}
-
-.control-intro{
-  max-width:760px;
-  margin:25px auto;
-  color:#d7c0df;
-  line-height:1.8;
-}
-
-.control-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:16px;
-  margin-top:36px;
-}
-
-.control-card{
-  padding:24px;
-  border:1px solid #d85cff55;
-  background:linear-gradient(135deg,#180021dd,#09000e);
-}
-
-.control-card strong{
-  display:block;
-  margin-bottom:12px;
-  color:#ee55ff;
-  font-family:Orbitron,sans-serif;
-}
-
-.control-card p{
-  margin:0;
-  color:#bba4c4;
-  line-height:1.65;
-}
-
-.control-flow{
-  margin-top:40px;
-  padding:30px;
-  border:1px solid #a400ff;
-  background:#0b0010;
-}
-
-.control-flow pre{
-  overflow:auto;
-  white-space:pre-wrap;
-  color:#f3d7ff;
-  line-height:1.8;
-}
-
-.control-actions{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:14px;
-  margin-top:30px;
-}
-
-.control-button{
-  display:inline-block;
-  padding:15px 23px;
-  border:1px solid #ee55ff;
-  background:#24002f;
-  color:#f3d7ff;
-  font-family:Orbitron,sans-serif;
-  font-size:11px;
-  letter-spacing:2px;
-}
-
-.control-button.primary{
-  background:#ee55ff;
-  color:#18001f;
-}
-
-.tech-line{
-  margin-top:24px;
-  color:#56ffaf;
-  font-size:12px;
-  letter-spacing:2px;
-}
-
-@media(max-width:760px){
-  .control-hero{
-    padding:45px 20px;
-  }
-}
+.page{width:min(1120px,calc(100% - 36px));margin:auto;padding-bottom:58px}.topbar{height:78px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff20}.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.07em;text-decoration:none}.brand-mark{width:38px;height:38px;display:grid;place-items:center;border-radius:12px;background:linear-gradient(145deg,#ff9bdd,#b77aff 60%,#8beaff);color:#190d22;box-shadow:0 0 25px #bf5dff50}.topbar nav{display:flex;gap:22px;flex-wrap:wrap}.topbar nav a{color:#d3c8dc;text-decoration:none;font-size:14px}.hero{margin:54px 0 36px;padding:38px clamp(22px,5vw,58px);border:1px solid #b77aff55;border-radius:20px;background:linear-gradient(125deg,#281535,#120b18 72%);box-shadow:0 22px 70px #8100c522}.eyebrow{color:#8beaff;font-size:11px;letter-spacing:.2em;font-weight:850;text-transform:uppercase}.hero h1{font-size:clamp(40px,7vw,72px);line-height:.98;letter-spacing:-.06em;margin:12px 0}.hero p{max-width:680px;color:#c8bdcf}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:18px 0 40px}.control-card{padding:22px;border:1px solid #ffffff20;border-radius:15px;background:linear-gradient(145deg,#1d1428,#110c17 76%)}.control-card h2{font-size:20px;letter-spacing:-.03em;margin:0 0 8px}.control-card p{font-size:14px;color:#c8bdcf;margin:0 0 18px}.control-card .btn{display:inline-flex;margin-top:auto;align-items:center;gap:8px;padding:10px 14px;border:1px solid #8564a0;border-radius:11px;background:#21162d;color:#fff;text-decoration:none;font-weight:750}.group-title{font-size:26px;letter-spacing:-.04em;margin:36px 0 6px}.group-copy{color:#c8bdcf;margin:0}.foot{padding:24px 0;border-top:1px solid #ffffff20;color:#c8bdcf;font-size:13px}.foot a{color:inherit}@media(max-width:700px){.topbar{height:auto;min-height:70px;align-items:flex-start;padding:15px 0;gap:16px}.topbar nav{gap:12px;font-size:12px}.grid{grid-template-columns:1fr}.hero{margin-top:34px;padding:30px 22px}}
 </style>
 </head>
-
 <body>
-
-<div class="stars"></div>
-
-<nav>
-  <a class="logo" href="index.html">MIKIS<span>13</span></a>
-
-  <div class="menu">
-    <a href="index.html">App Store</a>
-    <a href="control-plane.html">Control Plane</a>
-    <a href="index.html">GitHub</a>
-  </div>
-</nav>
-
-<main class="control-page">
-
-<section class="control-hero">
-
-<p class="eyebrow">09 / SYSTEM CONTROL</p>
-
-<h1>
-CONTROL
-<span>PLANE</span>
-</h1>
-
-<p class="control-intro">
-Mikis13 Control Plane V3 combineert diagnose, backups, security, automatische tests, repair-workflows, live verificatie en rollback in één centraal beheersysteem.
-</p>
-
-<p class="tech-line">
-TERMUX • GITHUB ACTIONS • AUTOMATION • SECURITY • DEVOPS
-</p>
-
-<div class="control-actions">
-
-<a class="control-button primary"
-   href="https://github.com/Ice1984m/mikis13-control-plane"
-   target="_blank"
-   rel="noopener">
-BEKIJK PROJECT OP GITHUB →
-</a>
-
-<a class="control-button"
-   href="devtools.html">
-DEVELOPER HUB →
-</a>
-
-<a class="control-button"
-   href="https://play.google.com/console/"
-   target="_blank"
-   rel="noopener">
-GOOGLE PLAY CONSOLE →
-</a>
-
-<a class="control-button"
-   href="index.html">
-← TERUG NAAR PROJECTEN
-</a>
-
-</div>
-
-
-<p class="tech-line">
-DIAGNOSE → BACKUP → TEST → REPAIR → VERIFY → ROLLBACK
-</p>
-
-</section>
-
-<section class="control-grid">
-
-
-<div class="control-card">
-<strong>🌐 LIVE STATUS</strong>
-<p>Domeinen, HTTPS, HTTP-status en responstijden automatisch controleren.</p>
-</div>
-
-<div class="control-card">
-<strong>🤖 REPAIR BOT</strong>
-<p>Mislukte workflows herkennen, classificeren en gecontroleerd opnieuw uitvoeren.</p>
-</div>
-
-<div class="control-card">
-<strong>🐳 CONTAINERS</strong>
-<p>Container-builds, GitHub Actions en GHCR vanuit één controlelaag volgen.</p>
-</div>
-
-<div class="control-card">
-<strong>🛡 SECURITY</strong>
-<p>Secret scanning en veiligheidscontroles voordat wijzigingen gepubliceerd worden.</p>
-</div>
-
-<div class="control-card">
-<strong>🧪 E2E TESTS</strong>
-<p>Belangrijke websitepagina's automatisch testen na wijzigingen.</p>
-</div>
-
-<div class="control-card">
-<strong>📊 OBSERVABILITY</strong>
-<p>Statushistoriek bewaren zodat problemen en verbeteringen zichtbaar worden.</p>
-</div>
-
-<div class="control-card">
-<strong>🚦 RELEASE GATE</strong>
-<p>Publiceren alleen wanneer vereiste controles groen zijn.</p>
-</div>
-
-<div class="control-card">
-<strong>📦 RELEASES</strong>
-<p>Versiebeheer, changelogs en GitHub-releases centraal organiseren.</p>
-</div>
-
-<div class="control-card">
-<strong>📱 TERMUX CENTER</strong>
-<p>Eén centraal mobiel commando voor status, testen, repair en beheer.</p>
-</div>
-
-<div class="control-card">
-<strong>🧠 DRIFT DETECTOR</strong>
-<p>Vergelijkt lokale code met GitHub zodat afwijkingen snel zichtbaar worden.</p>
-</div>
-
-<div class="control-card">
-<strong>📲 ANDROID DEVELOPER</strong>
-<p>Open <a href="https://developer.android.com/studio" target="_blank" rel="noopener">Android Studio</a>, de <a href="https://developer.android.com/" target="_blank" rel="noopener">Android Developers-documentatie</a> of <a href="https://play.google.com/console/" target="_blank" rel="noopener">Google Play Console</a>.</p>
-</div>
-
-<div class="control-card">
-<strong>🪟 WINDOWS APP BUILDER</strong>
-<p>Bouw Windows-apps met <a href="https://visualstudio.microsoft.com/downloads/" target="_blank" rel="noopener">Visual Studio</a> en <a href="https://dotnet.microsoft.com/download" target="_blank" rel="noopener">.NET</a>. Bekijk ook de <a href="https://learn.microsoft.com/windows/apps/windows-app-sdk/" target="_blank" rel="noopener">Windows App SDK</a> en de <a href="https://learn.microsoft.com/windows/msix/packaging-tool/tool-overview" target="_blank" rel="noopener">MSIX Packaging Tool</a> voor installatiepakketten.</p>
-</div>
-
-</section>
-
-<section class="control-flow">
-
-<p class="eyebrow">CONTROL FLOW</p>
-
-<pre>
-ANDROID / TERMUX
-       ↓
-MIKIS13 CONTROL PLANE
-       ├── STATUS
-       ├── SECURITY
-       ├── E2E TESTS
-       ├── REPAIR BOT
-       ├── CONTAINERS
-       ├── HISTORY
-       ├── RELEASE GATE
-       └── DRIFT DETECTOR
-                 ↓
-              GITHUB
-                 ↓
-         GITHUB ACTIONS
-                 ↓
-            MIKIS13.NL
-</pre>
-
-</section>
-
+<main class="page">
+<header class="topbar"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">✦</span><span>MIKIS13 <span style="color:#ff85d6">APPSTORE</span></span></a><nav aria-label="Hoofdnavigatie"><a href="index.html">Start</a><a href="apps.html">Apps nu</a><a href="binnenkort.html">Binnenkort</a><a href="devtools.html">Developer Hub</a><a href="control-plane.html" aria-current="page">Beheer</a></nav></header>
+<section class="hero"><div class="eyebrow">Developer &amp; beheer</div><h1>Bouw je volgende app.</h1><p>Officiële download- en documentatielinks voor Android- en Windows-ontwikkeling, plus Mikis13-repositories. Je kunt de tools rechtstreeks bij hun uitgevers bekijken.</p><div class="actions"><a class="btn primary" href="devtools.html">Open Developer Hub →</a><a class="btn" href="https://github.com/Ice1984m/mikis13-control-plane" target="_blank" rel="noopener">Mikis13 Control Plane op GitHub ↗</a></div></section>
+<section aria-labelledby="android-title"><h2 class="group-title" id="android-title">Android ontwikkeling</h2><p class="group-copy">Installatie, documentatie en app-publicatie.</p><div class="grid">
+<article class="control-card"><h2>Android Studio</h2><p>De officiële ontwikkelomgeving voor het bouwen en beheren van Android-apps.</p><a class="btn" href="https://developer.android.com/studio" target="_blank" rel="noopener">Download Android Studio ↗</a></article>
+<article class="control-card"><h2>Android Developers</h2><p>SDK-documentatie, platformgidsen en informatie voor Android-ontwikkelaars.</p><a class="btn" href="https://developer.android.com/" target="_blank" rel="noopener">Open Android Developers ↗</a></article>
+<article class="control-card"><h2>Google Play Console</h2><p>Beheer testtracks, appvermeldingen en publicaties met je eigen account.</p><a class="btn" href="https://play.google.com/console/" target="_blank" rel="noopener">Open Play Console ↗</a></article>
+</div></section>
+<section aria-labelledby="windows-title"><h2 class="group-title" id="windows-title">Windows app bouwen</h2><p class="group-copy">Officiële bouwtools, SDK-documentatie en verpakkingshulpmiddelen.</p><div class="grid">
+<article class="control-card"><h2>Visual Studio</h2><p>Download de Microsoft IDE voor Windows-, .NET- en native appontwikkeling.</p><a class="btn" href="https://visualstudio.microsoft.com/downloads/" target="_blank" rel="noopener">Download Visual Studio ↗</a></article>
+<article class="control-card"><h2>.NET</h2><p>Download de .NET SDK en bekijk de officiële installatie-instructies.</p><a class="btn" href="https://dotnet.microsoft.com/download" target="_blank" rel="noopener">Download .NET ↗</a></article>
+<article class="control-card"><h2>Windows App SDK</h2><p>Documentatie en hulpmiddelen voor moderne Windows-apps.</p><a class="btn" href="https://learn.microsoft.com/windows/apps/windows-app-sdk/" target="_blank" rel="noopener">Windows App SDK ↗</a></article>
+<article class="control-card"><h2>MSIX Packaging Tool</h2><p>Lees hoe je Windows-installatiepakketten maakt en beheert.</p><a class="btn" href="https://learn.microsoft.com/windows/msix/packaging-tool/tool-overview" target="_blank" rel="noopener">MSIX documentatie ↗</a></article>
+</div></section>
+<footer class="foot">© Mikis13 · <a href="legal/privacy.html">Privacy</a> · <a href="legal/voorwaarden.html">Gebruiksvoorwaarden</a> · <a href="contact.html">Contact</a></footer>
 </main>
-
-<footer>
-<strong>MIKIS13</strong>
-<small>Control Plane • Termux + GitHub</small>
-</footer>
-
 </body>
 </html>

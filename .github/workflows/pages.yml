@@ -163,6 +163,10 @@ jobs:
           )
           PY
 
+      - name: Publieke App Store-site samenstellen
+        shell: bash
+        run: bash scripts/prepare-pages-site.sh
+
       - name: HTML en interne links controleren
         shell: bash
         run: |
@@ -173,7 +177,7 @@ jobs:
           from pathlib import Path
           from urllib.parse import unquote, urlsplit
 
-          root = Path(".").resolve()
+          root = Path("_site").resolve()
           html_files = sorted(root.rglob("*.html"))
           errors = []
 
@@ -376,13 +380,17 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Publieke App Store-site samenstellen
+        shell: bash
+        run: bash scripts/prepare-pages-site.sh
+
       - name: GitHub Pages configureren
         uses: actions/configure-pages@v5
 
       - name: Website uploaden
         uses: actions/upload-pages-artifact@v4
         with:
-          path: .
+          path: _site
 
       - name: Website publiceren
         id: deployment
@@ -403,7 +411,7 @@ jobs:
         shell: bash
         env:
           WEBSITE_URL: >-
-            https://ice1984m.github.io/mikis13-site/
+            https://www.mikis13.nl/
         run: |
           set -Eeuo pipefail
 
