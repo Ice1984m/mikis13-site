@@ -1,6 +1,6 @@
 # Mikis13 Store
 
-Mikis13.nl is an app and developer-tools landing page. The neon-purple store page links to the Mikis13 Stream web app, an Android APK, and official developer tool download pages.
+Mikis13.nl is a neon-purple app store with three pages: `index.html` highlights the current top app, `apps.html` lists available apps, and `binnenkort.html` lists apps in preparation.
 
 ## Mikis13 Stream
 
