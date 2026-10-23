@@ -1,7 +1,6 @@
 name: Mikis13 Auto Repair
 
 on:
-  workflow_dispatch:
   schedule:
     - cron: "37 7 * * *"
   workflow_run:

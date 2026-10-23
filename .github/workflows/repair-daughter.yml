@@ -2,7 +2,6 @@ name: Repair Daughter
 on:
   schedule:
     - cron: "17 5 * * *"
-  workflow_dispatch:
   workflow_run:
     workflows: ["Mikis13 Auto Repair",".github/workflows/mikis13-safe-repair.yml"]
     types: [completed]
@@ -58,4 +57,3 @@ jobs:
           git commit -m "fix: herstel $MISSING"
           git push -u origin "$BR"
           gh pr create --base main --head "$BR" --title "Repair Daughter: herstel verplichte pagina's" --body "Hersteld uit templates/legal/. Geen directe main-push."
-          gh pr merge "$BR" --squash --delete-branch --auto || true
