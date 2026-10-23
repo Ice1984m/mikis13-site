@@ -1,0 +1,22 @@
+exclude:
+  - archive
+  - backup
+  - backups
+  - admin
+  - admin-backup
+  - vault
+  - security
+  - cloud-backend
+  - android-app
+  - templates
+  - tools
+  - scripts
+  - data
+  - shop
+  - supplier-catalogus
+  - node_modules
+  - vendor
+  - README.md
+  - package.json
+  - package-lock.json
+  - render.yaml
