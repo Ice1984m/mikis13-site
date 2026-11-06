@@ -15,6 +15,7 @@ pages=(
   contact.html
   privacy.html
   voorwaarden.html
+  jobs.html
   robots.txt
   CNAME
 )
