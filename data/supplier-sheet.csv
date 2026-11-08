@@ -1,0 +1,51 @@
+id,sku,name,supplier,supplier_url,manufacturer_name,manufacturer_address,manufacturer_email,product_identifier,country_of_origin,warnings,shipping,eu_responsible_person_name,eu_responsible_person_address,eu_responsible_person_email,materials,ce_required,ce_verified
+1,MIK-001,MagSafe Powerbank,,,,,,MIK-001,,,5-12 werkdagen,,,,,,False
+2,MIK-002,Draadloze Oordopjes,,,,,,MIK-002,,,5-12 werkdagen,,,,,,False
+3,MIK-003,USB-C Hub,,,,,,MIK-003,,,5-12 werkdagen,,,,,,False
+4,MIK-004,LED Strip 5m,,,,,,MIK-004,,,5-12 werkdagen,,,,,,False
+5,MIK-005,Bluetooth Speaker,,,,,,MIK-005,,,5-12 werkdagen,,,,,,False
+6,MIK-006,Telefoonhouder Auto,,,,,,MIK-006,,,5-12 werkdagen,,,,,,False
+7,MIK-007,Full HD Dashcam,,,,,,MIK-007,,,5-12 werkdagen,,,,,,False
+8,MIK-008,Auto Oplader,,,,,,MIK-008,,,5-12 werkdagen,,,,,,False
+9,MIK-009,Bandenspanningsmeter,,,,,,MIK-009,,,5-12 werkdagen,,,,,,False
+10,MIK-010,Auto LED Kit,,,,,,MIK-010,,,5-12 werkdagen,,,,,,False
+11,MIK-011,Laptopstandaard,,,,,,MIK-011,,,5-12 werkdagen,,,,,,False
+12,MIK-012,Mini Toetsenbord,,,,,,MIK-012,,,5-12 werkdagen,,,,,,False
+13,MIK-013,RGB Gaming Muis,,,,,,MIK-013,,,5-12 werkdagen,,,,,,False
+14,MIK-014,Gaming Muismat XL,,,,,,MIK-014,,,5-12 werkdagen,,,,,,False
+15,MIK-015,Controller Oplaadstation,,,,,,MIK-015,,,5-12 werkdagen,,,,,,False
+16,MIK-016,Monitor Light Bar,,,,,,MIK-016,,,5-12 werkdagen,,,,,,False
+17,MIK-017,Kabelmanagement Set,,,,,,MIK-017,,,5-12 werkdagen,,,,,,False
+18,MIK-018,Draadloze Deurbel,,,,,,MIK-018,,,5-12 werkdagen,,,,,,False
+19,MIK-019,Bewegingssensor,,,,,,MIK-019,,,5-12 werkdagen,,,,,,False
+20,MIK-020,Sensor Nachtlamp,,,,,,MIK-020,,,5-12 werkdagen,,,,,,False
+21,MIK-021,Melkopschuimer,,,,,,MIK-021,,,5-12 werkdagen,,,,,,False
+22,MIK-022,Keukenweegschaal,,,,,,MIK-022,,,5-12 werkdagen,,,,,,False
+23,MIK-023,USB Blender,,,,,,MIK-023,,,5-12 werkdagen,,,,,,False
+24,MIK-024,Vacuumzakken Set,,,,,,MIK-024,,,5-12 werkdagen,,,,,,False
+25,MIK-025,Mini Handstofzuiger,,,,,,MIK-025,,,5-12 werkdagen,,,,,,False
+26,MIK-026,Nekventilator,,,,,,MIK-026,,,5-12 werkdagen,,,,,,False
+27,MIK-027,Massagekussen,,,,,,MIK-027,,,5-12 werkdagen,,,,,,False
+28,MIK-028,LED Spiegel,,,,,,MIK-028,,,5-12 werkdagen,,,,,,False
+29,MIK-029,Waterdichte Sporttas,,,,,,MIK-029,,,5-12 werkdagen,,,,,,False
+30,MIK-030,Weerstandsbanden,,,,,,MIK-030,,,5-12 werkdagen,,,,,,False
+31,MIK-031,Opvouwbare Drinkfles,,,,,,MIK-031,,,5-12 werkdagen,,,,,,False
+32,MIK-032,Digitaal Springtouw,,,,,,MIK-032,,,5-12 werkdagen,,,,,,False
+33,MIK-033,Honden Drinkfles,,,,,,MIK-033,,,5-12 werkdagen,,,,,,False
+34,MIK-034,Haarverwijderaar Huisdieren,,,,,,MIK-034,,,5-12 werkdagen,,,,,,False
+35,MIK-035,Interactief Kattenspeeltje,,,,,,MIK-035,,,5-12 werkdagen,,,,,,False
+36,MIK-036,Honden Autogordel,,,,,,MIK-036,,,5-12 werkdagen,,,,,,False
+37,MIK-037,Reis Organizer,,,,,,MIK-037,,,5-12 werkdagen,,,,,,False
+38,MIK-038,Bagageweegschaal,,,,,,MIK-038,,,5-12 werkdagen,,,,,,False
+39,MIK-039,Universele Reisadapter,,,,,,MIK-039,,,5-12 werkdagen,,,,,,False
+40,MIK-040,Memory Foam Nekkussen,,,,,,MIK-040,,,5-12 werkdagen,,,,,,False
+41,MIK-041,Waterdichte Telefoonhoes,,,,,,MIK-041,,,5-12 werkdagen,,,,,,False
+42,MIK-042,Solar Campinglamp,,,,,,MIK-042,,,5-12 werkdagen,,,,,,False
+43,MIK-043,Multifunctionele Zaklamp,,,,,,MIK-043,,,5-12 werkdagen,,,,,,False
+44,MIK-044,Opvouwbare Campingstoel,,,,,,MIK-044,,,5-12 werkdagen,,,,,,False
+45,MIK-045,Precisie Schroevendraaierset,,,,,,MIK-045,,,5-12 werkdagen,,,,,,False
+46,MIK-046,Laserafstandsmeter,,,,,,MIK-046,,,5-12 werkdagen,,,,,,False
+47,MIK-047,Magnetische Polsband,,,,,,MIK-047,,,5-12 werkdagen,,,,,,False
+48,MIK-048,USB-C Kabeltester,,,,,,MIK-048,,,5-12 werkdagen,,,,,,False
+49,MIK-049,Temperatuurmeter,,,,,,MIK-049,,,5-12 werkdagen,,,,,,False
+50,MIK-050,WiFi Smart Plug,,,,,,MIK-050,,,5-12 werkdagen,,,,,,False
