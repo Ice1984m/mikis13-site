@@ -1,0 +1,96 @@
+name: Mikis13 Guard
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: guard-${{ github.repository }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Tests uitvoeren
+        run: |
+          set -Eeuo pipefail
+          chmod +x scripts/*.sh scripts/*.py 2>/dev/null || true
+          bash scripts/validate-repair.sh
+
+  security:
+    name: Securityscan
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Securityscan uitvoeren
+        run: bash scripts/security-check.sh
+
+  health:
+    name: Healthcheck
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Websites controleren
+        run: bash scripts/healthcheck.sh
+
+  safe_merge:
+    name: Veilige squash-merge
+    needs:
+      - tests
+      - security
+      - health
+
+    if: |
+      github.event_name == 'pull_request' &&
+      (
+        startsWith(github.head_ref, 'repair/') ||
+        startsWith(github.head_ref, 'ai-repair/') ||
+        startsWith(github.head_ref, 'autodev/') ||
+        startsWith(github.head_ref, 'dependabot/')
+      ) &&
+      (
+        github.event.pull_request.user.login == 'github-actions[bot]' ||
+        github.event.pull_request.user.login == 'dependabot[bot]'
+      )
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Squash-merge inschakelen
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: |
+          set -Eeuo pipefail
+
+          gh pr merge "$PR_URL" \
+            --squash \
+            --auto \
+            --delete-branch
